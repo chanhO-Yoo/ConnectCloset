@@ -2,8 +2,12 @@ package com.connectcloset.cc.common.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 /**
  * 
@@ -19,10 +23,18 @@ import org.slf4j.LoggerFactory;
  *
  */
 
+/*#11.2에서 처리한 작업을 대신 처리하는 어노테이션(@Component) + aop로 등록하겠다(@Aspect), pointcut과 advice가 있어야한다.*/
+@Component
+@Aspect
 public class LoggerAspect {
 
 	static final Logger logger = LoggerFactory.getLogger(LoggerAspect.class);
 	
+	@Pointcut("execution(* com.kh.spring.memo..*(..))")
+	public void pointcut() {}
+	
+	//어드바이스의 인자는 메서드명 호출 코드로 작성
+	@Around("pointcut()")
 	public Object loggerAdvice(ProceedingJoinPoint joinPoint) throws Throwable{
 		Signature signature = joinPoint.getSignature();//joinPoint의 메서드를 의미
 		String type=signature.getDeclaringTypeName();
