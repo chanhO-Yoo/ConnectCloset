@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- #11.2. aop 관련태그작성-->            
+	<!--==================== XML 선언적 AOP의 활용 시작 ====================-->
+	<!-- LoggerAspect 빈등록 -->
+	<bean id="loggerAspect" class="com.connectcloset.cc.common.aop.LoggerAspect"/>
+	
+	<aop:config>
+	    <aop:aspect id="loggerAspect" ref="loggerAspect">
+	        <aop:pointcut expression="execution(* com.kh.spring.memo..*(..))" id="pcForAll"/>
+	        <!-- 첫번째 *:리턴타입 , 패키지경로(com.kh.spring.memo..*아래 모든 패키지에 대하여)+메서드((..)) -->
+<!-- 	        <aop:pointcut expression="execution(* com.kh.spring.memo.controller.MemoContorller.*(..))" id="pcForAll"/> -->
+	        <aop:around method="loggerAdvice" pointcut-ref="pcForAll"/>
+	    </aop:aspect>
+	</aop:config>
+	
+	<!--==================== XML 선언적 AOP의 활용 끝 ====================-->
+
+</beans>
