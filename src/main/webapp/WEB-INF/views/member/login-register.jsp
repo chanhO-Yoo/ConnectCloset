@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -97,6 +98,7 @@
                                 <div class="tab-content login-regi-content">
                                     <div id="login" class="tab-pane active">
                                         <div class="login-register-form">
+                                
                                             <form action="${pageContext.request.contextPath }/member/loginMember.do" method="post">
                                                 <input type="text" name="memberId" placeholder="ID">
                                                 <input type="password" name="password" placeholder="Password">
@@ -104,10 +106,18 @@
                                                     <button class="btn-hover" type="submit">Log In</button>
                                                 </div>
                                             </form>
+                                            <div>
+                                            <h2>${sessionId} 환영한디</h2>
+                                            </div>
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
                                                 <div class="login-social-btn">
-                                                    <a class="facebook" href="#"><i class="ti-facebook"></i> Facebook</a>
+                                                <a href="${url}">
+													<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+													</a>
+
+
+
                                                     <a class="twitter" href="#"><i class="ti-twitter-alt"></i> Twitter</a>
                                                 </div>
                                             </div>
@@ -204,6 +214,7 @@
                                         </div>
                                     </div>
                                 </div>
+                        
                             </div>
                         </div>
                     </div>
