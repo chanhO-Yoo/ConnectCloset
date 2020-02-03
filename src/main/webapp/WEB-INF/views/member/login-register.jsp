@@ -107,7 +107,7 @@
                                                 </div>
                                             </form>
                                             <div>
-                                            <h2>${sessionId} 환영한디</h2>
+                                            <h2>${sessionId} ${userName} 환영한디</h2>
                                             </div>
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
@@ -118,7 +118,8 @@
 
 
 
-                                                    <a class="twitter" href="#"><i class="ti-twitter-alt"></i> Twitter</a>
+                                                    <a  href="https://kauth.kakao.com/oauth/authorize?client_id=689a10f950365c8db96a54fb2dde9b36&redirect_uri=http://localhost:9090/cc/kakaologin&response_type=code">
+            										<img src="${pageContext.request.contextPath}/resources/img/kakao/kakao_account_login_btn_medium_narrow.png"></a>
                                                 </div>
                                             </div>
                                         </div>
