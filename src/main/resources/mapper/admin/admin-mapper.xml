@@ -21,6 +21,19 @@
 			#{itemLimitedType},
 			#{itemSaleType}
 		)
+		<selectKey keyProperty="itemNo" resultType="_int" order="AFTER">
+			select seq_item_no.currval from dual
+		</selectKey>
+	</insert>
+	
+	<insert id="insertItemImage">
+		insert into item_image values(
+			seq_item_image_no.nextval,
+			#{itemImageOriginName},
+			#{itemImageReName},
+			#{itemNo}
+		)
+		
 	</insert>
     <!-- ===================찬호 끝=================== -->
 	
