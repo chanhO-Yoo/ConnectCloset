@@ -106,9 +106,7 @@
                                                     <button class="btn-hover" type="submit">Log In</button>
                                                 </div>
                                             </form>
-                                            <div>
-                                            <h2>${sessionId} ${userName} 환영한디</h2>
-                                            </div>
+                                          
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
                                                 <div class="login-social-btn">

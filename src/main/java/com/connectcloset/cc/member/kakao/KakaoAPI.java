@@ -109,15 +109,10 @@ public class KakaoAPI {
             
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
-         //   String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
-//            String gender  = kakao_account.getAsJsonObject().get("gender").getAsString();
-//            String birthday   = kakao_account.getAsJsonObject().get("birthday").getAsString();
-  //          System.out.println("@@@@@@@@@@@@@@@@@@@@@@@"+birthday);
+  
             userInfo.put("nickname", nickname);
             userInfo.put("email", email);
-            //userInfo.put("birthday", birthday);
-//            userInfo.put("gender", gender);
-//            userInfo.put("birthday", birthday);
+ 
             
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -126,6 +121,32 @@ public class KakaoAPI {
         
         return userInfo;
     }
+    public void kakaoLogout(String access_Token) {
+        String reqURL = "https://kapi.kakao.com/v1/user/logout";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+            
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            
+            String result = "";
+            String line = "";
+            
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println(result);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 
 }
  

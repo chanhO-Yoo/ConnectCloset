@@ -130,8 +130,16 @@ public class MemberController {
 	public String logout(HttpSession session)throws IOException {
 	System.out.println("여기는 logout");
 	session.invalidate();
-	return "redirect:index.jsp";
+	
+	//카카오
+	  kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("userId");
+	return "redirect:/";
 	}
+	
+	
+
 	
 	@PostMapping("/member/enrollMember.do")
 	public String enrollMember(Model model, Member m, HttpServletRequest request) {
