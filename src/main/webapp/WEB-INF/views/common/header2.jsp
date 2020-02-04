@@ -26,11 +26,11 @@
     </head>
     <body class="wrapper">
         <!-- header start -->
-        <header class="header-area transparent-bar sticky-bar header-padding header-hm6">
+        <header class="header-area sticky-bar header-padding theme-bg header-hm6 clearfix">
             <div class="container-fluid">
                 <div class="header-wrap header-flex">
                     <div class="logo mt-45">
-                        <a href="${pageContext.request.contextPath }/">
+                        <a href="index.html">
                             <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo.png">
                             <img class="logo-sticky-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png">
                         </a>
@@ -38,9 +38,61 @@
                     <div class="main-menu">
                         <nav>
                             <ul>
-                                <li><a href="${pageContext.request.contextPath }/">home</a>
+                                <li><a href="index.html">home</a>
+                                    <ul class="submenu">
+                                        <li><a href="index.html">home version 1</a></li>
+                                        <li><a href="index-2.html">home version 2</a></li>
+                                        <li><a href="index-3.html">home version 3</a></li>
+                                        <li><a href="index-4.html">home version 4</a></li>
+                                        <li><a href="index-5.html">home version 5</a></li>
+                                        <li><a href="index-6.html">home version 6</a></li>
+                                        <li><a href="index-7.html">home version 7</a></li>
+                                        <li><a href="index-8.html">home version 8</a></li>
+                                        <li><a href="index-9.html">home version 9</a></li>
+                                        <li><a href="index-10.html">home version 10</a></li>
+                                        <li><a href="index-11.html">home version 11</a></li>
+                                    </ul>
                                 </li>
-                                
+                                <li><a href="por-grid-3-col.html">Portfolio</a>
+                                    <ul class="mega-menu mega-menu-white-bg">
+                                        <li>
+                                            <ul>
+                                                <li class="mega-menu-title"><a href="#">Portfolio Layout</a></li>
+                                                <li><a href="por-carousel.html">Portfolio slider</a></li>
+                                                <li><a href="por-grid-1-col.html">Grid 1 column</a></li>
+                                                <li><a href="por-grid-3-col.html">grid 3 column</a></li>
+                                                <li><a href="por-grid-3-col-sidebar.html">grid 3 col sidebar</a></li>
+                                                <li><a href="por-grid-3-col-pagination.html">grid 3 col pagination </a></li>
+                                                <li><a href="por-grid-3-col-pagination-sidebar.html">grid 3 col pagination sidebar </a></li>
+                                                <li><a href="por-grid-3-alternative.html">por grid 3 alternative</a></li>
+                                                <li><a href="por-grid-3-alternative-masonry.html">grid 3 alternative masonry</a></li>
+                                                
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul>
+                                                <li class="mega-menu-title"><a href="#">Portfolio Layout</a></li>
+                                                <li><a href="por-grid-3-alternative-fw.html">grid 3 alternative full wide</a></li>
+                                                <li><a href="por-grid-4-col-fullwide.html">grid 4 col fullwide</a></li>
+                                                <li><a href="por-grid-mixed.html">Portfolio grid mixed</a></li>
+                                                <li><a href="por-grid-mixed-fw.html">grid mixed fullwide</a></li>
+                                                <li><a href="por-masonry-3-col.html">masonry 3 column</a></li>
+                                                <li><a href="por-masonry-fw-bg.html">masonry fullwide</a></li>
+                                                <li><a href="por-slider-fullwide.html"> slider fullwide</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <ul>
+                                                <li class="mega-menu-title"><a href="#">Portfolio details layout</a></li>
+                                                <li><a href="single-portfolio-1.html">single portfolio 1</a></li>
+                                                <li><a href="single-portfolio-2.html">single portfolio 2</a></li>
+                                                <li><a href="single-portfolio-3.html">single portfolio 3</a></li>
+                                                <li><a href="single-portfolio-4.html">single portfolio 4</a></li>
+                                                <li><a href="single-portfolio-5.html">single portfolio 5</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li><a href="shop-grid-col4.html">Shop</a>
                                     <ul class="mega-menu mega-menu-width-img">
                                         <li class="menu-img">
@@ -153,24 +205,19 @@
                                 </li>
                                 <li><a href="#">Pages </a>
                                     <ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
+                                        <li><a href="about-us.html">about us</a></li>
+                                        <li><a href="cart-page.html">cart page</a></li>
+                                        <li><a href="checkout.html">checkout</a></li>
+                                        <li><a href="contact.html">contact us</a></li>
+                                        <li><a href="contact-2.html">contact us 2</a></li>
+                                        <li><a href="contact-3.html">contact us 3</a></li>
+                                        <li><a href="login-register.html">login / register</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
                     </div>
-                    <div class="header-right-wrap mt-55">
-                    	<div class="header-search mr-20">
-                    		<button class="sidebar-trigger-user" onclick="location.href='${pageContext.request.contextPath }/member/login-register.do'">
-                    			<span class="ti-user"></span>
-                    		</button>
-                    	</div>
+                    <div class="header-right-wrap mt-47">
                         <div class="header-search mr-20">
                             <button class="sidebar-trigger-search">
                                 <span class="ti-search"></span>
@@ -338,11 +385,13 @@
                                 </li>
                                 <li><a href="index.html">Pages</a>
                                     <ul>
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                        <li><a href="about-us.html">about us</a></li>
+                                        <li><a href="cart-page.html">cart page</a></li>
+                                        <li><a href="checkout.html">checkout</a></li>
+                                        <li><a href="contact.html">contact us</a></li>
+                                        <li><a href="contact-2.html">contact us 2</a></li>
+                                        <li><a href="contact-3.html">contact us 3</a></li>
+                                        <li><a href="login-register.html">login / register</a></li>
                                     </ul>
                                 </li>
                             </ul>

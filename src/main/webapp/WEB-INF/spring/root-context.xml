@@ -10,12 +10,20 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- #7.1. myBatis(JDBC)설정 연결 설정하기 -->
+	<!-- AWS RDS 연결 -->
 	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@mydbinstance.ckywdv0tp4ft.ap-northeast-2.rds.amazonaws.com:1521:xe"/>
 		<property name="username" value="ccadmin1"/>
 		<property name="password" value="ccadmin1"/>
 	</bean>
+	<!-- local DB 연결 -->
+	<!-- <bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="cc"/>
+		<property name="password" value="cc"/>
+	</bean> -->
 	
 	<!-- #10.1.log4jdbc-remix 관련 dataSource처리  -->
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">  
