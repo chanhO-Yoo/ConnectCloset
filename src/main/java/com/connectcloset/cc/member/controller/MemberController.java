@@ -1,9 +1,14 @@
 package com.connectcloset.cc.member.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.Request;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +20,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.connectcloset.cc.member.model.exception.MemberException;
+import com.connectcloset.cc.member.kakao.KakaoAPI;
 import com.connectcloset.cc.member.model.service.MemberService;
 import com.connectcloset.cc.member.model.service.UserMailSendService;
 import com.connectcloset.cc.member.model.vo.Member;
-
-import oracle.jdbc.proxy.annotation.Post;
+import com.connectcloset.cc.member.naver.bo.NaverLoginBO;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 /*value로 지정한 이름의 변수들은 session에 담아둔다.*/
 @SessionAttributes(value= {"memberLoggedIn"})
 @Controller
 public class MemberController {
+	
+	/* NaverLoginBO */
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+
+	/*카카오 api*/
+	 @Autowired
+	 private KakaoAPI kakao;
 	
 	//slf4j 추상체로 로깅
 	private final static Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -42,10 +54,92 @@ public class MemberController {
 	@Autowired
 	private UserMailSendService mailsender;
 
-	@RequestMapping("/member/login-register.do")
-	public void memberLogin() {
-		
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
 	}
+	@RequestMapping(value = "/member/login-register.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(Model model, HttpSession session) {
+	/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+	//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+	//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+	logger.debug("네이버:",naverAuthUrl);
+	//네이버
+	model.addAttribute("url", naverAuthUrl);
+
+	
+	return "/member/login-register";
+	
+	}
+	//카카오 로그인
+	 @RequestMapping(value="/kakaologin")
+	 public String login(@RequestParam("code") String code, HttpSession session){
+		 	//카카오
+			String access_Token = kakao.getAccessToken(code);
+			
+			HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+			
+			logger.debug("카카오 토큰:",access_Token);
+			
+			//클라이언트 이메일이 존재할때 세션에 이메일과 토큰 등록
+			  if (userInfo.get("email") != null) {
+			        session.setAttribute("userId", userInfo.get("email"));
+			        session.setAttribute("userName", userInfo.get("nickname"));
+
+			        session.setAttribute("access_Token", access_Token);
+			    }
+	        return "/member/login-register";
+	    }
+	
+	
+	
+	//네이버 로그인 성공시 callback호출 메소드
+	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
+	logger.debug("여기는 callback");
+	OAuth2AccessToken oauthToken;
+	oauthToken = naverLoginBO.getAccessToken(session, code, state);
+	//1. 로그인 사용자 정보를 읽어온다.
+	apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
+	logger.debug("유져정보={}",apiResult);
+	/** apiResult json 구조
+	{"resultcode":"00",
+	"message":"success",
+	"response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+	**/
+	//2. String형식인 apiResult를 json형태로 바꿈
+	JSONParser parser = new JSONParser();
+	Object obj = parser.parse(apiResult);
+	JSONObject jsonObj = (JSONObject) obj;
+	//3. 데이터 파싱
+	//Top레벨 단계 _response 파싱
+	JSONObject response_obj = (JSONObject)jsonObj.get("response");
+	//response의 nickname값 파싱
+	String nickname = (String)response_obj.get("name");
+	logger.debug("nickname={}",nickname);
+	//4.파싱 닉네임 세션으로 저장
+	session.setAttribute("sessionId",nickname); //세션 생성
+	model.addAttribute("result", apiResult);
+	return "/member/login-register";
+	}
+	
+	
+	//로그아웃
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session)throws IOException {
+	System.out.println("여기는 logout");
+	session.invalidate();
+	
+	//카카오
+	  kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("userId");
+	return "redirect:/";
+	}
+	
+	
+
 	
 	@PostMapping("/member/enrollMember.do")
 	public String enrollMember(Model model, Member m, HttpServletRequest request) {

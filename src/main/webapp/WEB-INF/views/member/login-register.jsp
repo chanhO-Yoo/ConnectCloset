@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -97,6 +98,7 @@
                                 <div class="tab-content login-regi-content">
                                     <div id="login" class="tab-pane active">
                                         <div class="login-register-form">
+                                
                                             <form action="${pageContext.request.contextPath }/member/loginMember.do" method="post">
                                                 <input type="text" name="memberId" placeholder="ID">
                                                 <input type="password" name="password" placeholder="Password">
@@ -104,11 +106,18 @@
                                                     <button class="btn-hover" type="submit">Log In</button>
                                                 </div>
                                             </form>
+                                          
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
                                                 <div class="login-social-btn">
-                                                    <a class="facebook" href="#"><i class="ti-facebook"></i> Facebook</a>
-                                                    <a class="twitter" href="#"><i class="ti-twitter-alt"></i> Twitter</a>
+                                                <a href="${url}">
+													<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+													</a>
+
+
+
+                                                    <a  href="https://kauth.kakao.com/oauth/authorize?client_id=689a10f950365c8db96a54fb2dde9b36&redirect_uri=http://localhost:9090/cc/kakaologin&response_type=code">
+            										<img src="${pageContext.request.contextPath}/resources/img/kakao/kakao_account_login_btn_medium_narrow.png"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -204,6 +213,7 @@
                                         </div>
                                     </div>
                                 </div>
+                        
                             </div>
                         </div>
                     </div>
