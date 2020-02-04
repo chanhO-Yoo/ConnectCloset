@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
@@ -327,6 +329,145 @@
                 </div>
             </div>
         </div>
+        <!-- 날씨  -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+    	  getCurrentWeatheInfo();
+    	  
+
+        function getDateHuman(time) {
+          var date = new Date(time);
+          var year = date.getFullYear();
+          var month = date.getMonth()+1
+          var day = date.getDate();
+          if(month < 10){
+              month = "0"+month;
+          }
+          if(day < 10){
+              day = "0"+day;
+          }
+
+          var today = year+"년 "+month+"월 "+day+"일 ";
+          return today;
+        }
+        
+        function getCurrentWeatheInfo() {
+          //var apiURI = 'http://api.openweathermap.org/data/2.5/forecast?q=Gangnam-gu,kr&mode=json&appid=8b96fa909b07bad5fca2aacb8567b747';
+          var apiURI = 'http://api.openweathermap.org/data/2.5/weather?q=Gangnam-gu,kr&mode=json&appid=8b96fa909b07bad5fca2aacb8567b747';
+          $.ajax({
+            url: apiURI,
+            type: 'GET',
+            data: '',
+            dataType: 'json',
+            async: 'false',
+            success: function(data) {
+              console.log(data);
+                var rowItem = '<tr>';
+                rowItem += '<td>' + getDateHuman((data.dt * 1000)) + '</td>';
+                rowItem += '<td><img src="http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png"/></td>';
+                rowItem += '<td>' + Math.floor((data.main.temp - 273.15)) + '℃' + '</td>';
+                rowItem += '<td>' + data.main.humidity + '%'+ '</td>';
+                rowItem += '<td>' + data.weather[0].main + '</td>';
+                rowItem +=
+                  '<td>' + data.weather[0].description + '</td>';
+                rowItem += '<td>' + data.wind.speed + 'm/s' + '</td>';
+                rowItem += '<td>' + data.name + '</td>';
+                rowItem += '</tr>';
+                $('#current_mytbody').append(rowItem);
+              }
+          });
+        }
+      });
+    </script>
+   
+  <div id="current">
+    <h1>현재 시간의 강남구 날씨 정보</h1>
+​
+    <table border="1">
+      <thead>
+   
+        <tr>
+          <td>날짜</td>
+          <td>날씨 이미지</td>
+          <td>현재온도</td>
+          <td>현재습도</td>
+          <td>날씨</td>
+          <td>상세날씨설명</td>
+          <td>바람</td>
+          <td>도시이름</td>
+        </tr>
+      </thead>
+      <tbody id="current_mytbody"></tbody>
+    </table>
+  </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+​
+<h3>채팅</h3>
+​
+	<!-- 채팅 -->
+      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberId }" style="display: none;">  
+	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
+	 <input type="text" id="messageinput"  >
+    
+    
+		
+    <div>
+        <button type="button" onclick="openSocket();">채팅참여</button>
+        <button type="button" onclick="send();">보내기</button>
+        <button type="button" onclick="closeSocket();">채팅나가기</button>
+    </div>
+    <!-- Server responses get written here -->
+	
+    <div id="messages" ></div> 
+   
+    <!-- websocket javascript -->
+    <script type="text/javascript">
+        var ws;
+        var messages = document.getElementById("messages");
+        
+        function openSocket(){
+            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
+                writeResponse("이미 참여되어있습니다.");
+                return;
+            }
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket("ws://localhost:9090/cc/chat.do");
+        
+            ws.onopen=function(event){
+                if(event.data === undefined) return;
+                
+                writeResponse(event.data);
+            };
+            
+            ws.onmessage = function(event){
+                writeResponse(event.data);
+            };
+            
+            ws.onclose = function(event){
+                writeResponse("채팅방을 나왔습니다.");
+            };
+        }
+        
+        function send(){
+            var text = document.getElementById("messageinput").value+"," + document.getElementById("sender").value;
+            ws.send(text);
+            text = "";
+        };
+        
+        function closeSocket(){
+            ws.close();
+        };
+        
+        function writeResponse(text){
+            messages.innerHTML += "<br/>" + text;
+        };
+        
+  </script>
         <div class="discount-area pb-120">
             <div class="container">
                 <div class="row align-items-center">
