@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import=" com.connectcloset.cc.member.model.vo.Member, java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -9,6 +10,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!--test주석 -->
 <!-- breadcrumb area -->
+
 <div class="breadcrumb-area bg-img pt-230 pb-152"
 	style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
 	<div class="container">
@@ -87,21 +89,26 @@
 		</div>
 	</div>
 </div>
+
+
 <div class="checkout-area pt-95 pb-100">
+
 	<div class="container">
+	
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="billing-info-wrap">
 					<h3>Billing Details</h3>
 					<div class="row">
-						<div class="col-lg-6 col-md-6">
+						<!-- <div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
-								<label>성</label> <input type="text">
+								<label>성</label> <input type="text" value="$"/>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
-								<label>이름</label> <input type="text">
+								<label>이름</label> <input type="text" name="memeberName"
+								" value="${memberLoggedIn.memberName}"/>
 							</div>
 						</div>
 						<!--  <div class="col-lg-12">
@@ -126,13 +133,13 @@
 						<div class="col-lg-12">
 							<div class="billing-info mb-25">
 								<label>주소</label> <input class="billing-address"
-									placeholder="ex) 서울시 강남구 역삼동" type="text"> <input
-									placeholder="상세주소" type="text">
+									placeholder="ex) 서울시 강남구 역삼동" type="text"  name="memberAddress" value="${memberLoggedIn.memberAddress}"> <input
+									placeholder="상세주소" type="text" name="memberDetailAdress" value="${memberLoggedIn.memberDetailAddress}"/>
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="billing-info mb-25">
-								<label>우편번호</label> <input type="text">
+								<label>우편번호</label> <input type="text" name="memberPostcode"value="${memberLoggedIn.memberPostcode}"/>
 							</div>
 						</div>
 						<!-- <div class="col-lg-6 col-md-6">
@@ -149,14 +156,14 @@
                                 </div> -->
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
-								<label>전화번호</label> <input type="text"
-									placeholder="ex) 010-1234-1234">
+								<label>전화번호</label> <input type="text" 
+									placeholder="ex) 010-1234-1234" name="memberPhone" value="${memberLoggedIn.memberPhone}"/>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
 								<label>이메일주소</label> <input type="text"
-									placeholder="connectcloset@gmail.com">
+									placeholder="connectcloset@gmail.com" name="memberEmail" value="${memberLoggedIn.memberEmail}"/>
 							</div>
 						</div>
 					</div>
@@ -189,7 +196,7 @@
 							</div>
 							<div class="col-lg-6 col-md-6">
 								<div class="billing-info mb-25">
-									<label>이름</label> <input type="text">
+									<label>이름</label> <input type="text" >
 								</div>
 							</div>
 							<!--  <div class="col-lg-12">
@@ -341,10 +348,15 @@
 												</div>
 
 												<div id="payment-accordion" class="col-md-8">
+											
+											<!--이전 checkout 버튼->
+											<!-- 	<div class="Place-order mt-25">
 
-													<!-- <a data-toggle="collapse" data-parent="#payment-method" href="#method1">
-                                                            Direct bank transfer
-                                                        </a> -->
+													<a data-toggle="collapse" data-parent="#payment-method" href="#method1">
+                                                           Direct bank transfer
+                                                    </a> 
+                                                 </div> -->
+                                                 
 											</h4>
 										</div>
 									</div>
@@ -352,13 +364,30 @@
 							</div>
 						</div>
 					</div>
+					
+					<!--결제 버튼으로 작업할 경우   -->
 					<div class="Place-order mt-25">
-						<a class="btn-hover" href="#">Place Order</a>
+						 <a class="btn-hover" href="#">
+						 <button class="btn-hover" type="button" onclick="checkout();">
+						 	Place Order
+						 </button> 
+						 </a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
+<!-- <script>
+function checkout(){
+ 		$("#devFrm").attr("action", "${pageContext.request.contextPath}/order/checkout.do")
+ 					.attr("method", "POST")
+ 					.submit();
+ 	}
+ 	
+</script> -->
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

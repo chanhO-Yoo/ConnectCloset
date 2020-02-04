@@ -107,7 +107,7 @@
                                                 </div>
                                             </form>
                                             <div>
-                                            <h2>${sessionId} 환영한디</h2>
+                                            <h2>${memberLoggedIn.memberId} 환영한디</h2>
                                             </div>
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
