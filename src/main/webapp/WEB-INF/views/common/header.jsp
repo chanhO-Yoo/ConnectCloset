@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -23,7 +24,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
         <script src="${pageContext.request.contextPath }/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-    	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
     </head>
     <body class="wrapper">
         <!-- header start -->
@@ -343,7 +344,9 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
+                                         <c:if test="${memberLoggedIn != null }">
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                         </c:if>
                                     </ul>
                                 </li>
                             </ul>
@@ -351,4 +354,83 @@
                     </div>
                 </div>
             </div>
+            
         </header>
+        
+         <!-- summary-info start -->
+        <div class="summary-info sidebar-active">
+            <div class="wrap-sidebar">
+                <div class="sidebar-nav-icon">
+                    <button class="op-sidebar-close"><span class="ti-close"></span></button>
+                </div>
+                <div class="summary-info-all">
+                    <div class="summary-logo">
+                        <a href="${pageContext.request.contextPath }">
+                            <img src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="summary-list-wrap">
+                   
+                  
+                    	
+                    
+                        <div class="summary-list">
+                            <ul>
+                            <c:if test="${memberLoggedIn != null }">
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님환영합니다</li>
+                            
+                            </c:if>
+                                
+                                 <c:if test="${memberLoggedIn == null }">
+	                               <li><i class="ti-location-pin"></i>로그인후 이용해주세요</li>
+                   				 </c:if>
+                               
+                            </ul>
+                             <c:if test="${memberLoggedIn != null }">
+						   <p>
+	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
+	                                               
+		                            <div class="submit-btn">
+		                              <button class="btn-hover" type="submit">Log out</button>
+		                            </div>
+	                        </form>
+                          </p>
+                    </c:if>
+                        </div>
+                    </div>
+                    <div class="sidebar-contact">
+                        <h5>마이페이지</h5>
+                       
+                        <div class="sidebar-contact-list">
+                            <ul>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }">회원 정보 수정</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지1</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
+                               
+                           
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main-search start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><span class="ti-close"></span></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form>
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
+                        <button>
+                            <i class="ti-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
