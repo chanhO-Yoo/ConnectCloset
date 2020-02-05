@@ -23,7 +23,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
         <script src="${pageContext.request.contextPath }/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+    	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
     </head>
     <body class="wrapper">
         <!-- header start -->
