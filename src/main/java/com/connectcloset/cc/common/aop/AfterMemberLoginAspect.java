@@ -28,7 +28,7 @@ public class AfterMemberLoginAspect {
 		
 		if(map.containsKey("memberLoggedIn")) {
 			Member memberLoggedIn = (Member)map.get("memberLoggedIn");
-			logger.info("[{}]님이 로그인했습니다.",memberLoggedIn.getMemberId());
+			logger.info("[{}]님이 로그인했습니다.",memberLoggedIn.getMemberEmail());
 			
 			
 		}
