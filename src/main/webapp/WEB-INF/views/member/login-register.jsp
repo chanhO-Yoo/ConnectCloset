@@ -27,7 +27,8 @@
                 </div>
             </div>
         </div>
-       
+        
+        
         <div class="shortcode-login-regi-area pt-113 pb-120 black-bg-4">
             <div class="container">
                 <div class="row">
@@ -35,13 +36,40 @@
                         <div>
                             <div class="login-regi-wrapper">
                                 <div class="text-center login-register-tab-list nav">
-                                  
+                                    <a class="active" data-toggle="tab" href="#login">
+                                        <h4> Log In </h4>
+                                    </a>
                                     <a data-toggle="tab" href="#register">
                                         <h4> register </h4>
                                     </a>
                                 </div>
                                 <div class="tab-content login-regi-content">
-                                  
+                                    <div id="login" class="tab-pane active">
+                                        <div class="login-register-form">
+                                
+                                            <form action="${pageContext.request.contextPath }/member/loginMember.do" method="post">
+                                                <input type="text" name="memberId" placeholder="ID">
+                                                <input type="password" name="password" placeholder="Password">
+                                                <div class="submit-btn">
+                                                    <button class="btn-hover" type="submit">Log In</button>
+                                                </div>
+                                            </form>
+                                          
+                                            <div class="login-social-wrap">
+                                                <p>Or Log In With</p>
+                                                <div class="login-social-btn">
+                                                <a href="${url}">
+													<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+													</a>
+
+
+
+                                                    <a  href="https://kauth.kakao.com/oauth/authorize?client_id=689a10f950365c8db96a54fb2dde9b36&redirect_uri=http://localhost:9090/cc/kakaologin&response_type=code">
+            										<img src="${pageContext.request.contextPath}/resources/img/kakao/kakao_account_login_btn_medium_narrow.png"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div id="register" class="tab-pane">
                                         <div class="login-register-form">
                                             <form action="${pageContext.request.contextPath }/member/enrollMember.do" method="post">

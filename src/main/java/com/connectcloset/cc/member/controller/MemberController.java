@@ -70,7 +70,7 @@ public class MemberController {
 	model.addAttribute("url", naverAuthUrl);
 
 	
-	return "/member/login-register";
+	return "member/login-register";
 	
 	}
 	//카카오 로그인

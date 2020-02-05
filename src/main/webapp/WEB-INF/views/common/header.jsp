@@ -344,7 +344,7 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                         <c:if test="${memberLoggedIn != null }">
+                                         <c:if test="${memberLoggedIn == null }">
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
                                          </c:if>
                                     </ul>
