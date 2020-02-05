@@ -434,23 +434,57 @@
             <div class="instagram-wrap-3">
                 <div class="instragram-active-4 owl-carousel">
                     <div class="single-instragram zoom-hover">
-                        <a href="#"><img alt="" src="${pageContext.request.contextPath }/resources/img/instragram/24.jpg"></a>
+                        <a href="#"><img alt="" style="width: 292px; height: 293px; object-fit: cover;" src="${pageContext.request.contextPath }/resources/img/brand-logo/1.jpg"></a>
                     </div>
                     <div class="single-instragram zoom-hover">
-                        <a href="#"><img alt="" src="${pageContext.request.contextPath }/resources/img/instragram/25.jpg"></a>
+                        <a href="#"><img alt="" style="width: 292px; height: 293px; object-fit: cover;" src="${pageContext.request.contextPath }/resources/img/brand-logo/2.jpg"></a>
+                    </div>
+                    <div class="single-instragram zoom-hover" >
+                        <a href="#"><img alt="" style="width: 292px; height: 293px; object-fit: cover;" src="${pageContext.request.contextPath }/resources/img/brand-logo/3.jpg"></a>
                     </div>
                     <div class="single-instragram zoom-hover">
-                        <a href="#"><img alt="" src="${pageContext.request.contextPath }/resources/img/instragram/26.jpg"></a>
+                        <a href="#"><img alt="" style="width: 292px; height: 293px; object-fit: cover;" src="${pageContext.request.contextPath }/resources/img/brand-logo/4.jpg"></a>
                     </div>
                     <div class="single-instragram zoom-hover">
-                        <a href="#"><img alt="" src="${pageContext.request.contextPath }/resources/img/instragram/27.jpg"></a>
-                    </div>
-                    <div class="single-instragram zoom-hover">
-                        <a href="#"><img alt="" src="${pageContext.request.contextPath }/resources/img/instragram/26.jpg"></a>
+                        <a href="#"><img alt="" style="width: 292px; height: 293px; object-fit: cover;" src="${pageContext.request.contextPath }/resources/img/brand-logo/5.png"></a>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+        $(document).ready(function () {
+            //you can set this, as long as it's not greater than the slides length
+            var show = 4;
+            //calculate each slides width depending on how many you want to show
+            var w = $('.instagram-area').width() / show;
+            var l = $('.single-instragram zoom-hover').length;
+            
+            //set each slide width
+            $('.instagram-area').width(w);
+            //set the container width to fix the animation and make it look sliding
+            $('.instagram-wrap-3').width(w * l)
+            
+            function slider() {
+                $('.single-instragram zoom-hover:first-child').animate({
+                    marginLeft: -w //hide the first slide on the left
+                }, 'slow', function () {
+                    //once completely hidden, move this slide next to the last slide
+                    $(this).appendTo($(this).parent()).css({marginLeft: 0});
+                });
+            }
+            //use setInterval to do the timed execution and animation
+            var timer = setInterval(slider, 2000);
+            
+            /* pausing the slider */   
+            $('.instagram-area').hover(function(){
+                //mouse in, clearinterval to pause
+                clearInterval(timer);
+            },function(){
+                //mouse out, setinterval to continue
+                timer = setInterval(slider, 2000);
+            });
+        });
+        </script>
         
 
 
