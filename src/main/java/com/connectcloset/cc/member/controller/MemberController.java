@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.member.kakao.KakaoAPI;
@@ -127,14 +128,23 @@ public class MemberController {
 	
 	//로그아웃
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout(HttpSession session)throws IOException {
+	public String logout(HttpSession session, SessionStatus sessionStatus)throws IOException {
 	System.out.println("여기는 logout");
-	session.invalidate();
+//	if(session!=null) {
+//		
+//		session.invalidate();
+//	}
 	
+	if(!sessionStatus.isComplete()) {
+		sessionStatus.setComplete();
+	}
 	//카카오
+	if(session!=null) {
+		
 	  kakao.kakaoLogout((String)session.getAttribute("access_Token"));
 	    session.removeAttribute("access_Token");
 	    session.removeAttribute("userId");
+	}
 	return "redirect:/";
 	}
 	
@@ -200,7 +210,7 @@ public class MemberController {
 			if(bcryptPasswordEncoder.matches(password, m.getMemberPassword())) {
 				msg="로그인성공! "+m.getMemberName()+"님 환영합니다.";
 				
-				//세션에 로그인 객체 저장
+				//세션에 로그인 객체 저장  
 				mav.addObject("memberLoggedIn",m);
 			}
 			else {
