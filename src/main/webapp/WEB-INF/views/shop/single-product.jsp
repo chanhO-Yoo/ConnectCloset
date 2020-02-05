@@ -69,7 +69,7 @@
                         <div class="product-details-img">
                             <img class="zoompro" src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg" alt="zoom"/>
                             <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
-                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
+                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
                                     <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s1.jpg" alt="">
                                 </a>
                                 <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl3.jpg">

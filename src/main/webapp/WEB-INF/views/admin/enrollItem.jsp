@@ -8,32 +8,118 @@
 
 <jsp:include page="/WEB-INF/views/common/header2.jsp" />
 
+<style>
+div#board-container label.custom-file-label{text-align:left;}
+</style>
+<!-- main-search start -->
+        <div class="main-search-active">
+            <div class="sidebar-search-icon">
+                <button class="search-close"><span class="ti-close"></span></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form>
+                    <div class="form-search">
+                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
+                        <button>
+                            <i class="ti-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- summary-info start -->
+        <div class="summary-info sidebar-active">
+            <div class="wrap-sidebar">
+                <div class="sidebar-nav-icon">
+                    <button class="op-sidebar-close"><span class="ti-close"></span></button>
+                </div>
+                <div class="summary-info-all">
+                    <div class="summary-logo">
+                        <a href="index.html">
+                            <img src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png" alt="">
+                        </a>
+                    </div>
+                    <div class="summary-list-wrap">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+                        <div class="summary-list">
+                            <ul>
+                                <li><i class="ti-hand-point-right"></i>Project Management</li>
+                                <li><i class="ti-hand-point-right"></i>Portfolio Showcasing</li>
+                                <li><i class="ti-hand-point-right"></i>Blogs & Content Sharing</li>
+                                <li><i class="ti-hand-point-right"></i>Social Work Management</li>
+                                <li><i class="ti-hand-point-right"></i>eCommerce Shop Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar-contact">
+                        <h5>Fell Free To contact Us</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu.</p>
+                        <div class="sidebar-contact-list">
+                            <ul>
+                                <li><i class="ti-location-pin"></i>123 - 45678910</li>
+                                <li><i class="ti-email"></i><a href="#">info@example.com</a></li>
+                                <li><i class="ti-location-pin"></i>115 5th Ave, New York</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-       
-        <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post">
+        <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
+
 	        <div class="single-product-area pt-80 pb-80">
 	            <div class="container">
 	                <div class="row">
 	                    <div class="col-lg-6">
 	                        <div class="product-details-img">
-	                            <img class="zoompro" src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg" alt="zoom"/>
-	                            <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
-	                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
-	                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s1.jpg" alt="">
-	                                </a>
-	                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl3.jpg">
-	                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s2.jpg" alt="">
-	                                </a>
-	                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-l4.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl1.jpg">
-	                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s3.jpg" alt="">
-	                                </a>
-	                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
-	                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s1.jpg" alt="">
-	                                </a>
-	                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl3.jpg">
-	                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s2.jpg" alt="">
-	                                </a>
-	                            </div>
+	                        
+						        <div class="input-group mb-3" style="padding:0px;">
+						            <div class="input-group-prepend" style="padding:0px;">
+									    <span class="input-group-text">첨부파일1</span>
+									  </div>
+									<div class="custom-file">
+								    	<input type="file" class="custom-file-input" name="upFile" id="upFile1" >
+								    	<label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+									</div>
+								</div>
+								<div>
+		                        	<div class="img_wrap">
+		                        		<img id="img" />
+		                        	</div>
+		                        </div>
+								
+						        <div class="input-group mb-3" style="padding:0px;">
+						            <div class="input-group-prepend" style="padding:0px;">
+						                <span class="input-group-text">첨부파일2</span>
+						            </div>
+						            <div class="custom-file">
+						                <input type="file" class="custom-file-input" name="upFile" id="upFile2">
+						                <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+						            </div>
+						        </div>
+						        
+								<div>
+		                        	<div class="img_wrap">
+		                        		<img id="img2" />
+		                        	</div>
+		                        </div>
+	
+						        <div class="input-group mb-3" style="padding:0px;">
+						            <div class="input-group-prepend" style="padding:0px;">
+						                <span class="input-group-text">첨부파일3</span>
+						            </div>
+						            <div class="custom-file">
+						                <input type="file" class="custom-file-input" name="upFile" id="upFile3">
+						                <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+						            </div>
+						        </div>
+		                        
+								<div>
+		                        	<div class="img_wrap">
+		                        		<img id="img3" />
+		                        	</div>
+		                        </div>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-6">
@@ -60,18 +146,6 @@
 											</select>
 										</div>
 	                                </div>
-	                                
-	                                <!-- <div class="pro-details-color2-wrap" style="width:175px">
-	                                    <span>Color</span>
-	                                    <div class="form-check form-check-inline">
-										  <input class="checkout-toggle2" type="checkbox" id="inlineCheckbox1" value="option1" style="height:15px">
-										  <label class="form-check-label" for="inlineCheckbox1">1</label>
-										</div>
-										<div class="form-check form-check-inline">
-										  <input class="checkout-toggle2" type="checkbox" id="inlineCheckbox2" value="option2">
-										  <label class="form-check-label" for="inlineCheckbox2">2</label>
-										</div>
-	                                </div> -->
 	                                
 	                                <div class="pro-details-size2">
 	                                    <span>Size</span>
@@ -212,3 +286,97 @@
         </form>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+	$(function(){
+		//파일 선택,취소시에 파일명 노출하기
+		$("[name=upFile]").on("change",function(){
+			//파일 입력 취소
+			if($(this).prop("files")[0] === undefined){
+				$(this).next(".custom-file-label").html("파일을 선택하세요");
+				return;
+			}
+			
+			var fileName = $(this).prop('files')[0].name;
+			/* var fileName = $(this).val();//크롬,firefox의 경우 실제 컴퓨터의 경로를 노출하지 않는다. */
+			$(this).next(".custom-file-label").html(fileName);
+			
+			
+		});
+		
+	});
+
+	var sel_file;
+	
+	$(document).ready(function(){
+		$("#upFile1").on("change",handleImgFileSelect);
+	});
+	
+	function handleImgFileSelect(e){
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				return;
+			}
+			sel_file = f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$("#img").attr("src",e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+	var sel_file2;
+	
+	$(document).ready(function(){
+		$("#upFile2").on("change",handleImgFileSelect2);
+	});
+	
+	function handleImgFileSelect2(e){
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				return;
+			}
+			sel_file2 = f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$("#img2").attr("src",e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+	
+	var sel_file3;
+	
+	$(document).ready(function(){
+		$("#upFile3").on("change",handleImgFileSelect3);
+	});
+	
+	function handleImgFileSelect3(e){
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		
+		filesArr.forEach(function(f){
+			if(!f.type.match("image.*")){
+				alert("확장자는 이미지 확장자만 가능합니다.");
+				return;
+			}
+			sel_file3 = f;
+			
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$("#img3").attr("src",e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
+	}
+</script>
