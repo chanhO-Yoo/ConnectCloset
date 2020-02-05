@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+    <!-- ===================찬호 시작=================== -->
+	<insert id="enrollItem">
+		insert into item values(
+			seq_item_no.nextval,
+			#{itemName},
+			#{itemPrice},
+			#{itemStock},
+			#{itemColors},
+			#{itemSize},
+			#{itemInfo},
+			#{itemDetailInfo},
+			sysdate,
+			#{brandNo},
+			#{itemGenderNo},
+			#{itemTypeNo},
+			#{itemLimitedType},
+			#{itemSaleType}
+		)
+		<selectKey keyProperty="itemNo" resultType="_int" order="AFTER">
+			select seq_item_no.currval from dual
+		</selectKey>
+	</insert>
+	
+	<insert id="insertItemImage">
+		insert into item_image values(
+			seq_item_image_no.nextval,
+			#{itemImageOriginName},
+			#{itemImageReName},
+			#{itemNo}
+		)
+		
+	</insert>
+    <!-- ===================찬호 끝=================== -->
+	
+</mapper>
+    
+    
+    
+    
+    
+    
+    
+    

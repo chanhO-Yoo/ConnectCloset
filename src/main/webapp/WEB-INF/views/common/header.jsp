@@ -159,6 +159,8 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                     </ul>
                                 </li>
                             </ul>

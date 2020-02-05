@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background-image: url(assets/img/banner/breadcrumb.jpg);">
+        <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb.jpg);">
             <div class="container">
                 <div class="breadcrumb-content text-center">
                     <h2>Blog</h2>
@@ -47,7 +47,7 @@
                 <div class="summary-info-all">
                     <div class="summary-logo">
                         <a href="index.html">
-                            <img src="assets/img/logo/logo-3.png" alt="">
+                            <img src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png" alt="">
                         </a>
                     </div>
                     <div class="summary-list-wrap">
@@ -85,7 +85,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-7.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -109,7 +109,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-8.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -133,7 +133,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-9.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-9.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -157,7 +157,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-10.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-10.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -181,7 +181,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-11.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-11.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -205,7 +205,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-12.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-12.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -229,7 +229,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-13.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-13.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -253,7 +253,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-14.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-14.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -277,7 +277,7 @@
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-15.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-15.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -301,7 +301,7 @@
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-7.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -325,7 +325,7 @@
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-8.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -349,7 +349,7 @@
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
-                                            <img src="assets/img/blog/blog-9.jpg" alt="">
+                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-9.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
                                             <a href="blog-details.html">
@@ -389,7 +389,7 @@
                                 <div class="sidebar-project-wrap mt-30">
                                     <div class="single-sidebar-project">
                                         <div class="sidebar-project-img">
-                                            <a href="#"><img src="assets/img/portfolio/sidebar-1.jpg" alt=""></a>
+                                            <a href="#"><img src="${pageContext.request.contextPath }/resources/img/portfolio/sidebar-1.jpg" alt=""></a>
                                         </div>
                                         <div class="sidebar-project-content">
                                             <span>Photography</span>
@@ -398,7 +398,7 @@
                                     </div>
                                     <div class="single-sidebar-project">
                                         <div class="sidebar-project-img">
-                                            <a href="#"><img src="assets/img/portfolio/sidebar-2.jpg" alt=""></a>
+                                            <a href="#"><img src="${pageContext.request.contextPath }/resources/img/portfolio/sidebar-2.jpg" alt=""></a>
                                         </div>
                                         <div class="sidebar-project-content">
                                             <span>Branding</span>
@@ -407,7 +407,7 @@
                                     </div>
                                     <div class="single-sidebar-project">
                                         <div class="sidebar-project-img">
-                                            <a href="#"><img src="assets/img/portfolio/sidebar-3.jpg" alt=""></a>
+                                            <a href="#"><img src="${pageContext.request.contextPath }/resources/img/portfolio/sidebar-3.jpg" alt=""></a>
                                         </div>
                                         <div class="sidebar-project-content">
                                             <span>Design</span>
@@ -429,7 +429,7 @@
                             </div>
                             <div class="sidebar-widget mt-55">
                                 <div class="facebook-banner-wrap default-overlay-2">
-                                    <a href="#"><img src="assets/img/banner/banner-17.jpg" alt=""></a>
+                                    <a href="#"><img src="${pageContext.request.contextPath }/resources/img/banner/banner-17.jpg" alt=""></a>
                                     <div class="facebook-banner-content">
                                         <i class="ti-facebook"></i>
                                         <h4>FaceboOk Fans Page</h4>
