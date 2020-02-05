@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import=" com.connectcloset.cc.member.model.vo.Member, java.util.*" %>
+<%@ page
+	import=" com.connectcloset.cc.member.model.vo.Member, java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -8,9 +9,11 @@
 <fmt:requestEncoding value="utf-8" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<!--test주석 -->
-<!-- breadcrumb area -->
+<!-- 아임포트 제공 js & payment 스크립트  -->
+<script type="text/javascript"	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+<!-- breadcrumb area -->
 <div class="breadcrumb-area bg-img pt-230 pb-152"
 	style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
 	<div class="container">
@@ -94,7 +97,7 @@
 <div class="checkout-area pt-95 pb-100">
 
 	<div class="container">
-	
+
 		<div class="row">
 			<div class="col-lg-7">
 				<div class="billing-info-wrap">
@@ -108,7 +111,7 @@
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
 								<label>이름</label> <input type="text" name="memeberName"
-								" value="${memberLoggedIn.memberName}"/>
+									" value="${memberLoggedIn.memberName}" />
 							</div>
 						</div>
 						<!--  <div class="col-lg-12">
@@ -133,13 +136,16 @@
 						<div class="col-lg-12">
 							<div class="billing-info mb-25">
 								<label>주소</label> <input class="billing-address"
-									placeholder="ex) 서울시 강남구 역삼동" type="text"  name="memberAddress" value="${memberLoggedIn.memberAddress}"> <input
-									placeholder="상세주소" type="text" name="memberDetailAdress" value="${memberLoggedIn.memberDetailAddress}"/>
+									placeholder="ex) 서울시 강남구 역삼동" type="text" name="memberAddress"
+									value="${memberLoggedIn.memberAddress}"> <input
+									placeholder="상세주소" type="text" name="memberDetailAdress"
+									value="${memberLoggedIn.memberDetailAddress}" />
 							</div>
 						</div>
 						<div class="col-lg-12">
 							<div class="billing-info mb-25">
-								<label>우편번호</label> <input type="text" name="memberPostcode"value="${memberLoggedIn.memberPostcode}"/>
+								<label>우편번호</label> <input type="text" name="memberPostcode"
+									value="${memberLoggedIn.memberPostcode}" />
 							</div>
 						</div>
 						<!-- <div class="col-lg-6 col-md-6">
@@ -156,14 +162,16 @@
                                 </div> -->
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
-								<label>전화번호</label> <input type="text" 
-									placeholder="ex) 010-1234-1234" name="memberPhone" value="${memberLoggedIn.memberPhone}"/>
+								<label>전화번호</label> <input type="text"
+									placeholder="ex) 010-1234-1234" name="memberPhone"
+									value="${memberLoggedIn.memberPhone}" />
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
 								<label>이메일주소</label> <input type="text"
-									placeholder="connectcloset@gmail.com" name="memberEmail" value="${memberLoggedIn.memberEmail}"/>
+									placeholder="connectcloset@gmail.com" name="memberEmail"
+									value="${memberLoggedIn.memberEmail}" />
 							</div>
 						</div>
 					</div>
@@ -196,7 +204,7 @@
 							</div>
 							<div class="col-lg-6 col-md-6">
 								<div class="billing-info mb-25">
-									<label>이름</label> <input type="text" >
+									<label>이름</label> <input type="text">
 								</div>
 							</div>
 							<!--  <div class="col-lg-12">
@@ -270,12 +278,24 @@
 							</div>
 							<div class="your-order-middle">
 								<ul>
+									<li><span class="order-middle-left"> 
+									<%--<input class="order-name" type="text" name="itemName" value="ProductName"/>  
+											<span>X</span><input class="order-price" type="text" name="itemStock" value="1"/> 
+											<span>$</span><input class="order-price" type="text" name="itemPrice" value="130"/> --%> 
+
+
+										<input class="order-name" type="text" name="itemName"
+											value="${itemName}" /> <span>X</span><input
+											class="order-price" type="text" name="itemStock"
+											value="${itemStock}" /> <span>$</span><input
+											class="order-price" type="text" name="itemPrice"
+											value="${itemPrice}" /> <!-- <span class="order-name">Product Name</span> X 1</span> 
+									<span class="order-price">$329 </span> --></li>
+
+									<!-- 
 									<li><span class="order-middle-left"><span
 											class="order-name">Product Name</span> X 1</span> <span
-										class="order-price">$329 </span></li>
-									<li><span class="order-middle-left"><span
-											class="order-name">Product Name</span> X 1</span> <span
-										class="order-price">$329 </span></li>
+										class="order-price">$329 </span></li> -->
 								</ul>
 							</div>
 							<div class="your-order-bottom">
@@ -318,7 +338,8 @@
 											</div>
 											<div id="method2" class="panel-collapse collapse">
 												<div class="panel-body">
-													<p>은행 점검시간인 23:30 ~ 00:30분까지는 카드사에 따라 결제가 불가 할 수 있습니다.카드사 포인트와 쇼핑몰 포인트를 중복해서 사용하실 수 없습니다.</p>
+													<p>은행 점검시간인 23:30 ~ 00:30분까지는 카드사에 따라 결제가 불가 할 수
+														있습니다.카드사 포인트와 쇼핑몰 포인트를 중복해서 사용하실 수 없습니다.</p>
 												</div>
 											</div>
 										</div>
@@ -333,30 +354,32 @@
 
 											<div id="method3" class="panel-collapse collapse">
 												<div class="panel-body">
-													<p> 구매 후 14일 이내 환불처리를 받으실 수 있으며, 구매확정이후 환불불가입니다. 신용카드 환불은 카드사의 환불정책을 참고해주시기 바랍니다.</p>
+													<p>구매 후 14일 이내 환불처리를 받으실 수 있으며, 구매확정이후 환불불가입니다. 신용카드
+														환불은 카드사의 환불정책을 참고해주시기 바랍니다.</p>
 												</div>
 											</div>
 
 											<h4 class="panel-title">
 												<br />
 												<h6>＊결제수단을 선택하세요</h6>
-												<div class="payType" style="padding-top:10px">
+												<div class="payType" style="padding-top: 10px">
 													<input type="radio" name="payType" id="payType"
-														value="card" style="width:12px;height:12px" > <label for="payType">신용카드</label> <input
-														type="radio" name="payType" id="payType" value="trans" style="width:12px;height:12px">
-													<label for="payType">실시간 계좌이체</label>
+														value="card" style="width: 12px; height: 12px"> <label
+														for="payType">신용카드</label> <input type="radio"
+														name="payType" id="payType" value="trans"
+														style="width: 12px; height: 12px"> <label
+														for="payType">실시간 계좌이체</label>
 												</div>
 
 												<div id="payment-accordion" class="col-md-8">
-											
-											<!--이전 checkout 버튼->
+
+													<!--이전 checkout 버튼->
 											<!-- 	<div class="Place-order mt-25">
 
 													<a data-toggle="collapse" data-parent="#payment-method" href="#method1">
                                                            Direct bank transfer
                                                     </a> 
                                                  </div> -->
-                                                 
 											</h4>
 										</div>
 									</div>
@@ -364,14 +387,12 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!--결제 버튼으로 작업할 경우   -->
 					<div class="Place-order mt-25">
-						 <a class="btn-hover" href="#">
-						 <button class="btn-hover" type="button" onclick="checkout();">
-						 	Place Order
-						 </button> 
-						 </a>
+						<a class="btn-hover" href="#">
+							<button class="btn-hover" id="push_module" type="button">Place Order</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -379,6 +400,80 @@
 	</div>
 </div>
 
+
+
+
+<script>
+	$("#push_module").click(function () {
+		
+	//아임포트 변수 초기화	
+	var IMP = window.IMP; // 생략가능
+	//관리자번호
+	IMP.init('imp13198485');
+
+
+	IMP.request_pay({
+	pg: 'inicis', // version 1.1.0부터 지원.
+	pay_method: "card",
+
+/* 'kakao':카카오페이,
+//html5_inicis':이니시스(웹표준결제)
+'nice':나이스페이
+//'jtnet':제이티넷
+'uplus':LG유플러스
+'danal':다날
+'payco':페이코
+'syrup':시럽페이
+'paypal':페이팔 */
+
+	pay_method: 'card',
+/*
+'samsung':삼성페이,
+'card':신용카드,
+'trans':실시간계좌이체,
+'vbank':가상계좌,
+'phone':휴대폰소액결제
+*/
+	merchant_uid: 'merchant_' + new Date().getTime(),
+/*
+merchant_uid에 경우
+https://docs.iamport.kr/implementation/payment
+위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+참고하세요.
+나중에 포스팅 해볼게요.
+*/
+	name: '주문명:결제테스트',
+//결제창에서 보여질 이름
+	amount: 1000,
+//가격
+
+	buyer_email: 'iamport@siot.do',
+	buyer_name: '구매자이름',
+	buyer_tel: '010-1234-5678',
+	buyer_addr: '서울특별시 강남구 삼성동',
+	buyer_postcode: '123-456',
+	m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+/*
+모바일 결제시,
+결제가 끝나고 랜딩되는 URL을 지정
+(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+*/
+}, function (rsp) {
+	console.log(rsp);
+	if (rsp.success) {
+	var msg = '결제가 완료되었습니다.';
+	msg += '고유ID : ' + rsp.imp_uid;
+	msg += '상점 거래ID : ' + rsp.merchant_uid;
+	msg += '결제 금액 : ' + rsp.paid_amount;
+	msg += '카드 승인번호 : ' + rsp.apply_num;
+		} else {
+		var msg = '결제에 실패하였습니다.';
+		msg += '에러내용 : ' + rsp.error_msg;
+		}
+			alert(msg);
+});
+});
+</script>
 
 
 <!-- <script>

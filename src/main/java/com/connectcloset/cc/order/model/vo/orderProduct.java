@@ -3,13 +3,15 @@ package com.connectcloset.cc.order.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class orderSheet implements Serializable {
+public class orderProduct implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String orderNo;
-	private String memberId;
+	private String orderId;
 	private Date orderDate;
+	private String itemName; //상품명
+	private int orderItemCount; //구매수량
 	private String orderPayMethod;
 	private String orderPayStatus;
 	private int orderTotalItemEa;
@@ -18,24 +20,9 @@ public class orderSheet implements Serializable {
 	private int orderCuponNo;
 	private String impUid; // 아임포트에서 발급하는 거래건당 고유번호
 
-	public orderSheet() {
+	public orderProduct() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public orderSheet(String orderNo, String memberId, Date orderDate, String orderPayMethod, String orderPayStatus,
-			int orderTotalItemEa, int orderTotalPrice, int orderUsePoint, int orderCuponNo, String impUid) {
-		super();
-		this.orderNo = orderNo;
-		this.memberId = memberId;
-		this.orderDate = orderDate;
-		this.orderPayMethod = orderPayMethod;
-		this.orderPayStatus = orderPayStatus;
-		this.orderTotalItemEa = orderTotalItemEa;
-		this.orderTotalPrice = orderTotalPrice;
-		this.orderUsePoint = orderUsePoint;
-		this.orderCuponNo = orderCuponNo;
-		this.impUid = impUid;
 	}
 
 	public String getOrderNo() {
@@ -46,12 +33,12 @@ public class orderSheet implements Serializable {
 		this.orderNo = orderNo;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 	public Date getOrderDate() {
@@ -60,6 +47,22 @@ public class orderSheet implements Serializable {
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public int getOrderItemCount() {
+		return orderItemCount;
+	}
+
+	public void setOrderItemCount(int orderItemCount) {
+		this.orderItemCount = orderItemCount;
 	}
 
 	public String getOrderPayMethod() {
@@ -124,10 +127,14 @@ public class orderSheet implements Serializable {
 
 	@Override
 	public String toString() {
-		return "orderSheet [orderNo=" + orderNo + ", memberId=" + memberId + ", orderDate=" + orderDate
-				+ ", orderPayMethod=" + orderPayMethod + ", orderPayStatus=" + orderPayStatus + ", orderTotalItemEa="
-				+ orderTotalItemEa + ", orderTotalPrice=" + orderTotalPrice + ", orderUsePoint=" + orderUsePoint
-				+ ", orderCuponNo=" + orderCuponNo + ", impUid=" + impUid + "]";
+		return "orderProduct [orderNo=" + orderNo + ", orderId=" + orderId + ", orderDate=" + orderDate + ", itemName="
+				+ itemName + ", orderItemCount=" + orderItemCount + ", orderPayMethod=" + orderPayMethod
+				+ ", orderPayStatus=" + orderPayStatus + ", orderTotalItemEa=" + orderTotalItemEa + ", orderTotalPrice="
+				+ orderTotalPrice + ", orderUsePoint=" + orderUsePoint + ", orderCuponNo=" + orderCuponNo + ", impUid="
+				+ impUid + "]";
 	}
 
+	
+	
+	
 }
