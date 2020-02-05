@@ -277,27 +277,11 @@
 								</ul>
 							</div>
 							<div class="your-order-middle">
-								<ul>
-									<li><span class="order-middle-left"> 
-									<%--<input class="order-name" type="text" name="itemName" value="ProductName"/>  
-											<span>X</span><input class="order-price" type="text" name="itemStock" value="1"/> 
-											<span>$</span><input class="order-price" type="text" name="itemPrice" value="130"/> --%> 
-
-
-										<input class="order-name" type="text" name="itemName"
-											value="${itemName}" /> <span>X</span><input
-											class="order-price" type="text" name="itemStock"
-											value="${itemStock}" /> <span>$</span><input
-											class="order-price" type="text" name="itemPrice"
-											value="${itemPrice}" /> <!-- <span class="order-name">Product Name</span> X 1</span> 
-									<span class="order-price">$329 </span> --></li>
-
-									<!-- 
-									<li><span class="order-middle-left"><span
-											class="order-name">Product Name</span> X 1</span> <span
-										class="order-price">$329 </span></li> -->
-								</ul>
-							</div>
+                                        <ul>
+                                            <li><span class="order-middle-left"><span class="order-name">Product Name</span>  X  1</span> <span class="order-price">$329 </span></li>
+                                            <li><span class="order-middle-left"><span class="order-name">Product Name</span>  X  1</span> <span class="order-price">$329 </span></li>
+                                        </ul>
+                                    </div>
 							<div class="your-order-bottom">
 								<ul>
 									<li class="your-order-shipping">Shipping</li>
