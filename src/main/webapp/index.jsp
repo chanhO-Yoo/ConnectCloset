@@ -1,6 +1,7 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
     
@@ -10,12 +11,27 @@
         <!-- Slider Start -->
         <div class="slider-area">
             <div class="slider-active pagination-style1 owl-carousel">
-                <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="01" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/slider-16.jpg);">
+            	
+            	<%-- 브랜드 값 넘겨주기 --%>
+            	<%
+            		HashMap<String, String> map = new HashMap<>();
+            		map.put("balen.jpg", "발렌시아가");
+            		map.put("burberry.jpg", "버버리");
+            		map.put("celine.jpg", "셀린느");
+            		map.put("givenchy.png", "지방시");
+            		map.put("gucci.jpg", "구찌");
+            		map.put("lowclassic.jpg", "로우클래식");
+            		map.put("VALENTINO.jpeg", "발렌티노");
+            		
+            		pageContext.setAttribute("map", map);
+            	%>
+            	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs">
+                <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="${vs.count }" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/${brand.key });">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div class="slider-text slider-animated-1 text-center">
-                                    <h1 class="animated">Stylish Collections. </h1>
+                                    <h1 class="animated">${brand.value }</h1>
                                     <h5 class="animated">
                                        New Collections 2019 
                                     </h5>
@@ -27,40 +43,8 @@
                         </div>
                     </div>
                 </div> 
-                <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="02" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/slider-15.jpg);">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="slider-text slider-animated-1 text-center">
-                                    <h1 class="animated">Unique Collections. </h1>
-                                    <h5 class="animated">
-                                       New Collections 2019 
-                                    </h5>
-                                    <div class="slider-btn mt-30">
-                                        <a class="sub-slider-btn-1 animated mr-8 btn-hover" href="single-product.html">Shop now</a>
-                                    </div>                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="03" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/slider-19.jpg);">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="slider-text slider-animated-1 text-center">
-                                    <h1 class="animated">Summer Collection</h1>
-                                    <h5 class="animated">
-                                       New Collections 2019 
-                                    </h5>
-                                    <div class="slider-btn mt-30">
-                                        <a class="sub-slider-btn-1 animated mr-8 btn-hover" href="single-product.html">Shop now</a>
-                                    </div>                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
+            	</c:forEach>
+                          
             </div>
         </div>
         
@@ -114,12 +98,15 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 새로 나온 상품 -->
         <div class="shop-area pb-120">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
-                    <h2>Featured products</h2>
+                    <h2><strong>새로 나온 상품</strong></h2>
                 </div>
                 <div class="row"> 
+                
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -145,6 +132,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -170,6 +158,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -197,6 +186,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -222,6 +212,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -249,6 +240,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -274,6 +266,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
