@@ -279,6 +279,8 @@
 							<div class="your-order-middle">
 								<ul>
 									<li><span class="order-middle-left"> 
+									
+									
 									<%--<input class="order-name" type="text" name="itemName" value="ProductName"/>  
 											<span>X</span><input class="order-price" type="text" name="itemStock" value="1"/> 
 											<span>$</span><input class="order-price" type="text" name="itemPrice" value="130"/> --%> 

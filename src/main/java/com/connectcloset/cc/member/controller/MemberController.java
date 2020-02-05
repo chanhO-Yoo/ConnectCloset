@@ -86,7 +86,7 @@ public class MemberController {
 			
 			//클라이언트 이메일이 존재할때 세션에 이메일과 토큰 등록
 			  if (userInfo.get("email") != null) {
-			        session.setAttribute("userId", userInfo.get("email"));
+			        //session.setAttribute("userId", userInfo.get("email"));
 			        session.setAttribute("userName", userInfo.get("nickname"));
 
 			        session.setAttribute("access_Token", access_Token);
