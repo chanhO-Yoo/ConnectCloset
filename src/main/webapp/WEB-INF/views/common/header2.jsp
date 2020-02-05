@@ -30,7 +30,7 @@
             <div class="container-fluid">
                 <div class="header-wrap header-flex">
                     <div class="logo mt-45">
-                        <a href="index.html">
+                        <a href="${pageContext.request.contextPath }/">
                             <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo.png">
                             <img class="logo-sticky-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png">
                         </a>
@@ -205,13 +205,13 @@
                                 </li>
                                 <li><a href="#">Pages </a>
                                     <ul class="submenu">
-                                        <li><a href="about-us.html">about us</a></li>
-                                        <li><a href="cart-page.html">cart page</a></li>
-                                        <li><a href="checkout.html">checkout</a></li>
-                                        <li><a href="contact.html">contact us</a></li>
-                                        <li><a href="contact-2.html">contact us 2</a></li>
-                                        <li><a href="contact-3.html">contact us 3</a></li>
-                                        <li><a href="login-register.html">login / register</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                     </ul>
                                 </li>
                             </ul>
