@@ -344,9 +344,9 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                         <c:if test="${memberLoggedIn == null }">
+                                        
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                         </c:if>
+                                        
                                     </ul>
                                 </li>
                             </ul>
@@ -403,7 +403,7 @@
                        
                         <div class="sidebar-contact-list">
                             <ul>
-                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }">회원 정보 수정</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/member/memberUpdateForm.do">회원 정보 수정</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지1</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>

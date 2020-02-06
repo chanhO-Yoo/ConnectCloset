@@ -35,52 +35,15 @@
                     <div class="col-lg-8 col-xl-6 col-md-12 col-12 ml-auto mr-auto">
                         <div>
                             <div class="login-regi-wrapper">
-                                <div class="text-center login-register-tab-list nav">
-                                    <a class="active" data-toggle="tab" href="#login">
-                                        <h4> Log In </h4>
-                                    </a>
-                                    <a data-toggle="tab" href="#register">
-                                        <h4> register </h4>
-                                    </a>
-                                </div>
-                                <div class="tab-content login-regi-content">
-                                    <div id="login" class="tab-pane active">
+                                <div id="register" class="tab-pane">
                                         <div class="login-register-form">
-                                
-                                            <form action="${pageContext.request.contextPath }/member/loginMember.do" method="post">
-                                                <input type="text" name="memberId" placeholder="ID">
-                                                <input type="password" name="password" placeholder="Password">
-                                                <div class="submit-btn">
-                                                    <button class="btn-hover" type="submit">Log In</button>
-                                                  </div>
-                                            </form>
-                                          
-                                            <div class="login-social-wrap">
-                                                <p>Or Log In With</p>
-                                                <div class="login-social-btn">
-                                                <a href="${url}">
-													<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-													</a>
-
-
-
-                                                    <a  href="https://kauth.kakao.com/oauth/authorize?client_id=689a10f950365c8db96a54fb2dde9b36&redirect_uri=http://localhost:9090/cc/kakaologin&response_type=code">
-            										<img src="${pageContext.request.contextPath}/resources/img/kakao/kakao_account_login_btn_medium_narrow.png"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="register" class="tab-pane">
-                                        <div class="login-register-form">
-                                            <form action="${pageContext.request.contextPath }/member/enrollMember.do" method="post">
+                                            <form action="${pageContext.request.contextPath }/mypage/enrollMemberEnd.do" method="post">
 	                                            <div class="form-group row">
 													<label for="memberId" class="col-sm-2 col-form-label">아이디2</label>
 													<div class="col-sm-7">
-													    <input type="text" class="form-control-plaintext" id="memberId" name="memberId" placeholder="6자 이상 영문,숫자의 조합">
+													    <input type="text" class="form-control-plaintext" id="memberId" name="memberId" placeholder="6자 이상 영문,숫자의 조합" value="${memberLoggedIn.memberId}">
 													</div>
-												    <div class="col-sm-3">
-												    	<button type="button" class="btn btn-info btn-lg" style="height:45px;">중복확인</button>
-												    </div>
+												   
 												</div>
 												<div class="form-group row">
 												    <label for="memberPassword" class="col-sm-2 col-form-label">비밀번호</label>
@@ -94,12 +57,7 @@
 												        <input type="password" class="form-control" id="memberPasswordCheck" name="memberPasswordCheck">
 												    </div>
 												</div>
-		                                        <div class="form-group row">
-												    <label for="memberName" class="col-sm-2 col-form-label">이름</label>
-												    <div class="col-sm-10">
-											    		<input type="text" class="form-control-plaintext" id="memberName" name="memberName" placeholder="이름">
-											    	</div>
-												</div>
+		                                     
 												
 		                                        <div class="form-group row">
 												    <label for="memberEmail" class="col-sm-2 col-form-label">이메일</label>
@@ -139,27 +97,17 @@
 											    		<input type="date" class="form-control" id="memberBirthday" name="memberBirthday" value="2011-08-19">
 											    	</div>
 												</div>
-												<div class="form-group row">
-												    <label for="memberGender" class="col-sm-2 col-form-label">성별</label>
-												    <div class="col-sm-10">
-													    <label class="custom-control custom-radio">
-															<input id="male" name="memberGender" type="radio" class="custom-control-input" value="M">
-															<span class="custom-control-indicator"></span>
-															<span class="custom-control-description">남</span>
-														</label>
-														<label class="custom-control custom-radio">
-															<input id="female" name="memberGender" type="radio" class="custom-control-input" value="F">
-															<span class="custom-control-indicator"></span>
-															<span class="custom-control-description">여</span>
-														</label>
-											    	</div>
-												</div>
+												
                    	                            <div class="submit-btn">
                                                     <button class="btn-hover" type="submit">Register</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
+                                    
+                                <div class="tab-content login-regi-content">
+                                    
+                                   
                                 </div>
                         
                             </div>

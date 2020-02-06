@@ -227,6 +227,35 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping("/member/memberUpdateForm.do")
+	public void memberUpdateForm() {
+		logger.debug("login#@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	}
+	
+	@RequestMapping("/member/memberUpdate.do")
+   	public ModelAndView memberUpdate(Member member){
+   		ModelAndView mav = new ModelAndView();
+   		logger.debug("member={}",member);
+   			
+   		//1.비지니스로직 실행
+   		int result = memberService.updateMember(member);
+   		
+   		//2.처리결과에 따라 view단 분기처리
+   		String loc = "/"; 
+   		String msg = "";
+   		if(result>0){ 
+   			msg="회원정보수정성공!";
+   			mav.addObject("memberLoggedIn", member);
+   		}
+   		else msg="회원정보수정실패!";
+   		
+   		mav.addObject("msg", msg);
+   		mav.addObject("loc", loc);
+   		mav.setViewName("common/msg");
+   		
+   		return mav;
+   	}
+	
 	@RequestMapping("/etc/contact-us.do")
 	public void contactUs() {
 		
