@@ -6,23 +6,26 @@
 	<insert id="enrollMember">
 		insert into member values(
 		seq_member_no.nextval,
-		#{memberId },
+		#{memberEmail },
 		#{memberPassword },
 		#{memberName },
 		#{memberPhone },
-		#{memberEmail },
 		#{memberPostcode},
 		#{memberAddress},
 		#{memberDetailAddress},
 		#{memberGender},
 		#{memberBirthday},
-		'N',
+		default,
+		default,
 		default
 		)
+		<selectKey keyProperty="memberNo" resultType="_int" order="AFTER">
+			select seq_member_no.currval from dual
+		</selectKey>
 	</insert>
 
 	<select id="selectOneMember" resultMap="memberMap">
-		select * from member where member_id=#{memberId}
+		select * from member where member_email=#{memberEmail}
 	</select>
 	
 	<resultMap type="member" id="memberMap">
@@ -30,11 +33,11 @@
 	</resultMap>
 	
 	<update id="GetKey" parameterType="Map">
-		update member set member_validate_key= #{validateKey} where member_id=#{memberId}
+		update member set member_validate_key= #{validateKey} where member_email=#{memberEmail}
 	</update>
 
 	<update id="alterUserKey" parameterType="Map">
-		update member set member_validate_key= 'Y' where member_id=#{memberId} and member_validate_key = #{validateKey}
+		update member set member_validate_key= 'Y' where member_email=#{memberEmail} and member_validate_key = #{validateKey}
 	</update>
 	<!--주영 회원수정 시작  -->
 	<update id="updateMember">

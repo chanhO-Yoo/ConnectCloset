@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,7 +86,7 @@ public class MemberController {
 			
 			//클라이언트 이메일이 존재할때 세션에 이메일과 토큰 등록
 			  if (userInfo.get("email") != null) {
-			        session.setAttribute("userId", userInfo.get("email"));
+			        //session.setAttribute("userId", userInfo.get("email"));
 			        session.setAttribute("userName", userInfo.get("nickname"));
 
 			        session.setAttribute("access_Token", access_Token);
@@ -164,21 +165,21 @@ public class MemberController {
 		int result = memberService.enrollMember(m);
 		logger.debug("result= {}",result);
 		
-		mailsender.mailSendWithUserKey(m.getMemberEmail(),m.getMemberId(),request);
+		mailsender.mailSendWithUserKey(m.getMemberEmail(),m.getMemberEmail(),request);
 		
-		model.addAttribute("msg", result>0?"등록성공":"등록실패");
+		model.addAttribute("msg", result>0?"회원가입 성공. 이메일 인증을 해주세요.":"등록실패. 다시 시도해주세요.");
 		model.addAttribute("loc", "/");
 		return "common/msg";
 	}
 	
 	// e-mail 인증 컨트롤러
 	@RequestMapping(value = "member/validateKey.do", method = RequestMethod.GET)
-	public ModelAndView key_alterConfirm(@RequestParam String memberId, @RequestParam String validateKey, ModelAndView mav) {
+	public ModelAndView key_alterConfirm(@RequestParam String memberEmail, @RequestParam String validateKey, ModelAndView mav) {
 
-		int result = mailsender.alter_userKey_service(memberId, validateKey); // mailsender의 경우 @Autowired
+		int result = mailsender.alter_userKey_service(memberEmail, validateKey); // mailsender의 경우 @Autowired
 		
 		String msg = "";
-		String loc = "";
+		String loc = "/";
 		
 		if(result>0) {
 			msg = "회원가입에 성공했습니다. 홈페이지로 이동합니다.";
@@ -187,7 +188,7 @@ public class MemberController {
 			msg = "회원가입에 실패했습니다.";
 		}
 		mav.addObject("msg",msg);
-		mav.addObject("loc","/");
+		mav.addObject("loc",loc);
 
 		mav.setViewName("common/msg");
 		
@@ -196,9 +197,9 @@ public class MemberController {
 	
 	
 	@PostMapping("/member/loginMember.do")
-	public ModelAndView loginMember(ModelAndView mav, @RequestParam String memberId, @RequestParam String password, HttpSession session) {
+	public ModelAndView loginMember(ModelAndView mav, @RequestParam String memberEmail, @RequestParam String password, HttpSession session) {
 		logger.debug("로그인 시도");
-		Member m = memberService.selectOneMember(memberId);
+		Member m = memberService.selectOneMember(memberEmail);
 		
 		String msg = "";
 		String loc = "/";
@@ -207,14 +208,22 @@ public class MemberController {
 			msg="존재하지 않는 아이디입니다.";
 		}
 		else {
-			if(bcryptPasswordEncoder.matches(password, m.getMemberPassword())) {
-				msg="로그인성공! "+m.getMemberName()+"님 환영합니다.";
-				
-				//세션에 로그인 객체 저장  
-				mav.addObject("memberLoggedIn",m);
+			logger.debug("Validate Key = {}",m.getMemberValidateKey());
+			logger.debug("boolean = {}",m.getMemberValidateKey());
+			if(!m.getMemberValidateKey().equals("Y")) {
+				msg="이메일 인증을 해주세요.";
 			}
 			else {
-				msg="비밀번호가 틀렸습니다.";
+				logger.debug("여기까지는 들어왔다@@@@@@@@@@@@@@@");
+				if(bcryptPasswordEncoder.matches(password, m.getMemberPassword())) {
+					msg="로그인성공! "+m.getMemberName()+"님 환영합니다.";
+					
+					//세션에 로그인 객체 저장  
+					mav.addObject("memberLoggedIn",m);
+				}
+				else {
+					msg="비밀번호가 틀렸습니다.";
+				}
 			}
 		}
 		
@@ -262,8 +271,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/shop/checkout.do")
-	public void checkout() {
-		
+	public void checkout() {		
+		System.out.println("test★★★★★★★");
 	}
 	
 	@RequestMapping("/shop/cart-page.do")

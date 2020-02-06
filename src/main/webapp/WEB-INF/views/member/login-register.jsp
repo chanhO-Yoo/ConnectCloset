@@ -32,7 +32,7 @@
         <div class="shortcode-login-regi-area pt-113 pb-120 black-bg-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-xl-6 col-md-12 col-12 ml-auto mr-auto">
+                    <div class="col-lg-8 col-xl-7 col-md-12 col-12 ml-auto mr-auto">
                         <div>
                             <div class="login-regi-wrapper">
                                 <div class="text-center login-register-tab-list nav">
@@ -48,13 +48,16 @@
                                         <div class="login-register-form">
                                 
                                             <form action="${pageContext.request.contextPath }/member/loginMember.do" method="post">
-                                                <input type="text" name="memberId" placeholder="ID">
+                                                <input type="text" name="memberEmail" placeholder="ID">
                                                 <input type="password" name="password" placeholder="Password">
                                                 <div class="submit-btn">
                                                     <button class="btn-hover" type="submit">Log In</button>
                                                   </div>
                                             </form>
                                           
+                                            <div>
+                                            <h2>${memberLoggedIn.memberEmail} 환영한디</h2>
+                                            </div>
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
                                                 <div class="login-social-btn">
@@ -74,9 +77,9 @@
                                         <div class="login-register-form">
                                             <form action="${pageContext.request.contextPath }/member/enrollMember.do" method="post">
 	                                            <div class="form-group row">
-													<label for="memberId" class="col-sm-2 col-form-label">아이디2</label>
+													<label for="memberEmail" class="col-sm-2 col-form-label">이메일</label>
 													<div class="col-sm-7">
-													    <input type="text" class="form-control-plaintext" id="memberId" name="memberId" placeholder="6자 이상 영문,숫자의 조합">
+													    <input type="email" class="form-control-plaintext" id="memberEmail" name="memberEmail" placeholder="email@example.com">
 													</div>
 												    <div class="col-sm-3">
 												    	<button type="button" class="btn btn-info btn-lg" style="height:45px;">중복확인</button>
@@ -101,13 +104,6 @@
 											    	</div>
 												</div>
 												
-		                                        <div class="form-group row">
-												    <label for="memberEmail" class="col-sm-2 col-form-label">이메일</label>
-												    <div class="col-sm-10">
-											    		<input type="email" class="form-control-plaintext" id="memberEmail" name="memberEmail" placeholder="email@example.com">
-											    	</div>
-												</div>
-												
 												<div class="form-group row">
 												    <label for="memberPhone" class="col-sm-2 col-form-label">연락처</label>
 												    <div class="col-sm-10">
@@ -117,7 +113,7 @@
 												<div class="form-group row" style="margin-bottom: 0px;">
 												    <label for="memberPostCode" class="col-sm-2 col-form-label">주소</label>
 												    <div class="col-sm-7">
-											    		<input type="text" class="form-control-plaintext" id="memberPostCode" name="memberPostCode" placeholder="우편번호">
+											    		<input type="text" class="form-control-plaintext" id="memberPostcode" name="memberPostcode" placeholder="우편번호">
 											    	</div>
 											    	<div class="col-sm-3">
 												    	<button type="button" class="btn btn-info btn-lg" style="height:45px;" onclick="findAddress()">주소검색</button>
@@ -206,7 +202,7 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("memberPostCode").value = data.zonecode;
+                document.getElementById("memberPostcode").value = data.zonecode;
                 document.getElementById("memberAddress").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("memberDetailAddress").focus();

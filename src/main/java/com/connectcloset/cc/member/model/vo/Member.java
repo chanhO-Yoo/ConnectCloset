@@ -8,11 +8,10 @@ public class Member implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int memberNo;
-	private String memberId;
+	private String memberEmail;
 	private String memberPassword;
 	private String memberName;
 	private String memberPhone;
-	private String memberEmail;
 	private int memberPostcode;
 	private String memberAddress;
 	private String memberDetailAddress;
@@ -20,22 +19,22 @@ public class Member implements Serializable {
 	private Date memberBirthday;
 	private String memberValidateKey;
 	private Date enrollDate;
+	private int memberPoint;
 	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int memberNo, String memberId, String memberPassword, String memberName, String memberPhone,
-			String memberEmail, int memberPostcode, String memberAddress, String memberDetailAddress, char memberGender,
-			Date memberBirthday, String memberValidateKey, Date enrollDate) {
+	public Member(int memberNo, String memberEmail, String memberPassword, String memberName, String memberPhone,
+			int memberPostcode, String memberAddress, String memberDetailAddress, char memberGender,
+			Date memberBirthday, String memberValidateKey, Date enrollDate, int memberPoint) {
 		super();
 		this.memberNo = memberNo;
-		this.memberId = memberId;
+		this.memberEmail = memberEmail;
 		this.memberPassword = memberPassword;
 		this.memberName = memberName;
 		this.memberPhone = memberPhone;
-		this.memberEmail = memberEmail;
 		this.memberPostcode = memberPostcode;
 		this.memberAddress = memberAddress;
 		this.memberDetailAddress = memberDetailAddress;
@@ -43,6 +42,7 @@ public class Member implements Serializable {
 		this.memberBirthday = memberBirthday;
 		this.memberValidateKey = memberValidateKey;
 		this.enrollDate = enrollDate;
+		this.memberPoint = memberPoint;
 	}
 
 	public int getMemberNo() {
@@ -53,12 +53,12 @@ public class Member implements Serializable {
 		this.memberNo = memberNo;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
 	public String getMemberPassword() {
@@ -83,14 +83,6 @@ public class Member implements Serializable {
 
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
-	}
-
-	public String getMemberEmail() {
-		return memberEmail;
-	}
-
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
 	}
 
 	public int getMemberPostcode() {
@@ -149,19 +141,28 @@ public class Member implements Serializable {
 		this.enrollDate = enrollDate;
 	}
 
+	public int getMemberPoint() {
+		return memberPoint;
+	}
+
+	public void setMemberPoint(int memberPoint) {
+		this.memberPoint = memberPoint;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPassword=" + memberPassword
-				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberEmail=" + memberEmail
-				+ ", memberPostcode=" + memberPostcode + ", memberAddress=" + memberAddress + ", memberDetailAddress="
-				+ memberDetailAddress + ", memberGender=" + memberGender + ", memberBirthday=" + memberBirthday
-				+ ", memberValidateKey=" + memberValidateKey + ", enrollDate=" + enrollDate + "]";
+		return "Member [memberNo=" + memberNo + ", memberEmail=" + memberEmail + ", memberPassword=" + memberPassword
+				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberPostcode=" + memberPostcode
+				+ ", memberAddress=" + memberAddress + ", memberDetailAddress=" + memberDetailAddress
+				+ ", memberGender=" + memberGender + ", memberBirthday=" + memberBirthday + ", memberValidateKey="
+				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint + "]";
 	}
 
+	
 	
 
 	

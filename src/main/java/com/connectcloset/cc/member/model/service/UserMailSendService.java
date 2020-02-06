@@ -59,19 +59,19 @@ public class UserMailSendService {
 	}
 
 	// 회원가입 발송 이메일(인증키 발송)
-	public void mailSendWithUserKey(String e_mail, String memberId, HttpServletRequest request) {
+	public void mailSendWithUserKey(String memberEmail, String memberEmail2, HttpServletRequest request) {
 		
 		String validateKey = getKey(false, 20);
-		memberDAO.GetKey(memberId, validateKey); 
+		memberDAO.GetKey(memberEmail2, validateKey); 
 		MimeMessage mail = mailSender.createMimeMessage();
 		String htmlStr = "<h2>안녕하세요 ConnectClost입니다!</h2><br><br>" 
-				+ "<h3>" + memberId + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-				+ "<a href='http://localhost:9090" + request.getContextPath() + "/member/validateKey.do?memberId="+ memberId +"&validateKey="+validateKey+"'>인증하기</a></p>"
+				+ "<h3>" + memberEmail + "님</h3>" + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
+				+ "<a href='http://localhost:9090" + request.getContextPath() + "/member/validateKey.do?memberEmail="+ memberEmail +"&validateKey="+validateKey+"'>인증하기</a></p>"
 				+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 		try {
 			mail.setSubject("[본인인증] ConnectCloset에서 발송한 인증메일입니다", "utf-8");
 			mail.setText(htmlStr, "utf-8", "html");
-			mail.addRecipient(RecipientType.TO, new InternetAddress(e_mail));
+			mail.addRecipient(RecipientType.TO, new InternetAddress(memberEmail));
 			mailSender.send(mail);
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -79,10 +79,10 @@ public class UserMailSendService {
 		
 	}
 
-	public int alter_userKey_service(String memberId, String validateKey) {
+	public int alter_userKey_service(String memberEmail, String validateKey) {
 		int resultCnt = 0;
 		
-		resultCnt = memberDAO.alter_userKey(memberId, validateKey);
+		resultCnt = memberDAO.alter_userKey(memberEmail, validateKey);
 		
 		return resultCnt;
 
