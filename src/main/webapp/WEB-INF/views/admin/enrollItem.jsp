@@ -7,6 +7,7 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header2.jsp" />
+
 <style>
 div#board-container label.custom-file-label{text-align:left;}
 </style>
@@ -64,7 +65,9 @@ div#board-container label.custom-file-label{text-align:left;}
                 </div>
             </div>
         </div>
+
         <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
+
 	        <div class="single-product-area pt-80 pb-80">
 	            <div class="container">
 	                <div class="row">
