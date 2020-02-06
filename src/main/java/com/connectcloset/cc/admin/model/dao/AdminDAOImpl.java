@@ -1,5 +1,8 @@
 package com.connectcloset.cc.admin.model.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +25,18 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int insertItemImage(ItemImage i) {
 		return sqlSession.insert("admin.insertItemImage",i);
+	}
+
+	@Override
+	public List<Item> selectItemList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		
+		return sqlSession.selectList("admin.selectItemList",null,rowBounds);
+	}
+
+	@Override
+	public int selectItemCount() {
+		return sqlSession.selectOne("admin.selectItemCount");
 	}
 
 	//===================찬호 끝===================

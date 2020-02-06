@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Donna - Creative Bootstrap4 Template</title>
+        <title>CC - ConnectCloset</title>
         <meta name="description" content="">
         <meta name="robots" content="noindex, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -169,6 +169,7 @@
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
                                         <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                     </ul>
                                 </li>
                             </ul>
