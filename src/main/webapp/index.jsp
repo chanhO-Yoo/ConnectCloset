@@ -106,33 +106,12 @@
                     <h2><strong>새로 나온 상품</strong></h2>
                 </div>
                 <div class="row"> 
-                
+                	
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-1.jpg" alt="">
-                                </a>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span>$329</span>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     
+                    <!-- 
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                         <div class="shop-wrap mb-35">
                             <div class="shop-img">
@@ -266,6 +245,54 @@
                             </div>
                         </div>
                     </div>
+                     -->
+                    
+                    <script>
+                    $(()=>{
+                    	$.ajax({
+                    	//새로 등록된 상품 json요청
+                    	url: "${pageContext.request.contextPath}/newItem.do",
+                    	type: "POST",
+                    	dataType: "json",
+                    	success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let n = data[i];
+                    		
+                    		html += "<div class='shop-wrap mb-35'>"
+                    			 + "<div class='shop-img'>"
+                    			 + "<a href='single-product.html'>"
+                            	 + "<img src='${pageContext.request.contextPath }/resources/img/product/shop-1.jpg'>"
+                                 + "</a>"
+                                 + "<div class='shop-hover'>"  
+                                 + "<div class='shop-card'>"
+                                 + "<a href='#' title='Add To Cart'>Add To Cart <i class='ti-shopping-cart'></i></a>"
+                                 + "</div>"   
+                                 + "<div class='shop-wishlist'>"       
+                                 + "<a title='Wishlist' href='#'><i class='ti-heart'></i></a>"   
+                                 + "</div>"       
+                                 + "</div>"   
+                                 + "</div>"
+                            	 + "<div class='shop-content'>"
+                            	 + "<div class='shop-name'>"
+                                 + "<h4><a href='single-product.html'>"+n.itemName+"</a></h4>"
+                                 + "</div>"   
+                                 + "<div class='shop-price'>"
+                                 + "<span>"+n.itemPrice+"</span>"
+                                 + "</div>"
+                                 + "</div>"
+                                 + "</div>";
+                    		}
+                    		$(".col-xl-4.col-lg-4.col-md-6.col-sm-6.col-12").append(html);
+                    	},
+                    	error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                    	});
+                    });
+                    </script>
                     
                 </div>
             </div>
