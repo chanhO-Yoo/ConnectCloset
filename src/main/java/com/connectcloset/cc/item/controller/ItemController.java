@@ -34,9 +34,7 @@ public class ItemController {
 	@PostMapping("/newItem.do")
 	@ResponseBody
 	public List<Item> newItem(Item item) {
-			
 		List<Item> list = itemService.newItemList(item);
-		
 		return list;
 	}
 	
