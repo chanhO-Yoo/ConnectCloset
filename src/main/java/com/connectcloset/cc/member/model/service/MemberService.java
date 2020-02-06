@@ -6,6 +6,6 @@ public interface MemberService {
 
 	int enrollMember(Member m);
 
-	Member selectOneMember(String memberId);
+	Member selectOneMember(String memberEmail);
 
 }

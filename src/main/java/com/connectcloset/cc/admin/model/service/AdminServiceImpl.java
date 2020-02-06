@@ -51,7 +51,20 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
+	@Override
+	public List<Item> selectItemList(int cPage, int numPerPage) {
+		return adminDAO.selectItemList(cPage,numPerPage);
+	}
+
+	@Override
+	public int selectItemCount() {
+		return adminDAO.selectItemCount();
+	}
+
+	
 	//===================찬호 끝===================
+
 
 	
 }

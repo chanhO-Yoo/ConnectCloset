@@ -105,11 +105,7 @@
                 <div class="section-title-7 text-center mb-45">
                     <h2><strong>새로 나온 상품</strong></h2>
                 </div>
-                <div class="row"> 
-                	
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        
-                    </div>
+                <div class="row newItem"> 
                     
                     <!-- 
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -261,7 +257,8 @@
                     		for(let i in data){
                     			let n = data[i];
                     		
-                    		html += "<div class='shop-wrap mb-35'>"
+                    		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
+                    			 + "<div class='shop-wrap mb-35'>"
                     			 + "<div class='shop-img'>"
                     			 + "<a href='single-product.html'>"
                             	 + "<img src='${pageContext.request.contextPath }/resources/img/product/shop-1.jpg'>"
@@ -283,9 +280,10 @@
                                  + "<span>"+n.itemPrice+"</span>"
                                  + "</div>"
                                  + "</div>"
+                                 + "</div>"
                                  + "</div>";
                     		}
-                    		$(".col-xl-4.col-lg-4.col-md-6.col-sm-6.col-12").append(html);
+                    		$(".row.newItem").append(html);
                     	},
                     	error: (x,s,e)=>{
                     		console.log(x,s,e);
@@ -302,7 +300,6 @@
       $(document).ready(function() {
     	  getCurrentWeatheInfo();
     	  
-​
         function getDateHuman(time) {
           var date = new Date(time);
           var year = date.getFullYear();
@@ -377,7 +374,7 @@
 <h3>채팅</h3>
 ​
 	<!-- 채팅 -->
-      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberId }" style="display: none;">  
+      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberEmail }" style="display: none;">  
 	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
 	 <input type="text" id="messageinput"  >
     
