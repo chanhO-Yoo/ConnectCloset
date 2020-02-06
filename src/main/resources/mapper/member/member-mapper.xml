@@ -39,7 +39,21 @@
 	<update id="alterUserKey" parameterType="Map">
 		update member set member_validate_key= 'Y' where member_email=#{memberEmail} and member_validate_key = #{validateKey}
 	</update>
-
+ 
+ <!--주영 회원 수정 시작  -->
+	<update id="updateMember" >
+		update member set 
+		member_password=#{memberPassword},
+		member_phone=#{memberPhone},
+		member_postcode=#{memberPostcode},
+		member_Address=#{memberAddress},
+		member_Detail_Address=#{memberDetailAddress},
+		member_Birthday=#{memberBirthday}
+		where member_email=#{memberEmail}
+		
+	</update>
+	
+ <!--주영 회원 수정 끝 -->
 </mapper>
     
     

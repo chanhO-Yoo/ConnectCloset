@@ -42,4 +42,10 @@ public class MemberDAOImpl implements MemberDAO{
 		map.put("validateKey", validateKey);
 		return sqlSession.update("member.alterUserKey", map);
 	}
+
+	@Override
+	public int updateMember(Member member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("member.updateMember" ,member);
+	}
 }

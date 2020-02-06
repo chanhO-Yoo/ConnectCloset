@@ -12,4 +12,6 @@ public interface MemberDAO {
 	
 	int alter_userKey(String memberEmail, String validateKey);
 
+	int updateMember(Member member);
+
 }
