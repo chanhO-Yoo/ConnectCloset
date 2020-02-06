@@ -255,9 +255,44 @@ public class MemberController {
 	public void aboutUs() {
 		
 	}
+	//회원 수정 주영시작
 	
-	
-	
+	@RequestMapping("/member/memberUpdateForm.do")
+	public void memberUpdateForm() {
+		
+	}
+	@RequestMapping("/member/memberUpdate.do")
+   	public ModelAndView memberUpdate(ModelAndView mav, Member member){
+   		
+   		logger.debug("member={}",member);
+   		
+   		String rawPwd = member.getMemberPassword();
+		logger.debug("rawPwd={}",rawPwd);
+		String encryptPwd = bcryptPasswordEncoder.encode(rawPwd);
+		
+		member.setMemberPassword(encryptPwd);
+   		
+		logger.debug("member={}",member);
+   		//1.비지니스로직 실행
+   		int result = memberService.updateMember(member);
+   		
+   		logger.debug("회원수정 결과@@@@@@@@@={}",result);
+   		//2.처리결과에 따라 view단 분기처리
+   		String loc = "/"; 
+   		String msg = "";
+   		if(result>0){ 
+   			msg="회원정보수정성공!";
+   			mav.addObject("memberLoggedIn", member);
+   		}
+   		else msg="회원정보수정실패!";
+   		
+   		mav.addObject("msg", msg);
+   		mav.addObject("loc", loc);
+   		mav.setViewName("common/msg");
+   		
+   		return mav;
+   	}
+	// 주영 끝
 	
 	//수업자료 ============
 	
