@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Donna - Creative Bootstrap4 Template</title>
+        <title>CC - ConnectCloset</title>
         <meta name="description" content="">
         <meta name="robots" content="noindex, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,11 +24,18 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
         <script src="${pageContext.request.contextPath }/resources/js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/popper.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/ajax-mail.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/plugins.js"></script>
+        <script src="${pageContext.request.contextPath }/resources/js/main.js"></script>
     </head>
     <body class="wrapper">
         <!-- header start -->
-        <header class="header-area transparent-bar sticky-bar header-padding header-hm6">
+        <header class="header-area transparent-bar sticky-bar header-padding header-hm6 theme-bg">
             <div class="container-fluid">
                 <div class="header-wrap header-flex">
                     <div class="logo mt-45">
@@ -161,6 +169,7 @@
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
                                         <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -343,7 +352,7 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                         <c:if test="${memberLoggedIn != null }">
+                                         <c:if test="${memberLoggedIn == null }">
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
                                          </c:if>
                                     </ul>
@@ -353,7 +362,7 @@
                     </div>
                 </div>
             </div>
-            
+           
         </header>
         
          <!-- summary-info start -->

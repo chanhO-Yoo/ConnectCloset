@@ -302,7 +302,6 @@
       $(document).ready(function() {
     	  getCurrentWeatheInfo();
     	  
-​
         function getDateHuman(time) {
           var date = new Date(time);
           var year = date.getFullYear();
@@ -377,7 +376,7 @@
 <h3>채팅</h3>
 ​
 	<!-- 채팅 -->
-      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberId }" style="display: none;">  
+      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberEmail }" style="display: none;">  
 	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
 	 <input type="text" id="messageinput"  >
     

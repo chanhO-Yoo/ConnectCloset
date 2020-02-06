@@ -101,5 +101,41 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/admin/itemList.do")
+	public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		
+		final int numPerPage = 9;
+		
+		List<Item> list = adminService.selectItemList(cPage,numPerPage);
+		logger.debug("list={}",list);
+		
+		int totalContents = adminService.selectItemCount();
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.setViewName("admin/itemList");
+
+		
+		return mav;
+	}
+	
+/*	@RequestMapping("/admin/editItem.do")
+	public ModelAndView editItem(ModelAndView mav) {
+		logger.debug("상품 수정 시작...");
+		
+		Item item = adminService.selecItemOne();
+		
+		mav.addObject("msg",result>0?"게시글 수정 성공!":"게시글 수정 실패.");
+		mav.addObject("loc","/");
+		
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}*/
+	
 	//===================찬호 끝===================
 }
