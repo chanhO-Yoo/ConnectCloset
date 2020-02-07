@@ -16,6 +16,10 @@ public interface AdminDAO {
 
 	int selectItemCount();
 
+	Item selecItemOne(int itemNo);
+
+	List<ItemImage> selectItemImageList(int itemNo);
+
 	//===================찬호 끝===================
 	
 }

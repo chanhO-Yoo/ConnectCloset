@@ -91,8 +91,8 @@ public class AdminController {
 		logger.debug("result={}",result);
 		
 		
-		mav.addObject("msg",result>0?"게시글 등록 성공.":"게시글 등록 실패.");
-		mav.addObject("loc","/");
+		mav.addObject("msg",result>0?"아이템 등록 성공.":"아이템 등록 실패.");
+		mav.addObject("loc","/admin/itemList2.do");
 		mav.setViewName("common/msg");
 		}catch(Exception e) {
 			logger.error(e.getMessage(),e);
@@ -123,19 +123,47 @@ public class AdminController {
 		return mav;
 	}
 	
-/*	@RequestMapping("/admin/editItem.do")
-	public ModelAndView editItem(ModelAndView mav) {
-		logger.debug("상품 수정 시작...");
+	@RequestMapping("/admin/itemList2.do")
+	public ModelAndView itemList2(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 		
-		Item item = adminService.selecItemOne();
+		final int numPerPage = 9;
 		
-		mav.addObject("msg",result>0?"게시글 수정 성공!":"게시글 수정 실패.");
-		mav.addObject("loc","/");
+		List<Item> list = adminService.selectItemList(cPage,numPerPage);
+		logger.debug("list={}",list);
 		
-		mav.setViewName("common/msg");
+		int totalContents = adminService.selectItemCount();
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.setViewName("admin/itemList2");
+
 		
 		return mav;
-	}*/
+	}
+	
+	@RequestMapping("/admin/editItem.do")
+	public ModelAndView editItem(ModelAndView mav,@RequestParam int itemNo) {
+		logger.debug("상품 수정 시작...");
+		
+		Item item = adminService.selecItemOne(itemNo);
+		logger.debug("Item={}",item);
+		
+		List<ItemImage> imageList = new ArrayList<>();
+		imageList = adminService.selectItemImageList(itemNo);
+		
+		logger.debug("imageList={}",imageList);
+		
+		mav.addObject("item",item);
+		mav.addObject("imageList",imageList);
+		
+		mav.setViewName("admin/editItem");
+		
+		return mav;
+	}
 	
 	//===================찬호 끝===================
 }

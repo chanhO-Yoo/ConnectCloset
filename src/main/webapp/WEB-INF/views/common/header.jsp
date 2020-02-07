@@ -161,6 +161,8 @@
                                         <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
                                     </ul>
                                 </li>
                             </ul>

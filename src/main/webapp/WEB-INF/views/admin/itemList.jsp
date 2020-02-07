@@ -16,51 +16,49 @@
 	pageContext.setAttribute("pageBar", pageBar);
 %>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param value="게시판" name="pageTitle"/>
-</jsp:include>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
 <style>
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
 </style>
 <script>
-function fn_goBoardForm(){
-	location.href = "${pageContext.request.contextPath}/board/boardForm.do";
+function fn_enrollItemForm(){
+	location.href = "${pageContext.request.contextPath}/admin/enrollItem.do";
 }
 </script>
-<section id="board-container" class="container">
-	<%-- <p>총 ${totalContents }건의 게시물이 있습니다.</p> --%>
-	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-success" onclick="fn_goBoardForm();"/>
+
+<section id="board-container" class="container pt-150">
+	<p>총 ${totalContents }개의 상품이 있습니다.</p>
+	<input type="button" value="상품추가" id="btn-add" class="btn btn-outline-success" onclick="fn_enrollItemForm();"/>
 	<table id="tbl-board" class="table table-striped table-hover">
 		<tr>
 			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
+			<th>상품명</th>
+			<th>상품가격</th>
+			<th>상품정보</th>
 			<!-- 첨부파일의 개수를 세어 하나 이상인 경우에만 file.png를 출력할 것 -->
-			<th>첨부파일</th>
-			<th>조회수</th>
+			<th>브랜드명</th>
+			<th>재고</th>
 		</tr>
-		<c:forEach items="${list }" var="board">
+		<c:forEach items="${list }" var="item">
 		<tr>
-			<td>${board.boardNo }</td>
+			<td>${item.itemNo }</td>
 			<td>
-				<%-- <a href="${pageContext.request.contextPath }/board/boardView.do?boardNo=${board.boardNo}"> --%>
 				<a href="${pageContext.request.contextPath }/board/boardViewCollection.do?boardNo=${board.boardNo}">
-					${board.boardTitle }
+					${item.itemName }
 				</a>
 			</td>
-			<td>${board.boardWriter }</td>
-			<td>${board.boardDate }</td>
-			<td align="center">
-				<%-- <c:choose>
+			<td>${item.itemPrice }</td>
+			<td>${item.itemInfo }</td>
+			<%-- <td align="center">
+				<c:choose>
 					<c:when test="${board.attachCount > 0 }">
 						<img src="${pageContext.request.contextPath }/resources/images/file.png" alt="파일이미지" width="16px" />
 					</c:when>
 					<c:otherwise>
 						-
 					</c:otherwise>
-				</c:choose> --%>
+				</c:choose>
 				
 				<c:if test="${board.attachCount > 0 }">
 						<img src="${pageContext.request.contextPath }/resources/images/file.png" alt="파일이미지" width="16px" />
@@ -68,8 +66,9 @@ function fn_goBoardForm(){
 				<c:if test="${board.attachCount <= 0 }">
 					-
 				</c:if>
-				
-			<td>${board.readCount }</td>
+			</td> --%>
+			<td>${item.brandNo }</td>
+			<td>${item.itemStock }</td>
 		</tr>
 		</c:forEach>
 		

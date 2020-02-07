@@ -62,6 +62,16 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.selectItemCount();
 	}
 
+	@Override
+	public Item selecItemOne(int itemNo) {
+		return adminDAO.selecItemOne(itemNo);
+	}
+
+	@Override
+	public List<ItemImage> selectItemImageList(int itemNo) {
+		return adminDAO.selectItemImageList(itemNo);
+	}
+
 	
 	//===================찬호 끝===================
 

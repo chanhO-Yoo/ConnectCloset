@@ -12,6 +12,8 @@ public interface AdminService {
 	int enrollItemEnd(Item item, List<ItemImage> imageList);
 	List<Item> selectItemList(int cPage, int numPerPage);
 	int selectItemCount();
+	Item selecItemOne(int itemNo);
+	List<ItemImage> selectItemImageList(int itemNo);
 
 	//===================찬호 끝===================
 
