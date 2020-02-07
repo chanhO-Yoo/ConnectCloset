@@ -39,5 +39,15 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectOne("admin.selectItemCount");
 	}
 
+	@Override
+	public Item selecItemOne(int itemNo) {
+		return sqlSession.selectOne("admin.selecItemOne",itemNo);
+	}
+
+	@Override
+	public List<ItemImage> selectItemImageList(int itemNo) {
+		return sqlSession.selectList("admin.selectItemImageList",itemNo);
+	}
+
 	//===================찬호 끝===================
 }
