@@ -3,6 +3,7 @@ package com.connectcloset.cc.admin.model.service;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 public interface AdminService {
@@ -14,6 +15,8 @@ public interface AdminService {
 	int selectItemCount();
 	Item selecItemOne(int itemNo);
 	List<ItemImage> selectItemImageList(int itemNo);
+	List<ItemImage> selectAllItemImageList(int cPage, int numPerPage);
+	List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage);
 
 	//===================찬호 끝===================
 

@@ -46,7 +46,12 @@
 	                                <div class="blog-wrap-2 blog-shadow mb-40">
 	                                    <div class="blog-img hover-3">
 	                                        <a href="${pageContext.request.contextPath }/admin/editItem.do?itemNo=${item.itemNo}">
-	                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+	                                        	<c:if test="${item.imageList[0].itemImageReName == null }">
+		                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+	                                            </c:if>
+	                                            <c:if test="${item.imageList[0].itemImageReName != null }">
+		                                            <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
+	                                            </c:if>
 	                                        </a>
 	                                        <div class="readmore-icon">
 	                                            <a href="${pageContext.request.contextPath }/admin/editItem.do?itemNo=${item.itemNo}">

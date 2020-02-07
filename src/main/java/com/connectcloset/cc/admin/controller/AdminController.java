@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Controller
@@ -109,6 +110,9 @@ public class AdminController {
 		List<Item> list = adminService.selectItemList(cPage,numPerPage);
 		logger.debug("list={}",list);
 		
+		List<ItemImage> imageList = adminService.selectAllItemImageList(cPage,numPerPage);
+		logger.debug("imageList={}",imageList);
+		
 		int totalContents = adminService.selectItemCount();
 		logger.debug("totalBoardCount={}",totalContents);
 		
@@ -116,6 +120,8 @@ public class AdminController {
 		mav.addObject("numPerPage", numPerPage);
 		mav.addObject("cPage", cPage);
 		mav.addObject("totalContents", totalContents);
+		
+		mav.addObject("imageList",imageList);
 		
 		mav.setViewName("admin/itemList");
 
@@ -128,8 +134,16 @@ public class AdminController {
 		
 		final int numPerPage = 9;
 		
-		List<Item> list = adminService.selectItemList(cPage,numPerPage);
+		List<ItemAndImageVO> list = adminService.selectItemAndImageList(cPage,numPerPage);
 		logger.debug("list={}",list);
+		
+		
+		
+//		List<Item> list = adminService.selectItemList(cPage,numPerPage);
+//		logger.debug("list={}",list);
+//		
+//		List<ItemImage> imageList = adminService.selectAllItemImageList(cPage,numPerPage);
+//		logger.debug("imageList={}",imageList);
 		
 		int totalContents = adminService.selectItemCount();
 		logger.debug("totalBoardCount={}",totalContents);

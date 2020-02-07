@@ -190,9 +190,9 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 	                                        	<div class="form-group">
 												    <select class="form-control" id="itemGenderNo" name="itemGenderNo">
-													    <option value="igender-001" ${item.itemGenderNo.equals('igender-001')?selected:'' }>남성</option>
-													    <option value="igender-002" ${item.itemGenderNo.equals('igender-002')?selected:'' }>여성</option>
-													    <option value="igender-003" ${item.itemGenderNo.equals('igender-003')?selected:'' }>공용</option>
+													    <option value="igender-001" ${item.itemGenderNo.equals('igender-001')?"selected":'' }>남성</option>
+													    <option value="igender-002" ${item.itemGenderNo.equals('igender-002')?"selected":'' }>여성</option>
+													    <option value="igender-003" ${item.itemGenderNo.equals('igender-003')?"selected":'' }>공용</option>
 												    </select>
 												</div>
 	                                        </li>

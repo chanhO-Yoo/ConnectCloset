@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.connectcloset.cc.admin.model.dao.AdminDAO;
 import com.connectcloset.cc.admin.model.exception.AdminException;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Service
@@ -70,6 +71,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ItemImage> selectItemImageList(int itemNo) {
 		return adminDAO.selectItemImageList(itemNo);
+	}
+
+	@Override
+	public List<ItemImage> selectAllItemImageList(int cPage, int numPerPage) {
+		return adminDAO.selectAllItemImageList(cPage,numPerPage);
+	}
+
+	@Override
+	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
+		return adminDAO.selectItemAndImageList(cPage,numPerPage);
 	}
 
 	

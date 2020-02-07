@@ -38,7 +38,7 @@
 	</insert>
 	
 	<select id="selectItemList" resultMap="itemMap">
-		select * from item
+		select * from item order by item_no desc
 	</select>
 	
 	<resultMap type="item" id="itemMap">
@@ -58,7 +58,39 @@
 		select * from item_image where item_no=#{itemNo}
 	</select>
 	
+	
+	<select id="selectAllItemImageList" resultMap="itemImageMap">
+		select * from item_image order by item_no desc
+	</select>
+
 	<resultMap type="itemImage" id="itemImageMap">
+	</resultMap>
+	
+	<select id="selectItemAndImageList" resultMap="itemCollectionMap">
+		select * from item I left join item_image II on I.item_no=II.item_no order by I.item_no desc
+	</select>
+	
+	<resultMap type="itemAndImageVO" id="itemCollectionMap">
+		<id column="item_no" property="itemNo"/>
+		<result column="item_name" property="itemName" />
+		<result column="item_price" property="itemPrice" />
+		<result column="item_stock" property="itemStock" />
+		<result column="item_colors" property="itemColors"  typeHandler="strArrTypeHandler" />
+		<result column="item_size" property="itemSize"  typeHandler="strArrTypeHandler" />
+		<result column="item_info" property="itemInfo" />
+		<result column="item_detail_info" property="itemDetailInfo" />
+		<result column="item_enroll_date" property="itemEnrollDate" />
+		<result column="brand_no" property="brandNo" />
+		<result column="item_gender_no" property="itemGenderNo" />
+		<result column="item_type_no" property="itemTypeNo" />
+		<result column="item_limited_type" property="itemLimitedType" />
+		<result column="item_sale_type" property="itemSaleType" />
+		<collection property="imageList" ofType="itemImage">
+			<id column="item_image_no" property="itemImageNo"/>
+			<result column="item_image_origin_name" property="itemImageOriginName"/>
+			<result column="item_image_re_name" property="itemImageReName"/>
+			<result column="item_no" property="itemNo"/>
+		</collection>
 	</resultMap>
     <!-- ===================찬호 끝=================== -->
 	
