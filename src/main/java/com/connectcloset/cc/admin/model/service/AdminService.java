@@ -17,6 +17,7 @@ public interface AdminService {
 	List<ItemImage> selectItemImageList(int itemNo);
 	List<ItemImage> selectAllItemImageList(int cPage, int numPerPage);
 	List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage);
+	int editItemEnd(Item item, List<ItemImage> imageList);
 
 	//===================찬호 끝===================
 

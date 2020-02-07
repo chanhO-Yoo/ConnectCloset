@@ -62,5 +62,15 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList("admin.selectItemAndImageList",null,rowBounds);
 	}
 
+	@Override
+	public int editItemEnd(Item item) {
+		return sqlSession.update("admin.editItemEnd",item);
+	}
+
+	@Override
+	public int deleteItemImage(int itemNo) {
+		return sqlSession.delete("admin.deleteItemImage",itemNo);
+	}
+
 	//===================찬호 끝===================
 }

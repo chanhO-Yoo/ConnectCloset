@@ -25,6 +25,10 @@ public interface AdminDAO {
 
 	List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage);
 
+	int editItemEnd(Item item);
+
+	int deleteItemImage(int itemNo);
+
 	//===================찬호 끝===================
 	
 }

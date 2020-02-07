@@ -82,6 +82,36 @@ public class AdminServiceImpl implements AdminService {
 	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
 		return adminDAO.selectItemAndImageList(cPage,numPerPage);
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED,
+			   isolation=Isolation.READ_COMMITTED,
+			   rollbackFor=Exception.class)
+	@Override
+	public int editItemEnd(Item item, List<ItemImage> imageList) {
+		int result = 0;
+		
+		result = adminDAO.editItemEnd(item);
+		if(result == 0) {
+			throw new AdminException("상품수정 오류");
+		}
+		
+		logger.debug("itemNo={}",item.getItemNo());
+		
+		result = adminDAO.deleteItemImage(item.getItemNo());
+		
+		if(imageList.size()>0) {
+			for(ItemImage i : imageList) {
+				i.setItemNo(item.getItemNo());
+				result = adminDAO.insertItemImage(i);
+				if(result == 0) {
+					throw new AdminException("상품 첨부파일 등록 오류");
+					//컨트롤러에서 예외를 처리해야한다.
+				}
+			}
+		}
+		
+		return result;
+	}
 
 	
 	//===================찬호 끝===================

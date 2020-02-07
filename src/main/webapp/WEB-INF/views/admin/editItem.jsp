@@ -15,8 +15,8 @@
 div#board-container label.custom-file-label{text-align:left;}
 </style>
 	<div class="pt-100">
-        <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
-
+        <form action="${pageContext.request.contextPath }/admin/editItemEnd.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="itemNo" value="${item.itemNo }"/>
 	        <div class="single-product-area pt-80 pb-80">
 	            <div class="container">
 	                <div class="row">

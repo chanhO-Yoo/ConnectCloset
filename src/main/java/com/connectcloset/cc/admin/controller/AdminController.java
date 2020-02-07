@@ -179,5 +179,68 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/admin/editItemEnd.do")
+	public ModelAndView editItemEnd(ModelAndView mav, Item item, @RequestParam(value="upFile",required=false) MultipartFile[] upFile, HttpServletRequest request) {
+		try {
+		logger.debug("아이템 수정 요청!!");
+		logger.debug("item={}",item);
+		logger.debug("upFile={}",upFile);
+		
+		//파일 저장 경로 설정
+		String saveDirectory = request.getSession().getServletContext().getRealPath("/resources/upload/item");
+		List<ItemImage> imageList = new ArrayList<>();
+		
+		//동적으로 directory생성하기 - directory를 한개만 생성가능(현재 2개를 생성해야 해야되서 src/main/webapp/resources에 upload폴더 생성 후 정상 작동 -> board폴더는 mkdir로 생성가능)
+		File dir = new File(saveDirectory);
+		if(dir.exists() == false) {
+			dir.mkdir();
+		}
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				//파일명 재지정
+				String originalFileName = f.getOriginalFilename();
+				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rndNum = (int)(Math.random()*1000);
+				
+				String renamedFileName = sdf.format(new Date())+"_"+rndNum+ext;
+				
+				//서버컴퓨터에 파일 저장
+				try {
+					f.transferTo(new File(saveDirectory+"/"+renamedFileName));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				ItemImage itemImage = new ItemImage();
+				itemImage.setItemImageOriginName(originalFileName);
+				itemImage.setItemImageReName(renamedFileName);
+				imageList.add(itemImage);
+				
+			}
+			
+			
+		}
+		logger.debug("imageList={}",imageList);
+		//MultipartFile객체 파일 업로드 처리 종료.......
+		
+		int result = adminService.editItemEnd(item,imageList);
+		logger.debug("result={}",result);
+		
+		
+		mav.addObject("msg",result>0?"상품 수정 성공.":"상품 수정 실패.");
+		mav.addObject("loc","/admin/itemList2.do");
+		mav.setViewName("common/msg");
+		}catch(Exception e) {
+			logger.error(e.getMessage(),e);
+			throw e;
+		}
+		return mav;
+	}
 	//===================찬호 끝===================
 }
