@@ -4,64 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
+
+
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-<!-- main-search start -->
-        <div class="main-search-active">
-            <div class="sidebar-search-icon">
-                <button class="search-close"><span class="ti-close"></span></button>
-            </div>
-            <div class="sidebar-search-input">
-                <form>
-                    <div class="form-search">
-                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
-                        <button>
-                            <i class="ti-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- summary-info start -->
-        <div class="summary-info sidebar-active">
-            <div class="wrap-sidebar">
-                <div class="sidebar-nav-icon">
-                    <button class="op-sidebar-close"><span class="ti-close"></span></button>
-                </div>
-                <div class="summary-info-all">
-                    <div class="summary-logo">
-                        <a href="index.html">
-                            <img src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="summary-list-wrap">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu ut labore et dolore magna aliqua. Ut enim ad minim.</p>
-                        <div class="summary-list">
-                            <ul>
-                                <li><i class="ti-hand-point-right"></i>Project Management</li>
-                                <li><i class="ti-hand-point-right"></i>Portfolio Showcasing</li>
-                                <li><i class="ti-hand-point-right"></i>Blogs & Content Sharing</li>
-                                <li><i class="ti-hand-point-right"></i>Social Work Management</li>
-                                <li><i class="ti-hand-point-right"></i>eCommerce Shop Management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="sidebar-contact">
-                        <h5>Fell Free To contact Us</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu.</p>
-                        <div class="sidebar-contact-list">
-                            <ul>
-                                <li><i class="ti-location-pin"></i>123 - 45678910</li>
-                                <li><i class="ti-email"></i><a href="#">info@example.com</a></li>
-                                <li><i class="ti-location-pin"></i>115 5th Ave, New York</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="single-product-area pt-80 pb-80">
             <div class="container">
                 <div class="row">
@@ -89,7 +39,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content pl-30">
-                            <h2>Product Name</h2>
+                            <h2>${itemImage.itemName}</h2>
                             <div class="pro-details-rating-wrap">
                                 <div class="pro-details-rating">
                                     <i class="ti-star theme-color"></i>
@@ -100,14 +50,19 @@
                                 </div>
                                 <span>(1 customer review)</span>
                             </div>
-                            <h3>$329</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunca augue quis neque ultr ices placerat sit amet quis mauris. Integer urna libero, aliquet id neque posu ullamcorp er fringilla dolor. Maecenas id mattis magna. Nam a dui rhoncus mi sollicitudin pretium.  </p>
+      
+                            <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${itemImage.itemPrice}" />원</h3>
+                            <p>${itemImage.itemInfo}</p>
                             <div class="pro-details-size-color2 mt-30">
                                 <div class="pro-details-color2-wrap">
                                     <span>Color</span>
                                     <div class="pro-details-color2-content">
                                         <ul>
-                                            <li class="blue"></li>
+                                        
+                                       
+                                            <li class="${item.itemColors}"></li>
+                                        
+                                   
                                             <li class="maroon active"></li>
                                             <li class="gray"></li>
                                             <li class="green"></li>
@@ -120,11 +75,11 @@
                                     <span>Size</span>
                                     <div class="pro-details-size2-content">
                                         <ul>
-                                            <li><a href="#">s</a></li>
-                                            <li><a href="#">m</a></li>
-                                            <li><a href="#">l</a></li>
-                                            <li><a href="#">xl</a></li>
-                                            <li><a href="#">xxl</a></li>
+                                        	
+                                        
+                                            <li><a href="#">${itemImage.itemSize}</a></li>
+                                     
+                                      
                                         </ul>
                                     </div>
                                 </div>

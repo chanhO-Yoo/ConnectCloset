@@ -16,4 +16,37 @@
 	</resultMap>
 	<!-- 희진 끝 -->
 	
+	<!--주영시작 -->
+	<select id="selectOneitemImage" resultMap="itemImage">
+		SELECT * FROM item_image IME JOIN  ITEM I ON IME.ITEM_NO = I.ITEM_NO
+	 where I.item_no=#{itemNo}
+	</select>
+	<resultMap type="itemandimagevo" id="itemImage">
+	<id column="item_no" property="itemNo"/>
+	<result column="item_name" property="itemName"/>
+		<result column="item_price" property="itemPrice"/>
+		<result column="item_stock" property="itemStock"/>
+		<result column="item_colors" property="itemColors"/>
+		<result column="item_size" property="itemSize"/>
+		<result column="item_info" property="itemInfo"/>
+		<result column="item_detail_info" property="itemDetailInfo"/>
+		<result column="item_enroll_date" property="itemEnrollDate"/>
+		<result column="brand_no" property="brandNo"/>
+		<result column="item_gender_no" property="itemGenderNo"/>
+		<result column="item_type_no" property="itemTypeNo"/>
+		<result column="item_Limited_Type" property="itemLimitedType"/>
+		<result column="item_Sale_Type" property="itemSaleType"/>
+		
+	<collection property="imageList" ofType="ItemImage">
+			<id column="item_No" property="itemNo"/>
+			<result column="item_Image_No" property="itemImageNo"/>
+			<result column="item_Image_Origin_Name" property="itemImageOriginName"/>
+			<result column="item_Image_Re_Name" property="itemImageReName"/>
+	
+
+			
+			</collection>
+	</resultMap>
+	<!--주영끝 -->
+	
 </mapper>
