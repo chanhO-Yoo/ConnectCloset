@@ -50,8 +50,8 @@
 						 <c:forEach var="image" items="${itemImage}" begin="0" end="0">
 
 						
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-l4.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl1.jpg">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s3.jpg" alt="">
+                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
                                 </a>
 						    
 						
