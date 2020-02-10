@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="item">
+
+	<!-- 희진시작 -->
+	<select id="newItemList" resultMap="itemMap">
+		<![CDATA[
+		select * from (select v.*, rownum rnum from (select p.* from item p order by ITEM_ENROLL_DATE desc) v) where rnum < 7
+		]]>
+	</select>
+	
+	<resultMap type="item" id="itemMap" >
+		
+	</resultMap>
+	<!-- 희진 끝 -->
+	
+</mapper>

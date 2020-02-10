@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -162,6 +161,8 @@
                                         <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -354,7 +355,6 @@
                     </div>
                 </div>
             </div>
-           
         </header>
         
          <!-- summary-info start -->
@@ -403,7 +403,7 @@
                        
                         <div class="sidebar-contact-list">
                             <ul>
-                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }">회원 정보 수정</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지1</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
