@@ -241,10 +241,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("/shop/checkout.do")
-	public void checkout() {		
-		System.out.println("test★★★★★★★");
-	}
+	
 	
 	@RequestMapping("/shop/cart-page.do")
 	public void cartPage() {
