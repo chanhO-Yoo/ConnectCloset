@@ -47,6 +47,11 @@
 			
 			</collection>
 	</resultMap>
+	
+	<select id="selectitemImagetList" resultMap="itemImageMap">
+		SELECT * FROM item_image where item_no=#{itemNo} ORDER BY item_image_no
+	</select>
+	<resultMap type="ItemImage" id="itemImageMap"></resultMap>
 	<!--주영끝 -->
 	
 </mapper>

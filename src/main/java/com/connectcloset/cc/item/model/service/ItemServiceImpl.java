@@ -31,11 +31,7 @@ public class ItemServiceImpl implements ItemService{
 	//===================주영 시작========================
 	
 
-	@Override
-	public Item selectOneitem(int itmeNo) {
-		// TODO Auto-generated method stub
-		return itemDAO.selectOneitem(itmeNo);
-	}
+
 	
 	@Override
 	public List<ItemImage> selectitemImagetList(int itmeNo) {
@@ -50,10 +46,6 @@ public class ItemServiceImpl implements ItemService{
 	}
 	//===================주영 끝========================
 
-	@Override
-	public List<ItemAndImageVO> listitemImage(int itmeNo) {
-		// TODO Auto-generated method stub
-		return itemDAO.listitemImage(itmeNo);
-	}
+	
 	
 }

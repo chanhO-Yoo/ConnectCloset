@@ -22,11 +22,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	//===================주영 시작========================
-	@Override
-	public Item selectOneitem(int itmeNo) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("item.selectOneitem",itmeNo);
-	}
+
 
 	@Override
 	public List<ItemImage> selectitemImagetList(int itmeNo) {
@@ -39,11 +35,7 @@ public class ItemDAOImpl implements ItemDAO {
 		return  sqlSession.selectOne("item.selectOneitemImage",itmeNo);
 	}
 
-	@Override
-	public List<ItemAndImageVO> listitemImage(int itmeNo) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("item.listitemImage",itmeNo);
-	}
+
 
 	//===================주영 끝========================
 

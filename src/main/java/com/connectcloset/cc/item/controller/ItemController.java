@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Controller
 public class ItemController {
@@ -41,33 +42,31 @@ public class ItemController {
 	
 	//===================희진 끝======================
 	
+	//===================주영 시작 ======================
 	@RequestMapping("/shop/shop-fullwide-sidebar.do")
 	public void shoppage() {
 		
 	}
-	//===================시작 끝======================
+	
 	@RequestMapping("/shop/single-product.do")
 	public ModelAndView singleproduct(ModelAndView mav ,@RequestParam("itemNo") int itmeNo){
 
-//		Item item
-//		= itemService.selectOneitem(itmeNo);
-//		
-//	List<ItemImage> attachmentList 
-//		= itemService.selectitemImagetList(itmeNo);
+
 	
 		logger.debug("itmeNo={}", itmeNo);
 		
-		ItemAndImageVO itemImage
+		ItemAndImageVO item
 		=itemService.selectOneitemImage(itmeNo);
 		
-//		List<ItemAndImageVO> itemImage
-//		=itemService.listitemImage(itmeNo);
+		List<ItemImage> itemImage
+		= itemService.selectitemImagetList(itmeNo);
 		
-//		mav.addObject("item",item);
-//		mav.addObject("attachmentList",attachmentList);
-		mav.addObject("itemImage",itemImage);
 
-		logger.debug("itemImage={}", itemImage);
+		mav.addObject("itemImage",itemImage);
+		mav.addObject("item",item);
+
+		logger.debug("@@@@@@itemImage={}", itemImage);
+		logger.debug("item@@@@@@={}", item);
 		mav.setViewName("/shop/single-product");
 		
 		return mav;

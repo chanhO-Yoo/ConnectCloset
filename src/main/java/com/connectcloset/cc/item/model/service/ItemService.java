@@ -10,12 +10,12 @@ public interface ItemService {
 
 	List<Item> newItemList(Item item);
 
-	Item selectOneitem(int itmeNo);
+
 
 	List<ItemImage> selectitemImagetList(int itmeNo);
 
 	ItemAndImageVO selectOneitemImage(int itmeNo);
 
-	List<ItemAndImageVO> listitemImage(int itmeNo);
+	
 
 }

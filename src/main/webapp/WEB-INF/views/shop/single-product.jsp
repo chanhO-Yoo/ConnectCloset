@@ -17,29 +17,62 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-details-img">
-                            <img class="zoompro" src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg" alt="zoom"/>
+                        
+
+
+
+                        <c:forEach var="image" items="${itemImage}" begin="0" end="0">
+						
+                         <img class="zoompro" src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="zoom"/>
+                         
+						</c:forEach>
+                            
                             <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
-                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s1.jpg" alt="">
+                             <c:forEach var="image" items="${itemImage}" begin="1" end="1">
+
+                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
                                 </a>
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl3.jpg">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s2.jpg" alt="">
+						
+
+						</c:forEach>
+                                 <c:forEach var="image" items="${itemImage}" begin="2" end="2">
+
+						
+                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
                                 </a>
+                                
+						    
+						
+						</c:forEach>
+						
+						 <c:forEach var="image" items="${itemImage}" begin="0" end="0">
+
+						
                                 <a data-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-l4.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl1.jpg">
                                     <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s3.jpg" alt="">
                                 </a>
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l2.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl2.jpg">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s1.jpg" alt="">
+						    
+						
+						</c:forEach>
+						
+                        <c:forEach var="image" items="${itemImage}" begin="1" end="1">
+
+						
+                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
                                 </a>
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-l3.jpg" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/single-product-bl3.jpg">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/product-detalis-s2.jpg" alt="">
-                                </a>
+						    
+						
+						</c:forEach>
+                              
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content pl-30">
-                            <h2>${itemImage.itemName}</h2>
+                            <h2>${item.itemName}</h2>
                             <div class="pro-details-rating-wrap">
                                 <div class="pro-details-rating">
                                     <i class="ti-star theme-color"></i>
@@ -51,23 +84,20 @@
                                 <span>(1 customer review)</span>
                             </div>
       
-                            <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${itemImage.itemPrice}" />원</h3>
-                            <p>${itemImage.itemInfo}</p>
+                            <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.itemPrice}" />원</h3>
+                            <p>${item.itemInfo}</p>
                             <div class="pro-details-size-color2 mt-30">
                                 <div class="pro-details-color2-wrap">
                                     <span>Color</span>
                                     <div class="pro-details-color2-content">
                                         <ul>
                                         
-                                       
-                                            <li class="${item.itemColors}"></li>
-                                        
-                                   
-                                            <li class="maroon active"></li>
-                                            <li class="gray"></li>
-                                            <li class="green"></li>
-                                            <li class="yellow"></li>
-                                            <li class="white"></li>
+                                       <c:forTokens items="${item.itemColors}" delims="," var="item">
+										   <li class="${item}"></li>
+										</c:forTokens>
+
+
+
                                         </ul>
                                     </div>
                                 </div>
@@ -76,8 +106,9 @@
                                     <div class="pro-details-size2-content">
                                         <ul>
                                         	
-                                        
-                                            <li><a href="#">${itemImage.itemSize}</a></li>
+                                         <c:forTokens items="${item.itemSize}" delims="," var="item">
+                                            <li><a href="#">${item}</a></li>
+										</c:forTokens>
                                      
                                       
                                         </ul>
