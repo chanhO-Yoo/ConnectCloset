@@ -23,15 +23,15 @@
 
                         <c:forEach var="image" items="${itemImage}" begin="0" end="0">
 						
-                         <img class="zoompro" src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="zoom"/>
+                         <img class="zoompro" src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="zoom"/>
                          
 						</c:forEach>
                             
                             <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
                              <c:forEach var="image" items="${itemImage}" begin="1" end="1">
 
-                                <a class="active" data-image="${pageContext.request.contextPath }/resources/img/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
+                                <a class="active" data-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="">
                                 </a>
 						
 
@@ -39,8 +39,8 @@
                                  <c:forEach var="image" items="${itemImage}" begin="2" end="2">
 
 						
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
+                                <a data-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="">
                                 </a>
                                 
 						    
@@ -50,8 +50,8 @@
 						 <c:forEach var="image" items="${itemImage}" begin="0" end="0">
 
 						
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
+                                <a data-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="">
                                 </a>
 						    
 						
@@ -60,8 +60,8 @@
                         <c:forEach var="image" items="${itemImage}" begin="1" end="1">
 
 						
-                                <a data-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product-details/${image.itemImageReName}" alt="">
+                                <a data-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}">
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="">
                                 </a>
 						    
 						

@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,4 +53,12 @@ public class MyPageController {
 	}
 	
 	//=================희진 끝=====================
+	
+	//----------------주영 시작 -----------------
+	@RequestMapping("/mypage/mypage-point.do")
+	public ModelAndView pointView(ModelAndView mav) {
+		
+		return mav;
+	}
+	//----------------주영 끝-----------------
 }
