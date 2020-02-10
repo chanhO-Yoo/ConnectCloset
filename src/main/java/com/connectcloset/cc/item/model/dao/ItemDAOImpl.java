@@ -13,10 +13,19 @@ public class ItemDAOImpl implements ItemDAO {
 	
 	@Autowired
 	SqlSessionTemplate sqlSession;
-		
+	
+	//희진 시작
 	@Override
 	public List<Item> newItemList(Item item) {
 		return sqlSession.selectList("newItemList", item);
 	}
+	//희진 끝
+	
+	//하은 시작
+		@Override
+	public List<Item> selectItemNumber(int itemNo) {
+		return sqlSession.selectList("item.selectItemNumber",itemNo);
+	}
+	//==하은 끝
 
 }

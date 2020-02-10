@@ -16,4 +16,10 @@
 	</resultMap>
 	<!-- 희진 끝 -->
 	
+	<!--하은 시작-->
+	<select id="selectItemNumber" resultMap="itemMap">
+		select * from item
+		where item_No = 41
+	</select>
+	<!--하은 끝-->	
 </mapper>
