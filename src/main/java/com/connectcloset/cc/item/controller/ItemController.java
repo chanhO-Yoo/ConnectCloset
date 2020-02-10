@@ -23,7 +23,8 @@ public class ItemController {
 	
 	//===================희진 시작======================
 	
-	//타입별 상품 나열
+	//타입별 상품 나 열
+	
 	
 	//새로 나온 상품
 	@GetMapping("/newItem.do")
