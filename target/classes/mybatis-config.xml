@@ -12,10 +12,11 @@
     <typeAlias type="com.connectcloset.cc.common.typehandler.StringArrayTypeHandler" alias="strArrTypeHandler"/>
     <!-- 해당 클래스를 소문자로 자동으로 alias처리 해줌 -->
     <package name="com.connectcloset.cc"/>
+    <!-- 찬호 시작 -->
     <package name="com.connectcloset.cc.member.model.vo"/>
     <package name="com.connectcloset.cc.item.model.vo"/>
-<!--     <package name="com.kh.spring.demo.model.vo"/>
-    <package name="com.kh.spring.member.model.vo"/> -->
+    <package name="com.connectcloset.cc.personalQna.model.vo"/>
+    <!-- 찬호 시작 -->
   </typeAliases>
   
 </configuration>

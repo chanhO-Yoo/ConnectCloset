@@ -23,6 +23,8 @@ import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Controller
 public class AdminController {
@@ -240,6 +242,58 @@ public class AdminController {
 			logger.error(e.getMessage(),e);
 			throw e;
 		}
+		return mav;
+	}
+	
+	@RequestMapping("/admin/adminPQnaList.do")
+	public ModelAndView adminPQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		
+		final int numPerPage = 10;
+		
+		List<PersonalQna> list = adminService.selectPQnaList(cPage,numPerPage);
+		logger.debug("list={}",list);
+		
+		int totalContents = adminService.selectPQnaListCount();
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.setViewName("admin/adminPQnaList");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/admin/adminPQna.do")
+	public ModelAndView adminPQna(ModelAndView mav, @RequestParam int pQnaNo) {
+		
+		PersonalQna pQna = adminService.adminPQna(pQnaNo);
+		logger.debug("pQna={}",pQna);
+		
+		List<PersonalQnaAns> pQnaAnsList = adminService.adminPQnaAns(pQnaNo);
+		logger.debug("pQnaAnsList={}",pQnaAnsList);
+		
+		mav.addObject("pQna",pQna);
+		mav.addObject("pQnaAnsList",pQnaAnsList);
+		
+		mav.setViewName("admin/adminPQna");
+		
+		return mav;
+	}
+	
+	@PostMapping("/admin/adminPQnaEnd.do")
+	public ModelAndView adminPQnaEnd(ModelAndView mav, PersonalQnaAns pQnaAns) {
+		logger.debug("pQnaAns={}",pQnaAns);
+		
+		int result = adminService.adminPQnaEnd(pQnaAns);
+		logger.debug("result={}",result);
+		
+		mav.addObject("msg",result>0?"1대1문의 답변작성 성공.":"1대1문의 답변작성 실패.");
+		mav.addObject("loc","/admin/adminPQnaList.do");
+		mav.setViewName("common/msg");
+		
 		return mav;
 	}
 	//===================찬호 끝===================
