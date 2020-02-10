@@ -24,7 +24,7 @@ import com.connectcloset.cc.member.model.vo.Member;
 @SessionAttributes(value= {"memberLoggedIn"})
 @Controller
 
-public class OrderCheckoutCotroller {
+public class OrderCotroller {
 
 	
 	private final static Logger logger = LoggerFactory.getLogger(MemberController.class);
