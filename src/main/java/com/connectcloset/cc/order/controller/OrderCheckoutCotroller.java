@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.connectcloset.cc.item.model.sevice.ItemService;
+import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;

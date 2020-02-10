@@ -26,4 +26,17 @@ public class ItemServiceImpl implements ItemService{
 	
 	//===================희진 끝========================
 
+	
+	/*	//==하은
+	@Override
+	public Item selectItemNumber(String itemNo) {
+		return itemDAO.selectItemNumber(itemNo);
+	}
+*/
+	@Override
+	public List<Item> selectItemNumber(int itemNo) {
+		return itemDAO.selectItemNumber(itemNo);
+	}
+	//==하은
+
 }

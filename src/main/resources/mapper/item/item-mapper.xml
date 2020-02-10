@@ -19,7 +19,7 @@
 	<!--하은 시작-->
 	<select id="selectItemNumber" resultMap="itemMap">
 		select * from item
-		where item_No = 41
+		where item_No = 102
 	</select>
 	<!--하은 끝-->	
 </mapper>
