@@ -3,8 +3,9 @@ package com.connectcloset.cc.item.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.List;
 
-public class Item implements Serializable {
+public class ItemAndImageVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -23,14 +24,18 @@ public class Item implements Serializable {
 	private char itemLimitedType;
 	private char itemSaleType;
 	
-	public Item() {
+	//상품이미지를 위한 변수
+	private List<ItemImage> imageList;
+
+	public ItemAndImageVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int itemNo, String itemName, int itemPrice, int itemStock, String[] itemColors, String[] itemSize,
-			String itemInfo, String itemDetailInfo, Date itemEnrollDate, String brandNo, String itemGenderNo,
-			String itemTypeNo, char itemLimitedType, char itemSaleType) {
+	public ItemAndImageVO(int itemNo, String itemName, int itemPrice, int itemStock, String[] itemColors,
+			String[] itemSize, String itemInfo, String itemDetailInfo, Date itemEnrollDate, String brandNo,
+			String itemGenderNo, String itemTypeNo, char itemLimitedType, char itemSaleType,
+			List<ItemImage> imageList) {
 		super();
 		this.itemNo = itemNo;
 		this.itemName = itemName;
@@ -46,6 +51,7 @@ public class Item implements Serializable {
 		this.itemTypeNo = itemTypeNo;
 		this.itemLimitedType = itemLimitedType;
 		this.itemSaleType = itemSaleType;
+		this.imageList = imageList;
 	}
 
 	public int getItemNo() {
@@ -160,20 +166,28 @@ public class Item implements Serializable {
 		this.itemSaleType = itemSaleType;
 	}
 
+	public List<ItemImage> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ItemImage> imageList) {
+		this.imageList = imageList;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [itemNo=" + itemNo + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemStock="
-				+ itemStock + ", itemColors=" + Arrays.toString(itemColors) + ", itemSize=" + Arrays.toString(itemSize)
-				+ ", itemInfo=" + itemInfo + ", itemDetailInfo=" + itemDetailInfo + ", itemEnrollDate=" + itemEnrollDate
-				+ ", brandNo=" + brandNo + ", itemGenderNo=" + itemGenderNo + ", itemTypeNo=" + itemTypeNo
-				+ ", itemLimitedType=" + itemLimitedType + ", itemSaleType=" + itemSaleType + "]";
+		return "ItemAndImageVO [itemNo=" + itemNo + ", itemName=" + itemName + ", itemPrice=" + itemPrice
+				+ ", itemStock=" + itemStock + ", itemColors=" + Arrays.toString(itemColors) + ", itemSize="
+				+ Arrays.toString(itemSize) + ", itemInfo=" + itemInfo + ", itemDetailInfo=" + itemDetailInfo
+				+ ", itemEnrollDate=" + itemEnrollDate + ", brandNo=" + brandNo + ", itemGenderNo=" + itemGenderNo
+				+ ", itemTypeNo=" + itemTypeNo + ", itemLimitedType=" + itemLimitedType + ", itemSaleType="
+				+ itemSaleType + ", imageList=" + imageList + "]";
 	}
 
-	
 	
 	
 }
