@@ -61,7 +61,7 @@
                                 <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-1.jpg" alt="">
                             </a>
                             <div class="shop-categories">
-                                <a href="#">Outerwear</a>
+                                <a href="#">Flip flops</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                 <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-2.jpg" alt="">
                             </a>
                             <div class="shop-categories">
-                                <a href="#">SHOES</a>
+                                <a href="#">Sneakers</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                                 <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-3.jpg" alt="">
                             </a>
                             <div class="shop-categories">
-                                <a href="#">ACCESSORIES</a>
+                                <a href="#">Shoes</a>
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,7 @@
                     	$.ajax({
                     	//새로 등록된 상품 json요청
                     	url: "${pageContext.request.contextPath}/newItem.do",
-                    	type: "GET",
+                    	type: "POST",
                     	dataType: "json",
                     	success: data => {
                     		let html = "";
@@ -460,7 +460,7 @@
                 <div class="section-title-7 text-center mb-45">
                     <h2>Latest Blog</h2>
                 </div>
-                <div class="row latestBlog">
+                <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-wrap-2 blog-shadow mb-40">
                             <div class="blog-img hover-3">
@@ -485,7 +485,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-wrap-2 blog-shadow mb-40">
                             <div class="blog-img hover-3">
@@ -510,7 +509,6 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-wrap-2 blog-shadow mb-40">
                             <div class="blog-img hover-3">
@@ -536,53 +534,6 @@
                         </div>
                     </div>
                 </div>
-                <script>
-                $(()=>{
-                	$.ajax({
-                	//마지막 블로그 글 json요청
-                	url: "${pageContext.request.contextPath}/latestBlog.do",
-                	type: "GET",
-                	dataType: "json",
-                	success: data => {
-                		let html = "";
-                		console.log(data);
-                		
-                		for(let i in data){
-                			let n = data[i];
-                		
-                		html += "<div class='col-lg-4 col-md-6'>"
-                			 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
-                			 + "<div class='blog-img hover-3'>"
-                			 + "<a href='blog-details.html'>"
-                        	 + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg'>"
-                             + "</a>"
-                             + "<div class='readmore-icon'>"  
-                             + "<a href='blog-details.html'>"
-                             + "<i class='ti-arrow-right'></i>"
-                             + "</a>"
-                             + "</div>"
-                             + "</div>"
-                             + "<div class='blog-content-2'>"
-                             + "<div class='blog-meta-3'>"
-                             + "<ul>"
-                             + "<li>날짜</li>"
-                             + "<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
-                             + "</ul>"
-                             + "</div>"
-                             + "<h4><a href='blog-details.html'>글제목</a></h4>"
-                             + "<p>글내용</p>"
-                             + "</div>"
-                             + "</div>"
-                             + "</div>";
-                		}
-                		$(".row.latestBlog").append(html);
-                	},
-                	error: (x,s,e)=>{
-                		console.log(x,s,e);
-                	}
-                	});
-                });
-                </script>
             </div>
         </div>
         <div class="instagram-area">
@@ -606,7 +557,6 @@
                 </div>
             </div>
         </div>
-        <!-- 
         <script>
         $(document).ready(function () {
             //you can set this, as long as it's not greater than the slides length
@@ -641,7 +591,7 @@
             });
         });
         </script>
-         -->
+        
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
