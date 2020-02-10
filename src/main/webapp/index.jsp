@@ -248,7 +248,7 @@
                     	$.ajax({
                     	//새로 등록된 상품 json요청
                     	url: "${pageContext.request.contextPath}/newItem.do",
-                    	type: "POST",
+                    	type: "GET",
                     	dataType: "json",
                     	success: data => {
                     		let html = "";
