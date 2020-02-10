@@ -248,7 +248,7 @@
                     	$.ajax({
                     	//새로 등록된 상품 json요청
                     	url: "${pageContext.request.contextPath}/newItem.do",
-                    	type: "POST",
+                    	type: "GET",
                     	dataType: "json",
                     	success: data => {
                     		let html = "";
@@ -256,6 +256,7 @@
                     		
                     		for(let i in data){
                     			let n = data[i];
+                    			
                     		
                     		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
                     			 + "<div class='shop-wrap mb-35'>"
@@ -265,7 +266,10 @@
                                  + "</a>"
                                  + "<div class='shop-hover'>"  
                                  + "<div class='shop-card'>"
-                                 + "<a href='#' title='Add To Cart'>Add To Cart <i class='ti-shopping-cart'></i></a>"
+//                           
+//                                // + "<a href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=" + n.itemNo + "&itemStock=1&itemColor=" + n.itemColors + "' title='Add To Cart'>Add To Cart <i class='ti-shopping-cart'></i></a>"
+                                 + "<a href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=" + n.itemNo + "' title='Add To Cart' >Add To Cart <i class='ti-shopping-cart'></i></a>"
+                               
                                  + "</div>"   
                                  + "<div class='shop-wishlist'>"       
                                  + "<a title='Wishlist' href='#'><i class='ti-heart'></i></a>"   
@@ -282,6 +286,8 @@
                                  + "</div>"
                                  + "</div>"
                                  + "</div>";
+                                
+                                
                     		}
                     		$(".row.newItem").append(html);
                     	},
@@ -290,13 +296,32 @@
                     	}
                     	});
                     });
+                    
+                    
+                   
+                    
+                    
                     </script>
                     
                 </div>
             </div>
         </div>
+        
+<script>
+//         function addcart() {
+//         	$(onclick).attr("action","${pageContext.request.contextPath}/shop/cart-page.do")
+//         				.submit();
+//         }
+        
+        </script>
+
+        
         <!-- 날씨  -->
     <script type="text/javascript">
+   
+   
+    
+    
       $(document).ready(function() {
     	  getCurrentWeatheInfo();
     	  
@@ -557,6 +582,7 @@
                 </div>
             </div>
         </div>
+        <!-- 
         <script>
         $(document).ready(function () {
             //you can set this, as long as it's not greater than the slides length
@@ -591,6 +617,7 @@
             });
         });
         </script>
+         -->
         
 
 
