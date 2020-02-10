@@ -55,7 +55,7 @@
                                                 <li><a href="shop-categories.html">shop categories</a></li>
                                                 <li><a href="shop-filter-active.html">shop filter</a></li>
                                                 <li><a href="shop-full-wide.html">shop full wide</a></li>
-                                                <li><a href="shop-fullwide-sidebar.html">shop fullwide sidebar</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do">ItemList</a></li>
                                                 <li><a href="shop-grid-col4.html">shop grid column 4</a></li>
                                                 <li><a href="shop-grid-filter.html">shop grid filter</a></li>
                                             </ul>

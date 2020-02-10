@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -23,7 +24,21 @@ public class ItemServiceImpl implements ItemService{
 	public List<Item> newItemList(Item item) {
 		return itemDAO.newItemList(item);
 	}
-	
 	//===================희진 끝========================
-
+	
+	
+	
+	//===================윤지 시작=======================
+	@Override
+	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
+		return itemDAO.selectItemAndImageList(cPage, numPerPage);
+	}
+	
+	@Override
+	public int selectItemCount() {
+		return itemDAO.selectItemCount();
+	}
 }
+	//===================윤지 끝========================
+
+

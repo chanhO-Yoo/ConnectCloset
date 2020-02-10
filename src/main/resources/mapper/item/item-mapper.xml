@@ -16,4 +16,44 @@
 	</resultMap>
 	<!-- 희진 끝 -->
 	
+	
+	<!-- 윤지 시작 -->
+	<resultMap type="itemAndImageVO" id="itemImageMap">
+		<id column="item_no" property="itemNo"/>
+		<result column="item_name" property="itemName" />
+		<result column="item_price" property="itemPrice" />
+		<result column="item_stock" property="itemStock" />
+		<result column="item_colors" property="itemColors"  typeHandler="strArrTypeHandler" />
+		<result column="item_size" property="itemSize"  typeHandler="strArrTypeHandler" />
+		<result column="item_info" property="itemInfo" />
+		<result column="item_detail_info" property="itemDetailInfo" />
+		<result column="item_enroll_date" property="itemEnrollDate" />
+		<result column="brand_no" property="brandNo" />
+		<result column="item_gender_no" property="itemGenderNo" />
+		<result column="item_type_no" property="itemTypeNo" />
+		<result column="item_limited_type" property="itemLimitedType" />
+		<result column="item_sale_type" property="itemSaleType" />
+		<collection property="imageList" ofType="itemImage">
+			<id column="item_image_no" property="itemImageNo"/>
+			<result column="item_image_origin_name" property="itemImageOriginName"/>
+			<result column="item_image_re_name" property="itemImageReName"/>
+			<result column="item_no" property="itemNo"/>
+		</collection>
+	</resultMap>
+	
+	<select id="selectItemImageList" resultMap="itemImageMap">
+		select * from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectItemCount" resultType="_int">
+		select count(*) from item
+	</select>
+	
+	<!-- 윤지 끝 -->
+	
 </mapper>

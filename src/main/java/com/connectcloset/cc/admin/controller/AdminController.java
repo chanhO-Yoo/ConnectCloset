@@ -138,7 +138,6 @@ public class AdminController {
 		logger.debug("list={}",list);
 		
 		
-		
 //		List<Item> list = adminService.selectItemList(cPage,numPerPage);
 //		logger.debug("list={}",list);
 //		
@@ -155,7 +154,6 @@ public class AdminController {
 		
 		mav.setViewName("admin/itemList2");
 
-		
 		return mav;
 	}
 	
