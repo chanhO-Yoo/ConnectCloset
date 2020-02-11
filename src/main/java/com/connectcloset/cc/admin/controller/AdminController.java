@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Controller
@@ -134,7 +134,7 @@ public class AdminController {
 		
 		final int numPerPage = 9;
 		
-		List<ItemAndImageVO> list = adminService.selectItemAndImageList(cPage,numPerPage);
+		List<ItemAndImageVO2> list = adminService.selectItemAndImageList(cPage,numPerPage);
 		logger.debug("list={}",list);
 		
 		

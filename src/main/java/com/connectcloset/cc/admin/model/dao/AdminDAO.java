@@ -3,7 +3,7 @@ package com.connectcloset.cc.admin.model.dao;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 public interface AdminDAO {
@@ -23,7 +23,7 @@ public interface AdminDAO {
 
 	List<ItemImage> selectAllItemImageList(int cPage, int numPerPage);
 
-	List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage);
+	List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage);
 
 	int editItemEnd(Item item);
 

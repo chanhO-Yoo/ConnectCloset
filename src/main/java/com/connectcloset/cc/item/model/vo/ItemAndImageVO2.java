@@ -13,8 +13,8 @@ public class ItemAndImageVO2 implements Serializable {
 	private String itemName;
 	private int itemPrice;
 	private int itemStock;
-	private String[] itemColors;
-	private String[] itemSize;
+	private String itemColors;
+	private String itemSize;
 	private String itemInfo;
 	private String itemDetailInfo;
 	private Date itemEnrollDate;
@@ -32,8 +32,8 @@ public class ItemAndImageVO2 implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ItemAndImageVO2(int itemNo, String itemName, int itemPrice, int itemStock, String[] itemColors,
-			String[] itemSize, String itemInfo, String itemDetailInfo, Date itemEnrollDate, String brandNo,
+	public ItemAndImageVO2(int itemNo, String itemName, int itemPrice, int itemStock, String itemColors,
+			String itemSize, String itemInfo, String itemDetailInfo, Date itemEnrollDate, String brandNo,
 			String itemGenderNo, String itemTypeNo, char itemLimitedType, char itemSaleType,
 			List<ItemImage> imageList) {
 		super();
@@ -86,19 +86,19 @@ public class ItemAndImageVO2 implements Serializable {
 		this.itemStock = itemStock;
 	}
 
-	public String[] getItemColors() {
+	public String getItemColors() {
 		return itemColors;
 	}
 
-	public void setItemColors(String[] itemColors) {
+	public void setItemColors(String itemColors) {
 		this.itemColors = itemColors;
 	}
 
-	public String[] getItemSize() {
+	public String getItemSize() {
 		return itemSize;
 	}
 
-	public void setItemSize(String[] itemSize) {
+	public void setItemSize(String itemSize) {
 		this.itemSize = itemSize;
 	}
 
@@ -181,12 +181,12 @@ public class ItemAndImageVO2 implements Serializable {
 	@Override
 	public String toString() {
 		return "ItemAndImageVO [itemNo=" + itemNo + ", itemName=" + itemName + ", itemPrice=" + itemPrice
-				+ ", itemStock=" + itemStock + ", itemColors=" + Arrays.toString(itemColors) + ", itemSize="
-				+ Arrays.toString(itemSize) + ", itemInfo=" + itemInfo + ", itemDetailInfo=" + itemDetailInfo
-				+ ", itemEnrollDate=" + itemEnrollDate + ", brandNo=" + brandNo + ", itemGenderNo=" + itemGenderNo
-				+ ", itemTypeNo=" + itemTypeNo + ", itemLimitedType=" + itemLimitedType + ", itemSaleType="
-				+ itemSaleType + ", imageList=" + imageList + "]";
+				+ ", itemStock=" + itemStock + ", itemColors=" + itemColors + ", itemSize=" + itemSize + ", itemInfo="
+				+ itemInfo + ", itemDetailInfo=" + itemDetailInfo + ", itemEnrollDate=" + itemEnrollDate + ", brandNo="
+				+ brandNo + ", itemGenderNo=" + itemGenderNo + ", itemTypeNo=" + itemTypeNo + ", itemLimitedType="
+				+ itemLimitedType + ", itemSaleType=" + itemSaleType + ", imageList=" + imageList + "]";
 	}
+
 
 
 	

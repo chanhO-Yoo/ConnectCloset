@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Controller
@@ -63,7 +63,7 @@ public class ItemController {
 	
 		logger.debug("itmeNo={}", itmeNo);
 		
-		ItemAndImageVO item
+		ItemAndImageVO2 item
 		=itemService.selectOneitemImage(itmeNo);
 		
 		List<ItemImage> itemImage
@@ -87,7 +87,7 @@ public class ItemController {
 
 			final int numPerPage = 9;
 			
-			List<ItemAndImageVO> list = itemService.selectItemAndImageList(cPage, numPerPage);
+			List<ItemAndImageVO2> list = itemService.selectItemAndImageList(cPage, numPerPage);
 			logger.debug("list={}", list);
 			
 			int totalContents = itemService.selectItemCount();

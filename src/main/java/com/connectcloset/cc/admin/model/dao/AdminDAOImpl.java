@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Repository
@@ -57,7 +57,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
+	public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return sqlSession.selectList("admin.selectItemAndImageList",null,rowBounds);
 	}
