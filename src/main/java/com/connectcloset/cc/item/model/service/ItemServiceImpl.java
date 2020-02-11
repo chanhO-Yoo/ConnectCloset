@@ -20,12 +20,13 @@ public class ItemServiceImpl implements ItemService{
 	@Autowired
 	ItemDAO itemDAO;
 	
-	//====================희진=========================
+	//====================희진 새로 나온 상품 =========================
 	@Override
 	public List<Item> newItemList(Item item) {
 		return itemDAO.newItemList(item);
 	}
 
+	//===================희진  새로 나온 상품 끝========================
 
 	
 	/*	//==하은
@@ -41,7 +42,6 @@ public class ItemServiceImpl implements ItemService{
 	//==하은
 
 
-	//===================희진 끝========================
 	
 	//===================윤지 상품 리스트 시작=======================
 		@Override

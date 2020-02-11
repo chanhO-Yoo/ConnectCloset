@@ -25,7 +25,7 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
-	//===================희진 시작======================
+	//===================희진  새로나온 상품시작======================
 	
 	//타입별 상품 나 열
 	
@@ -47,10 +47,10 @@ public class ItemController {
 	//	return blog;
 	//}
 	
-	//===================희진 끝======================
+	//===================희진 새로나온 상품  끝======================
 	
 
-	//===================주영 시작 ======================
+	//===================주영 상세보기  시작 ======================
 	@RequestMapping("/shop/shop-fullwide-sidebar.do")
 	public void shoppage() {
 		
@@ -80,9 +80,9 @@ public class ItemController {
 		return mav;
 		}
 	
-	//===================주영 끝======================
+	//===================주영 상세보기 끝======================
 	
-	//===================윤지 시작=====================
+	//===================윤지 상품 리스트 시작=====================
 		@RequestMapping("/shop/shopItemList.do")
 		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 
@@ -106,7 +106,7 @@ public class ItemController {
 		}
 		
 		
-		//===================윤지 끝=====================
+		//===================윤지 상품 리스트 끝=====================
 
 }
 

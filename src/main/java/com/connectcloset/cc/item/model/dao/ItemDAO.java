@@ -9,9 +9,9 @@ import com.connectcloset.cc.item.model.vo.ItemImage;
 
 public interface ItemDAO {
 
-//희진 시작
+//희진 새로 나온 상품 시작
 	List<Item> newItemList(Item item);
-//희진 끝
+//희진 새로 나온 상품 끝
 
 
 	///==하은 시작
