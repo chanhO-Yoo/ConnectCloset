@@ -10,9 +10,9 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header2.jsp" />
 
-        <div class="single-product-area pt-80 pb-80">
+        <div class="single-product-area pt-180 pb-180">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
