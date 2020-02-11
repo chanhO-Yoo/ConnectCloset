@@ -248,7 +248,7 @@
                     	$.ajax({
                     	//새로 등록된 상품 json요청
                     	url: "${pageContext.request.contextPath}/newItem.do",
-                    	type: "POST",
+                    	type: "GET",
                     	dataType: "json",
                     	success: data => {
                     		let html = "";
@@ -582,6 +582,7 @@
                 </div>
             </div>
         </div>
+        <!-- 
         <script>
         $(document).ready(function () {
             //you can set this, as long as it's not greater than the slides length
@@ -616,6 +617,7 @@
             });
         });
         </script>
+         -->
         
 
 

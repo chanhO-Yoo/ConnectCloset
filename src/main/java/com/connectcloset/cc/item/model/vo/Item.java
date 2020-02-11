@@ -2,6 +2,7 @@ package com.connectcloset.cc.item.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 
 public class Item implements Serializable {
 
@@ -11,8 +12,8 @@ public class Item implements Serializable {
 	private String itemName;
 	private int itemPrice;
 	private int itemStock;
-	private String itemColors;
-	private String itemSize;
+	private String[] itemColors;
+	private String[] itemSize;
 	private String itemInfo;
 	private String itemDetailInfo;
 	private Date itemEnrollDate;
@@ -27,7 +28,7 @@ public class Item implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Item(int itemNo, String itemName, int itemPrice, int itemStock, String itemColors, String itemSize,
+	public Item(int itemNo, String itemName, int itemPrice, int itemStock, String[] itemColors, String[] itemSize,
 			String itemInfo, String itemDetailInfo, Date itemEnrollDate, String brandNo, String itemGenderNo,
 			String itemTypeNo, char itemLimitedType, char itemSaleType) {
 		super();
@@ -79,19 +80,19 @@ public class Item implements Serializable {
 		this.itemStock = itemStock;
 	}
 
-	public String getItemColors() {
+	public String[] getItemColors() {
 		return itemColors;
 	}
 
-	public void setItemColors(String itemColors) {
+	public void setItemColors(String[] itemColors) {
 		this.itemColors = itemColors;
 	}
 
-	public String getItemSize() {
+	public String[] getItemSize() {
 		return itemSize;
 	}
 
-	public void setItemSize(String itemSize) {
+	public void setItemSize(String[] itemSize) {
 		this.itemSize = itemSize;
 	}
 
@@ -166,11 +167,13 @@ public class Item implements Serializable {
 	@Override
 	public String toString() {
 		return "Item [itemNo=" + itemNo + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemStock="
-				+ itemStock + ", itemColors=" + itemColors + ", itemSize=" + itemSize + ", itemInfo=" + itemInfo
-				+ ", itemDetailInfo=" + itemDetailInfo + ", itemEnrollDate=" + itemEnrollDate + ", brandNo=" + brandNo
-				+ ", itemGenderNo=" + itemGenderNo + ", itemTypeNo=" + itemTypeNo + ", itemLimitedType="
-				+ itemLimitedType + ", itemSaleType=" + itemSaleType + "]";
+				+ itemStock + ", itemColors=" + Arrays.toString(itemColors) + ", itemSize=" + Arrays.toString(itemSize)
+				+ ", itemInfo=" + itemInfo + ", itemDetailInfo=" + itemDetailInfo + ", itemEnrollDate=" + itemEnrollDate
+				+ ", brandNo=" + brandNo + ", itemGenderNo=" + itemGenderNo + ", itemTypeNo=" + itemTypeNo
+				+ ", itemLimitedType=" + itemLimitedType + ", itemSaleType=" + itemSaleType + "]";
 	}
+
+	
 	
 	
 }

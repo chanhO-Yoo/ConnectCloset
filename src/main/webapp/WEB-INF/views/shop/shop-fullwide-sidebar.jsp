@@ -7,74 +7,7 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
-                    <h2>Shop</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="active">Shop Grid with Sidebar </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- main-search start -->
-        <div class="main-search-active">
-            <div class="sidebar-search-icon">
-                <button class="search-close"><span class="ti-close"></span></button>
-            </div>
-            <div class="sidebar-search-input">
-                <form>
-                    <div class="form-search">
-                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
-                        <button>
-                            <i class="ti-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- summary-info start -->
-        <div class="summary-info sidebar-active">
-            <div class="wrap-sidebar">
-                <div class="sidebar-nav-icon">
-                    <button class="op-sidebar-close"><span class="ti-close"></span></button>
-                </div>
-                <div class="summary-info-all">
-                    <div class="summary-logo">
-                        <a href="index.html">
-                            <img src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="summary-list-wrap">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu ut labore et dolore magna aliqua. Ut enim ad minim.</p>
-                        <div class="summary-list">
-                            <ul>
-                                <li><i class="ti-hand-point-right"></i>Project Management</li>
-                                <li><i class="ti-hand-point-right"></i>Portfolio Showcasing</li>
-                                <li><i class="ti-hand-point-right"></i>Blogs & Content Sharing</li>
-                                <li><i class="ti-hand-point-right"></i>Social Work Management</li>
-                                <li><i class="ti-hand-point-right"></i>eCommerce Shop Management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="sidebar-contact">
-                        <h5>Fell Free To contact Us</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do eiusmod tempor incididu.</p>
-                        <div class="sidebar-contact-list">
-                            <ul>
-                                <li><i class="ti-location-pin"></i>123 - 45678910</li>
-                                <li><i class="ti-email"></i><a href="#">info@example.com</a></li>
-                                <li><i class="ti-location-pin"></i>115 5th Ave, New York</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="shop-area pt-80 pb-80 pro-col-40 section-padding-1">
             <div class="container-fluid">
                 <div class="row">
@@ -84,7 +17,7 @@
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 item-hidden grid-item">
                                     <div class="shop-wrap mb-40">
                                         <div class="shop-img">
-                                            <a href="single-product.html">
+                                            <a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=89">
                                                 <img src="${pageContext.request.contextPath }/resources/img/product/shop-fw-sidebar1.jpg" alt="">
                                             </a>
                                             <div class="shop-hover">
@@ -98,11 +31,12 @@
                                         </div>
                                         <div class="shop-content">
                                             <div class="shop-name">
-                                                <h4><a href="single-product.html">Product Name</a></h4>
+                                                <h4><a href="${pageContext.request.contextPath }/shop/single-product.do">Product Name</a></h4>
                                             </div>
                                             <div class="shop-price">
                                                 <span>$329</span>
                                             </div>
+                                       
                                         </div>
                                     </div>
                                 </div>

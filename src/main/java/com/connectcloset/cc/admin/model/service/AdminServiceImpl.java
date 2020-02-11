@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.connectcloset.cc.admin.model.dao.AdminDAO;
 import com.connectcloset.cc.admin.model.exception.AdminException;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Service
@@ -60,6 +61,56 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int selectItemCount() {
 		return adminDAO.selectItemCount();
+	}
+
+	@Override
+	public Item selecItemOne(int itemNo) {
+		return adminDAO.selecItemOne(itemNo);
+	}
+
+	@Override
+	public List<ItemImage> selectItemImageList(int itemNo) {
+		return adminDAO.selectItemImageList(itemNo);
+	}
+
+	@Override
+	public List<ItemImage> selectAllItemImageList(int cPage, int numPerPage) {
+		return adminDAO.selectAllItemImageList(cPage,numPerPage);
+	}
+
+	@Override
+	public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
+		return adminDAO.selectItemAndImageList(cPage,numPerPage);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED,
+			   isolation=Isolation.READ_COMMITTED,
+			   rollbackFor=Exception.class)
+	@Override
+	public int editItemEnd(Item item, List<ItemImage> imageList) {
+		int result = 0;
+		
+		result = adminDAO.editItemEnd(item);
+		if(result == 0) {
+			throw new AdminException("상품수정 오류");
+		}
+		
+		logger.debug("itemNo={}",item.getItemNo());
+		
+		result = adminDAO.deleteItemImage(item.getItemNo());
+		
+		if(imageList.size()>0) {
+			for(ItemImage i : imageList) {
+				i.setItemNo(item.getItemNo());
+				result = adminDAO.insertItemImage(i);
+				if(result == 0) {
+					throw new AdminException("상품 첨부파일 등록 오류");
+					//컨트롤러에서 예외를 처리해야한다.
+				}
+			}
+		}
+		
+		return result;
 	}
 
 	
