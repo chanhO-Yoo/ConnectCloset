@@ -92,16 +92,28 @@ div#board-container label.custom-file-label{text-align:left;}
 											</select>
 										</div>
 	                                </div>
-	                                
-	                                <div class="pro-details-size2">
-	                                    <span>Size</span>
-	                                     <div class="form-group">
+	                                <div class="pro-details-color2-wrap">
+                                    	<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+										  <label class="form-check-label" for="inlineRadio1">1</label>
+										</div>
+										<div class="form-check form-check-inline">
+										  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+										  <label class="form-check-label" for="inlineRadio2">2</label>
+										</div>
+	                                    <div class="form-group">
 										    <select multiple class="form-control" id="sizeSelect" name="itemSize" style="width:170px">
 										    	<option>s</option>
 										    	<option>m</option>
 										    	<option>l</option>
 										    	<option>xl</option>
 										    	<option>xxl</option>
+										    	<option disabled="disabled">----------</option>
+										    	<option>240</option>
+										    	<option>250</option>
+										    	<option>260</option>
+										    	<option>270</option>
+										    	<option>280</option>
 											</select>
 										</div>
 	                                </div>
