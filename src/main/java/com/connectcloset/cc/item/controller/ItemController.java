@@ -75,7 +75,7 @@ public class ItemController {
 
 		logger.debug("@@@@@@itemImage={}", itemImage);
 		logger.debug("item@@@@@@={}", item);
-		mav.setViewName("/shop/single-product");
+		mav.setViewName("redirect: /shop/single-product.do");
 		
 		return mav;
 		}

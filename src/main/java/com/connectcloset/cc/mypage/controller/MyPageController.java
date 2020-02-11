@@ -1,5 +1,7 @@
 package com.connectcloset.cc.mypage.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
 
 @Controller
@@ -56,7 +61,18 @@ public class MyPageController {
 	
 	//----------------주영 시작 -----------------
 	@RequestMapping("/mypage/mypage-point.do")
-	public ModelAndView pointView(ModelAndView mav) {
+	public ModelAndView pointView(ModelAndView mav ,@RequestParam("memberNo") int memberNo) {
+		
+		
+		Point point
+		= myPageSerivce.selectOnePoint(memberNo);
+		
+
+		mav.addObject("point",point);
+
+		logger.debug("point@@@@@@={}", point);
+		mav.setViewName("redirect: /mypage/mypage-point.do");
+		
 		
 		return mav;
 	}

@@ -405,7 +405,7 @@
                             <ul>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do">포인트 확인</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberId=${memberLoggedIn.memberNo}">포인트 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
