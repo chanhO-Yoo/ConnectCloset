@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Controller
@@ -63,7 +63,7 @@ public class ItemController {
 	
 		logger.debug("itmeNo={}", itmeNo);
 		
-		ItemAndImageVO item
+		ItemAndImageVO2 item
 		=itemService.selectOneitemImage(itmeNo);
 		
 		List<ItemImage> itemImage
@@ -81,5 +81,31 @@ public class ItemController {
 		}
 	
 	//===================주영 끝======================
+	//===================윤지 시작=====================
+		@RequestMapping("/shop/shopItemList.do")
+		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectItemAndImageList(cPage, numPerPage);
+			logger.debug("list={}", list);
+			
+			int totalContents = itemService.selectItemCount();
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		
+		}
+		
+		
+		//===================윤지 끝=====================
 
 }
+

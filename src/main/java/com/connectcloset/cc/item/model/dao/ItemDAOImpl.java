@@ -2,12 +2,13 @@ package com.connectcloset.cc.item.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Repository
@@ -30,7 +31,21 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	//==하은 끝
 
-	//===================주영 시작========================
+	//===================윤지  상품 리스트 시작=======================
+	@Override
+	public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectItemImageList", null, rowBounds);
+	}
+	
+	@Override
+	public int selectItemCount() {
+		return sqlSession.selectOne("item.selectItemCount");
+	}
+	//===================윤지 상품 리스트  끝=======================	
+		
+		
+	//===================주영 상품 상세보기 시작========================
 
 
 	@Override
@@ -39,14 +54,14 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList("item.selectitemImagetList",itmeNo);
 	}
 	@Override
-	public ItemAndImageVO selectOneitemImage(int itmeNo) {
+	public ItemAndImageVO2 selectOneitemImage(int itmeNo) {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("item.selectOneitemImage",itmeNo);
 	}
 
 
 
-	//===================주영 끝========================
+	//===================주영  상품 상세보기 끝========================
 
 
 }

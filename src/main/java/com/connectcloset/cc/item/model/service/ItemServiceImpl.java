@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 
 @Service
@@ -43,7 +43,20 @@ public class ItemServiceImpl implements ItemService{
 
 	//===================희진 끝========================
 	
-	//===================주영 시작========================
+	//===================윤지 상품 리스트 시작=======================
+		@Override
+		public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
+			return itemDAO.selectItemAndImageList(cPage, numPerPage);
+		}
+		
+		@Override
+		public int selectItemCount() {
+			return itemDAO.selectItemCount();
+		}
+		//===================윤지 상품 리스트 끝========================
+	
+	
+	//===================주영 상품 상세보기 시작========================
 	
 
 
@@ -55,12 +68,13 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	@Override
-	public ItemAndImageVO selectOneitemImage(int itmeNo) {
+	public ItemAndImageVO2 selectOneitemImage(int itmeNo) {
 		// TODO Auto-generated method stub
 		return itemDAO.selectOneitemImage(itmeNo);
 	}
-	//===================주영 끝========================
+	//===================주영  상품 상세보기  끝========================
 
 	
 
 }
+
