@@ -120,7 +120,7 @@
                                     <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
                                 </div>
                                 <div class="pro-details-cart">
-                                    <a class="default-btn btn-hover" href="#">Add To Cart</a>
+                                    <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
                                     <a class=" btn-hover" href="#"><i class="ti-heart"></i></a>

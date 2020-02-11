@@ -110,10 +110,10 @@
                                             </a>
                                             <div class="shop-hover">
                                                 <div class="shop-card">
-                                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
+                                                    <a href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}' title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
                                                 </div>
                                                 <div class="shop-wishlist">
-                                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
+                                                    <a title="Wishlist" href='${pageContext.request.contextPath}/shop/wishlistInsert.do?itemNo=${item.itemNo}'><i class="ti-heart"></i></a>
                                                 </div>
                                             </div>
                                         </div>
