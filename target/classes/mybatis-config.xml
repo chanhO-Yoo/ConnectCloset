@@ -14,6 +14,8 @@
     <package name="com.connectcloset.cc"/>
     <package name="com.connectcloset.cc.member.model.vo"/>
     <package name="com.connectcloset.cc.item.model.vo"/>
+   
+
 <!--     <package name="com.kh.spring.demo.model.vo"/>
     <package name="com.kh.spring.member.model.vo"/> -->
   </typeAliases>

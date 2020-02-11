@@ -95,6 +95,7 @@
                     <div class="col-xl-10 col-lg-8">
                         <div class="shop-area-wrapper">
                             <div class="row grid" data-show="9" data-load="3">
+                            
                             <c:forEach items="${list }" var="item">
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 item-hidden grid-item">
                                     <div class="shop-wrap mb-40">
