@@ -16,10 +16,10 @@
     <package name="com.connectcloset.cc.item.model.vo"/>
     <package name="com.connectcloset.cc.cart.model.vo"/>
     <package name="com.connectcloset.cc.wishlist.model.vo"/>
-     <package name="com.connectcloset.cc"/>
+    <package name="com.connectcloset.cc"/>
+    <package name="com.connectcloset.cc.personalQna.model.vo"/>
 
 <!--     <package name="com.kh.spring.demo.model.vo"/>
     <package name="com.kh.spring.member.model.vo"/> -->
   </typeAliases>
-  
 </configuration>

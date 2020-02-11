@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -57,7 +59,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
+	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return sqlSession.selectList("admin.selectItemAndImageList",null,rowBounds);
 	}
@@ -70,6 +72,32 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public int deleteItemImage(int itemNo) {
 		return sqlSession.delete("admin.deleteItemImage",itemNo);
+	}
+
+	@Override
+	public List<PersonalQna> selectPQnaList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.selectPQnaList",null,rowBounds);
+	}
+
+	@Override
+	public int selectPQnaListCount() {
+		return sqlSession.selectOne("admin.selectPQnaListCount");
+	}
+
+	@Override
+	public PersonalQna adminPQna(int pQnaNo) {
+		return sqlSession.selectOne("admin.adminPQna",pQnaNo);
+	}
+
+	@Override
+	public int adminPQnaEnd(PersonalQnaAns pQnaAns) {
+		return sqlSession.insert("admin.adminPQnaEnd",pQnaAns);
+	}
+
+	@Override
+	public List<PersonalQnaAns> adminPQnaAns(int pQnaNo) {
+		return sqlSession.selectList("admin.adminPQnaAns",pQnaNo);
 	}
 
 	//===================찬호 끝===================

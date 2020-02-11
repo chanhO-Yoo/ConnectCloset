@@ -3,8 +3,10 @@ package com.connectcloset.cc.admin.model.dao;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 public interface AdminDAO {
 
@@ -23,11 +25,21 @@ public interface AdminDAO {
 
 	List<ItemImage> selectAllItemImageList(int cPage, int numPerPage);
 
-	List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage);
+	List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage);
 
 	int editItemEnd(Item item);
 
 	int deleteItemImage(int itemNo);
+
+	List<PersonalQna> selectPQnaList(int cPage, int numPerPage);
+
+	int selectPQnaListCount();
+
+	PersonalQna adminPQna(int pQnaNo);
+
+	int adminPQnaEnd(PersonalQnaAns pQnaAns);
+
+	List<PersonalQnaAns> adminPQnaAns(int pQnaNo);
 
 	//===================찬호 끝===================
 	
