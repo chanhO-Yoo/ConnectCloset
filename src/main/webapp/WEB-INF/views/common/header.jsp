@@ -340,7 +340,7 @@
                                 <li><a href="index.html">Pages</a>
                                     <ul>
                                         <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/shop/cartselect.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                          <c:if test="${memberLoggedIn == null }">
@@ -402,13 +402,11 @@
                         <div class="sidebar-contact-list">
                             <ul>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지1</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/wishlist.do">위시리스트</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/cartList.do">장바구니</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
-                               
-                           
                             </ul>
                         </div>
                         
