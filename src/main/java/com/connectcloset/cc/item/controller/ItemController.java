@@ -81,6 +81,7 @@ public class ItemController {
 		}
 	
 	//===================주영 끝======================
+	
 	//===================윤지 시작=====================
 		@RequestMapping("/shop/shopItemList.do")
 		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
