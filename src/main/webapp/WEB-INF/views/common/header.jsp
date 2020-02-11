@@ -165,6 +165,9 @@
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
+                                        <!-- 2020/02/09 추가 -->
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
+                                        <!-- 2020/02/09 추가 -->
                                     </ul>
                                 </li>
                             </ul>
@@ -344,7 +347,7 @@
                                 <li><a href="index.html">Pages</a>
                                     <ul>
                                         <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/shop/cartselect.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                          <c:if test="${memberLoggedIn == null }">
@@ -406,13 +409,16 @@
                         <div class="sidebar-contact-list">
                             <ul>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
+
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/wishlist.do">위시리스트</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/cartList.do">장바구니</a></li>
+
+                           
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
+
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
-                               
-                           
                             </ul>
                         </div>
                         

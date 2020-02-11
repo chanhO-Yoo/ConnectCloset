@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.connectcloset.cc.admin.model.dao.AdminDAO;
 import com.connectcloset.cc.admin.model.exception.AdminException;
 import com.connectcloset.cc.item.model.vo.Item;
-import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -79,7 +81,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ItemAndImageVO2> selectItemAndImageList(int cPage, int numPerPage) {
+	public List<ItemAndImageVO> selectItemAndImageList(int cPage, int numPerPage) {
 		return adminDAO.selectItemAndImageList(cPage,numPerPage);
 	}
 	
@@ -111,6 +113,31 @@ public class AdminServiceImpl implements AdminService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<PersonalQna> selectPQnaList(int cPage, int numPerPage) {
+		return adminDAO.selectPQnaList(cPage,numPerPage);
+	}
+
+	@Override
+	public int selectPQnaListCount() {
+		return adminDAO.selectPQnaListCount();
+	}
+
+	@Override
+	public PersonalQna adminPQna(int pQnaNo) {
+		return adminDAO.adminPQna(pQnaNo);
+	}
+
+	@Override
+	public int adminPQnaEnd(PersonalQnaAns pQnaAns) {
+		return adminDAO.adminPQnaEnd(pQnaAns);
+	}
+
+	@Override
+	public List<PersonalQnaAns> adminPQnaAns(int pQnaNo) {
+		return adminDAO.adminPQnaAns(pQnaNo);
 	}
 
 	

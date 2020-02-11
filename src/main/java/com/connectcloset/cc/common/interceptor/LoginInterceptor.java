@@ -4,11 +4,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.connectcloset.cc.cart.controller.CartController;
+import com.connectcloset.cc.member.model.vo.Member;
 
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+	
+	private final static Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	/**
 	 * @실습문제 : 로그인하지 않은 경우, common/msg.jsp를 통해 "로그인 후 이용하세요" 경고창 출력 후 index페이지로 이동시킨다.
 	 * 
@@ -19,7 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		
 		//현재 member객체 없어서 주석처리해둠
-/*		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
 		
 		logger.debug("memberLoggedIn={}",memberLoggedIn);
@@ -34,7 +41,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			
 			return false;
-		}*/
+		}
 		
 		return super.preHandle(request, response, handler);
 	}

@@ -272,7 +272,7 @@
                                
                                  + "</div>"   
                                  + "<div class='shop-wishlist'>"       
-                                 + "<a title='Wishlist' href='#'><i class='ti-heart'></i></a>"   
+                                 + "<a title='Wishlist' href='${pageContext.request.contextPath}/shop/wishlistInsert.do?itemNo=" + n.itemNo + "'><i class='ti-heart'></i></a>"   
                                  + "</div>"       
                                  + "</div>"   
                                  + "</div>"
