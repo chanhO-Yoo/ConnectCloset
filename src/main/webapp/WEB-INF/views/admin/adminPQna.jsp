@@ -45,7 +45,7 @@
 				<c:forEach items="${pQnaAnsList }" var="pQnaAns">	
 					<tr>
 						<td colspan="6">
-							<p class="pl-30 mb-0">${pQnaAns.pQnaAnsContent }</p>
+							<p class="pl-30 mb-0"><strong>${pQnaAns.pQnaAnsContent }</strong></p>
 						</td>
 					</tr>
 				</c:forEach>
