@@ -1,5 +1,7 @@
 package com.connectcloset.cc.mypage.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,11 +15,14 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	
 	//-----------주영 포인트 시작--------------
+	
 	@Override
-	public Point selectOnePoint(int memberNo) {
+	public List<Point> selectListPoint(int memberNo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOnePoint",memberNo);
+		return sqlSession.selectList("member.selectListPoint",memberNo);
 	}
 	//-----------주영 포인트 끝--------------
+
+
 
 }

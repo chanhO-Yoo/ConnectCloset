@@ -55,8 +55,8 @@
 	
  <!--주영 회원 수정 끝 -->
  <!-- 주영 포인트 시작  -->
- <select id="selectOnePoint" resultMap="memberPoint">
- 		select *from point where = #{memberNo}
+ <select id="selectListPoint" resultMap="memberPoint">
+ 		select *from point where member_no =#{memberNo}
  </select>
  <resultMap type="Point" id="memberPoint"></resultMap>
  <!-- 주영 포인트 끝 -->

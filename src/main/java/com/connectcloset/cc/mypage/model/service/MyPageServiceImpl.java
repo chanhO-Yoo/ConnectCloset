@@ -19,11 +19,16 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	
 	//-----------주영 포인트 시작--------------
+
 	@Override
-	public Point selectOnePoint(int memberNo) {
+	public List<Point> selectListPoint(int memberNo) {
 		// TODO Auto-generated method stub
-		return mypageDAO.selectOnePoint(memberNo);
+		return mypageDAO.selectListPoint(memberNo);
 	}
 	//-----------주영 포인트 끝--------------
+
+
+
+
 
 }

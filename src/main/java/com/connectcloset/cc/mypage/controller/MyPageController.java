@@ -59,22 +59,23 @@ public class MyPageController {
 	
 	//=================희진 끝=====================
 	
-	//----------------주영 시작 -----------------
+	//----------------주영  포인트 시작 -----------------
 	@RequestMapping("/mypage/mypage-point.do")
-	public ModelAndView pointView(ModelAndView mav ,@RequestParam("memberNo") int memberNo) {
+	public ModelAndView pointView(ModelAndView mav , @RequestParam("memberNo") int memberNo) {
 		
+		logger.debug("memberNo@@@@@@={}", memberNo);
 		
-		Point point
-		= myPageSerivce.selectOnePoint(memberNo);
+		List<Point> point
+		= myPageSerivce.selectListPoint(memberNo);
 		
 
 		mav.addObject("point",point);
 
 		logger.debug("point@@@@@@={}", point);
-		mav.setViewName("redirect: /mypage/mypage-point.do");
+		mav.setViewName("/mypage/mypage-point");
 		
 		
 		return mav;
 	}
-	//----------------주영 끝-----------------
+	//----------------주영 포인트 끝-----------------
 }

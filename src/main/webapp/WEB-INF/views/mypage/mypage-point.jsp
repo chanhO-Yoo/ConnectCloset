@@ -40,6 +40,7 @@
                     </div>
                 </div>
                 <br>
+               
                 <style>
                     table tr{
                         height: 50px;
@@ -51,6 +52,8 @@
                         color: red;
                     }
                 </style>
+                 <c:forEach var="p" items="${point}">
+                
                 <div>
                     <table class="col-lg-12">
                         <tr>
@@ -60,25 +63,27 @@
                             <th>금액</th>
                         </tr>
                         <tr class="point-save">
-                            <td>20200131</td>
-                            <td>적립</td>
-                            <td>상품구매</td>
-                            <td>500</td>
+                            <td>${p.pointChangeDate} </td>
+                            <c:choose>
+
+								<c:when test="${p.pointStatus eq 'y'}"> 
+								<td>적립</td>
+								</c:when>
+								
+								<c:otherwise> 
+								<td>사용</td>
+								</c:otherwise>
+
+                            </c:choose>
+
+                            <td>${p.pointChangeReason} </td>
+                            <td>${p.pointAmount}</td>
                         </tr>
-                        <tr class="point-save">
-                            <td>20200120</td>
-                            <td>적립</td>
-                            <td>상품구매</td>
-                            <td>300</td>
-                        </tr>
-                        <tr class="point-use">
-                            <td>20200116</td>
-                            <td>사용</td>
-                            <td>상품구매</td>
-                            <td>1000</td>
-                        </tr>
+                    
                     </table>
                 </div>
+                </c:forEach>
+                
             </div>
         </div>
 

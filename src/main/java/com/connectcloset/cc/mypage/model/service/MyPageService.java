@@ -7,7 +7,9 @@ import com.connectcloset.cc.member.model.vo.Point;
 public interface MyPageService {
 
 	//-----------주영 포인트 시작--------------
-	Point selectOnePoint(int memberNo);
+	
+	List<Point> selectListPoint(int memberNo);
 	//-----------주영 포인트 끝--------------
+
 
 }
