@@ -1,3 +1,6 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="com.connectcloset.cc.item.model.vo.Item"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,8 +15,8 @@
 div#board-container label.custom-file-label{text-align:left;}
 </style>
 	<div class="pt-100">
-        <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
-
+        <form action="${pageContext.request.contextPath }/admin/editItemEnd.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="itemNo" value="${item.itemNo }"/>
 	        <div class="single-product-area pt-80 pb-80">
 	            <div class="container">
 	                <div class="row">
@@ -26,7 +29,7 @@ div#board-container label.custom-file-label{text-align:left;}
 									  </div>
 									<div class="custom-file">
 								    	<input type="file" class="custom-file-input" name="upFile" id="upFile1" >
-								    	<label class="custom-file-label" for="upFile1">파일을 선택하세요</label>
+								    	<label class="custom-file-label" for="upFile1">${imageList[0].itemImageOriginName }</label>
 									</div>
 								</div>
 								<div>
@@ -41,7 +44,7 @@ div#board-container label.custom-file-label{text-align:left;}
 						            </div>
 						            <div class="custom-file">
 						                <input type="file" class="custom-file-input" name="upFile" id="upFile2">
-						                <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+						                <label class="custom-file-label" for="upFile2">${imageList[1].itemImageOriginName }</label>
 						            </div>
 						        </div>
 						        
@@ -57,7 +60,7 @@ div#board-container label.custom-file-label{text-align:left;}
 						            </div>
 						            <div class="custom-file">
 						                <input type="file" class="custom-file-input" name="upFile" id="upFile3">
-						                <label class="custom-file-label" for="upFile2">파일을 선택하세요</label>
+						                <label class="custom-file-label" for="upFile2">${imageList[2].itemImageOriginName }</label>
 						            </div>
 						        </div>
 		                        
@@ -70,25 +73,34 @@ div#board-container label.custom-file-label{text-align:left;}
 	                    </div>
 	                    <div class="col-lg-6">
 	                        <div class="product-details-content pl-30">
-	                            <input type="text" class="form-control form-control-lg" name="itemName" placeholder="상품명을 입력하세요">
+	                            <input type="text" class="form-control form-control-lg" name="itemName" placeholder="상품명을 입력하세요" value="${item.itemName }">
 	                            <br />
-	                            <input type="text" class="form-control" name="itemPrice" placeholder="금액을 입력하세요">
+	                            <input type="text" class="form-control" name="itemPrice" placeholder="금액을 입력하세요" value="${item.itemPrice }">
 	                            <br />
 	                            <div class="form-group">
 	    							<label for="exampleFormControlTextarea1">상품설명</label>
-								    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="itemInfo"></textarea>
+								    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="itemInfo">${item.itemInfo }</textarea>
 								</div>
 	                            <div class="pro-details-size-color2 mt-30">
 	                                <div class="pro-details-color2-wrap" style="width:175px">
 	                                    <span>Color</span>
 	                                    <div class="form-group">
-										    <select multiple class="form-control" id="colorSelect" name="itemColors" style="width:170px">
-										    	<option>blue</option>
-										    	<option>maroon</option>
-										    	<option>gray</option>
-										    	<option>green</option>
-										    	<option>yellow</option>
-										    	<option>white</option>
+	                                    <% 
+											/* List.contains메소드를 사용하기 위해 String[] => List로 형변환함.  */
+											List<String> colorList = null;
+											String[] color = ((Item)request.getAttribute("item")).getItemColors();
+											if(color != null)//이 조건이 없다면,취미체크박스에 하나도 체크하지 않았다면, Array.asList(null)=>NullPointerException 
+												colorList = Arrays.asList(color); 
+											
+											pageContext.setAttribute("colorList", colorList);
+										%>
+										    <select multiple class="form-control" id="itemColors" name="itemColors" style="width:170px">
+										    	<option value="blue" ${colorList.contains("blue")?"selected":""}>blue</option>
+										    	<option value="maroon" ${colorList.contains("maroon")?"selected":""}>maroon</option>
+										    	<option value="gray" ${colorList.contains("gray")?"selected":""}>gray</option>
+										    	<option value="green" ${colorList.contains("green")?"selected":""}>green</option>
+										    	<option value="yellow" ${colorList.contains("yellow")?"selected":""}>yellow</option>
+										    	<option value="white" ${colorList.contains("white")?"selected":""}>white</option>
 											</select>
 										</div>
 	                                </div>
@@ -96,12 +108,22 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                <div class="pro-details-size2">
 	                                    <span>Size</span>
 	                                     <div class="form-group">
-										    <select multiple class="form-control" id="sizeSelect" name="itemSize" style="width:170px">
-										    	<option>s</option>
-										    	<option>m</option>
-										    	<option>l</option>
-										    	<option>xl</option>
-										    	<option>xxl</option>
+	                                     <% 
+											/* List.contains메소드를 사용하기 위해 String[] => List로 형변환함.  */
+											List<String> sizeList = null;
+											String[] size = ((Item)request.getAttribute("item")).getItemSize();
+											if(size != null)//이 조건이 없다면,취미체크박스에 하나도 체크하지 않았다면, Array.asList(null)=>NullPointerException 
+												sizeList = Arrays.asList(size); 
+											
+											pageContext.setAttribute("sizeList", sizeList);
+										%>
+										    <select multiple class="form-control" id="itemSize" name="itemSize" style="width:170px">
+										    	<option value="xs" ${sizeList.contains("xs")?"selected":'' }>xs</option>
+										    	<option value="s" ${sizeList.contains("s")?"selected":'' }>s</option>
+										    	<option value="m" ${sizeList.contains("m")?"selected":'' }>m</option>
+										    	<option value="l" ${sizeList.contains("l")?"selected":'' }>l</option>
+										    	<option value="xl" ${sizeList.contains("xl")?"selected":'' }>xl</option>
+										    	<option value="xxl" ${sizeList.contains("xxl")?"selected":'' }>xxl</option>
 											</select>
 										</div>
 	                                </div>
@@ -111,7 +133,7 @@ div#board-container label.custom-file-label{text-align:left;}
 		                            	<ul>
 		                            		<li class="pro-details-info-title">stock</li>
 				                        	<li>
-				                                <input type="text" class="form-control" name="itemStock" id="itemStock" value="0" style="background-color: #fff;"/>
+				                                <input type="text" class="form-control" name="itemStock" id="itemStock" value="${item.itemStock }" style="background-color: #fff;"/>
 				                        	</li>
 		                            	</ul>
 		                            </div>
@@ -121,13 +143,13 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 		                                    	<div class="form-group">
 												    <select class="form-control" id="brandNo" name="brandNo">
-													    <option value="brand-001">로우클래식</option>
-													    <option value="brand-002">발렌시아가</option>
-													    <option value="brand-003">지방시</option>
-													    <option value="brand-004">셀린느</option>
-													    <option value="brand-005">발렌티노</option>
-													    <option value="brand-006">버버리</option>
-													    <option value="brand-007">구찌</option>
+													    <option value="brand-001" ${item.brandNo.equals('brand-001')?"selected":'' }>로우클래식</option>
+													    <option value="brand-002" ${item.brandNo.equals('brand-002')?"selected":'' }>발렌시아가</option>
+													    <option value="brand-003" ${item.brandNo.equals('brand-003')?"selected":'' }>지방시</option>
+													    <option value="brand-004" ${item.brandNo.equals('brand-004')?"selected":'' }>셀린느</option>
+													    <option value="brand-005" ${item.brandNo.equals('brand-005')?"selected":'' }>발렌티노</option>
+													    <option value="brand-006" ${item.brandNo.equals('brand-006')?"selected":'' }>버버리</option>
+													    <option value="brand-007" ${item.brandNo.equals('brand-007')?"selected":'' }>구찌</option>
 												    </select>
 												</div>
 	                                        </li>
@@ -139,24 +161,24 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 	                                        	<div class="form-group">
 												    <select class="form-control" id="itemTypeNo" name="itemTypeNo">
-													    <option value="itype-001">아우터</option>
-													    <option value="itype-002">셔츠</option>
-													    <option value="itype-003">맨투맨/후드</option>
-													    <option value="itype-004">팬츠</option>
-													    <option value="itype-005">진</option>
-													    <option value="itype-006">드레스/스커트</option>
-													    <option value="itype-007">니트</option>
-													    <option value="itype-008">티셔츠</option>
-													    <option value="itype-009">신발</option>
-													    <option value="itype-010">코트</option>
-													    <option value="itype-011">조끼</option>
-													    <option value="itype-012">자켓</option>
-													    <option value="itype-013">가디건</option>
-													    <option value="itype-014">핸드백</option>
-													    <option value="itype-015">지갑</option>
-													    <option value="itype-016">악세사리</option>
-													    <option value="itype-017">모자</option>
-													    <option value="itype-018">선글라스</option>
+													    <option value="itype-001" ${item.itemTypeNo.equals('itype-001')?"selected":'' }>아우터</option>
+													    <option value="itype-002" ${item.itemTypeNo.equals('itype-002')?"selected":'' }>셔츠</option>
+													    <option value="itype-003" ${item.itemTypeNo.equals('itype-003')?"selected":'' }>맨투맨/후드</option>
+													    <option value="itype-004" ${item.itemTypeNo.equals('itype-004')?"selected":'' }>팬츠</option>
+													    <option value="itype-005" ${item.itemTypeNo.equals('itype-005')?"selected":'' }>진</option>
+													    <option value="itype-006" ${item.itemTypeNo.equals('itype-006')?"selected":'' }>드레스/스커트</option>
+													    <option value="itype-007" ${item.itemTypeNo.equals('itype-007')?"selected":'' }>니트</option>
+													    <option value="itype-008" ${item.itemTypeNo.equals('itype-008')?"selected":'' }>티셔츠</option>
+													    <option value="itype-009" ${item.itemTypeNo.equals('itype-009')?"selected":'' }>신발</option>
+													    <option value="itype-010" ${item.itemTypeNo.equals('itype-010')?"selected":'' }>코트</option>
+													    <option value="itype-011" ${item.itemTypeNo.equals('itype-011')?"selected":'' }>조끼</option>
+													    <option value="itype-012" ${item.itemTypeNo.equals('itype-012')?"selected":'' }>자켓</option>
+													    <option value="itype-013" ${item.itemTypeNo.equals('itype-013')?"selected":'' }>가디건</option>
+													    <option value="itype-014" ${item.itemTypeNo.equals('itype-014')?"selected":'' }>핸드백</option>
+													    <option value="itype-015" ${item.itemTypeNo.equals('itype-015')?"selected":'' }>지갑</option>
+													    <option value="itype-016" ${item.itemTypeNo.equals('itype-016')?"selected":'' }>악세사리</option>
+													    <option value="itype-017" ${item.itemTypeNo.equals('itype-017')?"selected":'' }>모자</option>
+													    <option value="itype-018" ${item.itemTypeNo.equals('itype-018')?"selected":'' }>선글라스</option>
 												    </select>
 												</div>
 	                                        </li>
@@ -168,9 +190,9 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 	                                        	<div class="form-group">
 												    <select class="form-control" id="itemGenderNo" name="itemGenderNo">
-													    <option value="igender-001">남성</option>
-													    <option value="igender-002">여성</option>
-													    <option value="igender-003">공용</option>
+													    <option value="igender-001" ${item.itemGenderNo.equals('igender-001')?"selected":'' }>남성</option>
+													    <option value="igender-002" ${item.itemGenderNo.equals('igender-002')?"selected":'' }>여성</option>
+													    <option value="igender-003" ${item.itemGenderNo.equals('igender-003')?"selected":'' }>공용</option>
 												    </select>
 												</div>
 	                                        </li>
@@ -182,8 +204,8 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 	                                        	<div class="form-group">
 												    <select class="form-control" id="itemSaleType" name="itemSaleType">
-													    <option value="Y">할인</option>
-													    <option value="N">기본</option>
+													    <option value="Y" ${item.itemSaleType eq 'Y'.charAt(0)?"selected":'' }>할인</option>
+													    <option value="N" ${item.itemSaleType eq 'N'.charAt(0)?"selected":'' }>기본</option>
 												    </select>
 												</div>
 	                                        </li>
@@ -195,8 +217,8 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                        <li>
 	                                        	<div class="form-group">
 												    <select class="form-control" id="itemLimitedType" name="itemLimitedType">
-													    <option value="Y">한정판</option>
-													    <option value="N">기본</option>
+													    <option value="Y" ${item.itemLimitedType eq 'Y'.charAt(0)?"selected":'' }>한정판</option>
+													    <option value="N" ${item.itemLimitedType eq 'N'.charAt(0)?"selected":'' }>기본</option>
 												    </select>
 												</div>
 	                                        </li>
@@ -218,7 +240,7 @@ div#board-container label.custom-file-label{text-align:left;}
 	                        <div id="des-details1" class="tab-pane active">
 	                            <div class="product-description-wrapper">
 	 								<div class="form-group">
-									    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="itemDetailInfo"></textarea>
+									    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" name="itemDetailInfo">${item.itemDetailInfo }</textarea>
 									</div>
 	                            </div>
 	                        </div>
@@ -227,7 +249,7 @@ div#board-container label.custom-file-label{text-align:left;}
 	            </div>
 	        </div>
 	        <div class="submit-btn col-lg-4 offset-lg-4">
-                <button class="btn-hover" type="submit">Enroll</button>
+                <button class="btn-hover" type="submit">Edit</button>
             </div>
         </form>
 	</div>

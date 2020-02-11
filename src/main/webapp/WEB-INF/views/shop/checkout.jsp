@@ -266,53 +266,41 @@
 				</div>
 			</div>
 			<div class="col-lg-5">
-				<div class="your-order-area">
-					<h3>Your order</h3>
-					<div class="your-order-wrap gray-bg-4">
-						<div class="your-order-product-info">
-							<div class="your-order-top">
-								<ul>
-									<li>Product</li>
-									<li>Total</li>
-								</ul>
-							</div>
-							<div class="your-order-middle">
-								<ul>
-									<li><span class="order-middle-left"> 
-									
-									
-									<%--<input class="order-name" type="text" name="itemName" value="ProductName"/>  
-											<span>X</span><input class="order-price" type="text" name="itemStock" value="1"/> 
-											<span>$</span><input class="order-price" type="text" name="itemPrice" value="130"/> --%> 
-
-
-										<input class="order-name" type="text" name="itemName"
-											value="${itemName}" /> <span>X</span><input
-											class="order-price" type="text" name="itemStock"
-											value="${itemStock}" /> <span>$</span><input
-											class="order-price" type="text" name="itemPrice"
-											value="${itemPrice}" /> <!-- <span class="order-name">Product Name</span> X 1</span> 
-									<span class="order-price">$329 </span> --></li>
-
-									<!-- 
-									<li><span class="order-middle-left"><span
-											class="order-name">Product Name</span> X 1</span> <span
-										class="order-price">$329 </span></li> -->
-								</ul>
-							</div>
-							<div class="your-order-bottom">
-								<ul>
-									<li class="your-order-shipping">Shipping</li>
-									<li>Free shipping</li>
-								</ul>
-							</div>
-							<div class="your-order-total">
-								<ul>
-									<li class="order-total">Total</li>
-									<li>$329</li>
-								</ul>
-							</div>
-						</div>
+                        <div class="your-order-area">
+                            <h3>Your order</h3>
+                            
+                            <form>
+                            
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-product-info">
+                                    <div class="your-order-top">
+                                        <ul>
+                                            <li>Product</li>
+                                            <li>Total</li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-middle" id="your-order-middle">
+                                        <ul>
+                                        
+                                        	<c:forEach items="${itemList}" var="item" varStatus="vs">
+                                            <li>
+                                            <span class="order-middle-left"><span class="order-name">${item.itemName }</span>  X  ${item.itemStock }</span> <span class="order-price">${item.itemPrice } </span></li>
+                                        	</c:forEach>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-bottom">
+                                        <ul>
+                                            <li class="your-order-shipping">Shipping</li>
+                                            <li>Free shipping</li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-total">
+                                        <ul>
+                                            <li class="order-total">Total</li>
+                                            <li>$329</li>
+                                        </ul>
+                                    </div>
+                                </div>
 						<div class="payment-method">
 							<div class="payment-accordion element-mrg">
 								<div class="panel-group" id="payment-method">
@@ -389,6 +377,7 @@
 							</div>
 						</div>
 					</div>
+					</form>
 
 					<!--결제 버튼으로 작업할 경우   -->
 					<div class="Place-order mt-25">
@@ -477,6 +466,37 @@ https://docs.iamport.kr/implementation/payment
 });
 </script>
 
+<script>
+/* window.onload = function () {
+	
+	$.ajax({
+		url: "${pageContext.request.contextPath}/shop/checkout",
+		data: $("#your-order-middle").serialize(),
+		dataType: "json",
+		type: "GET",
+		success : data => {
+			console.log(data);
+			var ul = $("<ul></ul>");
+			//ul.append("<li><th>음식점</th><th>메뉴</th><th>가격</th></tr>");
+			$.each(data,(idx, item)=>{
+				console.log(idx, item);
+				var li = $("<li></li>");
+				li.append("<span>"+item.itemName+"</span>");
+				li.append("<span>"+item.itemStock+"</span>");
+				li.append("<span>"+item.itmePrice+"</span>");
+				ul.append(li);
+			});
+			
+			//$("#menuRecommendation-result").html(table);
+		},
+		error : (x,s,e) => {
+			console.log("ajax요청실패!",x,s,e);
+		}
+	});
+
+} */
+
+</script>
 
 <!-- <script>
 function checkout(){
