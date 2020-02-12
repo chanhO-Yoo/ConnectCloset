@@ -58,12 +58,14 @@ public class WishListController {
 		Member member = (Member)session.getAttribute("memberLoggedIn");
 		logger.debug("@@@@@@@@@memberNo={}",member.getMemberNo());
 		
-		logger.debug("memberNo = {adasdsadasdasdasdasdadasdasdasdasd}");
+		logger.debug("memberNo = {}");
 		int memberNo = member.getMemberNo();
 		
 		System.out.println("__" +memberNo);
 		
 		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("itemNo", itemNo);
 		
 		System.out.println(memberNo);
 		System.out.println(itemNo);
@@ -74,9 +76,7 @@ public class WishListController {
 		
 		mav.setViewName("redirect:/shop/wishlist.do");
 		
-		return mav;
-		
-		
+		return mav;	
 	}
 	
 
