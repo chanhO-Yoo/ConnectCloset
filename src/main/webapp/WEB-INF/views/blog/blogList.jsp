@@ -22,7 +22,6 @@
                 </div>
             </div>
         </div>
-        
        
         <div class="blog-area pt-80 pb-80 gray-bg-4 container-padding-res blog-sidebar-page">
             <div class="container">
@@ -325,11 +324,16 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
-                                <form class="pro-sidebar-search-form" action="#">
+<!--                                 <form class="pro-sidebar-search-form" action="#">
                                     <input type="text" placeholder="Search here...">
                                     <button>
                                         <i class="ti-search"></i>
-                                    </button>
+                                    </button> -->
+                                    <div>
+										<button>
+										<a href="${pageContext.request.contextPath }/blog/blogForm.do">글쓰기</a>
+										</button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="sidebar-widget mb-55">
