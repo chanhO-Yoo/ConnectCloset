@@ -103,6 +103,7 @@
                                         <!-- 2020/02/09 추가 -->
                                         <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
                                         <!-- 2020/02/09 추가 -->
+                                        <li><a href="${pageContext.request.contextPath }/admin/deliveryList.do">deliveryList</a></li>
                                     </ul>
                                 </li>
                             </ul>
