@@ -163,6 +163,7 @@
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/deliveryList.do">deliveryList</a></li>
                                     </ul>
                                 </li>
                             </ul>

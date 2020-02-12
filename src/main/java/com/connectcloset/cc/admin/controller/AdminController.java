@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,8 @@ import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
+
 
 @Controller
 public class AdminController {
@@ -243,4 +248,93 @@ public class AdminController {
 		return mav;
 	}
 	//===================찬호 끝===================
+	
+	
+	//===================하은 시작===================
+/*	@RequestMapping("/admin/deliveryList.do")
+	public ModelAndView deliveryList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		
+		final int numPerPage = 9;
+		
+		List<Item> list = adminService.selectItemList(cPage,numPerPage);
+		logger.debug("list={}",list);
+		
+		
+		int totalContents = adminService.selectItemCount();
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		
+		mav.setViewName("admin/deliveryList");
+
+		
+		return mav;
+	}
+	*/
+	
+		@RequestMapping("/admin/deliveryList.do")
+	public ModelAndView deliveryList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		
+		final int numPerPage = 9;
+		
+		List<OrderProduct> list = adminService.selectOrderList(cPage,numPerPage);
+		logger.debug("list={}",list);
+		
+		
+		int totalContents = adminService.selectOrderCount();
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		
+		mav.setViewName("admin/deliveryList");
+
+		
+		return mav;
+	}
+		
+		@RequestMapping("/admin/changedelivery.do")
+		public ModelAndView changeDelivery(ModelAndView mav,
+				@RequestParam String deliveryNo,
+				@RequestParam String orderNo) {
+			
+			
+			int result = adminService.updatedelivery(deliveryNo,orderNo);
+			logger.debug("result={}",result);
+			
+			//mav.addObject("deliveryNo",deliveryNo);
+			//mav.addObject("deliveryNo",orderNo);
+			mav.addObject(result);
+			mav.setViewName("redirect:/admin/deliveryList.do");
+			
+			return mav;
+		}
+		
+
+		/*//db에서 order_product테이블 내용을 불러와 deliveryList.jsp출력
+		@RequestMapping("/admin/deliveryList.do")
+		public ModelAndView admin(ModelAndView mav) {
+			logger.debug("adminService={}", adminService.getClass().toString());
+			
+			
+			List<OrderProduct> orderList = adminService.selectOrderList();
+			mav.addObject("orderList",orderList);
+					
+			mav.setViewName("admin/deliveryList");
+			
+			
+			return mav;
+		}
+			*/
+
+	
+	//===================하은 끝===================
+	
 }
