@@ -67,7 +67,7 @@
 	</resultMap>
 	
 	<select id="selectItemAndImageList" resultMap="itemCollectionMap">
-		select * from item I left join item_image II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
+		select * from item I left join (SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
 	</select>
 	
 	<resultMap type="itemAndImageVO" id="itemCollectionMap">
@@ -101,14 +101,32 @@
 		delete from item_image where item_no=#{itemNo}
 	</delete>
 	
+	<select id="selectPQnaList" resultMap="personalQnaMap">
+		select * from personal_qna
+	</select>
+	
+	<resultMap type="personalQna" id="personalQnaMap">
+	</resultMap>
+	
+	<select id="selectPQnaListCount" resultType="_int">
+		select count(*) from personal_qna
+	</select>
+	
+	<select id="adminPQna" resultMap="personalQnaMap">
+		select * from personal_qna where p_qna_no=#{pQnaNo}
+	</select>
+	
+	<insert id="adminPQnaEnd">
+		insert into personal_qna_ans values(seq_p_qna_ans_no.nextval,#{pQnaNo},#{pQnaAnsContent},default)
+	</insert>
+	
+	<select id="adminPQnaAns" resultMap="personalQnaAnsMap">
+		select * from personal_qna_ans where p_qna_no=#{pQnaNo} order by p_qna_ans_no
+	</select>
+	<resultMap type="personalQnaAns" id="personalQnaAnsMap">
+		
+	</resultMap>
+	
     <!-- ===================찬호 끝=================== -->
 	
 </mapper>
-    
-    
-    
-    
-    
-    
-    
-    
