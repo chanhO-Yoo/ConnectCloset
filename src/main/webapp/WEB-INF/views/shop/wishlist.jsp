@@ -15,7 +15,37 @@
         <jsp:include page="/WEB-INF/views/common/header.jsp" />
         
         <fmt:requestEncoding value="utf-8"/> 
-      
+      	<style>
+      	
+.mix-icon-container {
+    display: inline-block;
+    height: 1em;
+    line-height: 1em;
+    position: relative;
+    width: 1em;
+}
+.mix-icon-container .mix-base-icon {
+    font-size: 1em;
+}
+.mix-icon-container [class^="icon-"], .mix-icon-container [class*="icon-"] {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    height: 100%;
+    line-height: inherit;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+.mix-icon-container .glyphicon {
+    font-size: 1em;
+}
+
+.mix-error-icon
+{
+  color: #ff0000;
+}
+      	</style>
      <!-- breadcrumb area -->
         <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
             <div class="container">
@@ -46,41 +76,51 @@
                 </form>
             </div>
         </div>
-     
         <div class="shop-area pt-80 pb-80" >
             <div class="container">
-         
+            	
                 <div class="shop-area-wrapper pro-col-5">
                     <div class="row grid" >
-                        <c:forEach items="${list}" var="wish" varStatus="vs"> 
+                        <c:forEach items="${list}" var="wish" varStatus="vs">  
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12 item-hidden grid-item">
+                          
                             <div class="shop-wrap mb-5">
+   
                                 <div class="shop-img hover-3">
+                                	
                                     <a href="single-product.html">
-                                   
+ 									
                                         <img src="${pageContext.request.contextPath }/resources/img/product/no-gutter1.jpg" alt="">
                                         
                                     </a>
-                                    
-                                
+ 
                                     
                                     <div class="shop-content3">
+                                    
                                         <div class="s-content3-name">
+                                        
                                             <h4><a href="single-product.html"></a>${wish.ITEM_NAME }</h4>
                                         </div>
+                                       
                                         <div class="s-content3-price">
                                             <span>${wish.ITEM_PRICE }</span>
                                                <span class="glyphicon glyphicon-search"></span>
+                                               
                                           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             <a title="Add To Cart" href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${wish.ITEM_NO }'><i class="ti-shopping-cart"></i></a>
-                                            
+                                         <a  href='${pageContext.request.contextPath}/shop/wishlistDelete.do?wishNo=${wish.WISH_NO}'  onclick="return confirm('왜고름?? 삭제 한다??');">
+                                          <input type="button" value="♡     " style="WIDTH: 30pt; HEIGHT: 30pt" </a>
                                         </div>
                                     </div>
                                 </div>
+                             
+
                             </div>
                         </div>
                          	</c:forEach> 
                     	 </div> 
+                    	 
+
              		</div>
                          <div class = "container">
                            <div class="offset-xl-4 col-xl-4" style="text-align: center;">
@@ -94,7 +134,7 @@
          	
      	 
                       
-                                      
+                                 
                                      	           
   </body> 
                     <!--페이징바  -->

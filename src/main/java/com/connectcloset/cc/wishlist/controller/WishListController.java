@@ -79,6 +79,27 @@ public class WishListController {
 		return mav;	
 	}
 	
-
+	//위시리스트 삭제
+	@RequestMapping("wishlistDelete.do")
+	public ModelAndView wishlistDelete(ModelAndView mav, HttpSession session,@RequestParam int wishNo) {
+		
+		logger.debug("@@@@@@@@@session={}",session.getAttribute("memberLoggedIn"));
+		Member member = (Member)session.getAttribute("memberLoggedIn");
+		logger.debug("@@@@@@@@@memberNo={}",member.getMemberNo());
+		
+		int memberNo = member.getMemberNo();
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("wishNo", wishNo);
+		
+		wishlistService.wishlistDelete(map);
+		
+		logger.debug("map++++++++++++++++" + map);
+		mav.setViewName("redirect:/shop/wishlist.do");
+			
+		return mav;
+	}
+	
 
 }
