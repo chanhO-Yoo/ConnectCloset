@@ -324,6 +324,7 @@
                                                 <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
                                             </ul>
                                         </div>
+                                        
                                         <h4><a href="blog-details.html">How Nancy Cunard Bangle Inspired  Bronze  </a></h4>
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
