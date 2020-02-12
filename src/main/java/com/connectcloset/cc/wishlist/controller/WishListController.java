@@ -76,9 +76,7 @@ public class WishListController {
 		
 		mav.setViewName("redirect:/shop/wishlist.do");
 		
-		return mav;
-		
-		
+		return mav;	
 	}
 	
 

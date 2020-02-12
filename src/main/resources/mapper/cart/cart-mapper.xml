@@ -19,16 +19,18 @@
 	<!--성준 장바구니  -->
 	
 	<select id="cartList"  resultType="map"> <!--  parameterType="_int"  --> 
-	SELECT I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE
+	SELECT I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE,IC.CART_NO,
 	FROM ITEM I
 	LEFT JOIN ITEM_CART IC ON I.ITEM_NO = IC.ITEM_NO 
 	WHERE MEMBER_NO = #{memberNo}
 
 	</select>
+<!-- 	select  from item I 
+left join item_cart IC ON ic.item_no = i.item_no
+WHERE MEMBER_NO = 41;
+	 -->
 	
-	
-	
-	 <insert id="cartInsert" >
+	<insert id="cartInsert" >
 		insert into item_cart values(
 			seq_cart_no.nextval,
 			#{memberNo},
@@ -37,25 +39,14 @@
 		)
 	</insert> 
 	
+
 	
+	<delete id="cartDelete">
 	
-		<!-- <select id="getCartList" resultType="map" parameterType="_int">
-
-		select
-		    i.item_name as itemName,
-		    i.item_price as itemPrice,
-		    i.item_colors  as itemColors,
-		    ic.item_quantity as item_quantity 
-		from 
-		    item_cart ic,
-		    item i
-		where 
-		    i.item_no = ic.item_no
-		and 
-		    ic.member_no = #{memberNo }  
-
-	</select> -->
-
+	DELETE FROM ITEM_CART 
+	WHERE CART_NO = #{cartNo}
+	
+	</delete>
 	
 	
 	

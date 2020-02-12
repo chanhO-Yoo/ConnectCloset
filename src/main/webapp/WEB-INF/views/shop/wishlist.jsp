@@ -57,7 +57,9 @@
                             <div class="shop-wrap mb-5">
                                 <div class="shop-img hover-3">
                                     <a href="single-product.html">
+                                   
                                         <img src="${pageContext.request.contextPath }/resources/img/product/no-gutter1.jpg" alt="">
+                                        
                                     </a>
                                     
                                 
@@ -68,32 +70,30 @@
                                         </div>
                                         <div class="s-content3-price">
                                             <span>${wish.ITEM_PRICE }</span>
+                                               <span class="glyphicon glyphicon-search"></span>
+                                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             <a title="Add To Cart" href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${wish.ITEM_NO }'><i class="ti-shopping-cart"></i></a>
+                                            
                                         </div>
                                     </div>
-                                    
-                               		
                                 </div>
                             </div>
                         </div>
-
-                         </c:forEach> 
-                     </div> 
-             	</div>
+                         	</c:forEach> 
+                    	 </div> 
+             		</div>
                          <div class = "container">
                            <div class="offset-xl-4 col-xl-4" style="text-align: center;">
                               <c:if  test="${empty list}"> <위시리스트가 비어있습니다.> </c:if>
                            </div>
                          </div>            
-                                        
+                      </div>
+     				</div>                  
 
              	   
-         	</div>
-     	</div>   
+         	
      	 
-     	  
-     	  
-                                 
+                      
                                       
                                      	           
   </body> 

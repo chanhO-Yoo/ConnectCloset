@@ -12,6 +12,10 @@ public interface CartDAO {
 
 	int cartInsert(Map<String, Integer> map);
 
+	int cartDelete(Map<String, Integer> map);
+
+	
+
 }
 
 

@@ -1,9 +1,11 @@
 package com.connectcloset.cc.cart.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -58,28 +60,19 @@ public class CartController {
 	@RequestMapping("cartInsert.do")
 	public ModelAndView cartInsert(ModelAndView mav,HttpSession session,@RequestParam int itemNo, @RequestParam(defaultValue = "1" ) int item_quantity) {
 		
-		logger.debug("@@@@@@@@@session={}",session.getAttribute("memberLoggedIn"));
 		Member member = (Member)session.getAttribute("memberLoggedIn");
-		logger.debug("@@@@@@@@@memberNo={}",member.getMemberNo());
 		
-		logger.debug("memberNo = {adasdsadasdasdasdasdadasdasdasdasd}");
 		int memberNo = member.getMemberNo();
 		
-		System.out.println("__" +memberNo);
+		System.out.println("__intsert" +memberNo);
 		
 		Map<String, Integer> map = new HashMap<>();
 		
 		map.put("memberNo", memberNo);
 		map.put("itemNo", itemNo);
 		map.put("item_quantity", item_quantity);
-		
-		System.out.println("============================================================");
-		System.out.println(memberNo);
-		System.out.println(itemNo);
-		System.out.println(item_quantity);
-		
+	
 		cartService.cartInsert(map);
-		logger.debug("map++++++++++++++++" + map);
 		
 		mav.setViewName("redirect:/shop/cartList.do");
 		
@@ -89,66 +82,35 @@ public class CartController {
 		
 	}
 	
-	
-	
-	/*
-	
-	@RequestMapping("/shop/cartinsert.do")
-	public String cartinsert(Model model ,Cart cart) {
+	//장바구니 목록 삭제
+	@RequestMapping("cartDelete.do")
+	public ModelAndView cartDelete( ModelAndView mav,HttpSession session,@RequestParam int cartNo) {
 		
-		int result = cartService.cartinsert(cart);
-		logger.debug("cartinsert == {}" + cart);
+		logger.debug("@@@@@@@@@session={}",session.getAttribute("memberLoggedIn"));
+		Member member = (Member)session.getAttribute("memberLoggedIn");
+		logger.debug("@@@@@@@@@memberNo={}",member.getMemberNo());
 		
-		model.addAttribute("msg",result>0?"추가성공!":"추가실패!");
-		model.addAttribute("loc","/");
+		int memberNo = member.getMemberNo();
 		
-		return "common/msg";
+		Map<String, Integer> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("cartNo", cartNo);
 		
-	}*/
-	
-	
-	
-
-	/*@GetMapping("shop/cart-page.do")
-	public String cartpage(Model model , @RequestParam int memberNo ,HttpSession session, HttpServletRequest request) {
-		 
-	
-		List<Cart> cartList = new ArrayList<>();
-		cartList = cartService.getCartList(memberNo);
-	
-		model.addAttribute("Cartlist", cartList);
-		System.out.println("dsdsdsdsdsd" + cartList);
-		return "shop/cart-page";
+		cartService.cartDelete(map);
+		logger.debug("map++++++++++++++++" + map);
+		mav.setViewName("redirect:/shop/cartList.do");
+			
+		return mav;
+			
 	}
 
-	@RequestMapping("/shop/insertcart.do")
-	public ModelAndView CartInsert(HttpServletRequest request, @RequestParam int itemNo, @RequestParam int itemStock) {
-		
-		
-		ModelAndView mav = new ModelAndView();
-		int memberNo = 45;
-		Cart cart = new Cart();
-		cart.setMemberNo(memberNo);
-		cart.setItemNo(itemNo);
-		cart.setItem_quantity(itemStock);
-		
-		int result = cartService.insertCart(cart);
-		
-		String loc = "/";
-		String msg = "";
+
+
 	
-		if(result>0) {
-		msg = "장바구니 추가 성공 !";
-			mav.addObject("cart",cart);
-		}else msg = "장바구니 추가 실패!";
-		
-		mav.addObject("msg" , msg);
-		mav.addObject("loc", loc);
-		mav.setViewName("shop/cart-page");
-		
-	return mav;
-
-	}
-
-*/
+	
+	
+	
+	
+	
+	
 }

@@ -25,6 +25,13 @@ public class CartDAOImpl implements CartDAO {
 		return sqlSession.insert("cart.cartInsert",map);
 	}
 
+	@Override
+	public int cartDelete(Map<String, Integer> map) {
+		return sqlSession.delete("cart.cartDelete",map);
+	}
+
+	
+	
 
 	
 }
