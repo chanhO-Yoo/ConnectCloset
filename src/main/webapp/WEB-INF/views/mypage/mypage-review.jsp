@@ -23,23 +23,32 @@
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <h5>전체 3개</h5>
+                      
                             <table class="col-lg-12">
                                 <tr>
                                     <th>주문번호</th>
-                                    <th>상품정보</th>
+                                    <th>상품이름</th>
+                                    <th>상품가격</th>
+                                    
                                     <th></th>
                                 </tr>
                                 
-                                <c:forEach var ="r" items="${orderReviewList} " begin="0" end="1">
+                                <c:forEach var ="r" items="${orderReviewList}" >
                                 <tr>
                                   
-                                    <td>${r} </td>
-                                    <td><button type="button" class="btn btn-success">리뷰작성</button></td>
+                                    <td>${r.orderNo} </td>
+                                    <td>${r.itemName} </td>
+                                    <td>${r.itemPrice} </td>
+                                   
+                                    <td><a href="" class="btn btn-success">리뷰 작성</a>
+                                    </td>
                                 </tr>
                                 
                                 </c:forEach>
                               
+                       
+                              
+                              </form>
 
                             </table>
 
