@@ -169,6 +169,7 @@
                         <a class="active" data-toggle="tab" href="#des-details1">Description</a>
                         <a data-toggle="tab" href="#des-details2">Additional information</a>
                         <a data-toggle="tab" href="#des-details3">Reviews</a>
+                        <a data-toggle="tab" href="#des-details4">QnA</a>
                     </div>
                     <div class="tab-content description-review-bottom">
                         <div id="des-details1" class="tab-pane active">
@@ -252,7 +253,7 @@
                                         <h3>Add a Review</h3>
                                         <div class="ratting-form">
                                             <form action="#">
-                                                <div class="star-box">
+                                                 <div class="star-box">
                                                     <span>Your rating:</span>
                                                     <div class="ratting-star">
                                                         <i class="ti-star"></i>
@@ -262,6 +263,106 @@
                                                         <i class="ti-star"></i>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Name" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Email" type="email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <textarea name="Your Review" placeholder="Message"></textarea>
+                                                            <input type="submit" value="Submit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="des-details4" class="tab-pane">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="review-wrapper">
+                                        <div class="single-review">
+                                            <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>White Lewis</h4>
+                                                        </div>
+<!--                                                         <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-review child-review">
+                                            <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>White Lewis</h4>
+                                                        </div>
+<!--                                                         <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="ratting-form-wrapper pl-50">
+                                        <h3>Add a QnA</h3>
+                                        <div class="ratting-form">
+                                            <form action="#">
+                                            <br />
+<!--                                                 <div class="star-box">
+                                                    <span>Your rating:</span>
+                                                    <div class="ratting-star">
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                    </div>
+                                                </div> -->
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="rating-form-style mb-10">
