@@ -1,8 +1,21 @@
+<%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+	//페이지바 작업
+	int totalContents = (int)request.getAttribute("totalContents");
+	int cPage = (int)request.getAttribute("cPage");
+	int numPerPage = (int)request.getAttribute("numPerPage");
+	String url = "shopItemList.do";
+	
+	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	
+	pageContext.setAttribute("pageBar", pageBar);		
+%>
 
 <fmt:requestEncoding value="utf-8"/>
 
@@ -52,7 +65,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -75,8 +88,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -99,8 +112,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -123,8 +136,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -147,8 +160,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -171,8 +184,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -195,8 +208,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -219,8 +232,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -243,8 +256,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -267,7 +280,7 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --%>
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
@@ -317,9 +330,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="pro-load-more load-more-border text-center mt-10">
+                                    ${pageBar }
+<!--                         <div class="pro-load-more load-more-border text-center mt-10">
                             <a class="load-more-toggle default-btn btn-hover" href="#">Load More Posts </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-xl-3 col-lg-4">
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
