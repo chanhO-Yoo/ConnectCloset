@@ -1,21 +1,8 @@
-<%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-<%
-	//페이지바 작업
-	int totalContents = (int)request.getAttribute("totalContents");
-	int cPage = (int)request.getAttribute("cPage");
-	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "shopItemList.do";
-	
-	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
-	
-	pageContext.setAttribute("pageBar", pageBar);		
-%>
 
 <fmt:requestEncoding value="utf-8"/>
 
@@ -41,6 +28,7 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-8 pro-col-40">
                         <div class="row grid" data-show="9" data-load="3">
+                    <c:forEach items="${list}" var="blog" varStatus="vs">
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
@@ -56,16 +44,17 @@
                                     <div class="blog-content-2">
                                         <div class="blog-meta-3">
                                             <ul>
-                                                <li>22 April, 2018</li>
+                                                <li>${blog.blogDate }</li>
                                                 <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4><a href="blog-details.html">Karla Welch Launches Her Levi’s Collaboration</a></h4>
-                                        <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
+                                        <h4><a href="blog-details.html">${blog.blogTitle }</a></h4>
+                                        <p>${blog.blogContent }  </p>
                                     </div>
                                 </div>
                             </div>
-<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                                </c:forEach>
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -89,7 +78,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                   <%--          <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -113,7 +102,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                  <%--           <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -137,7 +126,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                  <%--           <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -161,7 +150,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                      <%--       <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -185,7 +174,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                        <%--     <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -209,7 +198,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                           <%--  <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -233,7 +222,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                   <%--          <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -257,7 +246,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-<%--                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                       <%--      <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -281,7 +270,7 @@
                                     </div>
                                 </div>
                             </div> --%>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -304,8 +293,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -324,19 +313,16 @@
                                                 <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
                                             </ul>
                                         </div>
-                                        
                                         <h4><a href="blog-details.html">How Nancy Cunard Bangle Inspired  Bronze  </a></h4>
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --%>
                         </div>
-                                    ${pageBar }
-<!--                         <div class="pro-load-more load-more-border text-center mt-10">
+                        <div class="pro-load-more load-more-border text-center mt-10">
                             <a class="load-more-toggle default-btn btn-hover" href="#">Load More Posts </a>
-                        </div> -->
+                        </div>
                     </div>
-                    
                     <div class="col-xl-3 col-lg-4">
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
