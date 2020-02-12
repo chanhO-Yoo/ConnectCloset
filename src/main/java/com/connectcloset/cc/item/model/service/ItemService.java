@@ -22,12 +22,18 @@ public interface ItemService {
 
 	int selectItemCount();
 
+	List<ItemAndImageVO2> selectItemAndImageBrandList(int cPage, int numPerPage, String brandNo);
+	
+	int selectBrandItemCount(String brandNo);
 	//--------- 윤지 상품 리스트 끝 -------------------
 
 	//------------ 주영 상품 상세보기 시작 -------------
 	List<ItemImage> selectitemImagetList(int itmeNo);
 
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
+
+
+
 
 	//------------ 주영 상품 상세보기 끝-------------
 	

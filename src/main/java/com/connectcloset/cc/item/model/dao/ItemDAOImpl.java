@@ -42,6 +42,17 @@ public class ItemDAOImpl implements ItemDAO {
 	public int selectItemCount() {
 		return sqlSession.selectOne("item.selectItemCount");
 	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectItemAndImageBrandList(int cPage, int numPerPage, String brandNo) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectItemAndImageBrandList", brandNo, rowBounds);
+	}
+	
+	@Override
+	public int selectBrandItemCount(String brandNo) {
+		return sqlSession.selectOne("item.selectBrandItemCount", brandNo);
+	}
 	//===================윤지 상품 리스트  끝=======================	
 		
 		

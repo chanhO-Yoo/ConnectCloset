@@ -53,6 +53,16 @@ public class ItemServiceImpl implements ItemService{
 		public int selectItemCount() {
 			return itemDAO.selectItemCount();
 		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectItemAndImageBrandList(int cPage, int numPerPage, String brandNo) {
+			return itemDAO.selectItemAndImageBrandList(cPage, numPerPage, brandNo);
+		}
+		
+		@Override
+		public int selectBrandItemCount(String brandNo) {
+			return itemDAO.selectBrandItemCount(brandNo);
+		}
 		//===================윤지 상품 리스트 끝========================
 	
 	
@@ -73,6 +83,7 @@ public class ItemServiceImpl implements ItemService{
 		return itemDAO.selectOneitemImage(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
+
 
 	
 

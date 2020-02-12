@@ -1,5 +1,6 @@
 package com.connectcloset.cc.item.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -84,14 +85,27 @@ public class ItemController {
 	
 	//===================윤지 상품 리스트 시작=====================
 		@RequestMapping("/shop/shopItemList.do")
-		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo) {
 
 			final int numPerPage = 9;
 			
-			List<ItemAndImageVO2> list = itemService.selectItemAndImageList(cPage, numPerPage);
+			List<ItemAndImageVO2> list = new ArrayList<>();
+			int totalContents = 0;
+			
+			logger.debug("++++++++++++++++brandNo={}", brandNo);
+			
+			if(brandNo.equals("a")) {
+				list = itemService.selectItemAndImageList(cPage, numPerPage);
+				totalContents = itemService.selectItemCount();
+			}
+			else {
+				list = itemService.selectItemAndImageBrandList(cPage, numPerPage, brandNo);
+				totalContents = itemService.selectBrandItemCount(brandNo);
+			}
+			
 			logger.debug("list={}", list);
 			
-			int totalContents = itemService.selectItemCount();
+			
 			logger.debug("totalBoardCount={}", totalContents);
 			
 			mav.addObject("list", list);
@@ -102,9 +116,7 @@ public class ItemController {
 			mav.setViewName("shop/shopItemList");
 			
 			return mav;
-		
 		}
-		
 		
 		//===================윤지 상품 리스트 끝=====================
 

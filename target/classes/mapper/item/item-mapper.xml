@@ -61,6 +61,24 @@
 		select count(*) from item
 	</select>
 	
+	<select id="selectItemAndImageBrandList" resultMap="itemAndImageMap">
+		select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		where brand_no =#{brandNo}
+		order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectBrandItemCount" resultType="_int">
+		select count(*) 
+		from item
+		where brand_no = #{brandNo}
+	</select>
+	
 	<!-- 윤지  상품 리스트 끝 -->
 
 
@@ -91,8 +109,6 @@
 			<result column="item_Image_No" property="itemImageNo"/>
 			<result column="item_Image_Origin_Name" property="itemImageOriginName"/>
 			<result column="item_Image_Re_Name" property="itemImageReName"/>
-	
-
 			
 			</collection>
 	</resultMap>

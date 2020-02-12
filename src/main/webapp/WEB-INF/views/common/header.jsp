@@ -46,19 +46,19 @@
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>BRAND</b></a></li>
-                                                <li><a href="shortcode-accordion.html">GIVENCHY</a></li>
-                                                <li><a href="shortcode-alerts.html">CELINE</a></li>
-                                                <li><a href="shortcode-blockquote.html">GUCCI</a></li>
-                                                <li><a href="shortcode-brand-logo.html">VALENTINO</a></li>
-                                                <li><a href="shortcode-button.html">LOW CLASSIC</a></li>
-                                                <li><a href="shortcode-counter.html">BURBERRY</a></li>
-                                                <li><a href="shortcode-dropcap.html">BALENCIAGA</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-003">GIVENCHY</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-004">CELINE</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-007">GUCCI</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-005">VALENTINO</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-001">LOW CLASSIC</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-006">BURBERRY</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-002">BALENCIAGA</a></li>
                                             </ul>
                                         </li>
                                         <li>
                                             <ul>
-                                                <li class="mega-menu-title"><a href="#"><b>TYPE</b></a></li>
-                                                <li><a href="shortcode-faq.html">OUTERWEARS</a></li>
+                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?itemTypeNo=itype-001">OUTERWEARS</a></li>
                                                 <li><a href="shortcode-social.html">TOPS</a></li>
                                                 <li><a href="shortcode-instagram.html">BOTTOMS</a></li>
                                                 <li><a href="shortcode-list.html">DRESSES</a></li>
