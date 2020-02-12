@@ -11,6 +11,7 @@ import com.connectcloset.cc.blog.model.vo.Attachment;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 
+
 @Repository
 public class BlogDAOImpl implements BlogDAO {
 
@@ -52,10 +53,11 @@ public class BlogDAOImpl implements BlogDAO {
 		return sqlSession.selectOne("blog.selectOneBlogCollection",blogNo);
 	}
 
-//	@Override
-//	public int insertAttachment(Attachment a) {
-//		return sqlSession.insert("blog.insertAttachment",a);
-//	}
+	@Override
+	public int insertAttachment(Attachment a) {
+		return sqlSession.insert("blog.insertAttachment",a);
+	}
+	
 	
 	//==================== 하라 끝 =========================
 }

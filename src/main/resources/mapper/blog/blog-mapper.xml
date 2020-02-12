@@ -4,7 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="blog">
     <!-- ===================하라 시작=================== -->
- <resultMap type="blog" id="blogMap"></resultMap>
+ <resultMap type="blog" id="blogMap">
+ 	<result column="blogreadcount" property="readCount"/>
+ </resultMap>
  
 <insert id="insertBlog">
 		insert into blog(blog_no, blog_title, member_no, blog_content, blog_date)
@@ -12,6 +14,11 @@
 		<selectKey keyProperty = "blogNo" resultType="_int" order="AFTER">
 			select seq_blog_no.currval from dual
 		</selectKey>
+	</insert>
+	
+	<insert id="insertAttachment">
+		insert into attachment(attachmentno, blogno, originalfilename, renamedfilename)
+		values(seq_attachmentno.nextval, #{blogNo}, #{originalFileName}, #{renamedFileName})
 	</insert>
 	
  	<select id="selectBlogList" resultMap="blogMap">
@@ -27,57 +34,15 @@
 	<select id="selectOneBlog">
 		select * from blog where= #{blogNo}
 	</select>
-	
-<!-- 		<select id="selectOneBlogCollection" resultMap="blogCollectionMap">
+	 
+	 <select id="selectOneBlogCollection" resultMap="blogCollectionMap">
 		select *
 		from blog B left join attachment A
 		        on B.blogno = A.blogno
 		where B.blogno = #{blogno}
-	</select> -->
+	</select> 
 	
-
-
-	<!-- <resultMap type="blog" id="blogMap">
-		<result column="blogreadcount" property="readCount"/>
-	</resultMap>
-	<select id="selectBlogList" resultMap="blogMap">
-		select B.*,
-			   (select count(*) from attachment where blogno = B.blogno) filecount
-		from blog B
-		order by blogdate desc
-	</select>
-	
-	<select id="selectTotalContents" resultType="_int">
-		select count(*) from blog
-	</select>
-	
-	<insert id="insertBlog">
-		insert into blog(blogno, blogtitle, blogwriter, blogcontent)
-		values(seq_blogno.nextval, #{blogTitle}, #{blogWriter}, #{blogContent})
-		<selectKey keyProperty = "blogNo" resultType="_int" order="AFTER">
-			select seq_blogno.currval from dual
-		</selectKey>
-	</insert>
-	<insert id="insertAttachment">
-		insert into attachment(attachmentno, blogno, originalfilename, renamedfilename)
-		values(seq_attachmentno.nextval, #{blogNo}, #{originalFileName}, #{renamedFileName})
-	</insert>
-	
-	<select id="selectOneBlog">
-		select * from blog where= #{blogNo}
-	</select>
-	
-	<select id="selectAttachmentList">
-		select * from attachment where blogno= #{blogNo}
-	</select>
-	
-	<select id="selectOneBlogCollection" resultMap="blogCollectionMap">
-		select *
-		from blog B left join attachment A
-		        on B.blogno = A.blogno
-		where B.blogno = #{blogno}
-	</select>
-	<resultMap type="blogAttachVO" id="blogCollectionMap">
+		<resultMap type="blogAttachVO" id="blogCollectionMap">
 		<id column="blogno" property="blogNo"/>
 		<result column="blogtitle" property="blogTitle"/>
 		<result column="blogwriter" property="blogWriter"/>
@@ -94,7 +59,8 @@
 			<result column="downloadcount" property="downloadCount"/>		
 			<result column="status" property="status"/>		
 		</collection>
-	</resultMap> -->
+	</resultMap>
+	
 	
 	    <!-- ===================하라 끝=================== -->
 </mapper>

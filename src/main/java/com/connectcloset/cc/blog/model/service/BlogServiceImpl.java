@@ -20,12 +20,14 @@ public class BlogServiceImpl implements BlogService {
 	@Autowired
 	BlogDAO blogDAO;
 	
+
+	
 	@Transactional(propagation=Propagation.REQUIRED,
 			   isolation=Isolation.READ_COMMITTED,
 			   rollbackFor=Exception.class)
 	
 	@Override
-	public int insertBlog(Blog blog)  {
+	public int insertBlog(Blog blog, List<Attachment> attachList)  {
 		int result = 0;
 		
 		//1.board 행추가
@@ -38,22 +40,24 @@ public class BlogServiceImpl implements BlogService {
 				e.printStackTrace();
 			}
 		
-//		//2.attachment 행추가 : boardNo를 알아야한다.
-//		if(attachList.size() > 0) {
-//			for(Attachment a : attachList) {
-//				a.setBlogNo(blog.getBlogNo());
-//				result = blogDAO.insertAttachment(a);
-//				
-//				if(result == 0)
-//					try {
-//						throw new Exception("게시글 첨부파일 등록오류!");
-//					} catch (Exception e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//			}
-//		}
-//		
+		
+		//2.attachment 행추가 : boardNo를 알아야한다.
+		if(attachList.size() > 0) {
+			for(Attachment a : attachList) {
+				a.setBlogNo(blog.getBlogNo());
+				result = blogDAO.insertAttachment(a);
+				
+				if(result == 0)
+					try {
+						throw new Exception("게시글 첨부파일 등록오류!");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		
 		return result;
 	}
 
@@ -81,6 +85,13 @@ public class BlogServiceImpl implements BlogService {
 	public BlogAttachVO selectOneBlogCollection(int blogNo) {
 		return blogDAO.selectOneBlogCollection(blogNo);
 	}
+
+	@Override
+	public int insertBlog(Blog blog) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 } 

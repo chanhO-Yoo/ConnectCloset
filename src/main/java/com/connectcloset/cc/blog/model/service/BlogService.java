@@ -22,6 +22,8 @@ public interface BlogService {
 
 	BlogAttachVO selectOneBlogCollection(int blogNo);
 
+	int insertBlog(Blog blog, List<Attachment> attachList);
+
 
 
 

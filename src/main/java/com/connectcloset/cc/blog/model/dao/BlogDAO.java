@@ -21,7 +21,7 @@ public interface BlogDAO {
 
 	BlogAttachVO selectOneBlogCollection(int blogNo);
 
-//	int insertAttachment(Attachment a);
+	int insertAttachment(Attachment a);
 
 
 }

@@ -80,15 +80,15 @@ public class BlogController {
 	@PostMapping("/blog/blogFormEnd.do")
 	public ModelAndView blogFormEnd(ModelAndView mav,
 									 Blog blog,
+									 @RequestParam(value="upFile", required=false) MultipartFile[] upFile,
 									 HttpServletRequest request) {
-		 /*@RequestParam(value="upFile", required=false) MultipartFile[] upFile,*/
-		logger.debug("게시물 등록 요청!");
-		logger.debug("blog={}", blog);
+//		logger.debug("게시물 등록 요청!");
+//		logger.debug("blog={}", blog);
 //		logger.debug("사용자입력 name={}", upFile.getName());
 //		logger.debug("fileName={}", upFile.getOriginalFilename());
 //		logger.debug("size={}", upFile.getSize());
 		
-/*		try {
+		try {
 		
 		String saveDirectory = request.getSession().getServletContext().getRealPath("/resources/upload/blog");
 		List<Attachment> attachList = new ArrayList<>();
@@ -137,13 +137,13 @@ public class BlogController {
 		mav.addObject("loc", "/blog/blogList.do");
 		mav.setViewName("/common/msg");
 	
-//	} catch (Exception e) {
-//		//void org.slf4j.Logger.error(String msg, Throwable t)
-//		logger.error(e.getMessage(), e);
-//		
-//		//예외를 스프링컨테이너에게 다시 던져서 예외 페이지로 연결되도록 한다.
-//		throw e;
-//	}
+	} catch (Exception e) {
+		//void org.slf4j.Logger.error(String msg, Throwable t)
+		logger.error(e.getMessage(), e);
+		
+		//예외를 스프링컨테이너에게 다시 던져서 예외 페이지로 연결되도록 한다.
+		throw e;
+	}
 		
 		return mav;
 	}
