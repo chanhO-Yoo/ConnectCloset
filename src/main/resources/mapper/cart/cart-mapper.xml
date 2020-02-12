@@ -4,31 +4,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cart">
 
-	<!-- 희진시작 -->
-	<!-- <select id="newItemList" resultMap="itemMap">
-		<![CDATA[
-		select * from (select v.*, rownum rnum from (select p.* from item p order by ITEM_ENROLL_DATE desc) v) where rnum < 7
-		]]>
-	</select>
-	
-	<resultMap type="item" id="itemMap" >
-		
-	</resultMap> -->
-	<!-- 희진 끝 -->
-	
-	<!--성준 장바구니  -->
 	
 	<select id="cartList"  resultType="map"> <!--  parameterType="_int"  --> 
-	SELECT I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE,IC.CART_NO,
+	SELECT I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE,IC.CART_NO
 	FROM ITEM I
 	LEFT JOIN ITEM_CART IC ON I.ITEM_NO = IC.ITEM_NO 
 	WHERE MEMBER_NO = #{memberNo}
 
 	</select>
-<!-- 	select  from item I 
-left join item_cart IC ON ic.item_no = i.item_no
-WHERE MEMBER_NO = 41;
-	 -->
+
 	
 	<insert id="cartInsert" >
 		insert into item_cart values(
