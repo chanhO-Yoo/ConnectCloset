@@ -30,21 +30,16 @@
                                     <th>상품정보</th>
                                     <th></th>
                                 </tr>
+                                
+                                <c:forEach var ="r" items="${orderReviewList} " begin="0" end="1">
                                 <tr>
-                                    <td>2020013131212</td>
-                                    <td>캐시미어 랩 코트</td>
+                                  
+                                    <td>${r} </td>
                                     <td><button type="button" class="btn btn-success">리뷰작성</button></td>
                                 </tr>
-                                <tr>
-                                    <td>2020013142157</td>
-                                    <td>캐시미어 랩 코트</td>
-                                    <td><button type="button" class="btn btn-success">리뷰작성</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2020013168204</td>
-                                    <td>캐시미어 랩 코트</td>
-                                    <td><button type="button" class="btn btn-success">리뷰작성</button></td>
-                                </tr>
+                                
+                                </c:forEach>
+                              
 
                             </table>
 

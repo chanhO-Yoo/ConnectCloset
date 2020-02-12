@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
+import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 @Controller
 public class MyPageController {
@@ -82,11 +82,15 @@ public class MyPageController {
 	//---------------주영 리뷰 시작------------------
 	@RequestMapping("/mypage/mypage-review.do")
 	public ModelAndView review(ModelAndView mav ,@RequestParam("memberNo") int memberNo) {
+		logger.debug("memberNo@@@@@@={}", memberNo);
 		
-		List<Order> review =
+		List<ReviewOrederList> orderReviewList =
 				myPageSerivce.selectListReview(memberNo);
 		
+		logger.debug("OrderReviewList@@@@@@={}", orderReviewList);
 		
+		mav.addObject("orderReviewList",orderReviewList);
+		 
 		mav.setViewName("/mypage/mypage-review");
 		return mav;
 	}

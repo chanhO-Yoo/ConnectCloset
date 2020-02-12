@@ -60,6 +60,7 @@
                             <th>날짜</th>
                             <th>사용/적립</th>
                             <th>사유</th>
+                            
                             <th>금액</th>
                         </tr>
                         <tr class="point-save">
@@ -79,7 +80,7 @@
                             <td>${p.pointChangeReason} </td>
                             <td>${p.pointAmount}</td>
                         </tr>
-                    
+               
                     </table>
                 </div>
                 </c:forEach>

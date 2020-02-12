@@ -3,11 +3,11 @@ package com.connectcloset.cc.mypage.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
+import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -32,7 +32,7 @@ public class MyPageServiceImpl implements MyPageService {
 
   // -----------주영 리뷰 시작 -------------------
 	@Override
-	public List<Order> selectListReview(int memberNo) {
+	public List<ReviewOrederList> selectListReview(int memberNo) {
 		// TODO Auto-generated method stub
 		return mypageDAO.selectListReview(memberNo);
 	}

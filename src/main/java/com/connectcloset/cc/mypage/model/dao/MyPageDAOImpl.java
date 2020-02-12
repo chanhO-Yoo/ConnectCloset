@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.member.model.vo.Point;
+import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
 
@@ -26,7 +26,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 
 	@Override
-	public List<Order> selectListReview(int memberNo) {
+	public List<ReviewOrederList> selectListReview(int memberNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mypage.selectListReview",memberNo);
 	}
