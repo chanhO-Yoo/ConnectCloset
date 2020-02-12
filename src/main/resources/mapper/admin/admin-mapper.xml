@@ -128,5 +128,27 @@
 	</resultMap>
 	
     <!-- ===================찬호 끝=================== -->
+    
+	 <!-- ===================하은 시작=================== -->
+    
+	<select id="selectOrderCount" resultType="_int">
+		select count(*) from order_product
+	</select>
 	
+	  <select id="selectOrderList" resultMap="orderProductMap">
+	  
+	  	select * from order_product, item
+		where order_product.item_no = item.item_no
+		order by order_no desc
+	  	
+	  </select>
+	<resultMap type="orderProduct" id="orderProductMap"></resultMap>
+	
+	
+	<update id="updatedelivery" parameterType="hashMap">
+		update order_product set delivery_no=#{deliveryNo}		
+		where order_no=#{orderNo}
+	</update>
+	
+    <!-- ===================하은 끝=================== -->
 </mapper>

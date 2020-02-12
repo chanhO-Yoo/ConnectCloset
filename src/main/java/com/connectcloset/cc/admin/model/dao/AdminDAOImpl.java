@@ -1,10 +1,13 @@
 package com.connectcloset.cc.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
@@ -12,6 +15,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -99,6 +103,36 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<PersonalQnaAns> adminPQnaAns(int pQnaNo) {
 		return sqlSession.selectList("admin.adminPQnaAns",pQnaNo);
 	}
-
 	//===================찬호 끝===================
+
+	//===================하은 시작=================
+	@Override
+	public List<OrderProduct> selectOrderList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.selectOrderList",null,rowBounds);
+
+	}
+
+	@Override
+	public int selectOrderCount() {
+		return sqlSession.selectOne("admin.selectOrderCount");
+	}
+	
+	@Override
+	public List<OrderProduct> selectOrderList() {
+
+		return sqlSession.selectList("admin.selectOrderList");
+	}
+
+	@Override
+	public int updatedelivery(String deliveryNo, String orderNo) {
+		Map<String,String> map = new HashMap<>();
+		map.put("deliveryNo", deliveryNo);
+		map.put("orderNo", orderNo);
+		return sqlSession.update("admin.updatedelivery",map);
+	}
+	
+	//===================하은 끝==================
+
+
 }
