@@ -3,7 +3,7 @@ package com.connectcloset.cc.order.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class orderProduct implements Serializable {
+public class OrderProduct implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,10 @@ public class orderProduct implements Serializable {
 	private int orderCuponNo;
 	private String impUid; // 아임포트에서 발급하는 거래건당 고유번호
 
-	public orderProduct() {
+	
+	
+	
+	public OrderProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

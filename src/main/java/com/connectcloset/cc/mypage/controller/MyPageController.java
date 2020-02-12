@@ -78,4 +78,17 @@ public class MyPageController {
 		return mav;
 	}
 	//----------------주영 포인트 끝-----------------
+	
+	//---------------주영 리뷰 시작------------------
+	@RequestMapping("/mypage/mypage-review.do")
+	public ModelAndView review(ModelAndView mav ,@RequestParam("memberNo") int memberNo) {
+		
+		List<Order> review =
+				myPageSerivce.selectListReview(memberNo);
+		
+		
+		mav.setViewName("/mypage/mypage-review");
+		return mav;
+	}
+	//---------------주영 끝 시작------------------
 }

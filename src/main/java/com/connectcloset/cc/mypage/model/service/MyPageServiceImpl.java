@@ -3,6 +3,7 @@ package com.connectcloset.cc.mypage.model.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.member.model.vo.Point;
@@ -26,6 +27,16 @@ public class MyPageServiceImpl implements MyPageService {
 		return mypageDAO.selectListPoint(memberNo);
 	}
 	//-----------주영 포인트 끝--------------
+
+
+
+  // -----------주영 리뷰 시작 -------------------
+	@Override
+	public List<Order> selectListReview(int memberNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectListReview(memberNo);
+	}
+	// -----------주영 리뷰 끝 -------------------
 
 
 
