@@ -5,9 +5,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <fmt:requestEncoding value="utf-8"/>
-
+<fmt:setLocale value="ko_kr"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<%
+	int totalPrice=0;
+%>
 <!-- breadcrumb area -->
         <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
             <div class="container">
@@ -107,6 +109,7 @@
 		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('야 정말 삭제 한다??');"><i class="ti-close"></i></a>
 		                                           		</td>
 		                                     		</tr>
+		                                     		<c:set var="totalPrice" value="${totalPrice + cart.ITEM_QUANTITY * cart.ITEM_PRICE}"/>
 				                      		</c:forEach>
                                            	<tr>
                                            		<td colspan="5" align="center">	
@@ -134,9 +137,9 @@
                     <div class="col-lg-4">
                         <div class="proceed-area gray-bg-4">
                             	<ul>
-                                	<li><span class="proceed-title">Subtotal</span>${cart.ITEM_PRICE } <span></span></li>
+                                	<li><span class="proceed-title">Subtotal</span> <span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
                                 	<li><span class="proceed-title">Shipping</span> <span>Free shipping</span></li>
-                               	 	<li><span class="proceed-title proceed-bold">Total</span> <span>$329</span></li>
+                               	 	<li><span class="proceed-title proceed-bold">Total</span> <span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
                             	</ul>
                             <div class="proceed-btn">
                                 <a class="btn-hover" href="#">Proceed to Checkout</a>
