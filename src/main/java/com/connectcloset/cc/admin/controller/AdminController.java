@@ -223,11 +223,17 @@ public class AdminController {
 				itemImage.setItemImageOriginName(originalFileName);
 				itemImage.setItemImageReName(renamedFileName);
 				imageList.add(itemImage);
-				
 			}
-			
-			
 		}
+		
+		logger.debug("isEmpty={}",imageList.isEmpty());
+		
+		if(imageList.isEmpty() == true) {
+			int itemNo = item.getItemNo();
+			
+			imageList = adminService.selectItemImageList(itemNo);
+		}
+		
 		logger.debug("imageList={}",imageList);
 		//MultipartFile객체 파일 업로드 처리 종료.......
 		
