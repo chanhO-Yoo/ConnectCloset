@@ -7,6 +7,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public interface AdminService {
 	
@@ -28,5 +29,17 @@ public interface AdminService {
 
 	//===================찬호 끝===================
 
+	//===================하은 시작===================
+	
+	List<OrderProduct> selectOrderList(int cPage, int numPerPage);
+	int selectOrderCount();
+	
+	List<OrderProduct> selectOrderList();
+	
+	
+	int updatedelivery(String deliveryNo, String orderNo);
 
+	
+
+	//===================하은 끝===================
 }

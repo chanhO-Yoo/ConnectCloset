@@ -12,4 +12,8 @@ public interface CartService {
 
 	int cartInsert(Map<String, Integer> map);
 
+	int cartDelete(Map<String, Integer> map);
+
+	
+
 }

@@ -26,7 +26,12 @@
 		</insert>
 	
 	
+	<delete id="wishlistDelete">
 	
+	DELETE FROM ITEM_WISHLIST 
+	WHERE WISH_NO = #{wishNo}
+	
+	</delete>
 
 	
 	

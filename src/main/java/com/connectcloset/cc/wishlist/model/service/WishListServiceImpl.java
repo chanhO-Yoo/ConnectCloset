@@ -26,4 +26,9 @@ public class WishListServiceImpl implements WishListService {
 		
 	}
 
+	@Override
+	public int wishlistDelete(Map<String, Integer> map) {
+		return wishlistDAO.wishlistDelete(map);
+	}
+
 }

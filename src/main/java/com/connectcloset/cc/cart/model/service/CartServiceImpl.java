@@ -23,12 +23,21 @@ public class CartServiceImpl implements CartService {
 		return cartDAO.cartList(memberNo);
 	}
 
-
+	// 목록 추가
 	@Override
 	public int cartInsert(Map<String, Integer> map) {
 		return cartDAO.cartInsert(map);
 	}
+	//목록 삭제
 
+	@Override
+	public int cartDelete(Map<String, Integer> map) {
+		return cartDAO.cartDelete(map);
+	}
+	
 
+	
+	
+	
 
 }

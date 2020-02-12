@@ -17,7 +17,7 @@
                         <li>
                             <a href="index.html">Home</a>
                         </li>
-                        <li class="active" action="${pageContext.request.contextPath }/shop/cartList.do"  method="post">Shopping Cart</li>
+                        <li class="active" action="${pageContext.request.contextPath }/shop/cartDelete.do" method="post">Shopping Cart</li>
                     </ul>
                 </div>
             </div>
@@ -27,6 +27,9 @@
             <div class="sidebar-search-icon">
                 <button class="search-close"><span class="ti-close"></span></button>
             </div>
+            
+            
+            
             <div class="sidebar-search-input">
                 <form>
                     <div class="form-search">
@@ -79,10 +82,10 @@
         <div class="cart-area pt-95 pb-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">  
+                    <div class="col-lg-8">
                         <form action="#">
                             <div class="table-content table-responsive cart-table">
-                                <table class="col-lg-12">
+                                <table>
                                     <thead>
                                         <tr>
                                             <th class="cart-product">Product</th>
@@ -90,29 +93,25 @@
                                             <th  class="cart-qty"> QTY </th>
                                             <th class="cart-total">price</th>
                                             <th></th>
-                                        </tr>       
+                                        </tr>
                                     </thead>
                                     <tbody>
-     									 <c:forEach items="${list}" var="cart" varStatus="vs">
-     									 	  <tr>
-     									 	 <td class="cart-img-name">
-		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/img/cart/cart-1.jpg" alt=""></a>
-		                                          <a class="cart-name" href="#"> ${cart.ITEM_NAME} </a> 
-		                                     </td>
-		                                         <td class="cart-price"><span class="amount">${cart.ITEM_COLORS }</span></td>
+     									 	<c:forEach items="${Cartlist}" var="cart" varStatus="vs">
+		                                        <tr>
+		                                            <td class="cart-img-name">
+		                                                <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/img/cart/cart-1.jpg" alt=""></a>
+		                                                <a class="cart-name" href="#">${cart.ITEMNAME }</a>
+		                                            </td>
+		                                            <td class="cart-price"><span class="amount">${cart.ITEMCOLORS }</span></td>
 		                                            <td class="cart-quantity">
-		                                               <div class="pro-dec-cart">${cart.ITEM_QUANTITY }</div></td>
-		                                            <td class="cart-subtotal"><span>${cart.ITEM_PRICE }</span></td>
-		                                            	<td class="cart-remove">
-		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('야 정말 삭제 한다??');"><i class="ti-close"></i></a>
-		                                           		</td>
-		                                     		</tr>
-				                      		</c:forEach>
-                                           	<tr>
-                                           		<td colspan="5" align="center">	
-                                           			<c:if  test="${empty list}"> <장바구니가 비어있습니다.> </c:if>
-                                           		</td>
-                                           </tr> 
+		                                                <div class="pro-dec-cart">  ${cart.ITEM_QUANTITY }</div></td>
+		                                            <td class="cart-subtotal"><span>${cart.ITEMPRICE }</span></td>
+		                                            <td class="cart-remove">
+		                                                <a href="#"><i class="ti-close"></i></a>
+		                                           </td>
+                                           	</c:forEach>
+                                        </tr>
+                                 
                                     </tbody>
                                 </table>
                             </div>
@@ -129,15 +128,15 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>	  
-                 </div>
+                        </form>
+                    </div>
                     <div class="col-lg-4">
                         <div class="proceed-area gray-bg-4">
-                            	<ul>
-                                	<li><span class="proceed-title">Subtotal</span>${cart.ITEM_PRICE } <span></span></li>
-                                	<li><span class="proceed-title">Shipping</span> <span>Free shipping</span></li>
-                               	 	<li><span class="proceed-title proceed-bold">Total</span> <span>$329</span></li>
-                            	</ul>
+                            <ul>
+                                <li><span class="proceed-title">Subtotal</span> <span>$329</span></li>
+                                <li><span class="proceed-title">Shipping</span> <span>Free shipping</span></li>
+                                <li><span class="proceed-title proceed-bold">Total</span> <span>$329</span></li>
+                            </ul>
                             <div class="proceed-btn">
                                 <a class="btn-hover" href="#">Proceed to Checkout</a>
                             </div>
@@ -147,4 +146,4 @@
             </div>
         </div>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
