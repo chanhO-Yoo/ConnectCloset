@@ -49,7 +49,6 @@
 		<result column="blogcontent" property="blogContent"/>
 		<result column="blogdate" property="blogDate"/>
 		<result column="readcount" property="readCount"/>
-		1:N관계의 테이블을 조인해서 리턴하는 경우
 		<collection property="attachmentList" ofType="attachment">
 			<id column="attachmentno" property="attachmentNo"/>
 			<result column="blogno" property="blogNo"/>		
