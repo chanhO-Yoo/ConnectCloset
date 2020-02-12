@@ -117,7 +117,9 @@ div#board-container label.custom-file-label{text-align:left;}
 											
 											pageContext.setAttribute("sizeList", sizeList);
 										%>
+										<c:if test="${item.itemTypeNo.equals('itype-009')!=true}">
 										    <select multiple class="form-control" id="itemSize" name="itemSize" style="width:170px">
+										    	<option value="xxs" ${sizeList.contains("xxs")?"selected":'' }>xxs</option>
 										    	<option value="xs" ${sizeList.contains("xs")?"selected":'' }>xs</option>
 										    	<option value="s" ${sizeList.contains("s")?"selected":'' }>s</option>
 										    	<option value="m" ${sizeList.contains("m")?"selected":'' }>m</option>
@@ -125,6 +127,22 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option value="xl" ${sizeList.contains("xl")?"selected":'' }>xl</option>
 										    	<option value="xxl" ${sizeList.contains("xxl")?"selected":'' }>xxl</option>
 											</select>
+										</c:if>
+										<c:if test="${item.itemTypeNo.equals('itype-009')==true}">
+										    <select multiple class="form-control" id="itemSize" name="itemSize" style="width:170px">
+										    	<option value="220" ${sizeList.contains("220")?"selected":'' }>220</option>
+										    	<option value="230" ${sizeList.contains("230")?"selected":'' }>230</option>
+										    	<option value="240" ${sizeList.contains("240")?"selected":'' }>240</option>
+										    	<option value="250" ${sizeList.contains("250")?"selected":'' }>250</option>
+										    	<option value="260" ${sizeList.contains("260")?"selected":'' }>260</option>
+										    	<option value="270" ${sizeList.contains("270")?"selected":'' }>270</option>
+										    	<option value="280" ${sizeList.contains("280")?"selected":'' }>280</option>
+										    	<option value="290" ${sizeList.contains("290")?"selected":'' }>290</option>
+											</select>
+										</c:if>
+										
+										
+										
 										</div>
 	                                </div>
 	                            </div>
