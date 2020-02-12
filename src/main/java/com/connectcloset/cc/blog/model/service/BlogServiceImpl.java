@@ -82,4 +82,5 @@ public class BlogServiceImpl implements BlogService {
 		return blogDAO.selectOneBlogCollection(blogNo);
 	}
 
+
 } 

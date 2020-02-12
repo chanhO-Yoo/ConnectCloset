@@ -19,8 +19,10 @@ public interface BlogService {
 	Blog selectOneBlog(int blogNo);
 
 	List<Attachment> selectAttachmentList(int blogNo);
-	
+
 	BlogAttachVO selectOneBlogCollection(int blogNo);
+
+
 
 
 	//==================== 하라 끝 =========================

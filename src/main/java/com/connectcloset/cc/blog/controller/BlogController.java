@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.connectcloset.cc.blog.model.service.BlogService;
 import com.connectcloset.cc.blog.model.vo.Attachment;
 import com.connectcloset.cc.blog.model.vo.Blog;
+import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
 
@@ -76,7 +78,7 @@ public class BlogController {
 	}
 	
 	@PostMapping("/blog/blogFormEnd.do")
-	public ModelAndView boardFormEnd(ModelAndView mav,
+	public ModelAndView blogFormEnd(ModelAndView mav,
 									 Blog blog,
 									 HttpServletRequest request) {
 		 /*@RequestParam(value="upFile", required=false) MultipartFile[] upFile,*/
@@ -146,7 +148,31 @@ public class BlogController {
 		return mav;
 	}
 	
+	@RequestMapping("/blog/blogView.do")
+	public String blogView (Model model,
+								  @RequestParam ("blogNo") int blogNo) {
+		
+		Blog blog = blogService.selectOneBlog(blogNo);
+		List<Attachment> attachmentList = blogService.selectAttachmentList(blogNo);
+		
+		model.addAttribute("blog", blog);
+		model.addAttribute("attachmentList", attachmentList);
+		
+		return "blog/blogView";
+	}
+	
+	@RequestMapping("/blog/blogViewCollection.do")
+	public void blogViewCollection(Model model,
+									@RequestParam("blogNo")int blogNo) {
+		
+		BlogAttachVO blog = blogService.selectOneBlogCollection(blogNo);
+		
+		logger.debug("blog={}", blog);
+		
+		model.addAttribute("blog",blog);
+	}
 	
 }
+
 
 		//==================== 하라 끝 =========================
