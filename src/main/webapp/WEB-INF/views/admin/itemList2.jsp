@@ -42,15 +42,15 @@
                     <div class="col-xl-9 col-lg-8 pro-col-40">
                         <div class="row grid" data-show="9" data-load="3">
 			                <c:forEach items="${list }" var="item">
-	                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+	                            <div class="col-xl-4 col-lg-4 col-md-4 item-hidden grid-item">
 	                                <div class="blog-wrap-2 blog-shadow mb-40">
 	                                    <div class="blog-img hover-3">
 	                                        <a href="${pageContext.request.contextPath }/admin/editItem.do?itemNo=${item.itemNo}">
 	                                        	<c:if test="${item.imageList[0].itemImageReName == null }">
-		                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+		                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="" width="220px">
 	                                            </c:if>
 	                                            <c:if test="${item.imageList[0].itemImageReName != null }">
-		                                            <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
+		                                            <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="" width="220px">
 	                                            </c:if>
 	                                        </a>
 	                                        <div class="readmore-icon">
@@ -59,7 +59,7 @@
 	                                            </a>
 	                                        </div>
 	                                    </div>
-	                                    <div class="blog-content-2">
+	                                    <div class="blog-content-2" style="height: 250px">
 	                                        <h4><a href="${pageContext.request.contextPath }/admin/editItem.do?itemNo=${item.itemNo}">${item.itemName }</a></h4>
 	                                        <h5>${item.itemPrice }</h5>
 	                                        <p>${item.itemInfo }</p>

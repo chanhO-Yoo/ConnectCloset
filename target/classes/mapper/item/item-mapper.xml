@@ -12,7 +12,8 @@
 	</select>
 	
 	<resultMap type="item" id="itemMap" >
-		
+		<result column="item_colors" property="itemColors" typeHandler="strArrTypeHandler"></result>
+		<result column="item_size" property="itemSize" typeHandler="strArrTypeHandler"></result>
 	</resultMap>
 	<!-- 희진 끝 -->
 	

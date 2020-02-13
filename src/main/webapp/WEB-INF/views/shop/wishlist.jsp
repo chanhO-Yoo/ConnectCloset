@@ -109,7 +109,7 @@
                                           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             <a title="Add To Cart" href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${wish.ITEM_NO }'><i class="ti-shopping-cart"></i></a>
                                          <a  href='${pageContext.request.contextPath}/shop/wishlistDelete.do?wishNo=${wish.WISH_NO}'  onclick="return confirm('왜고름?? 삭제 한다??');">
-                                          <input type="button" value="♡     " style="WIDTH: 30pt; HEIGHT: 30pt" </a>
+                                          <input type="button" value="&#x02717;" style="WIDTH: 30pt; HEIGHT: 30pt"/> </a>
                                         </div>
                                     </div>
                                 </div>
