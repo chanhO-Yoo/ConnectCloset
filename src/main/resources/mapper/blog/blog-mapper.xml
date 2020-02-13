@@ -32,14 +32,14 @@
 	</select> 
 
 	<select id="selectOneBlog">
-		select * from blog where= #{blogNo}
+		select * from blog where blog_No= #{blogNo}
 	</select>
 	 
 	 <select id="selectOneBlogCollection" resultMap="blogCollectionMap">
 		select *
 		from blog B left join attachment A
 		        on B.blogno = A.blogno
-		where B.blogno = #{blogno}
+		where B.blogno = #{blogNo}
 	</select> 
 	
 		<resultMap type="blogAttachVO" id="blogCollectionMap">

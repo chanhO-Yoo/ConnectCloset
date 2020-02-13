@@ -14,9 +14,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-8">
+                        
+
                         <div class="blog-details-wrap">
+                       
                             <div class="b-details-content-wrap">
+                          
                                 <div class="blog-content-3 text-center">
+                               
                                     <h4>Highlights This Month</h4>
                                     <div class="blog-meta-3">
                                         <ul>
@@ -26,7 +31,9 @@
                                             <li><a href="#">4 Comments</a></li>
                                         </ul>
                                     </div>
+                                   
                                 </div>
+
                                 <div class="blog-img hover-3 mt-40 mb-30">
                                     <img src="assets/img/blog/blog-details1.jpg" alt="">
                                 </div>
@@ -66,7 +73,7 @@
                                             <li><a href="#">#Culture</a></li>
                                         </ul>
                                     </div>
-                                    <div class="details-social">
+                                   <!--  <div class="details-social">
                                         <ul>
                                             <li><a href="#"><i class="ti-facebook"></i></a></li>
                                             <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
@@ -74,18 +81,18 @@
                                             <li><a href="#"><i class="ti-tumblr-alt"></i></a></li>
                                             <li><a href="#"><i class="ti-google"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="b-details-author mt-45 mb-50 pt-55 pb-60 border-bottom-4 border-top-5">
                                     <div class="b-details-author-img">
                                         <img alt="" src="assets/img/blog/blog-author-2.png">
                                     </div>
-                                    <div class="b-details-content">
+                                   <!--  <div class="b-details-content">
                                         <h5>Dean Fleming</h5>
                                         <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra viverra. Mauris ullam corper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis convallis leo. </p>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="related-blog-area border-bottom-4 pb-35 mb-50">
+                      <%--         <div class="related-blog-area border-bottom-4 pb-35 mb-50">
                                     <h4 class="blog-details-title text-center">Recommended</h4>
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-12">
@@ -113,8 +120,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="blog-comments-area border-bottom-4 pb-60">
+                                </div>  --%>
+                <!--                 <div class="blog-comments-area border-bottom-4 pb-60">
                                     <h4 class="blog-details-title text-center">Comments</h4>
                                     <div class="blog-comments-wrap">
                                         <div class="single-blog-bundel">
@@ -171,8 +178,8 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="blog-reply-area pt-45">
+                                </div> -->
+                     <!--         <div class="blog-reply-area pt-45">
                                     <h4 class="blog-details-title">Leave A Reply</h4>
                                     <div class="blog-form-wrapper custom-col-15">
                                         <form action="#">
@@ -201,21 +208,28 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                             </div>
                                         </form>
                                     </div>
-                                </div>
+                       
+                                </div>  -->
+                           
+                             
                             </div>
+                           
                         </div>
+                                                           
                     </div>
-                    <div class="col-xl-3 col-lg-4">
+                    
+                    
+               <div class="col-xl-3 col-lg-4">
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
-                            <div class="pro-sidebar-search mb-55">
+                          <div class="pro-sidebar-search mb-55">
                                 <form class="pro-sidebar-search-form" action="#">
                                     <input type="text" placeholder="Search here...">
                                     <button>
                                         <i class="ti-search"></i>
                                     </button>
                                 </form>
-                            </div>
-                            <div class="sidebar-widget mb-55">
+                            </div> 
+                             <div class="sidebar-widget mb-55">
                                 <h4 class="pro-sidebar-title">Recent Projects </h4>
                                 <div class="sidebar-project-wrap mt-30">
                                     <div class="single-sidebar-project">
@@ -247,7 +261,7 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                     </div>
                                 </div>
                             </div>
-                            <div class="sidebar-widget">
+                             <div class="sidebar-widget">
                                 <div class="subscribe-style-3">
                                     <h4>Get updates on my blog</h4>
                                     <div id="mc_embed_signup" class="subscribe-form-3">
@@ -264,8 +278,8 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="sidebar-widget mt-50">
+                            </div> 
+                           <div class="sidebar-widget mt-50">
                                 <h4 class="pro-sidebar-title">Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
@@ -275,8 +289,8 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                         <li><a href="#">Photography  <span>(16)</span></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="sidebar-widget mt-55">
+                            </div> -->
+                       <div class="sidebar-widget mt-55">
                                 <h4 class="pro-sidebar-title">Instagram </h4>
                                 <div class="instagram-img mt-30">
                                     <ul>
@@ -288,8 +302,8 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                         <li><a href="#"><img src="assets/img/instragram/6.jpg" alt=""></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="sidebar-widget mt-55">
+                            </div> 
+                             <div class="sidebar-widget mt-55">
                                 <h4 class="pro-sidebar-title">Keep In Touch </h4>
                                 <div class="blog-sidebar-social mt-30">
                                     <ul>
@@ -301,8 +315,8 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                         <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="sidebar-widget mt-55">
+                            </div> 
+                       <div class="sidebar-widget mt-55">
                                 <div class="facebook-banner-wrap default-overlay-2">
                                     <a href="#"><img src="assets/img/banner/banner-17.jpg" alt=""></a>
                                     <div class="facebook-banner-content">
@@ -310,9 +324,9 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                         <h4>FaceboOk Fans Page</h4>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </div> 
+                         </div>
+                    </div> 
                 </div>
             </div>
         </div>

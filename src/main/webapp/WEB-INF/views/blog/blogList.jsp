@@ -36,7 +36,7 @@
                                             <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
-                                            <a href="blog-details.do">
+                                            <a href="${pageContext.request.contextPath}/blog/blog-details.do?blogNo=${blog.blogNo}">
                                                 <i class="ti-arrow-right"></i>
                                             </a>
                                         </div>

@@ -68,9 +68,26 @@ public class BlogController {
 		}
 			
 	@RequestMapping("/blog/blog-details.do")
-	public void blogDetail() {
+	public   ModelAndView blogDetail(ModelAndView mav,
+			  @RequestParam ("blogNo") int blogNo) {
 		
-	}
+	Blog blog = blogService.selectOneBlog(blogNo);
+	List<Attachment> attachmentList = blogService.selectAttachmentList(blogNo);
+	
+
+	logger.debug("blogNo={}" ,blogNo);
+	logger.debug("blog={}" ,blog);
+	
+	mav.addObject("blog", blog);
+	mav.addObject("attachmentList", attachmentList);
+	
+	mav.setViewName("/blog/blog-details");
+	
+	
+	return mav;
+
+
+}
 	
 	@RequestMapping("/blog/blogForm.do")
 	public void blogForm() {
@@ -148,7 +165,7 @@ public class BlogController {
 		return mav;
 	}
 	
-	@RequestMapping("/blog/blogView.do")
+/*	@RequestMapping("/blog/blogView.do")
 	public String blogView (Model model,
 								  @RequestParam ("blogNo") int blogNo) {
 		
@@ -158,8 +175,11 @@ public class BlogController {
 		model.addAttribute("blog", blog);
 		model.addAttribute("attachmentList", attachmentList);
 		
+		
 		return "blog/blogView";
-	}
+		
+		
+	}*/
 	
 	@RequestMapping("/blog/blogViewCollection.do")
 	public void blogViewCollection(Model model,
