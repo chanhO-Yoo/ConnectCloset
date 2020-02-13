@@ -109,6 +109,8 @@ public class ItemController {
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
 			
+			mav.addObject("brandNo", brandNo);
+			
 			mav.setViewName("shop/shopItemList");
 			
 			return mav;
@@ -209,6 +211,28 @@ public class ItemController {
 			List<ItemAndImageVO2> list = itemService.selectBagList(cPage, numPerPage);
 			
 			int totalContents = itemService.selectBagCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/shoesList.do")
+		public ModelAndView itemShoesList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectShoesList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectShoesCount();
 			
 			logger.debug("list={}", list);
 			

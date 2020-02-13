@@ -32,6 +32,8 @@ public interface ItemService {
 	int selectDressCount();
 	List<ItemAndImageVO2> selectBagList(int cPage, int numPerPage);
 	int selectBagCount();
+	List<ItemAndImageVO2> selectShoesList(int cPage, int numPerPage);
+	int selectShoesCount();
 	
 	//--------- 윤지 상품 리스트 끝 -------------------
 
@@ -39,6 +41,8 @@ public interface ItemService {
 	List<ItemImage> selectitemImagetList(int itmeNo);
 
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
+
+
 
 
 
