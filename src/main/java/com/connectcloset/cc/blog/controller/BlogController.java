@@ -80,7 +80,7 @@ public class BlogController {
 	
 	mav.addObject("blog", blog);
 	mav.addObject("attachmentList", attachmentList);
-	
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
 	mav.setViewName("/blog/blog-details");
 	
 	
