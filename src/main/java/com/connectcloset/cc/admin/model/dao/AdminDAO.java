@@ -46,6 +46,7 @@ public interface AdminDAO {
 	//===================찬호 끝===================
 	
 	//===================하은 시작===================
+
 	List<OrderProduct> selectOrderList(int cPage, int numPerPage);
 
 	int selectOrderCount();
@@ -54,7 +55,8 @@ public interface AdminDAO {
 
 	int updatedelivery(String deliveryNo, String orderNo);
 
-	
+	List<OrderProduct> selectSearchDateList(int startDate);
+
 	//===================하은 끝===================
 
 

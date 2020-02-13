@@ -131,6 +131,12 @@ public class AdminDAOImpl implements AdminDAO {
 		map.put("orderNo", orderNo);
 		return sqlSession.update("admin.updatedelivery",map);
 	}
+
+
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return sqlSession.selectList("admin.selectSearchDateList",startDate);	
+	}
 	
 	//===================하은 끝==================
 

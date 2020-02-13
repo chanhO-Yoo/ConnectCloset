@@ -13,9 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +28,7 @@ import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Controller
 public class AdminController {
@@ -323,8 +326,10 @@ public class AdminController {
 			return mav;
 		}
 		*/
-		
-			@RequestMapping("/admin/deliveryList.do")
+	
+		//주문배송
+		@RequestMapping("/admin/deliveryList.do")
+		//@ResponseBody
 		public ModelAndView deliveryList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 			
 			final int numPerPage = 9;
@@ -347,25 +352,42 @@ public class AdminController {
 			
 			return mav;
 		}
-			
-			@RequestMapping("/admin/changedelivery.do")
-			public ModelAndView changeDelivery(ModelAndView mav,
-					@RequestParam String deliveryNo,
-					@RequestParam String orderNo) {
+		
+		//주문배송 - 주문,배송상태 처리
+		@RequestMapping("/admin/changedelivery.do")
+		public ModelAndView changeDelivery(ModelAndView mav,
+			@RequestParam String deliveryNo,
+			@RequestParam String orderNo) {
 				
 				
-				int result = adminService.updatedelivery(deliveryNo,orderNo);
-				logger.debug("result={}",result);
+			int result = adminService.updatedelivery(deliveryNo,orderNo);
+			logger.debug("result={}",result);
 				
-				//mav.addObject("deliveryNo",deliveryNo);
-				//mav.addObject("deliveryNo",orderNo);
-				mav.addObject(result);
-				mav.setViewName("redirect:/admin/deliveryList.do");
+			//mav.addObject("deliveryNo",deliveryNo);
+			//mav.addObject("deliveryNo",orderNo);
+			mav.addObject(result);
+			mav.setViewName("redirect:/admin/deliveryList.do");
 				
 				return mav;
 			}
 			
-
+		@RequestMapping("/admin/searchDate/deliveryList.do")
+		//@GetMapping("/admin/test/deliveryList.do")
+		@ResponseBody
+		//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+		private List<OrderProduct> deliverySearch(@RequestParam int startDate) {
+			logger.debug("startDate={}",startDate);
+			
+			/*ModelAndView mav = new ModelAndView("jsonView");*/
+			
+			List<OrderProduct> list = adminService.selectSearchDateList(startDate);
+			/*mav.addObject("list", list);*/
+			logger.debug("test");
+			
+			return list;
+			
+		}
+		
 			/*//db에서 order_product테이블 내용을 불러와 deliveryList.jsp출력
 			@RequestMapping("/admin/deliveryList.do")
 			public ModelAndView admin(ModelAndView mav) {
@@ -382,6 +404,5 @@ public class AdminController {
 			}
 				*/
 
-		
 		//===================하은 끝===================
 }

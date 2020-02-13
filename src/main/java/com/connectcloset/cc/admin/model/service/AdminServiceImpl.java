@@ -147,6 +147,7 @@ public class AdminServiceImpl implements AdminService {
 
 
 	//===================하은 시작===================
+
 	@Override
 	public List<OrderProduct> selectOrderList(int cPage, int numPerPage) {
 		return adminDAO.selectOrderList(cPage,numPerPage);
@@ -164,11 +165,13 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int updatedelivery(String deliveryNo, String orderNo) {
-		// TODO Auto-generated method stub
 		return adminDAO.updatedelivery(deliveryNo,orderNo);
 	}
 
-
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return adminDAO.selectSearchDateList(startDate);
+	}
 	
 	//===================하은 끝===================
 	

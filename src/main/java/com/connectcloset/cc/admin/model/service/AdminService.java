@@ -32,14 +32,14 @@ public interface AdminService {
 	//===================하은 시작===================
 	
 	List<OrderProduct> selectOrderList(int cPage, int numPerPage);
+
 	int selectOrderCount();
-	
+
 	List<OrderProduct> selectOrderList();
 	
-	
 	int updatedelivery(String deliveryNo, String orderNo);
-
 	
+	List<OrderProduct> selectSearchDateList(int startDate);
 
 	//===================하은 끝===================
 }

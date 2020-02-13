@@ -150,5 +150,11 @@
 		where order_no=#{orderNo}
 	</update>
 	
+	<select id="selectSearchDateList" resultMap="orderProductMap">		
+		select * from order_product, item
+		where  order_product.item_no = item.item_no and order_date > sysdate-#{startDate}
+		order by order_no desc
+	</select>
+	
     <!-- ===================하은 끝=================== -->
 </mapper>
