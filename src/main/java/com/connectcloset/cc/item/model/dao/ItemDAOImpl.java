@@ -53,6 +53,61 @@ public class ItemDAOImpl implements ItemDAO {
 	public int selectBrandItemCount(String brandNo) {
 		return sqlSession.selectOne("item.selectBrandItemCount", brandNo);
 	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectOuterList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectOuterList", null, rowBounds);
+	}
+	
+	@Override
+	public int selectOuterCount() {
+		return sqlSession.selectOne("item.selectOuterCount");
+	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectTopList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectTopList", null, rowBounds);
+	}
+
+	@Override
+	public int selectTopCount() {
+		return sqlSession.selectOne("item.selectTopCount");
+	}
+
+	@Override
+	public List<ItemAndImageVO2> selectBottomList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectBottomList", null, rowBounds);
+	}
+
+	@Override
+	public int selectBottomCount() {
+		return sqlSession.selectOne("item.selectBottomCount");
+	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectDressList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectDressList", null, rowBounds);
+	}
+
+	@Override
+	public int selectDressCount() {
+		return sqlSession.selectOne("item.selectDressCount");
+	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectBagList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectBagList", null, rowBounds);
+	}
+
+	@Override
+	public int selectBagCount() {
+		return sqlSession.selectOne("item.selectBagCount");
+	}
 	//===================윤지 상품 리스트  끝=======================	
 		
 		

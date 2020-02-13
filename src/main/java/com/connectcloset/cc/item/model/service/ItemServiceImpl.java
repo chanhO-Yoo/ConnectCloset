@@ -63,6 +63,56 @@ public class ItemServiceImpl implements ItemService{
 		public int selectBrandItemCount(String brandNo) {
 			return itemDAO.selectBrandItemCount(brandNo);
 		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectOuterList(int cPage, int numPerPage) {
+			return itemDAO.selectOuterList(cPage, numPerPage);
+		}
+		
+		@Override
+		public int selectOuterCount() {
+			return itemDAO.selectOuterCount();
+		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectTopList(int cPage, int numPerPage) {
+			return itemDAO.selectTopList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectTopCount() {
+			return itemDAO.selectTopCount();
+		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectBottomList(int cPage, int numPerPage) {
+			return itemDAO.selectBottomList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectBottomCount() {
+			return itemDAO.selectBottomCount();
+		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectDressList(int cPage, int numPerPage) {
+			return itemDAO.selectDressList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectDressCount() {
+			return itemDAO.selectDressCount();
+		}
+		
+		@Override
+		public List<ItemAndImageVO2> selectBagList(int cPage, int numPerPage) {
+			return itemDAO.selectBagList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectBagCount() {
+			return itemDAO.selectBagCount();
+		}
 		//===================윤지 상품 리스트 끝========================
 	
 	
@@ -85,7 +135,10 @@ public class ItemServiceImpl implements ItemService{
 	//===================주영  상품 상세보기  끝========================
 
 
-	
+
+
+
+
 
 }
 

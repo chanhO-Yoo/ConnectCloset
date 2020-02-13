@@ -24,6 +24,16 @@ public interface ItemDAO {
 	int selectItemCount();
 	List<ItemAndImageVO2> selectItemAndImageBrandList(int cPage, int numPerPage, String brandNo);
 	int selectBrandItemCount(String brandNo);
+	List<ItemAndImageVO2> selectOuterList(int cPage, int numPerPage);
+	int selectOuterCount();
+	List<ItemAndImageVO2> selectTopList(int cPage, int numPerPage);
+	int selectTopCount();
+	List<ItemAndImageVO2> selectBottomList(int cPage, int numPerPage);
+	int selectBottomCount();
+	List<ItemAndImageVO2> selectDressList(int cPage, int numPerPage);
+	int selectDressCount();
+	List<ItemAndImageVO2> selectBagList(int cPage, int numPerPage);
+	int selectBagCount();
 	//------------ 윤지 상품 리스트 끝 ---------------
 	
 
@@ -31,10 +41,6 @@ public interface ItemDAO {
 	List<ItemImage> selectitemImagetList(int itmeNo);
 
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
-
-
-
-
 
 
 

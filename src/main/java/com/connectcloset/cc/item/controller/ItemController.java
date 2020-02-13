@@ -60,8 +60,6 @@ public class ItemController {
 	@RequestMapping("/shop/single-product.do")
 	public ModelAndView singleproduct(ModelAndView mav ,@RequestParam("itemNo") int itmeNo){
 
-
-	
 		logger.debug("itmeNo={}", itmeNo);
 		
 		ItemAndImageVO2 item
@@ -92,8 +90,6 @@ public class ItemController {
 			List<ItemAndImageVO2> list = new ArrayList<>();
 			int totalContents = 0;
 			
-			logger.debug("++++++++++++++++brandNo={}", brandNo);
-			
 			if(brandNo.equals("a")) {
 				list = itemService.selectItemAndImageList(cPage, numPerPage);
 				totalContents = itemService.selectItemCount();
@@ -118,7 +114,117 @@ public class ItemController {
 			return mav;
 		}
 		
+		@RequestMapping("/shop/outerList.do")
+		public ModelAndView itemOuterList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectOuterList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectOuterCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/topList.do")
+		public ModelAndView itemTopList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectTopList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectTopCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/bottomList.do")
+		public ModelAndView itemBottomList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectBottomList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectBottomCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/dressList.do")
+		public ModelAndView itemDressList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectDressList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectDressCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/bagList.do")
+		public ModelAndView itemBagList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectBagList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectBagCount();
+			
+			logger.debug("list={}", list);
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		}
 		//===================윤지 상품 리스트 끝=====================
 
-}
 

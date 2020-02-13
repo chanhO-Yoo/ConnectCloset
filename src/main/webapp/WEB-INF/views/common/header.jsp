@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -55,16 +57,17 @@
                                                 <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-002">BALENCIAGA</a></li>
                                             </ul>
                                         </li>
+
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
-                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?itemTypeNo=itype-001">OUTERWEARS</a></li>
-                                                <li><a href="shortcode-social.html">TOPS</a></li>
-                                                <li><a href="shortcode-instagram.html">BOTTOMS</a></li>
-                                                <li><a href="shortcode-list.html">DRESSES</a></li>
-                                                <li><a href="shortcode-progressbar.html">BAGS</a></li>
-                                                <li><a href="shortcode-testimonial.html">SHOES</a></li>
-                                                <li><a href="shortcode-pricing-table.html">ACCESSORIES</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/outerList.do">OUTERWEARS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/topList.do">TOPS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/bottomList.do">BOTTOMS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/dressList.do">DRESSES</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/bagList.do">BAGS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shoesList.do">SHOES</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/accList.do">ACCESSORIES</a></li>
                                             </ul>
                                         </li>
                                     </ul>
