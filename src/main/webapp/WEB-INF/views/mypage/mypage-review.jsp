@@ -39,8 +39,9 @@
                                     <td>${r.orderNo} </td>
                                     <td>${r.itemName} </td>
                                     <td>${r.itemPrice} </td>
+                                  
                                    
-                                    <td><a href="" class="btn btn-success">리뷰 작성</a>
+                                    <td><a href="${pageContext.request.contextPath}/mypage/mypage-reviewEnroll.do?orderNo=${r.orderNo}" class="btn btn-success">리뷰 작성</a>
                                     </td>
                                 </tr>
                                 

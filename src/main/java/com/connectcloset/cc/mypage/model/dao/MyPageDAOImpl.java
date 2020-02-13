@@ -6,7 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Point;
+import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
@@ -32,5 +34,19 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 
 
+	@Override
+	public ReviewOrederList selectOnditemReview(int orderNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mypage.selectOnditemReview",orderNo);
+	}
+
+
+	@Override
+	public int insertReview(Review re) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("mypage.insertReview",re);
+	}
+
+	
 
 }

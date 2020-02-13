@@ -15,6 +15,32 @@ II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on
 	
 	</resultMap>
 
+	<select id="selectOnditemReview"  resultMap="selectOnetReviewMAP" >	
+	SELECT * FROM order_product OP left JOIN  ITEM I ON OP.ITEM_NO = I.ITEM_NO   where order_no= #{orederNo} 
+	</select>
+	<resultMap type="ReviewOrederList" id="selectOnetReviewMAP">
+	
+
+	</resultMap>
+	
+	
+		<insert id="insertReview">
+		insert into review values 
+		
+		(seq_review_no.nextval ,
+		 #{reviewTitle}, 
+		 #{reviewWriter},
+		 #{reviewItemNo},
+		 '12',
+		  #{reviewWriterHeight},
+		  #{reviewWriterWeight},
+		  #{reviewImage},
+		  #{orderNo},
+		  #{reviewContent}
+		  )
+		
+		</insert>
+
 
 </mapper>
     

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
+import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 @Service
@@ -36,7 +38,21 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.selectListReview(memberNo);
 	}
+	
+	@Override
+	public ReviewOrederList selectOnditemReview(int orderNo) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.selectOnditemReview(orderNo);
+	}
 	// -----------주영 리뷰 끝 -------------------
+
+
+
+	@Override
+	public int insertReview(Review re) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.insertReview(re);
+	}
 
 
 

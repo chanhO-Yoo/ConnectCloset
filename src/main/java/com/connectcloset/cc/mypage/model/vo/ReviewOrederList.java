@@ -28,6 +28,10 @@ public class ReviewOrederList implements Serializable {
 	private String orderStatusNo;
 	private String deliveryNo;
 	
+	
+	
+
+	
 	private int itemNo;
 	private String itemName;
 	private int itemPrice;
