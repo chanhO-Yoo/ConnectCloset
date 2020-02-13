@@ -32,11 +32,11 @@
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
-                                        <a href="blog-details.html">
+                                        <a href="blog-details.do">
                                             <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
                                         </a>
                                         <div class="readmore-icon">
-                                            <a href="blog-details.html">
+                                            <a href="blog-details.do">
                                                 <i class="ti-arrow-right"></i>
                                             </a>
                                         </div>
@@ -48,7 +48,7 @@
                                                 <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4><a href="blog-details.html">${blog.blogTitle }</a></h4>
+                                        <h4><a href="blog-details.do">${blog.blogTitle }</a></h4>
                                         <p>${blog.blogContent }  </p>
                                     </div>
                                 </div>
