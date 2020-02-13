@@ -92,6 +92,7 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option>green</option>
 										    	<option>yellow</option>
 										    	<option>white</option>
+										    	<option>black</option>
 											</select>
 										</div>
 	                                </div>

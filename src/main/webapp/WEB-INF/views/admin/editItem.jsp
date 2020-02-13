@@ -101,6 +101,7 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option value="green" ${colorList.contains("green")?"selected":""}>green</option>
 										    	<option value="yellow" ${colorList.contains("yellow")?"selected":""}>yellow</option>
 										    	<option value="white" ${colorList.contains("white")?"selected":""}>white</option>
+										    	<option value="black" ${colorList.contains("black")?"selected":""}>black</option>
 											</select>
 										</div>
 	                                </div>
