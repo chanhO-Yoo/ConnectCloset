@@ -30,7 +30,7 @@ public class WebSocketChat {
 
 	@RequestMapping(value = "/chat.do")
 	public ModelAndView getChatViewPage(ModelAndView mav) {
-		mav.setViewName("caht");
+		mav.setViewName("chat");
 		return mav;
 	}
 
@@ -67,10 +67,12 @@ public class WebSocketChat {
 
 	@OnMessage
 	public void onMessage(String message, Session session) {
-		logger.info("Message From ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
+		logger.info("open");
+		
 		try {
 			final Basic basic = session.getBasicRemote();
-			basic.sendText("이용자 아이디 : " + message);
+			logger.debug("1111111111111111111111111111111111111111111111111111111111111111");
+			basic.sendText("memberId : " + message);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
