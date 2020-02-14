@@ -15,6 +15,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Repository
@@ -131,7 +132,19 @@ public class AdminDAOImpl implements AdminDAO {
 		map.put("orderNo", orderNo);
 		return sqlSession.update("admin.updatedelivery",map);
 	}
-	
+
+
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return sqlSession.selectList("admin.selectSearchDateList",startDate);	
+	}
+
+	@Override
+	public int delivery(String deliveryNo) {
+		return sqlSession.selectOne("admin.delivery",deliveryNo);
+	}
+
+
 	//===================하은 끝==================
 
 
