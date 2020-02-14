@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
-	import=" com.connectcloset.cc.member.model.vo.Member, java.util.*"%>
+	import=" com.connectcloset.cc.member.model.vo.Member, java.util.*,com.connectcloset.cc.item.model.vo.Item "%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%
+int totalPrice = 0;
+List<Item> itemList = (List<Item>)request.getAttribute("itemList");
+Member member = (Member)session.getAttribute("memberLoggedIn");
+%>
 <fmt:requestEncoding value="utf-8" />
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -281,10 +285,10 @@
                                     </div>
                                     <div class="your-order-middle" id="your-order-middle">
                                         <ul>
-                                        
                                         	<c:forEach items="${itemList}" var="item" varStatus="vs">
+                                        	<c:set var="totalPrice" value="${item.itemPrice * item.itemStock}"/>
                                             <li>
-                                            <span class="order-middle-left"><span class="order-name">${item.itemName }</span>  X  ${item.itemStock }</span> <span class="order-price">${item.itemPrice } </span></li>
+                                            <span class="order-middle-left"><span id="itemName" class="order-name">${item.itemName }</span>  X  ${item.itemStock }</span> <span class="order-price">${item.itemPrice* item.itemStock} </span></li>
                                         	</c:forEach>
                                         </ul>
                                     </div>
@@ -297,7 +301,8 @@
                                     <div class="your-order-total">
                                         <ul>
                                             <li class="order-total">Total</li>
-                                            <li>$329</li>
+                                            <li><span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
+                                            <input type="hidden" id="totalPrice"value="${totalPrice }"></input>
                                         </ul>
                                     </div>
                                 </div>
@@ -396,8 +401,30 @@
 
 <script>
 
-
+/*  document.addEventListener('DOMContentLoaded', function(){
+	
+	//let pushModule = document.querySelector("#push_module");//주문
+	
+	//pushModule.addEventListener('click', function(){
+		//let totalPrice = document.querySelector("fmt[type=currency]").innerText.replace(",", "")*1; //총 결제금액
+		//console.log(totalPrice);
+		
+		let $radioChk = $("input[type=radio]:checked").val();
+		//결제수단 선택 유효성
+		if($radioChk===undefined){
+			alert("결제수단을 선택해주세요.");
+			return;
+	} 
+	 */
+	
 	$("#push_module").click(function () {
+		var itemName = $('#itemName')[0].innerText; 
+		var totalPrice =$('#totalPrice').val();
+
+		
+		
+		console.log(itemName);
+		console.log(totalPrice);
 		
 	//아임포트 변수 초기화	
 	var IMP = window.IMP; // 생략가능
@@ -409,21 +436,39 @@
 	pg: 'inicis', // version 1.1.0부터 지원.
 	pay_method: 'card',
 	merchant_uid: 'connectcloset' + new Date().getTime(),
-	name: '상품명',
+	name: itemName,
 //결제창에서 보여질 이름
-	amount: 1000,
+	amount: totalPrice,
+	//amount: 1000,
 //가격
 
-	buyer_email: 'iamport@siot.do',
-	buyer_name: '구매자이름',
-	buyer_tel: '010-1234-5678',
-	buyer_addr: '서울특별시 강남구 삼성동',
-	buyer_postcode: '123-456',
+	buyer_email: '<%=member.getMemberEmail()%>',
+	buyer_name: '<%=member.getMemberName()%>',
+	buyer_tel: '<%=member.getMemberPhone()%>',
+	buyer_addr: '<%=member.getMemberAddress()%>',
+	buyer_postcode: '<%=member.getMemberDetailAddress()%>',
 	m_redirect_url: 'https://www.yourdomain.com/payments/complete'
 
 }, function (rsp) {
 	console.log(rsp);
-	
+	<%-- $.ajax({
+		url: "${pageContext.request.contextPath}/order/paymentsComplete",
+		type: "post",
+		data: {
+			merchant_uid: rsp.merchant_uid,
+			imp_uid: rsp.imp_uid,
+			memberId: "<%=member.getMemberEmail()%>",
+			payMethod: "card",
+			//totalItemEa: 1,
+			totalPrice: totalPrice
+			usePoint: userPoint,
+			itemNo: <%=item.getItemNo()%>,
+			rentType: "<%=rentOptNo%>",
+			ea: <%=ea%>
+		},
+		dataType: "json" --%>
+			
+			
 	if (rsp.success) {
 	var msg = '결제가 완료되었습니다.';
 	msg += '고유ID : ' + rsp.imp_uid;
@@ -432,7 +477,7 @@
 	msg += '카드 승인번호 : ' + rsp.apply_num;
 		
 	//성공 시 이동 페이지
-	//location.href="${pageContext.request.contextPath}/cc;
+	location.href="${pageContext.request.contextPath}/orderEnd.do?";
 	
 	} else {
 		var msg = '결제에 실패하였습니다.';
@@ -442,6 +487,8 @@
 	}
 });
 });
+	
+/* });  */
 </script>
 
 <script>
