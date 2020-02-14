@@ -43,6 +43,8 @@ public interface AdminDAO {
 
 	List<PersonalQnaAns> adminPQnaAns(int pQnaNo);
 
+	List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage);
+	
 	//===================찬호 끝===================
 	
 	//===================하은 시작===================
@@ -53,6 +55,7 @@ public interface AdminDAO {
 	List<OrderProduct> selectOrderList();
 
 	int updatedelivery(String deliveryNo, String orderNo);
+
 
 	
 	//===================하은 끝===================

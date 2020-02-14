@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,6 +27,7 @@ import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Controller
 public class AdminController {
@@ -106,33 +108,6 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/itemList.do")
-	public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
-		
-		final int numPerPage = 9;
-		
-		List<Item> list = adminService.selectItemList(cPage,numPerPage);
-		logger.debug("list={}",list);
-		
-		List<ItemImage> imageList = adminService.selectAllItemImageList(cPage,numPerPage);
-		logger.debug("imageList={}",imageList);
-		
-		int totalContents = adminService.selectItemCount();
-		logger.debug("totalBoardCount={}",totalContents);
-		
-		mav.addObject("list", list);
-		mav.addObject("numPerPage", numPerPage);
-		mav.addObject("cPage", cPage);
-		mav.addObject("totalContents", totalContents);
-		
-		mav.addObject("imageList",imageList);
-		
-		mav.setViewName("admin/itemList");
-
-		
-		return mav;
-	}
-	
-	@RequestMapping("/admin/itemList2.do")
 	public ModelAndView itemList2(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 		
 		final int numPerPage = 9;
@@ -156,9 +131,8 @@ public class AdminController {
 		mav.addObject("cPage", cPage);
 		mav.addObject("totalContents", totalContents);
 		
-		mav.setViewName("admin/itemList2");
+		mav.setViewName("admin/itemList");
 
-		
 		return mav;
 	}
 	
@@ -303,6 +277,23 @@ public class AdminController {
 		
 		return mav;
 	}
+	@RequestMapping("/admin/adminSearchItem.do")
+	@ResponseBody
+	public ModelAndView adminSearchItem(ModelAndView mav, String searchKeyword,  @RequestParam(defaultValue="1") int cPage) {
+		logger.debug("searchKeyword={}",searchKeyword);
+		
+		final int numPerPage = 9;
+				
+		List<ItemAndImageVO> list = adminService.adminSearchItem(searchKeyword,cPage,numPerPage);
+		logger.debug("searchList={}",list);
+		
+		mav.addObject("list",list);
+		
+		mav.setViewName("jsonView");
+		
+		return mav;
+	}
+	
 	//===================찬호 끝===================
 	//===================하은 시작===================
 	/*	@RequestMapping("/admin/deliveryList.do")
