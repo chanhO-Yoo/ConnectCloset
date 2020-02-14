@@ -18,6 +18,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Service
@@ -172,6 +173,13 @@ public class AdminServiceImpl implements AdminService {
 	public List<OrderProduct> selectSearchDateList(int startDate) {
 		return adminDAO.selectSearchDateList(startDate);
 	}
+
+	@Override
+	public int delivery(String deliveryNo) {
+		return  adminDAO.delivery(deliveryNo);
+	}
+
+
 	
 	//===================하은 끝===================
 	

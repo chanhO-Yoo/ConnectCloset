@@ -77,8 +77,35 @@ button {
 <!-- <form id="dateShow"> -->
 <section id="board-container" class="container pt-150">
 	 <div class="checkout-area pt-95 pb-100" >
-		<p>총 ${totalContents }개의 주문건이 있습니다.</p>
-            <div class="container">
+		<span>총 </span><span style="color:tomato;">${totalContents }</span><span>개의 주문건이 있습니다.</span>
+	
+		
+		<table class="table" id="deliShow"
+			style="text-align: center; background-color: lightgray;">
+			<tr>
+				<th>주문완료</th>
+				<th>구매확정</th>
+				<th>주문취소</th>
+				<th>상품교환</th>
+				<th>상품반품</th>
+				<th>배송준비중</th>
+				<th>배송중</th>
+				<th>배송완료</th>
+			</tr>
+			<tr>
+				<td>${deliArr[0]}</td>
+				<td>${deliArr[1]}</td>
+				<td>${deliArr[2]}</td>
+				<td>${deliArr[3]}</td>
+				<td>${deliArr[4]}</td>
+				<td>${deliArr[5]}</td>
+				<td>${deliArr[6]}</td>
+				<td>${deliArr[7]}</td>
+
+			</tr>
+
+		</table>
+		<div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <table class="table" id="orderDateShow" style="text-align: center; background-color: lightblue;">
@@ -118,7 +145,7 @@ button {
 								<br />
 								<br />
 								<br /> -->
-	<table id="tbl-board" class="table table-striped table-hover">
+	<table id="tbl-board" class="table table-striped table-hover" style="text-align: center;">
 		<tr>
 			<th>주문번호</th>
 			<th>고객ID</th>
@@ -170,11 +197,9 @@ button {
 	<!-- pageBar 출력 부분 -->
 	${pageBar }
 	</div>
-<!-- </form>
- -->
-
+	
+<!--주문/배송처리 스크립트   -->
 <script>
-/*주문/배송처리 스크립트  */
 	$(".del").change(function(){
 		var x = $(this).children("option:selected").val();
 		var y = $(this).children("option:selected").text(); 
@@ -187,8 +212,8 @@ button {
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-<script>
-
+ <!--구매일로  조회  -->
+ <script>
  function search(sDate) {
 		
 	 console.log(sDate);
@@ -229,3 +254,71 @@ button {
 };
 	
 </script>
+
+ 
+
+
+<!--날짜조회 페이지바 처리  -->
+<!-- <script>
+
+var order = {};
+var IstCnt = 9;
+
+order.orderList = {
+		
+		 init : function(cmpnNo, lstCnt) {
+	            var page = 1;
+	            order.orderList.param.pageNumber = Number(page);
+	            order.orderList.param.cmpnNo = cmpnNo;
+	            order.orderList.param.pageSize = lstCnt;
+	            order.orderList.param.data();
+	            
+	            console.log("cmpNo==="+cmpNo+"cmpNo==="+lstCnt);
+		 },
+		 data : function() {
+	            $.ajax({
+	            	 url : "${pageContext.request.contextPath}/admin/searchDate/deliveryList.do?startDate="+sDate,
+	                 data : order.orderList.param,
+	                 success : function(result) {
+	                     var orderList = result.orderList;
+	                     if(orderList.length != 0){
+	                    	 order.orderList.totalCount = orderList[0].totalCount; // 총 건수
+	                     };
+	                     drawPagination(lstCnt);
+	                     var markup ="";    // mark 로직 작성
+	                     $("#dateShow-result").html(markup);
+	                 },
+	                 error : function() {
+	                     alert('조회 중 오류가 발생했습니다.');
+	                 }
+	             });
+	         },
+	         param : {
+	             pageNumber : 1,
+	             pageSize : lstCnt
+	         },
+	         totalCount : 0
+	     };
+	     
+//페이징을 설정하고 페이징 영역에 화면에 그리는 함수
+function drawPagination(lstCnt){
+    $("#boardPagingDiv").pagination({
+       items: order.orderList.totalCount,
+       currentPage : order.orderList.param.pageNumber,
+       itemsOnPage: lstCnt, // 설정 안할 경우 10
+       displayedPages : lstCnt, // 설정 안할 경우 10
+       selectOnClick : false, // 페이징 버튼을 눌렀을 때 자동으로 페이징을 다시 그릴지 여부 (기본값은 true)
+       onPageClick: function(currentPage){ // 페이징 버튼을 눌렀을 때 이벤트 바인딩
+           searchOrderListPaging(currentPage); // 페이징 버튼을 눌렀을 때 다시 비동기로 데이터를 가져와 화면과 페이징을 그립니다.
+       }
+   });
+}
+	     
+//페이징 번호 눌렀을때 함수
+function searchOrderListPaging (page) {
+	order.orderList.param.pageNumber = Number(page);
+	order.orderList.data();
+    drawPagination(lstCnt);
+}   
+	      
+</script> -->

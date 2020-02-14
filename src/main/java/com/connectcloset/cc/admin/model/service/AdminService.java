@@ -7,6 +7,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public interface AdminService {
@@ -40,6 +41,10 @@ public interface AdminService {
 	int updatedelivery(String deliveryNo, String orderNo);
 	
 	List<OrderProduct> selectSearchDateList(int startDate);
+	
+//	List<Delivery> selectDeliveryList(int delivery, String deliveryStatus);
+	int delivery(String deliveryNo);
+	
 
 	//===================하은 끝===================
 }

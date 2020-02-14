@@ -25,6 +25,7 @@ import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
@@ -301,6 +302,7 @@ public class AdminController {
 		return mav;
 	}
 	//===================찬호 끝===================
+
 	//===================하은 시작===================
 	/*	@RequestMapping("/admin/deliveryList.do")
 		public ModelAndView deliveryList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
@@ -310,7 +312,6 @@ public class AdminController {
 			List<Item> list = adminService.selectItemList(cPage,numPerPage);
 			logger.debug("list={}",list);
 			
-			
 			int totalContents = adminService.selectItemCount();
 			logger.debug("totalBoardCount={}",totalContents);
 			
@@ -319,10 +320,7 @@ public class AdminController {
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
 			
-			
 			mav.setViewName("admin/deliveryList");
-
-			
 			return mav;
 		}
 		*/
@@ -337,19 +335,29 @@ public class AdminController {
 			List<OrderProduct> list = adminService.selectOrderList(cPage,numPerPage);
 			logger.debug("list={}",list);
 			
-			
 			int totalContents = adminService.selectOrderCount();
 			logger.debug("totalBoardCount={}",totalContents);
 			
+			int[] deliArr = {0,0,0,0,0,0,0,0};
+			
+			 deliArr[0] = adminService.delivery("os-001");//주문완료
+			 deliArr[1] = adminService.delivery("os-002");//구매확정
+			 deliArr[2] = adminService.delivery("os-003");//주문취소
+			 deliArr[3] = adminService.delivery("os-004");//상품교환
+			 deliArr[4] = adminService.delivery("os-005");//상품반품
+			 deliArr[5] = adminService.delivery("deli-001");//배송준비중
+			 deliArr[6] = adminService.delivery("deli-002");//배송중
+			 deliArr[7] = adminService.delivery("deli-003");//배송완료
+		
+			logger.debug("deliArr={}",deliArr);
+			
 			mav.addObject("list", list);
+			mav.addObject("deliArr",deliArr);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
 			
-			
-			mav.setViewName("admin/deliveryList");
-
-			
+			mav.setViewName("admin/deliveryList");	
 			return mav;
 		}
 		
@@ -359,12 +367,9 @@ public class AdminController {
 			@RequestParam String deliveryNo,
 			@RequestParam String orderNo) {
 				
-				
 			int result = adminService.updatedelivery(deliveryNo,orderNo);
 			logger.debug("result={}",result);
 				
-			//mav.addObject("deliveryNo",deliveryNo);
-			//mav.addObject("deliveryNo",orderNo);
 			mav.addObject(result);
 			mav.setViewName("redirect:/admin/deliveryList.do");
 				
@@ -372,21 +377,18 @@ public class AdminController {
 			}
 			
 		@RequestMapping("/admin/searchDate/deliveryList.do")
-		//@GetMapping("/admin/test/deliveryList.do")
 		@ResponseBody
-		//@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 		private List<OrderProduct> deliverySearch(@RequestParam int startDate) {
 			logger.debug("startDate={}",startDate);
 			
-			/*ModelAndView mav = new ModelAndView("jsonView");*/
-			
 			List<OrderProduct> list = adminService.selectSearchDateList(startDate);
-			/*mav.addObject("list", list);*/
-			logger.debug("test");
+			logger.debug("list={}",list);
 			
 			return list;
 			
 		}
+		
+		
 		
 			/*//db에서 order_product테이블 내용을 불러와 deliveryList.jsp출력
 			@RequestMapping("/admin/deliveryList.do")

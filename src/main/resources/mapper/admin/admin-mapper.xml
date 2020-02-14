@@ -153,6 +153,12 @@
 	<select id="selectSearchDateList" resultMap="orderProductMap">		
 		select * from order_product, item
 		where  order_product.item_no = item.item_no and order_date > sysdate-#{startDate}
+		order by order_date desc
+	</select>
+	
+	<select id="delivery" resultType="_int">
+	select count(*) from order_product, item
+		where order_product.item_no = item.item_no and delivery_no=#{deliveryNo}
 		order by order_no desc
 	</select>
 	

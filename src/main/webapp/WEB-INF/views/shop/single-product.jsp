@@ -123,7 +123,7 @@
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                    <a class=" btn-hover" href="#"><i class="ti-heart"></i></a>
+                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}"><i class="ti-heart"></i></a>
                                 </div>
                             </div>
                             <div class="pro-details-info-wrap">
