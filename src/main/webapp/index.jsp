@@ -393,7 +393,7 @@ width: 25%;
                 rowItem += '<td>' + data.weather[0].main + '</td>';
                 rowItem +=
                   '<td>' + data.weather[0].description + '</td>';
-                rowItem += '<td>' + data.wind.speed + 'm/s' + '</td>';
+                rowItem += '<td><img src="${pageContext.request.contextPath }/resources/img/weather/wind.png" alt="" width="50px" height="50px">' + data.wind.speed + 'm/s' + '</td>';
                 rowItem += '<td>' + data.name + '</td>';
                 rowItem += '</tr>';
                 $('#current_mytbody').append(rowItem);

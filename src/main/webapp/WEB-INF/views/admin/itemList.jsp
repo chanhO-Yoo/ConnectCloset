@@ -14,8 +14,8 @@
 	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
 	
 	pageContext.setAttribute("pageBar", pageBar);
-	
 %>
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
