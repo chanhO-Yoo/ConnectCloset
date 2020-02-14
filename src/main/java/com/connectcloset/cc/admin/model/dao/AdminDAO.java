@@ -44,6 +44,8 @@ public interface AdminDAO {
 
 	List<PersonalQnaAns> adminPQnaAns(int pQnaNo);
 
+	List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage);
+	
 	//===================찬호 끝===================
 	
 	//===================하은 시작===================

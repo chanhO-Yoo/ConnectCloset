@@ -143,6 +143,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminPQnaAns(pQnaNo);
 	}
 
+	@Override
+	public List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage) {
+		return adminDAO.adminSearchItem(searchKeyword,cPage,numPerPage);
+	}
 	
 	//===================찬호 끝===================
 
@@ -178,6 +182,8 @@ public class AdminServiceImpl implements AdminService {
 	public int delivery(String deliveryNo) {
 		return  adminDAO.delivery(deliveryNo);
 	}
+
+
 
 
 	

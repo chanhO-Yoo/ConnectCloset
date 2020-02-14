@@ -104,6 +104,12 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<PersonalQnaAns> adminPQnaAns(int pQnaNo) {
 		return sqlSession.selectList("admin.adminPQnaAns",pQnaNo);
 	}
+	
+	@Override
+	public List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.adminSearchItem","%"+searchKeyword+"%",rowBounds);
+	}
 	//===================찬호 끝===================
 
 	//===================하은 시작=================
