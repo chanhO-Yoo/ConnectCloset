@@ -28,6 +28,7 @@ public interface AdminService {
 	int adminPQnaEnd(PersonalQnaAns pQnaAns);
 	List<PersonalQnaAns> adminPQnaAns(int pQnaNo);
 	List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage);
+	int selectSearchItemCount(String searchKeyword);
 
 	//===================찬호 끝===================
 

@@ -110,6 +110,11 @@ public class AdminDAOImpl implements AdminDAO {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
 		return sqlSession.selectList("admin.adminSearchItem","%"+searchKeyword+"%",rowBounds);
 	}
+	
+	@Override
+	public int selectSearchItemCount(String searchKeyword) {
+		return sqlSession.selectOne("admin.selectSearchItemCount","%"+searchKeyword+"%");
+	}
 	//===================찬호 끝===================
 
 	//===================하은 시작=================
@@ -149,6 +154,8 @@ public class AdminDAOImpl implements AdminDAO {
 	public int delivery(String deliveryNo) {
 		return sqlSession.selectOne("admin.delivery",deliveryNo);
 	}
+
+
 
 
 	//===================하은 끝==================

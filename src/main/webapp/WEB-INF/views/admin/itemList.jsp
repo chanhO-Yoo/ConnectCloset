@@ -116,24 +116,26 @@ function search(event) {
 	 event.preventDefault();
 	
 	var searchKeyword = $("#searchKeyword").val();
+	var cPage = 1;
 	console.log("++"+searchKeyword);
 	
 	$.ajax({
-		url: "${pageContext.request.contextPath }/admin/adminSearchItem.do?searchKeyword="+searchKeyword,
+		url: "${pageContext.request.contextPath }/admin/adminSearchItem.do?searchKeyword="+searchKeyword+"&cPage"+cPage,
 		dataType: "json",
 		type: "GET",
 		success: data=>{
 			console.log(data);
-			let html="";
 			
-			for(let i in data){
-    			let n = data[i];
+ 			let html="";
+			
+			for(let i in data.list){
+    			let n = data.list[i];
 			html += "<div class='col-xl-4 col-lg-4 col-md-4 item-hidden grid-item'>"
             	 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
             	 + "<div class='blog-img hover-3'>"
                  + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
                  + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>"
-/*                  + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
+                 /* + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
                  + "</a>"
                  + "<div class='readmore-icon'>"
                  + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
@@ -152,6 +154,12 @@ function search(event) {
 			}
 			$("#itemList").html(html);
 			
+			var url = "adminSearchItem.do?searchKeyword="+searchKeyword;
+			
+			let pageBar= pageBarFunc(data.totalContents, data.cPage, data.numPerPage, url);
+			
+			console.log(pageBar);
+			$("#pagination").html(pageBar);
 			
 		},
 		error: (x,s,e) => {
@@ -161,5 +169,121 @@ function search(event) {
 	})
 	
 	return false;
+}
+
+function changePage(cPage) {
+	
+	var searchKeyword = $("#searchKeyword").val();
+
+	console.log(cPage);
+	
+	console.log("++"+searchKeyword);
+	
+	$.ajax({
+		url: "${pageContext.request.contextPath }/admin/adminSearchItem.do?searchKeyword="+searchKeyword+"&cPage="+cPage,
+		dataType: "json",
+		type: "GET",
+		success: data=>{
+			console.log(data);
+			
+			let html="";
+			
+			for(let i in data.list){
+   			let n = data.list[i];
+			html += "<div class='col-xl-4 col-lg-4 col-md-4 item-hidden grid-item'>"
+           	 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
+           	 + "<div class='blog-img hover-3'>"
+                + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
+                + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>"
+                /* + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
+                + "</a>"
+                + "<div class='readmore-icon'>"
+                + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
+                + "<i class='ti-arrow-right'></i>"
+                + "</a>"
+                + "</div>"
+                + "</div>"
+           	 + "<div class='blog-content-2' style='height: 250px'>"
+                + "<h4><a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"+n.itemName+"</a></h4>"
+                + "<h5>"+n.itemPrice+"</h5>"
+                + "<p>"+n.itemInfo+"</p>"
+	             + "</div>"
+       		 + "</div>"
+    			 + "</div>";
+			
+			}
+			$("#itemList").html(html);
+			
+			var url = "adminSearchItem.do?searchKeyword="+searchKeyword;
+			
+			let pageBar= pageBarFunc(data.totalContents, data.cPage, data.numPerPage, url);
+			
+			console.log(pageBar);
+			$("#pagination").html(pageBar);
+			
+		},
+		error: (x,s,e) => {
+			console.log("ajax요청실패",x,s,e);
+		}
+		
+	})
+	
+	return false;
+}
+
+function pageBarFunc(totalContents, cPage, numPerPage, url){
+	var pageBar = "";
+	//페이지바 길이
+	var pageBarSize= 5;
+	//총페이지
+	var totalPage = Math.ceil(totalContents/numPerPage);
+	console.log(Math.floor((cPage-1)/pageBarSize));
+	var pageStart = Math.floor((cPage-1)/pageBarSize) * pageBarSize + 1;
+	var pageEnd = pageStart + pageBarSize -1;
+	//페이지바 순회용 증감변수
+	var pageNo = pageStart;
+	
+	//[이전]
+	if(pageNo == 1) {
+		pageBar += "<li class=\"page-item disabled\">" + 
+				"      <a class=\"page-link\" href=\"#\" tabindex=\"-1\" aria-disabled=\"true\">이전</a>" + 
+				"    </li>";
+	}
+	else {
+		pageBar += "<li class=\"page-item\">"
+				+ "<a class=\"page-link\" href=\"javascript:changePage("+(pageNo-1)+");\">이전</a>"
+				+ "</li>";
+	}
+	
+	//[pageNo]
+	while(!(pageNo>pageEnd || pageNo>totalPage)) {
+		if(pageNo == cPage) {
+			pageBar += "<li class=\"page-item\">"
+					+ "<a class=\"page-link\">"+pageNo+"</a>"
+					+ "</li>";
+		}
+		else {
+			pageBar += "<li class=\"page-item\">"
+					+ "<a class=\"page-link\" href=\"javascript:changePage("+pageNo+");\">"+pageNo+"</a>"
+					+ "</li>";
+		}
+		pageNo++;
+	}
+	
+	
+	//[다음]
+	if(pageNo > totalPage) {
+		pageBar += "<li class=\"page-item disabled\">" + 
+				"      <a class=\"page-link\" href=\"#\" tabindex=\"-1\" aria-disabled=\"true\">다음</a>" + 
+				"    </li>";
+	}
+	else {
+		pageBar += "<li class=\"page-item\">"
+				+ "<a class=\"page-link\" href=\"javascript:changePage("+pageNo+");\">다음</a>"
+				+ "</li>";
+	}
+	
+	return pageBar;
+	
 }
 </script>

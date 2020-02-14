@@ -20,7 +20,7 @@ public class Utils {
 		//페이지바 순회용 증감변수
 		int pageNo =pageStart;
 		
-		pageBar += "<ul class=\"pagination justify-content-center\">";
+		pageBar += "<ul id=\"pagination\" class=\"pagination justify-content-center\">";
 		
 		//[이전]
 		if(pageNo == 1) {

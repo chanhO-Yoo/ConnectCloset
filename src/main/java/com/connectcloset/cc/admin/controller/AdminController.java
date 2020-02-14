@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -282,19 +284,27 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/adminSearchItem.do")
 	@ResponseBody
-	public ModelAndView adminSearchItem(ModelAndView mav, String searchKeyword,  @RequestParam(defaultValue="1") int cPage) {
+	public Map<String,Object> adminSearchItem(ModelAndView mav, String searchKeyword,  @RequestParam(defaultValue="1") int cPage) {
 		logger.debug("searchKeyword={}",searchKeyword);
+		
+		Map<String, Object> map = new HashMap<>();
 		
 		final int numPerPage = 9;
 				
 		List<ItemAndImageVO> list = adminService.adminSearchItem(searchKeyword,cPage,numPerPage);
 		logger.debug("searchList={}",list);
 		
-		mav.addObject("list",list);
+		int totalContents = adminService.selectSearchItemCount(searchKeyword);
+		logger.debug("totalBoardCount={}",totalContents);
 		
-		mav.setViewName("jsonView");
+		map.put("list",list);
+		map.put("numPerPage",numPerPage);
+		map.put("cPage",cPage);
+		map.put("totalContents", totalContents);
 		
-		return mav;
+		logger.debug("여기까지는 왔냐???");
+		
+		return map;
 	}
 	
 	//===================찬호 끝===================
