@@ -13,8 +13,11 @@ div#board-container label.custom-file-label{text-align:left;}
 </style>
 	<div class="pt-100">
         <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
-
-	        <div class="single-product-area pt-80 pb-80">
+			<div class="pro-details-cart pt-80 col-lg-2 offset-lg-5">
+				<a class="default-btn btn-hover" href="#" onclick="showClothSize()">의류</a>
+				<a class="default-btn btn-hover" href="#" onclick="showShoesSize()">신발</a>
+			</div>
+	        <div class="single-product-area pt-40 pb-80">
 	            <div class="container">
 	                <div class="row">
 	                    <div class="col-lg-6">
@@ -89,14 +92,16 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option>green</option>
 										    	<option>yellow</option>
 										    	<option>white</option>
+										    	<option>black</option>
 											</select>
 										</div>
 	                                </div>
-	                                
-	                                <div class="pro-details-size2">
-	                                    <span>Size</span>
-	                                     <div class="form-group">
+	                                <div class="pro-details-color2-wrap">
+	                                	<span>Size</span>
+	                                    <div class="form-group" id="size_div">
 										    <select multiple class="form-control" id="sizeSelect" name="itemSize" style="width:170px">
+										    	<option>xxs</option>
+										    	<option>xs</option>
 										    	<option>s</option>
 										    	<option>m</option>
 										    	<option>l</option>
@@ -233,6 +238,16 @@ div#board-container label.custom-file-label{text-align:left;}
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <script>
+	function showClothSize(){
+		var options = "<option>xxs</option><option>xs</option><option>s</option><option>m</option><option>l</option><option>xl</option><option>xxl</option>";
+		$("#sizeSelect").html(options);
+	}
+
+	function showShoesSize(){
+		var options = "<option>220</option><option>230</option><option>240</option><option>250</option><option>260</option><option>270</option><option>280</option><option>290</option>";
+		$("#sizeSelect").html(options);
+	}
+
 	$(function(){
 		//파일 선택,취소시에 파일명 노출하기
 		$("[name=upFile]").on("change",function(){
@@ -325,4 +340,6 @@ div#board-container label.custom-file-label{text-align:left;}
 			reader.readAsDataURL(f);
 		});
 	}
+	
+	
 </script>

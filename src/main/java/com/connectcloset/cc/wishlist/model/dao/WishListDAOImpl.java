@@ -25,6 +25,11 @@ public class WishListDAOImpl implements WishListDAO {
 	public int wishlistInsert(Map<String, Integer> map) {
 		return sqlSession.insert("wishlist.wishlistInsert",map);
 	}
+
+	@Override
+	public int wishlistDelete(Map<String, Integer> map) {
+		return sqlSession.delete("wishlist.wishlistDelete",map);
+	}
 	
 
 }

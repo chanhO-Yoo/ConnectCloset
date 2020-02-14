@@ -22,13 +22,13 @@
                 </div>
             </div>
         </div>
-        
        
         <div class="blog-area pt-80 pb-80 gray-bg-4 container-padding-res blog-sidebar-page">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 col-lg-8 pro-col-40">
                         <div class="row grid" data-show="9" data-load="3">
+                    <c:forEach items="${list}" var="blog" varStatus="vs">
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
@@ -44,16 +44,17 @@
                                     <div class="blog-content-2">
                                         <div class="blog-meta-3">
                                             <ul>
-                                                <li>22 April, 2018</li>
+                                                <li>${blog.blogDate }</li>
                                                 <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h4><a href="blog-details.html">Karla Welch Launches Her Levi’s Collaboration</a></h4>
-                                        <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
+                                        <h4><a href="blog-details.html">${blog.blogTitle }</a></h4>
+                                        <p>${blog.blogContent }  </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                                </c:forEach>
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -76,8 +77,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                   <%--          <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -100,8 +101,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                  <%--           <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -124,8 +125,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                  <%--           <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -148,8 +149,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas...  </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                      <%--       <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -172,8 +173,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                        <%--     <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -196,8 +197,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -220,8 +221,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                   <%--          <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -244,8 +245,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                       <%--      <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -268,8 +269,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                            <%-- <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -292,8 +293,8 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
+                            </div> --%>
+                     <%--        <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow">
                                     <div class="blog-img hover-3">
                                         <a href="blog-details.html">
@@ -316,7 +317,7 @@
                                         <p>Aenean sollicitudiln, lorem quis on endum auctor nisi elitod the cona sequat at ipsum, necas... </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --%>
                         </div>
                         <div class="pro-load-more load-more-border text-center mt-10">
                             <a class="load-more-toggle default-btn btn-hover" href="#">Load More Posts </a>
@@ -325,11 +326,16 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
-                                <form class="pro-sidebar-search-form" action="#">
+<!--                                 <form class="pro-sidebar-search-form" action="#">
                                     <input type="text" placeholder="Search here...">
                                     <button>
                                         <i class="ti-search"></i>
-                                    </button>
+                                    </button> -->
+                                    <div>
+										<button>
+										<a href="${pageContext.request.contextPath }/blog/blogForm.do">글쓰기</a>
+										</button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="sidebar-widget mb-55">
@@ -375,19 +381,108 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget mt-55">
-                                <div class="facebook-banner-wrap default-overlay-2">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/resources/img/banner/banner-17.jpg" alt=""></a>
-                                    <div class="facebook-banner-content">
-                                        <i class="ti-facebook"></i>
-                                        <h4>FaceboOk Fans Page</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<style>
+.chat_list_wrap {
+  list-style: none;
+}
+.chat_list_wrap .header {
+  font-size: 14px;
+  padding: 15px 0;
+  background: #F18C7E;
+  color: white;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+}
+</style>
+
+<!--실시간 채팅  -->
+<div class="chat_list_wrap">
+<div class="header">
+ConnectClost Chat
+</div>
+<div>
+<%-- <c:forEach items="${list}" var="chat" varStatus="vs"> --%>
+	<!-- 채팅 -->
+      <input type="text" id="sender" value="" style="display: none;">  
+	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
+
+	 <input type="text" id="messageinput"> <button type="button" onclick="send();">Send</button>
+<%-- </c:forEach> --%>
+ 
+
+        <button type="button" onclick="openSocket();">IN</button>
+       
+        <button type="button" onclick="closeSocket();">OUT</button>
+</div>
+</div>
+​
+    
+    
+		
+   
+    <!-- Server responses get written here -->
+	
+    <div id="messages" ></div> 
+   
+    <!-- websocket javascript -->
+    <script type="text/javascript">
+        var ws;
+        var messages = document.getElementById("messages");
+        
+        function openSocket(){
+            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
+            	 return;
+            	writeResponse("이미 참여되어있습니다.");
+               
+            }
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket("ws://localhost:9090/cc/chat.do");
+        
+            ws.onopen=function(event){
+                if(event.data === undefined) return;
+                
+                writeResponse(event.data);
+            };
+            
+            ws.onmessage = function(event){
+                writeResponse(event.data);
+            };
+            
+            ws.onclose = function(event){
+                writeResponse("채팅방을 나왔습니다.");
+            };
+        }
+        
+        function send(){
+            var text = document.getElementById("sender").value + document.getElementById("messageinput").value;
+            ws.send(text);
+            text = "";
+        };
+        
+        function closeSocket(){
+            ws.close();
+        };
+        
+        function writeResponse(text){
+            messages.innerHTML += "<br/>" + text;
+        };
+        
+  </script>
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
