@@ -173,7 +173,29 @@ width: 25%;
 
 }
 </style>
-​
+
+<script>
+function NaverKeyWord(){
+    $Curl = curl_init();
+    curl_setopt($Curl, CURLOPT_URL, "https://datalab.naver.com/keyword/realtimeList.naver?where=main");
+    curl_setopt($Curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($Curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $Result = curl_exec($Curl);
+    $RandList = explode("<ul class=\"rank_list\">", $Result);
+    $RandList = explode("</ul>", $RandList[1]);
+    $Rand[0] = explode("<span class=\"title\">", $RandList[0]);
+    for($i=1; $i < count($Rand[0]); $i++){
+    $Rand[1] = explode("</span>", $Rand[0][$i]);
+        $ReturnData = trim(strip_tags($Rand[1][0]));
+        if($ReturnData){
+            $Return[] = $ReturnData;
+        }
+    }
+    return $Return;
+}
+$NaverKeyWord = NaverKeyWord();
+print_r($NaverKeyWord);
+​</script>
  <h3>채팅</h3>
 ​<div id="div_chat">
 	<!-- 채팅 -->
@@ -299,7 +321,7 @@ width: 25%;
                     <div class="col-lg-5 col-md-6">
                      <c:set var = "Temp" scope = "session" />
                         <div class="discount-content">
-                            <h2> Fit for today's weather <br><span id="temp"></span>+'℃' </h2>
+                            <h2> Fit for today's weather <br><span id="temp"></span>℃ </h2>
 									
                             <p class="bright-color">
 										Connect Closet is ready for you to worry about what to wear every day. 

@@ -88,7 +88,7 @@
                                     <thead>
                                         <tr>
                                             <th class="cart-product">Product</th>
-                                            <th class="cart-price"> colors  </th>
+                                            <th class="cart-price"> colors  </th>                                           
                                             <th  class="cart-qty"> QTY </th>
                                             <th class="cart-total">price</th>
                                             <th></th>
@@ -102,6 +102,8 @@
 		                                          <a class="cart-name" href="#"> ${cart.ITEM_NAME} </a> 
 		                                     </td>
 		                                         <td class="cart-price"><span class="amount">${cart.ITEM_COLORS }</span></td>
+		                                    
+		                                         
 		                                            <td class="cart-quantity">
 		                                               <div class="pro-dec-cart">${cart.ITEM_QUANTITY }</div></td>
 		                                            <td class="cart-subtotal"><span>${cart.ITEM_PRICE }</span></td>
