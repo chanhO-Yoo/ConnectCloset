@@ -15,6 +15,7 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Repository
@@ -103,6 +104,17 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<PersonalQnaAns> adminPQnaAns(int pQnaNo) {
 		return sqlSession.selectList("admin.adminPQnaAns",pQnaNo);
 	}
+	
+	@Override
+	public List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.adminSearchItem","%"+searchKeyword+"%",rowBounds);
+	}
+	
+	@Override
+	public int selectSearchItemCount(String searchKeyword) {
+		return sqlSession.selectOne("admin.selectSearchItemCount","%"+searchKeyword+"%");
+	}
 	//===================찬호 끝===================
 
 	//===================하은 시작=================
@@ -131,7 +143,21 @@ public class AdminDAOImpl implements AdminDAO {
 		map.put("orderNo", orderNo);
 		return sqlSession.update("admin.updatedelivery",map);
 	}
-	
+
+
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return sqlSession.selectList("admin.selectSearchDateList",startDate);	
+	}
+
+	@Override
+	public int delivery(String deliveryNo) {
+		return sqlSession.selectOne("admin.delivery",deliveryNo);
+	}
+
+
+
+
 	//===================하은 끝==================
 
 
