@@ -31,8 +31,13 @@
 		select count(*) from blog
 	</select> 
 
-	<select id="selectOneBlog">
+	<select id="selectOneBlog" resultType="blog">
 		select * from blog where blog_No= #{blogNo}
+	</select>
+	
+	<resultMap type="attachment" id="attachment"></resultMap>
+	<select id="selectAttachmentList" parameterType="_int" resultMap="attachment">
+		SELECT * FROM ATTACHMENT WHERE BLOGNO = #{blogNo}
 	</select>
 	 
 	 <select id="selectOneBlogCollection" resultMap="blogCollectionMap">

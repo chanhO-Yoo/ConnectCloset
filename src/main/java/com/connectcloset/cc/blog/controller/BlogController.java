@@ -165,8 +165,7 @@ public class BlogController {
 		return mav;
 	}
 	
-/*	@RequestMapping("/blog/blogView.do")
-	public String blogView (Model model,
+/*	public String blogView (Model model,
 								  @RequestParam ("blogNo") int blogNo) {
 		
 		Blog blog = blogService.selectOneBlog(blogNo);
