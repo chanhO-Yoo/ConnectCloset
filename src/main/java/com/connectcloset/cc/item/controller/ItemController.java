@@ -1,7 +1,9 @@
 package com.connectcloset.cc.item.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,6 +118,41 @@ public class ItemController {
 			return mav;
 		}
 		
+		//상품 타입 리스트
+		@RequestMapping("/shop/shopItemTypeList.do")
+		public ModelAndView itemTypeList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String itemTypeNo) {
+
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = new ArrayList<>();
+			int totalContents = 0;
+			
+			if(itemTypeNo.equals("a")) {
+				list = itemService.selectItemAndImageList(cPage, numPerPage);
+				totalContents = itemService.selectItemCount();
+			}
+			else {
+				list = itemService.selectItemAndImageTypeList(cPage, numPerPage, itemTypeNo);
+				totalContents = itemService.selectTypeItemCount(itemTypeNo);
+			}
+			
+			logger.debug("list={}", list);
+			
+			
+			logger.debug("totalBoardCount={}", totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("itemTypeNo", itemTypeNo);
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
 		@RequestMapping("/shop/outerList.do")
 		public ModelAndView itemOuterList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 			final int numPerPage = 9;
@@ -127,6 +164,17 @@ public class ItemController {
 			logger.debug("list={}", list);
 			
 			logger.debug("totalBoardCount={}", totalContents);
+			
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-001", "아우터");
+			categoryMap.put("itype-010", "코트");
+			categoryMap.put("itype-011", "조끼");
+			categoryMap.put("itype-012", "자켓");
+			categoryMap.put("itype-013", "가디건");
+
+			
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort",1);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);

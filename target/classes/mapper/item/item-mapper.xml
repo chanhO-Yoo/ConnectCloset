@@ -77,6 +77,22 @@
 	<select id="selectBrandItemCount" resultType="_int">
 		select count(*) from item where brand_no = #{brandNo}
 	</select>
+
+	<select id="selectItemAndImageTypeList" resultMap="itemAndImageMap">
+		select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		where brand_no =#{itemTypeNo}
+		order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectTypeItemCount" resultType="_int">
+		select count(*) from item where brand_no = #{itemTypeNo}
+	</select>
 	
 	<select id="selectOuterList" resultMap="itemAndImageMap">
 		select * 

@@ -119,6 +119,17 @@ public class ItemDAOImpl implements ItemDAO {
 	public int selectShoesCount() {
 		return sqlSession.selectOne("item.selectShoesCount");
 	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectItemAndImageBrandList", itemTypeNo, rowBounds);
+	}
+
+	@Override
+	public int selectTypeItemCount(String itemTypeNo) {
+		return sqlSession.selectOne("item.selectBrandItemCount", itemTypeNo);
+	}
 	//===================윤지 상품 리스트  끝=======================	
 		
 		
@@ -135,6 +146,8 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("item.selectOneitemImage",itmeNo);
 	}
+
+
 
 
 

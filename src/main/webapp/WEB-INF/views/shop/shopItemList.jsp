@@ -12,6 +12,8 @@
 	int numPerPage = (int)request.getAttribute("numPerPage");
 	
 	String brandNo = (String)request.getAttribute("brandNo");
+	String itemTypeNo = (String)request.getAttribute("itemTypeNo");
+	
 	String url = "shopItemList.do?brandNo="+brandNo;
 	
 	String pageBar = Utils.getBrandPageBar(totalContents, cPage, numPerPage, url);
@@ -161,10 +163,11 @@
                                 <h4 class="pro-sidebar-title">Product Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
-                                        <li><a href="#">Artwork  <span>(9)</span></a></li>
-                                        <li><a href="#">Branding  <span>(12)</span></a></li>
-                                        <li><a href="#">Graphics  <span>(5)</span></a></li>
-                                        <li><a href="#">Photography  <span>(16)</span></a></li>
+                                    	<c:if test="${sort == 1}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/outerList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 </c:if>
                                     </ul>
                                 </div>
                             </div>
