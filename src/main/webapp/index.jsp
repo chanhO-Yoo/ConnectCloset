@@ -199,7 +199,7 @@ print_r($NaverKeyWord);
  <h3>채팅</h3>
 ​<div id="div_chat">
 	<!-- 채팅 -->
-      <input type="text" id="sender" value='${session.memberId}' style="display: none;"/>  
+      <input type="text" id="sender" value='${session.getmemberId()}' style="display: none;"/>  
 	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
 	 <input type="text" onkeyup="enterkey();" id="messageinput" width="40;"/><button type="button" onclick="send();">전송</button>
 		
@@ -298,8 +298,8 @@ print_r($NaverKeyWord);
 ​     <c:set var="temp" value="${Math.floor((data.main.temp - 273.15))}"/> 
 
 
-    	<table border="1">
-     		 <thead>
+    	<table border="1" class="weather">
+     		
    
        			 <tr>
           			<td>날짜</td>
@@ -311,12 +311,32 @@ print_r($NaverKeyWord);
           			<td>바람</td>
           			<td>도시</td>
       			  </tr>
-     			 </thead>
+     			 
       					<tbody id="current_mytbody"></tbody>
    				 </table>
   			</div>
 		</div>
               </div>
+              
+    <style>  
+.weather {
+  border-collapse: collapse;
+}  
+.weather tr {
+  padding: 13px;
+  color: #168;
+  border-bottom: 3px solid #168;
+  text-align: center;
+}
+.weather td {
+  color: #669;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.weather tr:hover td {
+  color: #004;
+}
+</style> 
                
                     <div class="col-lg-5 col-md-6">
                      <c:set var = "Temp" scope = "session" />
@@ -407,7 +427,8 @@ print_r($NaverKeyWord);
             async: 'false',
             success: function(data) {
               console.log(data);
-                var rowItem = '<tr>';
+                var 
+                rowItem = '<tr >';
                 rowItem += '<td>' + getDateHuman((data.dt * 1000)) + '</td>';
                 rowItem += '<td><img src="http://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png"/></td>';
                 rowItem += '<td>' + Math.floor((data.main.temp - 273.15)) + '℃' + '</td>';
@@ -427,6 +448,10 @@ print_r($NaverKeyWord);
         }
       });
     </script>
+    
+    
+    
+
         <div class="blog-area gray-bg pt-120 pb-90">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
