@@ -269,7 +269,7 @@
                         </ul>
                     </div>   -->
      
-       <%--  <footer class="footer-area theme-bg pt-70 pb-50 clear-fix">
+     <!--   <footer class="footer-area theme-bg pt-70 pb-50 clear-fix">
             <div class="container">
                 <div class="footer-top border-bottom-1">
                     <div class="row">
@@ -320,7 +320,7 @@
                             <div class="footer-widget mb-40">
                                 <div class="footer-title mb-20">
                                     <h4>Information</h4>
-                                </div>
+                                </div> -->
                                 <div class="faq-accordion element-mrg">
                                     <div class="panel-group" id="accordion">
                                         <div class="panel footer-accordion">
@@ -367,7 +367,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                          <!--   </div>
                         </div>
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="footer-widget mb-40">
@@ -433,7 +433,7 @@
             </div>
             
              
-</footer> --%>
+</footer> --%> -->
         
           <jsp:include page="/WEB-INF/views/common/footer.jsp" />
         

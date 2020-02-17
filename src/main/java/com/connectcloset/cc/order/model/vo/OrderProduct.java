@@ -3,12 +3,17 @@ package com.connectcloset.cc.order.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+
+
 public class OrderProduct implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private String orderNo;
 	private String orderId;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date orderDate;
 	
 	private int orderItemNo; 
@@ -18,7 +23,7 @@ public class OrderProduct implements Serializable {
 
 	private int orderTotalPrice;
 	private int orderUsePoint;
-	private int orderCuponNo;
+	private int orderCouponNo;
 
 	private String orderReviewYN;
 	private String orderItemColor;
@@ -41,7 +46,7 @@ public class OrderProduct implements Serializable {
 
 
 	public OrderProduct(String orderNo, String orderId, Date orderDate, int orderItemNo, int orderItemCount,
-			String orderPayMethod, String orderPayStatus, int orderTotalPrice, int orderUsePoint, int orderCuponNo,
+			String orderPayMethod, String orderPayStatus, int orderTotalPrice, int orderUsePoint, int orderCouponNo,
 			String orderReviewYN, String orderItemColor, String orderItemSize, String impUid, int itemNo, int memberNo,
 			String orderStatusNo, String deliveryNo, String itemName, String orderStatus) {
 		super();
@@ -54,7 +59,7 @@ public class OrderProduct implements Serializable {
 		this.orderPayStatus = orderPayStatus;
 		this.orderTotalPrice = orderTotalPrice;
 		this.orderUsePoint = orderUsePoint;
-		this.orderCuponNo = orderCuponNo;
+		this.orderCouponNo = orderCouponNo;
 		this.orderReviewYN = orderReviewYN;
 		this.orderItemColor = orderItemColor;
 		this.orderItemSize = orderItemSize;
@@ -158,13 +163,13 @@ public class OrderProduct implements Serializable {
 	}
 
 
-	public int getOrderCuponNo() {
-		return orderCuponNo;
+	public int getorderCouponNo() {
+		return orderCouponNo;
 	}
 
 
-	public void setOrderCuponNo(int orderCuponNo) {
-		this.orderCuponNo = orderCuponNo;
+	public void setorderCouponNo(int orderCouponNo) {
+		this.orderCouponNo = orderCouponNo;
 	}
 
 
@@ -279,7 +284,7 @@ public class OrderProduct implements Serializable {
 		return "OrderProduct [orderNo=" + orderNo + ", orderId=" + orderId + ", orderDate=" + orderDate
 				+ ", orderItemNo=" + orderItemNo + ", orderItemCount=" + orderItemCount + ", orderPayMethod="
 				+ orderPayMethod + ", orderPayStatus=" + orderPayStatus + ", orderTotalPrice=" + orderTotalPrice
-				+ ", orderUsePoint=" + orderUsePoint + ", orderCuponNo=" + orderCuponNo + ", orderReviewYN="
+				+ ", orderUsePoint=" + orderUsePoint + ", orderCouponNo=" + orderCouponNo + ", orderReviewYN="
 				+ orderReviewYN + ", orderItemColor=" + orderItemColor + ", orderItemSize=" + orderItemSize
 				+ ", impUid=" + impUid + ", itemNo=" + itemNo + ", memberNo=" + memberNo + ", orderStatusNo="
 				+ orderStatusNo + ", deliveryNo=" + deliveryNo + ", itemName=" + itemName + ", orderStatus="+orderStatus+"]";

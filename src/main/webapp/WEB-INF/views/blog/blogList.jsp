@@ -381,19 +381,108 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget mt-55">
-                                <div class="facebook-banner-wrap default-overlay-2">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/resources/img/banner/banner-17.jpg" alt=""></a>
-                                    <div class="facebook-banner-content">
-                                        <i class="ti-facebook"></i>
-                                        <h4>FaceboOk Fans Page</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<style>
+.chat_list_wrap {
+  list-style: none;
+}
+.chat_list_wrap .header {
+  font-size: 14px;
+  padding: 15px 0;
+  background: #F18C7E;
+  color: white;
+  text-align: center;
+  font-family: "Josefin Sans", sans-serif;
+}
+</style>
+
+<!--실시간 채팅  -->
+<div class="chat_list_wrap">
+<div class="header">
+ConnectClost Chat
+</div>
+<div>
+<%-- <c:forEach items="${list}" var="chat" varStatus="vs"> --%>
+	<!-- 채팅 -->
+      <input type="text" id="sender" value="" style="display: none;">  
+	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
+
+	 <input type="text" id="messageinput"> <button type="button" onclick="send();">Send</button>
+<%-- </c:forEach> --%>
+ 
+
+        <button type="button" onclick="openSocket();">IN</button>
+       
+        <button type="button" onclick="closeSocket();">OUT</button>
+</div>
+</div>
+​
+    
+    
+		
+   
+    <!-- Server responses get written here -->
+	
+    <div id="messages" ></div> 
+   
+    <!-- websocket javascript -->
+    <script type="text/javascript">
+        var ws;
+        var messages = document.getElementById("messages");
+        
+        function openSocket(){
+            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
+            	 return;
+            	writeResponse("이미 참여되어있습니다.");
+               
+            }
+            
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket("ws://localhost:9090/cc/chat.do");
+        
+            ws.onopen=function(event){
+                if(event.data === undefined) return;
+                
+                writeResponse(event.data);
+            };
+            
+            ws.onmessage = function(event){
+                writeResponse(event.data);
+            };
+            
+            ws.onclose = function(event){
+                writeResponse("채팅방을 나왔습니다.");
+            };
+        }
+        
+        function send(){
+            var text = document.getElementById("sender").value + document.getElementById("messageinput").value;
+            ws.send(text);
+            text = "";
+        };
+        
+        function closeSocket(){
+            ws.close();
+        };
+        
+        function writeResponse(text){
+            messages.innerHTML += "<br/>" + text;
+        };
+        
+  </script>
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
