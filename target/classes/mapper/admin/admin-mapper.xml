@@ -135,6 +135,14 @@
 		select count(*) from item where item_name like #{searchKeyword}
 	</select>
 	
+	<select id="adminSearchItembyBrand" resultMap="itemCollectionMap">
+		select * from item I left join (SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no where brand_no = #{brandNo} order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectItemCount2" resultType="_int">
+		select count(*) from item where brand_no = #{brandNo}
+	</select>
+	
     <!-- ===================찬호 끝=================== -->
     
 	 <!-- ===================하은 시작=================== -->

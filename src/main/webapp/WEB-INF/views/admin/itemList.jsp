@@ -84,10 +84,13 @@
                                 <h4 class="pro-sidebar-title">Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
-                                        <li><a href="#">Artwork  <span>(9)</span></a></li>
-                                        <li><a href="#">Branding  <span>(12)</span></a></li>
-                                        <li><a href="#">Graphics  <span>(5)</span></a></li>
-                                        <li><a href="#">Photography  <span>(16)</span></a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-001">&nbsp;-&nbsp;로우클래식  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-002">&nbsp;-&nbsp;발렌시아가  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-003">&nbsp;-&nbsp;지방시  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-004">&nbsp;-&nbsp;셀린느  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-005">&nbsp;-&nbsp;발렌티노  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-006">&nbsp;-&nbsp;버버리  </a></li>
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminSearchItembyBrand.do?brandNo=brand-007">&nbsp;-&nbsp;구찌  </a></li>
                                     </ul>
                                 </div>
                             </div>

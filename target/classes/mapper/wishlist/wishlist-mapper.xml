@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wishlist">
+
+
+	
+
+	 
+	 
+	 	<select id="wishlist"  resultType="map">
+	 	
+	 	SELECT * FROM ITEM_WISHLIST IW LEFT JOIN 
+	 	ITEM I ON IW.ITEM_NO = I.ITEM_NO 
+	 	WHERE MEMBER_NO = #{memberNo} 
+
+		</select>
+		
+		<insert id="wishlistInsert">
+			insert into item_wishlist values(
+			seq_wish_no.nextval,
+			#{memberNo},
+			#{itemNo}
+		)
+		</insert>
+	
+	
+	<delete id="wishlistDelete">
+	
+	DELETE FROM ITEM_WISHLIST 
+	WHERE WISH_NO = #{wishNo}
+	
+	</delete>
+
+	
+	
+	
+	
+	
+
+</mapper>
