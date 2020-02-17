@@ -109,11 +109,11 @@
                         </nav>
                     </div>
                     <div class="header-right-wrap mt-55">
-                    	<div class="header-search mr-20">
+                    	<%-- <div class="header-search mr-20">
                     		<button class="sidebar-trigger-user" onclick="location.href='${pageContext.request.contextPath }/member/login-register.do'">
                     			<span class="ti-user"></span>
                     		</button>
-                    	</div>
+                    	</div> --%>
                         <div class="header-search mr-20">
                             <button class="sidebar-trigger-search">
                                 <span class="ti-search"></span>
@@ -286,7 +286,7 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                          <c:if test="${memberLoggedIn == null }">
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                        <%-- <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li> --%>
                                          </c:if>
                                     </ul>
                                 </li>
@@ -322,7 +322,7 @@
                             </c:if>
                                 
                                  <c:if test="${memberLoggedIn == null }">
-	                               <li><i class="ti-location-pin"></i>로그인후 이용해주세요</li>
+	                               <li><i class="ti-location-pin"></i><a href="${pageContext.request.contextPath }/member/login-register.do">로그인</a> 후 이용해주세요</li>
                    				 </c:if>
                                
                             </ul>
