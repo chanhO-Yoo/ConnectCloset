@@ -1,6 +1,13 @@
 package com.connectcloset.cc.mypage.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +19,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
+import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+
 
 @Controller
 public class MyPageController {
@@ -78,4 +91,109 @@ public class MyPageController {
 		return mav;
 	}
 	//----------------주영 포인트 끝-----------------
+	
+	//---------------주영 리뷰 시작------------------
+	@RequestMapping("/mypage/mypage-review.do")
+	public ModelAndView review(ModelAndView mav ,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
+		logger.debug("memberNo@@@@@@={}", memberNo);
+		
+		List<ReviewOrederList> orderReviewList =
+				myPageSerivce.selectListReview(memberNo);
+		
+		logger.debug("OrderReviewList@@@@@@={}", orderReviewList);
+
+		List<ReviewList> reviewList
+		=myPageSerivce.selectReviewList(reviewWriter);
+		
+		logger.debug("reviewList@@@@@@={}", reviewList);
+		
+		mav.addObject("orderReviewList",orderReviewList);
+		mav.addObject("reviewList",reviewList);
+		 
+		mav.setViewName("/mypage/mypage-review");
+		return mav;
+	}
+	
+	@GetMapping("/mypage/mypage-reviewEnroll.do")
+	public ModelAndView reviewEnroll(ModelAndView mav,@RequestParam("orderNo") int orderNo ) {
+		
+		ReviewOrederList selectOnditemReview 
+		=myPageSerivce.selectOnditemReview(orderNo);
+		
+		mav.addObject("selectOnditemReview",selectOnditemReview);
+		
+
+		logger.debug("selectOnditemReview@@@@@@={}", selectOnditemReview);
+		
+		mav.setViewName("/mypage/mypage-reviewEnroll");
+		
+		return mav;
+	}
+	@PostMapping("/mypage/mypage-reviewEnrollEnd.do")
+	public ModelAndView reviewEnrollEnd(ModelAndView mav ,Review re,@RequestParam(value="upFile",required=false) MultipartFile[] upFile,
+										HttpServletRequest request ,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
+		logger.debug("게시물 등록 요청!");	
+		logger.debug("re@@@@@@={}", re);
+		String saveDirectory = request.getSession()
+				  .getServletContext()
+				  .getRealPath("/resources/upload/review");
+		
+		File dir = new File(saveDirectory);
+		if(dir.exists() == false)
+			dir.mkdir();
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				//파일명 재생성
+				String originalFileName = f.getOriginalFilename();
+				String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rndNum = (int)(Math.random()*1000);
+				
+				//서버컴퓨터에 파일저장
+				try {
+					f.transferTo(new File(saveDirectory));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				
+				re.setReviewImage(originalFileName);
+			}
+		}
+				
+			    
+				int result = myPageSerivce.insertReview(re);
+				
+				//3. view단 처리		
+			
+				mav.setViewName("redirect:/mypage/mypage-review.do?memberNo="+memberNo+"&"+"reviewWriter="+reviewWriter);
+		
+		
+		
+	
+		return mav;
+	}
+	@PostMapping("/mypage/mypage-reviewDelete.do")
+	public ModelAndView reviewDelete(ModelAndView mav ,@RequestParam("reviewNo") int reviewNo,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
+		
+		
+		
+		int result =myPageSerivce.deleteReview(reviewNo);
+
+		
+		//3. view단 처리		
+	
+		mav.setViewName("redirect:/mypage/mypage-review.do?memberNo="+memberNo+"&"+"reviewWriter="+reviewWriter);
+		
+		
+		
+		
+		return mav;
+	}
+	
+	
+	//---------------주영 끝 시작------------------
 }
