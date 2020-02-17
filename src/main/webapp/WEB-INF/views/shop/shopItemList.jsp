@@ -165,9 +165,39 @@
                                     <ul>
                                     	<c:if test="${sort == 1}">
 	                                    	<c:forEach items="${categoryMap }" var="map">
-	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/outerList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
 	                                    	</c:forEach>
-                                   	 </c:if>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 2}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 3}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+										<c:if test="${sort == 4}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 5}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 6}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 7 }">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do?itemType=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
                                     </ul>
                                 </div>
                             </div>

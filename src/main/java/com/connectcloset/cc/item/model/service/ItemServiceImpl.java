@@ -134,6 +134,15 @@ public class ItemServiceImpl implements ItemService{
 			return itemDAO.selectBrandItemCount(itemTypeNo);
 		}
 
+		@Override
+		public List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage) {
+			return itemDAO.selectAccList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectAccCount() {
+			return itemDAO.selectAccCount();
+		}
 		//===================윤지 상품 리스트 끝========================
 	
 	
@@ -154,8 +163,6 @@ public class ItemServiceImpl implements ItemService{
 		return itemDAO.selectOneitemImage(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
-
-
 
 
 

@@ -195,6 +195,23 @@
 		select count(*) from item
 		where item_type_no = 'itype-009'
 	</select>
+	
+	<select id="selectAccList" resultMap="itemAndImageMap">
+		select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		where item_type_no = 'itype-015' OR item_type_no = 'itype-016' OR item_type_no = 'itype-017' OR item_type_no = 'itype-018'
+		order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectAccCount" resultType="_int">
+		select count(*) from item
+		where item_type_no = 'itype-015' OR item_type_no = 'itype-016' OR item_type_no = 'itype-017' OR item_type_no = 'itype-018'
+	</select>
 	<!-- 윤지  상품 리스트 끝 -->
 
 

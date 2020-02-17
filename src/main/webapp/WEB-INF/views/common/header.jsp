@@ -320,12 +320,12 @@
                         <div class="summary-list">
                             <ul>
                             <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님환영합니다</li>
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
                             
                             </c:if>
                                 
                                  <c:if test="${memberLoggedIn == null }">
-	                               <li><i class="ti-location-pin"></i>로그인후 이용해주세요</li>
+	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
                    				 </c:if>
                                
                             </ul>
@@ -334,7 +334,7 @@
 	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
 	                                               
 		                            <div class="submit-btn">
-		                              <button class="btn-hover" type="submit">Log out</button>
+		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
                           </p>
