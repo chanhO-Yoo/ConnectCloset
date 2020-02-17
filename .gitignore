@@ -38,6 +38,7 @@ local.properties
 
 # sbteclipse plugin
 .target
+/target/
 
 # Tern plugin
 .tern-project
@@ -72,4 +73,3 @@ local.properties
 .sts4-cache/
 
 # End of https://www.gitignore.io/api/eclipse
-/target/
