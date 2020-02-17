@@ -102,7 +102,6 @@
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
                                         <!-- 2020/02/09 추가 -->
                                         <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
                                         <!-- 2020/02/09 추가 -->

@@ -107,142 +107,6 @@
                 </div>
                 <div class="row newItem"> 
                     
-                    <!-- 
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-2.jpg" alt="">
-                                </a>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span>$100</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-3.jpg" alt="">
-                                </a>
-                                <span class="sale">Sale</span>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span class="old">$329</span>
-                                    <span class="new">$150</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-4.jpg" alt="">
-                                </a>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span>$200</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-5.jpg" alt="">
-                                </a>
-                                <span class="sale">Sale</span>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span class="old">$500</span>
-                                    <span class="new">$422</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                        <div class="shop-wrap mb-35">
-                            <div class="shop-img">
-                                <a href="single-product.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/product/shop-6.jpg" alt="">
-                                </a>
-                                <div class="shop-hover">
-                                    <div class="shop-card">
-                                        <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                    </div>
-                                    <div class="shop-wishlist">
-                                        <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="shop-content">
-                                <div class="shop-name">
-                                    <h4><a href="single-product.html">Product Name</a></h4>
-                                </div>
-                                <div class="shop-price">
-                                    <span>$175</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     -->
-                    
                     <script>
                     $(()=>{
                     	$.ajax({
@@ -266,10 +130,7 @@
                                  + "</a>"
                                  + "<div class='shop-hover'>"  
                                  + "<div class='shop-card'>"
-//                           
-//                                // + "<a href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=" + n.itemNo + "&itemStock=1&itemColor=" + n.itemColors + "' title='Add To Cart'>Add To Cart <i class='ti-shopping-cart'></i></a>"
                                  + "<a href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=" + n.itemNo + "' title='Add To Cart' >Add To Cart <i class='ti-shopping-cart'></i></a>"
-                               
                                  + "</div>"   
                                  + "<div class='shop-wishlist'>"       
                                  + "<a title='Wishlist' href='${pageContext.request.contextPath}/shop/wishlistInsert.do?itemNo=" + n.itemNo + "'><i class='ti-heart'></i></a>"   
@@ -297,31 +158,225 @@
                     	});
                     });
                     
-                    
                    
-                    
-                    
                     </script>
                     
                 </div>
             </div>
         </div>
-        
-<script>
-//         function addcart() {
-//         	$(onclick).attr("action","${pageContext.request.contextPath}/shop/cart-page.do")
-//         				.submit();
-//         }
-        
-        </script>
 
+
+<style>
+#messageinput{
+width: 25%;
+
+
+}
+</style>
+
+<script>
+function NaverKeyWord(){
+    $Curl = curl_init();
+    curl_setopt($Curl, CURLOPT_URL, "https://datalab.naver.com/keyword/realtimeList.naver?where=main");
+    curl_setopt($Curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($Curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+    $Result = curl_exec($Curl);
+    $RandList = explode("<ul class=\"rank_list\">", $Result);
+    $RandList = explode("</ul>", $RandList[1]);
+    $Rand[0] = explode("<span class=\"title\">", $RandList[0]);
+    for($i=1; $i < count($Rand[0]); $i++){
+    $Rand[1] = explode("</span>", $Rand[0][$i]);
+        $ReturnData = trim(strip_tags($Rand[1][0]));
+        if($ReturnData){
+            $Return[] = $ReturnData;
+        }
+    }
+    return $Return;
+}
+$NaverKeyWord = NaverKeyWord();
+print_r($NaverKeyWord);
+​</script>
+ <h3>채팅</h3>
+​<div id="div_chat">
+	<!-- 채팅 -->
+      <input type="text" id="sender" value='${session.memberId}' style="display: none;"/>  
+	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
+	 <input type="text" onkeyup="enterkey();" id="messageinput" width="40;"/><button type="button" onclick="send();">전송</button>
+		
+    <div>
+        <button type="button" onclick="openSocket();">채팅참여</button>
+       
+        <button type="button" onclick="closeSocket();">채팅나가기</button>
+    </div>
+    <!-- Server responses get written here -->
+</div>	
+   
+
+<script> 
+   function enterkey() {
+        if (window.event.keyCode == 13) {
+        	
+             // 엔터키가 눌렸을 때 실행할 내용
+             send();
+            
+        }
+}
+   
+
+</script> 
+
+<style>
+ #messages{
+ 	overflow-y :auto; 
+ 	width:500px; 
+ 	height:150px;
+ }
+</style>
+    
+     <div >
+   <div id="messages"  ></div> 
+	</div>
+    <!-- websocket javascript -->
+<script type="text/javascript">
+        var ws;
+        var messages = document.getElementById("messages");
+         
+        function openSocket(){
+            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
+            	return;
+                writeResponse("이미 참여되어있습니다.");
+                
+            }
+            //웹소켓 객체 만드는 코드
+            ws = new WebSocket("ws://localhost:9090/cc/chat.do");
+        						//192.168.110.151
+            ws.onopen=function(event){
+                if(event.data === undefined) return;
+                
+                writeResponse(event.data);
+            };
+            
+            ws.onmessage = function(event){
+                writeResponse(event.data);
+                   
+            };
+            
+            ws.onclose = function(event){
+                writeResponse("채팅방을 나왔습니다.");
+            };
+        }
         
-        <!-- 날씨  -->
+        function send(){
+        	var text = document.getElementById("sender").value + document.getElementById("messageinput").value;
+            ws.send(text);
+            text = "";
+            
+        };
+        
+        function closeSocket(){
+            ws.close();
+        };
+        
+        function writeResponse(text){
+            messages.innerHTML += "<br/>" + text;
+            let $messages = $("#messages");
+            var height = $messages.prop('scrollHeight');
+    			$messages.scrollTop(height);
+   
+        };
+</script>
+
+<!-- 날씨  --> 
+        <div class="discount-area pb-120">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="discount-img">
+                          <div id="current">
+    	<h4><bold>HOW'S WEATHER TODAY?</bold></h4>
+    	
+​     <c:set var="temp" value="${Math.floor((data.main.temp - 273.15))}"/> 
+
+
+    	<table border="1">
+     		 <thead>
+   
+       			 <tr>
+          			<td>날짜</td>
+          				<i class="wi wi-night-sleet"><td>날씨 이미지</td></i>
+          			<td>온도</td>
+         			 <td>습도</td>
+         			 <td>날씨</td>
+         			 <td>설명</td>
+          			<td>바람</td>
+          			<td>도시</td>
+      			  </tr>
+     			 </thead>
+      					<tbody id="current_mytbody"></tbody>
+   				 </table>
+  			</div>
+		</div>
+              </div>
+               
+                    <div class="col-lg-5 col-md-6">
+                     <c:set var = "Temp" scope = "session" />
+                        <div class="discount-content">
+                            <h2> Fit for today's weather <br><span id="temp"></span>℃ </h2>
+									
+                            <p class="bright-color">
+										Connect Closet is ready for you to worry about what to wear every day. 
+											Flex your clothes into your closet to match the weather and temperature of the day.</p>
+                           
+                           
+                           
+                           
+                            <div class="summer-btn" >
+                        		<a onclick="tempcc();" href="javascript:void(0);" id="tempbtn" class="default-btn btn-hover">CC Recommend </a>
+                        	</div> 
+
+                            <script>
+                            
+                           function tempcc(){
+                            	var temp = $('#temp')[0].innerHTML;
+                            
+                            	console.log(temp);
+                            	if(temp >= -5 ){
+                            		
+                            		
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            	}
+                            	else if(-5<temp<=0){
+                            		 
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            	} 
+                            	else if(0<temp<=5){
+                            		
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            	}
+                            	
+                            	else{
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            		
+                            	}
+                            }
+                            
+                            </script>
+                            
+                            
+ <!-- OnClick="if ("Calc.Input.value == ''" || "Calc.Input.value == '0'")
+{window.alert("Please enter a number");} else 
+                             -->
+                            
+                            
+                        </div>
+                  	</div>
+                </div>
+            </div>
+        </div>
+        
+<!-- 날씨  -->
     <script type="text/javascript">
-   
-   
-    
-    
+
       $(document).ready(function() {
     	  getCurrentWeatheInfo();
     	  
@@ -360,126 +415,18 @@
                 rowItem += '<td>' + data.weather[0].main + '</td>';
                 rowItem +=
                   '<td>' + data.weather[0].description + '</td>';
-                rowItem += '<td>' + data.wind.speed + 'm/s' + '</td>';
+                rowItem += '<td><img src="${pageContext.request.contextPath }/resources/img/weather/wind.png" alt="" width="50px" height="50px">' + data.wind.speed + 'm/s' + '</td>';
                 rowItem += '<td>' + data.name + '</td>';
                 rowItem += '</tr>';
                 $('#current_mytbody').append(rowItem);
+                
+                $('#temp').append(Math.floor((data.main.temp - 273.15)));
+                
               }
           });
         }
       });
     </script>
-   
-  <div id="current">
-    <h1>현재 시간의 강남구 날씨 정보</h1>
-​
-    <table border="1">
-      <thead>
-   
-        <tr>
-          <td>날짜</td>
-          <td>날씨 이미지</td>
-          <td>현재온도</td>
-          <td>현재습도</td>
-          <td>날씨</td>
-          <td>상세날씨설명</td>
-          <td>바람</td>
-          <td>도시이름</td>
-        </tr>
-      </thead>
-      <tbody id="current_mytbody"></tbody>
-    </table>
-  </div>
-<br />
-<br />
-<br />
-<br />
-<br />
-​
-<h3>채팅</h3>
-​
-	<!-- 채팅 -->
-      <input type="text" id="sender" value="${sessionScope.memberLoggedIn.memberEmail }" style="display: none;">  
-	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
-	 <input type="text" id="messageinput"  >
-    
-    
-		
-    <div>
-        <button type="button" onclick="openSocket();">채팅참여</button>
-        <button type="button" onclick="send();">보내기</button>
-        <button type="button" onclick="closeSocket();">채팅나가기</button>
-    </div>
-    <!-- Server responses get written here -->
-	
-    <div id="messages" ></div> 
-   
-    <!-- websocket javascript -->
-    <script type="text/javascript">
-        var ws;
-        var messages = document.getElementById("messages");
-        
-        function openSocket(){
-            if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
-                writeResponse("이미 참여되어있습니다.");
-                return;
-            }
-            
-            //웹소켓 객체 만드는 코드
-            ws = new WebSocket("ws://localhost:9090/cc/chat.do");
-        
-            ws.onopen=function(event){
-                if(event.data === undefined) return;
-                
-                writeResponse(event.data);
-            };
-            
-            ws.onmessage = function(event){
-                writeResponse(event.data);
-            };
-            
-            ws.onclose = function(event){
-                writeResponse("채팅방을 나왔습니다.");
-            };
-        }
-        
-        function send(){
-            var text = document.getElementById("messageinput").value+"," + document.getElementById("sender").value;
-            ws.send(text);
-            text = "";
-        };
-        
-        function closeSocket(){
-            ws.close();
-        };
-        
-        function writeResponse(text){
-            messages.innerHTML += "<br/>" + text;
-        };
-        
-  </script>
-        <div class="discount-area pb-120">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 col-md-6">
-                        <div class="discount-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/banner/discount.jpg" alt="discount-img">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-6">
-                        <div class="discount-content">
-                            <h2>Winter Discount <br>Up to 30%</h2>
-                            <p class="bright-color">Lorem Ipsum is simply dummy text. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <div class="summer-btn">
-                                <a href="about-us.html" class="default-btn btn-hover">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="blog-area gray-bg pt-120 pb-90">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
@@ -582,42 +529,7 @@
                 </div>
             </div>
         </div>
-        <!-- 
-        <script>
-        $(document).ready(function () {
-            //you can set this, as long as it's not greater than the slides length
-            var show = 4;
-            //calculate each slides width depending on how many you want to show
-            var w = $('.instagram-area').width() / show;
-            var l = $('.single-instragram zoom-hover').length;
-            
-            //set each slide width
-            $('.instagram-area').width(w);
-            //set the container width to fix the animation and make it look sliding
-            $('.instagram-wrap-3').width(w * l)
-            
-            function slider() {
-                $('.single-instragram zoom-hover:first-child').animate({
-                    marginLeft: -w //hide the first slide on the left
-                }, 'slow', function () {
-                    //once completely hidden, move this slide next to the last slide
-                    $(this).appendTo($(this).parent()).css({marginLeft: 0});
-                });
-            }
-            //use setInterval to do the timed execution and animation
-            var timer = setInterval(slider, 2000);
-            
-            /* pausing the slider */   
-            $('.instagram-area').hover(function(){
-                //mouse in, clearinterval to pause
-                clearInterval(timer);
-            },function(){
-                //mouse out, setinterval to continue
-                timer = setInterval(slider, 2000);
-            });
-        });
-        </script>
-         -->
+      
         
 
 

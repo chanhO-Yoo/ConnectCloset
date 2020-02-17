@@ -76,8 +76,19 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
+			<!-- 관리자 빼고 인터셉터 -->
+			<exclude-mapping path="/admin/**/"></exclude-mapping>
 			<beans:bean id="loggerInterceptor" class="com.connectcloset.cc.common.interceptor.LoggerInterceptor"></beans:bean>
 		</interceptor>
+		
+ 		<interceptor>
+			<mapping path="/member/memberUpdateForm.do"/>
+			<mapping path="/shop/**/*.do"/>
+			<mapping path="/blog/**/*.do"/>
+			<exclude-mapping path="board/boardList.do" />
+			<beans:bean id="LoginInterceptor" class="com.connectcloset.cc.common.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor> 
+		
 	</interceptors>
 	
 	<!-- #12.1 파일업로드를 처리할 Resolver클래스 빈등록(빈이름 주의) -->
