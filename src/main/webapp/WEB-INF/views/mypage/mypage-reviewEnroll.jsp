@@ -31,16 +31,19 @@
                                     <div class="ratting-form-wrapper pl-50">
                                         <h3>Add a Review</h3>
                                         <div class="ratting-form">
-                                            <form action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do" method="post" enctype="multipart/form-data"">
+                                            <form action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" method="post" enctype="multipart/form-data"">
                                                 <div class="star-box">
                                                     <span>Your rating:</span>
-                                                    <div class="ratting-star">
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                    </div>
+                                                  
+                                                    <label for="review-star" >별점</label>
+								                        <select name="reviewStar" id="reviewStar">
+								                            <option value="1">★</option>
+								                            <option value="2">★★</option>
+								                            <option value="3">★★★</option>
+								                            <option value="4">★★★★</option>
+								                            <option value="5" selected>★★★★★</option>
+								                        </select>
+								                        
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">

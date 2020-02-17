@@ -56,18 +56,33 @@
 
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <h5>전체 1개</h5>
+                          
                             <table class="col-lg-12">
                                 <tr>
-                                    <th>주문번호</th>
+                                   
                                     <th>상품정보</th>
-                                    <th></th>
+                                    <th>상품가격</th>
+                                    <th>상품내용</th>
+                                     <th></th>
                                 </tr>
+                                
+                                <c:forEach var ="re" items="${reviewList}">
                                 <tr>
-                                    <td>2020013125485</td>
-                                    <td>캐시미어 랩 코트</td>
-                                    <td><button type="button" class="btn btn-success">리뷰확인</button></td>
+                                   
+                                    <td>${re.itemName}</td>
+                                    <td>${re.itemPrice}</td>
+                                    <td>${re.reviewContent}</td>
+                                     
+                                     	 <td>
+                                     <form action="${pageContext.request.contextPath}/mypage/mypage-reviewDelete.do?reviewNo=${re.reviewNo}&memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" method="post">
+                                     	    <input type="submit" class="btn btn-success" value="삭제">
+                                     
+                                     </form>
+                                     	 </td>
                                 </tr>
+                                
+                                </c:forEach>
+                                
                             </table>
                         </div>
                     </div>

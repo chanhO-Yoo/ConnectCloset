@@ -5,6 +5,7 @@ import java.util.List;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 public interface MyPageDAO {
@@ -20,6 +21,10 @@ public interface MyPageDAO {
 	//-----------주영 리뷰 끝--------------
 
 	int insertReview(Review re);
+
+	List<ReviewList> selectReviewList(String reviewWriter);
+
+	int deleteReview(int reviewNo);
 
 
 

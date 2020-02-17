@@ -9,6 +9,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
 import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 @Service
@@ -52,6 +53,22 @@ public class MyPageServiceImpl implements MyPageService {
 	public int insertReview(Review re) {
 		// TODO Auto-generated method stub
 		return  mypageDAO.insertReview(re);
+	}
+
+
+
+	@Override
+	public List<ReviewList> selectReviewList(String reviewWriter) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectReviewList(reviewWriter);
+	}
+
+
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.deleteReview(reviewNo);
 	}
 
 

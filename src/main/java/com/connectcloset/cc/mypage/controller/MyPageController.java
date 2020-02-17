@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
 import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 
 
@@ -91,15 +94,21 @@ public class MyPageController {
 	
 	//---------------주영 리뷰 시작------------------
 	@RequestMapping("/mypage/mypage-review.do")
-	public ModelAndView review(ModelAndView mav ,@RequestParam("memberNo") int memberNo) {
+	public ModelAndView review(ModelAndView mav ,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
 		logger.debug("memberNo@@@@@@={}", memberNo);
 		
 		List<ReviewOrederList> orderReviewList =
 				myPageSerivce.selectListReview(memberNo);
 		
 		logger.debug("OrderReviewList@@@@@@={}", orderReviewList);
+
+		List<ReviewList> reviewList
+		=myPageSerivce.selectReviewList(reviewWriter);
+		
+		logger.debug("reviewList@@@@@@={}", reviewList);
 		
 		mav.addObject("orderReviewList",orderReviewList);
+		mav.addObject("reviewList",reviewList);
 		 
 		mav.setViewName("/mypage/mypage-review");
 		return mav;
@@ -122,7 +131,7 @@ public class MyPageController {
 	}
 	@PostMapping("/mypage/mypage-reviewEnrollEnd.do")
 	public ModelAndView reviewEnrollEnd(ModelAndView mav ,Review re,@RequestParam(value="upFile",required=false) MultipartFile[] upFile,
-										HttpServletRequest request) {
+										HttpServletRequest request ,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
 		logger.debug("게시물 등록 요청!");	
 		logger.debug("re@@@@@@={}", re);
 		String saveDirectory = request.getSession()
@@ -159,13 +168,29 @@ public class MyPageController {
 				int result = myPageSerivce.insertReview(re);
 				
 				//3. view단 처리		
-				mav.addObject("msg", result>0?"게시물등록 성공!":"게시물등록 실패!");
-				mav.addObject("loc", "/mypage/mypage-review.do");
-				mav.setViewName("common/msg");
+			
+				mav.setViewName("redirect:/mypage/mypage-review.do?memberNo="+memberNo+"&"+"reviewWriter="+reviewWriter);
 		
 		
 		
 	
+		return mav;
+	}
+	@PostMapping("/mypage/mypage-reviewDelete.do")
+	public ModelAndView reviewDelete(ModelAndView mav ,@RequestParam("reviewNo") int reviewNo,@RequestParam("memberNo") int memberNo ,@RequestParam("reviewWriter") String reviewWriter) {
+		
+		
+		
+		int result =myPageSerivce.deleteReview(reviewNo);
+
+		
+		//3. view단 처리		
+	
+		mav.setViewName("redirect:/mypage/mypage-review.do?memberNo="+memberNo+"&"+"reviewWriter="+reviewWriter);
+		
+		
+		
+		
 		return mav;
 	}
 	

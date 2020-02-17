@@ -23,9 +23,12 @@ public class Review implements Serializable {
 	private String reviewImage;
 	private String orderNo;
 	private String reviewContent;
+	private int reviewStar;;
 	
 	
 
+	
+	
 	
 	/**
 	 * @param reviewNo
@@ -38,9 +41,11 @@ public class Review implements Serializable {
 	 * @param reviewImage
 	 * @param orderNo
 	 * @param reviewContent
+	 * @param reviewStar
 	 */
 	public Review(int reviewNo, String reviewTitle, String reviewWriter, String reviewItemNo, String reviewItemSize,
-			int reviewWriterHeight, int reviewWriterWeight, String reviewImage, String orderNo, String reviewContent) {
+			int reviewWriterHeight, int reviewWriterWeight, String reviewImage, String orderNo, String reviewContent,
+			int reviewStar) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reviewTitle = reviewTitle;
@@ -52,9 +57,11 @@ public class Review implements Serializable {
 		this.reviewImage = reviewImage;
 		this.orderNo = orderNo;
 		this.reviewContent = reviewContent;
+		this.reviewStar = reviewStar;
 	}
 
-	
+
+
 	public Review() {}
 
 	
@@ -142,14 +149,29 @@ public class Review implements Serializable {
 		return serialVersionUID;
 	}
 
+   
+	public int getReviewStar() {
+		return reviewStar;
+	}
+
+
+
+	public void setReviewStar(int reviewStar) {
+		this.reviewStar = reviewStar;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", reviewTitle=" + reviewTitle + ", reviewWriter=" + reviewWriter
 				+ ", reviewItemNo=" + reviewItemNo + ", reviewItemSize=" + reviewItemSize + ", reviewWriterHeight="
 				+ reviewWriterHeight + ", reviewWriterWeight=" + reviewWriterWeight + ", reviewImage=" + reviewImage
-				+ ", orderNo=" + orderNo + ", reviewContent=" + reviewContent + "]";
+				+ ", orderNo=" + orderNo + ", reviewContent=" + reviewContent + ", reviewStar=" + reviewStar + "]";
 	}
+
+
+
 
 	
 	

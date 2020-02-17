@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
@@ -47,6 +48,20 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.insert("mypage.insertReview",re);
 	}
 
+
+	@Override
+	public List<ReviewList> selectReviewList(String reviewWriter) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mypage.selectReviewList",reviewWriter);
+		
+	}
+
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("mypage.deleteReview" ,reviewNo);
+	}
 	
 
 }

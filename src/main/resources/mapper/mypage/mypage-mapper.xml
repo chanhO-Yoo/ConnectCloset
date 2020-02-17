@@ -23,6 +23,23 @@ II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on
 
 	</resultMap>
 	
+	<select id="selectReviewList" resultMap="selectReviewListMap">
+		select item.*,
+        order_product.*,
+        review.*
+        from
+         order_product inner join
+         item on item.item_no=order_product.item_no left outer join
+         review on order_product.order_no = review.order_no
+         
+         where review.review_writer= #{reviewWriter}
+        
+         order by 
+         item.item_no
+	
+	</select>
+	<resultMap type="ReviewList" id="selectReviewListMap"></resultMap>
+	
 	
 		<insert id="insertReview">
 		insert into review values 
@@ -36,11 +53,16 @@ II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on
 		  #{reviewWriterWeight},
 		  #{reviewImage},
 		  #{orderNo},
-		  #{reviewContent}
+		  #{reviewContent},
+		  #{reviewStar}
 		  )
 		
 		</insert>
 
+<delete id="deleteReview">
+
+	delete from review where review_no = #{reviewNo}
+</delete>
 
 </mapper>
     
