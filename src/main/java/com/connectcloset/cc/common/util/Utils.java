@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/heads/master
 package com.connectcloset.cc.common.util;
 
 public class Utils {

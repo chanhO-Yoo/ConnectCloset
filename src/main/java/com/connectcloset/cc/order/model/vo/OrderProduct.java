@@ -1,3 +1,4 @@
+
 package com.connectcloset.cc.order.model.vo;
 
 import java.io.Serializable;
@@ -293,3 +294,4 @@ public class OrderProduct implements Serializable {
 
 
 }
+
