@@ -363,19 +363,19 @@ print_r($NaverKeyWord);
                             	if(temp >= -5 ){
                             		
                             		
-                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/outerList.do");
                             	}
                             	else if(-5<temp<=0){
                             		 
-                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/outerList.do");
                             	} 
                             	else if(0<temp<=5){
                             		
-                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/topList.do");
                             	}
                             	
                             	else{
-                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/cartList.do");
+                            		$("#tempbtn").attr("href", "http://localhost:9090/cc/shop/topList.do");
                             		
                             	}
                             }
