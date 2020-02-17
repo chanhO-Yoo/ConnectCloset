@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,19 +39,17 @@ public class OrderCheckoutCotroller {
 	
 	//==하은시작
 	@RequestMapping("/shop/checkout.do")
-	public ModelAndView checkout(ModelAndView mav) {		
-		int itemNo = 41;
+	public ModelAndView checkout(ModelAndView mav, @RequestParam int itemNo) {		
 		
-		logger.info("itemNo={}",itemNo);
+//		int itemNo = 41;
+		//logger.info("itemNo={}",itemNo);
 		
 		List<Item> item = itemService.selectItemNumber(itemNo);
-		//Item item = null;
+		//logger.debug("itemNo={}",itemNo);
+		
+		
 		mav.addObject("itemList",item);
 		
-		/* if(item==null)
-			 item =(List<Item>) new Item();
-		*/
-	
 		mav.setViewName("/shop/checkout");
 		return mav;
 		

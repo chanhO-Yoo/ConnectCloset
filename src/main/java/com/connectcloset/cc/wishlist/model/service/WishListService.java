@@ -11,4 +11,6 @@ public interface WishListService {
 
 	int wishlistInsert(Map<String, Integer> map);
 
+	int wishlistDelete(Map<String, Integer> map);
+
 }

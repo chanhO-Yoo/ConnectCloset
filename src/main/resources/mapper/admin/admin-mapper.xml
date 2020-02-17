@@ -127,6 +127,48 @@
 		
 	</resultMap>
 	
-    <!-- ===================찬호 끝=================== -->
+	<select id="adminSearchItem" resultMap="itemCollectionMap">
+		select * from item I left join (SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no where item_name like #{searchKeyword} order by I.item_no desc, II.item_image_no asc
+	</select>
 	
+	<select id="selectSearchItemCount" resultType="_int">
+		select count(*) from item where item_name like #{searchKeyword}
+	</select>
+	
+    <!-- ===================찬호 끝=================== -->
+    
+	 <!-- ===================하은 시작=================== -->
+    
+	<select id="selectOrderCount" resultType="_int">
+		select count(*) from order_product
+	</select>
+	
+	  <select id="selectOrderList" resultMap="orderProductMap">
+	  
+	  	select * from order_product, item
+		where order_product.item_no = item.item_no
+		order by order_no desc
+	  	
+	  </select>
+	<resultMap type="orderProduct" id="orderProductMap"></resultMap>
+	
+	
+	<update id="updatedelivery" parameterType="hashMap">
+		update order_product set delivery_no=#{deliveryNo}		
+		where order_no=#{orderNo}
+	</update>
+	
+	<select id="selectSearchDateList" resultMap="orderProductMap">		
+		select * from order_product, item
+		where  order_product.item_no = item.item_no and order_date > sysdate-#{startDate}
+		order by order_date desc
+	</select>
+	
+	<select id="delivery" resultType="_int">
+	select count(*) from order_product, item
+		where order_product.item_no = item.item_no and delivery_no=#{deliveryNo}
+		order by order_no desc
+	</select>
+	
+    <!-- ===================하은 끝=================== -->
 </mapper>

@@ -30,7 +30,7 @@ public class LoggerAspect {
 
 	static final Logger logger = LoggerFactory.getLogger(LoggerAspect.class);
 	
-	@Pointcut("execution(* com.kh.spring.memo..*(..))")
+	@Pointcut("execution(* com.connectcloset.cc...*(..))")
 	public void pointcut() {}
 	
 	//어드바이스의 인자는 메서드명 호출 코드로 작성

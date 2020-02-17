@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +18,8 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+import com.connectcloset.cc.order.model.vo.Delivery;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -140,9 +143,55 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminPQnaAns(pQnaNo);
 	}
 
+	@Override
+	public List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage) {
+		return adminDAO.adminSearchItem(searchKeyword,cPage,numPerPage);
+	}
 	
+	@Override
+	public int selectSearchItemCount(String searchKeyword) {
+		return adminDAO.selectSearchItemCount(searchKeyword);
+	}
 	//===================찬호 끝===================
 
 
+	//===================하은 시작===================
+
+	@Override
+	public List<OrderProduct> selectOrderList(int cPage, int numPerPage) {
+		return adminDAO.selectOrderList(cPage,numPerPage);
+	}
+
+	@Override
+	public int selectOrderCount() {
+		return adminDAO.selectOrderCount();
+	}
+
+	@Override
+	public List<OrderProduct> selectOrderList() {
+		return adminDAO.selectOrderList();
+	}
+
+	@Override
+	public int updatedelivery(String deliveryNo, String orderNo) {
+		return adminDAO.updatedelivery(deliveryNo,orderNo);
+	}
+
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return adminDAO.selectSearchDateList(startDate);
+	}
+
+	@Override
+	public int delivery(String deliveryNo) {
+		return  adminDAO.delivery(deliveryNo);
+	}
+
+
+
+
+
+	
+	//===================하은 끝===================
 	
 }

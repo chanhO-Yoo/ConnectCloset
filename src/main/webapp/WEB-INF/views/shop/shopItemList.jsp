@@ -10,9 +10,11 @@
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "shopItemList.do";
 	
-	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	String brandNo = (String)request.getAttribute("brandNo");
+	String url = "shopItemList.do?brandNo="+brandNo;
+	
+	String pageBar = Utils.getBrandPageBar(totalContents, cPage, numPerPage, url);
 	
 	pageContext.setAttribute("pageBar", pageBar);		
 %>

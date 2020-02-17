@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -46,25 +48,26 @@
                                         <li>
                                             <ul>
                                                 <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>BRAND</b></a></li>
-                                                <li><a href="shortcode-accordion.html">GIVENCHY</a></li>
-                                                <li><a href="shortcode-alerts.html">CELINE</a></li>
-                                                <li><a href="shortcode-blockquote.html">GUCCI</a></li>
-                                                <li><a href="shortcode-brand-logo.html">VALENTINO</a></li>
-                                                <li><a href="shortcode-button.html">LOW CLASSIC</a></li>
-                                                <li><a href="shortcode-counter.html">BURBERRY</a></li>
-                                                <li><a href="shortcode-dropcap.html">BALENCIAGA</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-003">GIVENCHY</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-004">CELINE</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-007">GUCCI</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-005">VALENTINO</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-001">LOW CLASSIC</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-006">BURBERRY</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-002">BALENCIAGA</a></li>
                                             </ul>
                                         </li>
+
                                         <li>
                                             <ul>
-                                                <li class="mega-menu-title"><a href="#"><b>TYPE</b></a></li>
-                                                <li><a href="shortcode-faq.html">OUTERWEARS</a></li>
-                                                <li><a href="shortcode-social.html">TOPS</a></li>
-                                                <li><a href="shortcode-instagram.html">BOTTOMS</a></li>
-                                                <li><a href="shortcode-list.html">DRESSES</a></li>
-                                                <li><a href="shortcode-progressbar.html">BAGS</a></li>
-                                                <li><a href="shortcode-testimonial.html">SHOES</a></li>
-                                                <li><a href="shortcode-pricing-table.html">ACCESSORIES</a></li>
+                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/outerList.do">OUTERWEARS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/topList.do">TOPS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/bottomList.do">BOTTOMS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/dressList.do">DRESSES</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/bagList.do">BAGS</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/shoesList.do">SHOES</a></li>
+                                                <li><a href="${pageContext.request.contextPath }/shop/accList.do">ACCESSORIES</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -99,10 +102,10 @@
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
                                         <!-- 2020/02/09 추가 -->
                                         <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
                                         <!-- 2020/02/09 추가 -->
+                                        <li><a href="${pageContext.request.contextPath }/admin/deliveryList.do">deliveryList</a></li>
                                     </ul>
                                 </li>
                             </ul>
