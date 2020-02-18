@@ -10,7 +10,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
   <div class="checkout-area pt-95 pb-100" style="height: 750px;">
             <div class="container">
@@ -90,3 +90,10 @@
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+		console.log('실행됬냐?');
+	});
+</script>

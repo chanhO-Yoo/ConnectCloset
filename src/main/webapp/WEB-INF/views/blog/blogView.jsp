@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<jsp:include page="/WEB-INF/views/common/header2.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="게시판 상세보기" name="pageTitle"/>
 </jsp:include>
 <style>
@@ -34,3 +34,10 @@ function fileDownload(oName, rName){
     <textarea class="form-control" name="blogContent" placeholder="내용" required>${blog.blogContent }</textarea>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+		console.log('실행됬냐?');
+	});
+</script>

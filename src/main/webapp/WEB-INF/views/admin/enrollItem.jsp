@@ -6,7 +6,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <style>
 div#board-container label.custom-file-label{text-align:left;}
@@ -238,6 +238,11 @@ div#board-container label.custom-file-label{text-align:left;}
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
+
 	function showClothSize(){
 		var options = "<option>xxs</option><option>xs</option><option>s</option><option>m</option><option>l</option><option>xl</option><option>xxl</option>";
 		$("#sizeSelect").html(options);
