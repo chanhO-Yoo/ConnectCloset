@@ -126,12 +126,12 @@ public class ItemServiceImpl implements ItemService{
 
 		@Override
 		public List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo) {
-			return itemDAO.selectItemAndImageBrandList(cPage, numPerPage, itemTypeNo);
+			return itemDAO.selectItemAndImageTypeList(cPage, numPerPage, itemTypeNo);
 		}
 		
 		@Override
 		public int selectTypeItemCount(String itemTypeNo) {
-			return itemDAO.selectBrandItemCount(itemTypeNo);
+			return itemDAO.selectTypeItemCount(itemTypeNo);
 		}
 
 		@Override
