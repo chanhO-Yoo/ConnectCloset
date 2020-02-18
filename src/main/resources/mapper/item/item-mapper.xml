@@ -86,12 +86,12 @@
 		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
 		WHERE TMP.RN = 1) II 
 		on I.item_no=II.item_no
-		where brand_no =#{itemTypeNo}
+		where item_type_no =#{itemTypeNo}
 		order by I.item_no desc, II.item_image_no asc
 	</select>
 	
 	<select id="selectTypeItemCount" resultType="_int">
-		select count(*) from item where brand_no = #{itemTypeNo}
+		select count(*) from item where item_type_no = #{itemTypeNo}
 	</select>
 	
 	<select id="selectOuterList" resultMap="itemAndImageMap">
@@ -102,13 +102,13 @@
 		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
 		WHERE TMP.RN = 1) II 
 		on I.item_no=II.item_no
-		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012'OR item_type_no = 'itype-013'
+		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012' OR item_type_no = 'itype-013'
 		order by I.item_no desc, II.item_image_no asc
 	</select>
 	
 	<select id="selectOuterCount" resultType="_int">
 		select count(*) from item
-		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012'OR item_type_no = 'itype-013'
+		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012' OR item_type_no = 'itype-013'
 	</select>
 	
 	<select id="selectTopList" resultMap="itemAndImageMap">

@@ -60,7 +60,7 @@
 
                                         <li>
                                             <ul>
-                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do"><b>TYPE</b></a></li>
+                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/outerList.do">OUTERWEARS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/topList.do">TOPS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/bottomList.do">BOTTOMS</a></li>

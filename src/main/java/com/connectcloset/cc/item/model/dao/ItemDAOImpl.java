@@ -123,12 +123,12 @@ public class ItemDAOImpl implements ItemDAO {
 	@Override
 	public List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
-		return sqlSession.selectList("item.selectItemAndImageBrandList", itemTypeNo, rowBounds);
+		return sqlSession.selectList("item.selectItemAndImageTypeList", itemTypeNo, rowBounds);
 	}
 
 	@Override
 	public int selectTypeItemCount(String itemTypeNo) {
-		return sqlSession.selectOne("item.selectBrandItemCount", itemTypeNo);
+		return sqlSession.selectOne("item.selectTypeItemCount", itemTypeNo);
 	}
 	
 	@Override
