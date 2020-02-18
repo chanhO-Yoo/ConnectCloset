@@ -325,11 +325,13 @@
                             </c:if>
                                 
                                  <c:if test="${memberLoggedIn == null }">
-<<<<<<< HEAD
 	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
-=======
-	                               <li><i class="ti-location-pin"></i><a href="${pageContext.request.contextPath }/member/login-register.do">로그인</a> 후 이용해주세요</li>
->>>>>>> branch 'master' of https://github.com/chanhO-Yoo/ConnectCloset.git
+	                               <form action="${pageContext.request.contextPath }/member/login-register.do" method="GET">
+	                                               
+		                            <div class="submit-btn">
+		                              <button class="btn-hover" type="submit">Log in / register</button>
+		                            </div>
+								</form>
                    				 </c:if>
                                
                             </ul>

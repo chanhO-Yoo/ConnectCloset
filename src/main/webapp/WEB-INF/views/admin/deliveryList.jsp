@@ -18,7 +18,7 @@
 %>
 
 <fmt:requestEncoding value="utf-8" />
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 // jQuery UI CSS파일 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
 // jQuery 기본 js파일
@@ -214,6 +214,10 @@ button {
 
  <!--구매일로  조회  -->
  <script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
  function search(sDate) {
 		
 	 console.log(sDate);

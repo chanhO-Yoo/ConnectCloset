@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/common/header2.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="게시글 작성" name="pageTitle"/>
 </jsp:include>
 	<!-- ==================== 하라 시작 ========================= -->
@@ -51,6 +51,10 @@ div#blog-container label.custom-file-label{text-align:left;}
 <!-- 	==================== 하라 끝 ========================= -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 <script>
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
 /* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function validate(){
 	var content = $("[name=blogContent]").val();
