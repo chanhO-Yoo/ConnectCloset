@@ -43,7 +43,7 @@
                                 <li><a href="${pageContext.request.contextPath }/">home</a>
                                 </li>
                                 
-                                <li><a href="#">Product</a>
+                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do">Product</a>
                                     <ul class="mega-menu mega-menu-2col">
                                         <li>
                                             <ul>
