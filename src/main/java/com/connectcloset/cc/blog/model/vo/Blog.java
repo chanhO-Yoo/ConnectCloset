@@ -3,7 +3,6 @@ package com.connectcloset.cc.blog.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-//===================하라 시작===================
 public class Blog implements Serializable{
 
 	/**
@@ -81,10 +80,4 @@ public class Blog implements Serializable{
 				+ blogContent + ", memberNo=" + memberNo + "]";
 	}
 
-	
-
-	
-	
-	//===================하라 끝===================
-	
 }
