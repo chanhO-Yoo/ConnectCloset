@@ -60,7 +60,7 @@
 
                                         <li>
                                             <ul>
-                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
+                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do"><b>TYPE</b></a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/outerList.do">OUTERWEARS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/topList.do">TOPS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/bottomList.do">BOTTOMS</a></li>
@@ -320,7 +320,7 @@
                         <div class="summary-list">
                             <ul>
                             <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님환영합니다</li>
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
                             
                             </c:if>
                                 
@@ -340,7 +340,7 @@
 	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
 	                                               
 		                            <div class="submit-btn">
-		                              <button class="btn-hover" type="submit">Log out</button>
+		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
                           </p>

@@ -106,7 +106,6 @@
 $(document).ready(function(){
 	var header=$("header").attr('class','theme-bg');
 	console.log(header);
-	console.log('실행됬냐?');
 });
 $(function(){
 	//파일 선택,취소시에 파일명 노출하기

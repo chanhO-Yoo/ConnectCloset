@@ -54,7 +54,6 @@ div#blog-container label.custom-file-label{text-align:left;}
 $(document).ready(function(){
 	var header=$("header").attr('class','theme-bg');
 	console.log(header);
-	console.log('실행됬냐?');
 });
 /* textarea에도 required속성을 적용가능하지만, 공백이 입력된 경우 대비 유효성검사를 실시함. */
 function validate(){

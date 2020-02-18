@@ -95,6 +95,5 @@
 	$(document).ready(function(){
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
-		console.log('실행됬냐?');
 	});
 </script>
