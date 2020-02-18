@@ -47,6 +47,10 @@ public interface AdminDAO {
 	List<ItemAndImageVO> adminSearchItem(String searchKeyword, int cPage, int numPerPage);
 	
 	int selectSearchItemCount(String searchKeyword);
+
+	List<ItemAndImageVO> adminSearchItembyBrand(String brandNo, int cPage, int numPerPage);
+
+	int selectItemCount(String brandNo);
 	//===================찬호 끝===================
 	
 	//===================하은 시작===================
@@ -62,6 +66,8 @@ public interface AdminDAO {
 	List<OrderProduct> selectSearchDateList(int startDate);
 	
 	int delivery(String deliveryNo);
+
+
 
 
 	//===================하은 끝===================

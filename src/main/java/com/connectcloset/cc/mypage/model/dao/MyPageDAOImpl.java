@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
@@ -62,6 +63,14 @@ public class MyPageDAOImpl implements MyPageDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("mypage.deleteReview" ,reviewNo);
 	}
+
+	
+	//-----------희진 주문내역 시작------------------------
+	@Override
+	public Member selectOrderList(int memberNo) {
+		return sqlSession.selectOne("orderProduct.selectOrderListByMemberNo", memberNo);
+	}
+	//-----------희진 주문내역 끝------------------------
 	
 
 }

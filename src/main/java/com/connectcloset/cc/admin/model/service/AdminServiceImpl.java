@@ -152,6 +152,16 @@ public class AdminServiceImpl implements AdminService {
 	public int selectSearchItemCount(String searchKeyword) {
 		return adminDAO.selectSearchItemCount(searchKeyword);
 	}
+	
+	@Override
+	public List<ItemAndImageVO> adminSearchItembyBrand(String brandNo, int cPage, int numPerPage) {
+		return adminDAO.adminSearchItembyBrand(brandNo,cPage,numPerPage);
+	}
+
+	@Override
+	public int selectItemCount(String brandNo) {
+		return adminDAO.selectItemCount(brandNo);
+	}
 	//===================찬호 끝===================
 
 
@@ -186,6 +196,9 @@ public class AdminServiceImpl implements AdminService {
 	public int delivery(String deliveryNo) {
 		return  adminDAO.delivery(deliveryNo);
 	}
+
+
+
 
 
 

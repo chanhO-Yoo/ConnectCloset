@@ -47,7 +47,6 @@
                           
             </div>
         </div>
-        
        
         <div class="shop-area pt-115 pb-120">
             <div class="container">

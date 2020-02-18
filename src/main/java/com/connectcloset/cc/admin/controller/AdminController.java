@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Controller
 public class AdminController {
 
+	
 	private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
@@ -306,6 +307,28 @@ public class AdminController {
 		
 		return map;
 	}
+	
+	@RequestMapping("/admin/adminSearchItembyBrand.do")
+	public ModelAndView adminSearchItembyBrand(ModelAndView mav, @RequestParam String brandNo, @RequestParam(defaultValue="1") int cPage) {
+		logger.debug("brandNO={}",brandNo);
+		
+		final int numPerPage = 9;
+		
+		List<ItemAndImageVO> list = adminService.adminSearchItembyBrand(brandNo,cPage,numPerPage);
+		logger.debug("list={}",list);
+		
+		int totalContents = adminService.selectItemCount(brandNo);
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		mav.setViewName("admin/itemList");
+		
+		return mav;
+	}
+	
 	
 	//===================찬호 끝===================
 
