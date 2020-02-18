@@ -64,6 +64,37 @@ II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on
 	delete from review where review_no = #{reviewNo}
 </delete>
 
+
+<insert id="mypagepQnAFormEnd">
+
+insert into  personal_qna values
+	(seq_p_qna_no.nextval,
+	#{memberNo},
+	#{pQnaTypeNo} ,
+	#{pQnaTitle} ,
+	#{pQnaContent} ,
+	sysdate
+	,'n')
+</insert>
+
+<select id="selectPQnaList" resultMap="personalQnaMap">
+		select * from personal_qna where member_no = #{memberNo}
+	</select>
+	
+	<resultMap type="personalQna" id="personalQnaMap">
+	</resultMap>
+	
+		<select id="selectPQnaListCount" resultType="_int">
+		select count(*) from personal_qna where member_no= #{memberNo}
+	</select>
+	
+	
+	<delete id="deletepQnA">
+
+	delete from personal_qna where p_qna_No = #{pQnaNo}
+	</delete>
+	
+	
 </mapper>
     
     

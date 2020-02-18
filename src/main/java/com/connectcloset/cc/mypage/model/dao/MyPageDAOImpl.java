@@ -2,6 +2,7 @@ package com.connectcloset.cc.mypage.model.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
 
@@ -71,6 +73,37 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.selectOne("orderProduct.selectOrderListByMemberNo", memberNo);
 	}
 	//-----------희진 주문내역 끝------------------------
+
+
 	
+	//-------------------주영 1:1문의  끝 시작---------------------------
+	@Override
+	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("mypage.selectPQnaList",memberNo,rowBounds);
+	}
+
+
+	@Override
+	public int selectMypagePQnaListCount(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mypage.selectPQnaListCount",memberNo);
+	}
+
+
+	@Override
+	public int mypagepQnAFormEnd(PersonalQna pQnA) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("mypage.mypagepQnAFormEnd",pQnA);
+	}
+
+
+	@Override
+	public int deletepQnA(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("mypage.deletepQnA",pQnaNo);
+	}
+	
+	//-------------------주영 1:1문의  끝 ---------------------------
 
 }

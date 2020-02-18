@@ -12,6 +12,7 @@ import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -46,10 +47,9 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return  mypageDAO.selectOnditemReview(orderNo);
 	}
-	// -----------주영 리뷰 끝 -------------------
 
 
-
+ 
 	@Override
 	public int insertReview(Review re) {
 		// TODO Auto-generated method stub
@@ -72,16 +72,51 @@ public class MyPageServiceImpl implements MyPageService {
 		return  mypageDAO.deleteReview(reviewNo);
 	}
 
+	// -----------주영 리뷰 끝 -------------------
 
 	//------------희진 주문내역 시작-------------------------
 	@Override
 	public Member selectOrderByMemberNo(int memberNo) {
 		return mypageDAO.selectOrderList(memberNo);
 	}
+
+
+
 	
 	//-----------희진 주문내역 끝--------------------------------
 
+	/// ---------------주영 1:1 문의 시작------------------------
+	@Override
+	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectMypagePQnaList(cPage,numPerPage,memberNo);
+	}
+	
+	
+	
+	@Override
+	public int selectMypagePQnaListCount(int memberNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectMypagePQnaListCount(memberNo);
+	}
 
+
+
+	@Override
+	public int mypagepQnAFormEnd(PersonalQna pQnA) {
+		// TODO Auto-generated method stub
+		return mypageDAO.mypagepQnAFormEnd(pQnA);
+	}
+
+
+
+	@Override
+	public int deletepQnA(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.deletepQnA(pQnaNo);
+	}
+
+	/// ---------------주영 1:1 문의 시작------------------------
 
 
 }

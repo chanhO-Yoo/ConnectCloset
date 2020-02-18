@@ -27,6 +27,7 @@ import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.order.model.service.OrderService;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 
 
 @Controller
@@ -210,5 +211,93 @@ public class MyPageController {
 	}
 	
 	
-	//---------------주영 끝 시작------------------
+	//---------------주영 리뷰  끝 ------------------
+	//---------------주영 1:1 문의  시작 ------------------
+	
+	
+
+	
+	@RequestMapping("/mypage/mypage-pQnA.do")
+	public ModelAndView mypagepQnAList(ModelAndView mav ,@RequestParam(defaultValue="1") int cPage,@RequestParam("memberNo") int memberNo) {
+		
+	final int numPerPage = 10;
+		
+		List<PersonalQna> list = myPageService.selectMypagePQnaList(cPage,numPerPage,memberNo);
+		logger.debug("list={}",list);
+		
+		int totalContents = myPageService.selectMypagePQnaListCount(memberNo);
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.setViewName("/mypage/mypage-pQnA");
+		
+		return mav;
+	}
+	
+	@RequestMapping("mypage/mypage-pQnAForm.do")
+	public ModelAndView mypagepQnAForm(ModelAndView mav) {
+		
+		
+		mav.setViewName("/mypage/mypage-pQnAForm");
+		return mav;
+	}
+	
+	@PostMapping("/mypage/mypage-pQnAFormEnd.do")
+	public ModelAndView mypagepQnAFormEnd(ModelAndView mav ,PersonalQna pQnA ,@RequestParam("memberNo") int memberNo) {
+		
+		logger.debug("pQnA={}",pQnA);
+		int result
+		=myPageService.mypagepQnAFormEnd(pQnA);
+		
+		
+		logger.debug("result={}",result);
+		
+		mav.addObject("result", result);
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
+		return mav;
+	}
+	
+	
+	@PostMapping("/mypage/mypage-pQnADelete.do")
+	public ModelAndView pQnADelete(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo,PersonalQna pQnA  ) {
+		
+		
+		
+		 pQnA =myPageService.deletepQnA(pQnaNo);
+
+		
+		//3. view단 처리		
+	
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
+		
+		
+		
+		
+		return mav;
+	}
+	
+	@PostMapping("/mypage/mypage-pQnAEnroll.do")
+	public ModelAndView pQnAEnroll(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo ) {
+		
+		
+		
+		int result =myPageService.EnrollQnA(pQnaNo);
+
+		
+		//3. view단 처리		
+	
+		mav.setViewName("/mypagemypage-pQnAEnroll");
+		
+		
+		
+		
+		return mav;
+	}
+	
+	
+	//---------------주영 1:1 문의  끝 ------------------
 }

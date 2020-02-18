@@ -8,6 +8,7 @@ import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 
 public interface MyPageDAO {
 
@@ -31,5 +32,16 @@ public interface MyPageDAO {
 	Member selectOrderList(int memberNo);
 	//---------- 희진 주문내역 끝--------------------
 
+	
+	//------------주영 1:1 문의---------------------
+	List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage, int memberNo);
+
+	int selectMypagePQnaListCount(int memberNo);
+
+	int mypagepQnAFormEnd(PersonalQna pQnA);
+
+	int deletepQnA(int pQnaNo);
+
+	//------------주영 1:1 문의---------------------
 
 }
