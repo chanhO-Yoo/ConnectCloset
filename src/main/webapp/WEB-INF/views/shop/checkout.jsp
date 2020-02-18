@@ -8,6 +8,9 @@
 <%
 int totalPrice = 0;
 List<Item> itemList = (List<Item>)request.getAttribute("itemList");
+
+Object[] arr = itemList.stream().toArray();
+
 Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
@@ -413,7 +416,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 		var itemName = $('#itemName')[0].innerText; 
 		var totalPrice =$('#totalPrice').val();
 		var memberId = "<%=member.getMemberEmail()%>";
-		var orderNo = 
+		//var orderNo = 
 		
 		
 		var $radioChk = $("input[type=radio]:checked").val();
@@ -452,14 +455,16 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 }, function (rsp) {
 	if (rsp.success) {
 	console.log(rsp);	
-	
 	 $.ajax({
-			url: "${pageContext.request.contextPath}/order/paymentsComplete.do,
+			url: "${pageContext.request.contextPath}/order/paymentsComplete.do",
 			type: "post",
 			data: {
-				merchant_uid: rsp.merchant_uid,
+//				merchant_uid: rsp.merchant_uid,
+				orderId: "<%=member.getMemberEmail()%>",
+				 /* {list:JSON.stringify($scope.lists), param1:'param1', param2:'param2'}; */
+				itemList: <%=arr%>,
+				member : <%=member%>,
 				imp_uid: rsp.imp_uid,
-				memberId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
 				itemName: "itemName",
 				//totalItemEa: 1,
@@ -481,7 +486,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			alert(msg);
 		});
 	//성공 시 이동 페이지
-	//location.href="${pageContext.request.contextPath}/shop/orderEnd.do?";
+	location.href="${pageContext.request.contextPath}/shop/orderEnd.do?";
 	
 	} 
 		//결제실패

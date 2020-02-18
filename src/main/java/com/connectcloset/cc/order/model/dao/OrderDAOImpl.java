@@ -6,10 +6,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.connectcloset.cc.order.model.vo.OrderProduct;
+
 @Repository
 public class OrderDAOImpl implements OrderDAO {
 
-	
+//=====================하은 시작 ==========================	
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
@@ -17,5 +19,11 @@ public class OrderDAOImpl implements OrderDAO {
 	public int insertOrder(Map<String, String> map) {
 		return sqlSession.update("order.insertOrder",map);
 	}
-	
+
+	@Override
+	public OrderProduct selectOneOrderPaymentsComplete(int orderNo) {
+		return sqlSession.selectOne("order.selectOneOrderPaymentsComplete",orderNo);
+	}
+
+	//=====================하은 끝 ==========================
 }

@@ -1,15 +1,19 @@
 package com.connectcloset.cc.order.controller;
 
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,8 +24,10 @@ import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.order.model.service.OrderService;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /*value로 지정한 이름의 변수들은 session에 담아둔다.*/
 @SessionAttributes(value= {"memberLoggedIn"})
@@ -63,22 +69,75 @@ public class OrderCheckoutCotroller {
 	
 	//결제 db등록하기
 	//@RequestMapping("/order/paymentsComplete")
-	@PostMapping("/order/paymentsComplete.do")
+	@RequestMapping("/order/paymentsComplete.do")
+	public void paymentsComplete(Model model, HttpServletRequest request ) {
+		
+		List<Item> itemList = (List<Item>)request.getAttribute("itemList");
+		Member member = (Member)request.getAttribute("member");
+		
+		logger.debug("itemList={}",itemList);
+		logger.debug("member={}",member);
+		
+		
+		/*String orderNo = null;
+		String orderId  = request.getParameter("orderId");	
+		Date orderDate = null;
+		
+		int orderItemNo  =  Integer.parseInt(request.getParameter("orderItemNo"));
+		int orderItemCount  =  Integer.parseInt(request.getParameter("orderItemCount"));
+		String orderPayMethod  = request.getParameter("orderPayMethod");
+		String orderPayStatus  = request.getParameter("orderPayStatus");
+
+		int orderTotalPrice  =  Integer.parseInt(request.getParameter("orderTotalPrice"));
+		int orderUsePoint  =  Integer.parseInt(request.getParameter("orderUsePoint"));
+		int orderCouponNo  =  Integer.parseInt(request.getParameter("orderCouponNo"));
+
+		String orderReviewYN  = request.getParameter("orderReviewYN");
+		String orderItemColor  = request.getParameter("orderItemColor");
+		String orderItemSize  = request.getParameter("orderItemSize");
+		
+		
+		String impUid  = request.getParameter( "impUid");
+		int itemNo  =  Integer.parseInt(request.getParameter("itemNo"));
+		int memberNo  =  Integer.parseInt(request.getParameter("memberNo"));
+		String orderStatusNo  = request.getParameter("orderStatusNo");
+		String deliveryNo  = request.getParameter("deliveryNo");
+ 
+		String itemName  = request.getParameter("itemName");
+		String orderStatus  = request.getParameter("orderStatus");*/
+		
+		
+//		OrderProduct order = new OrderProduct(orderNo, orderId, orderDate, orderItemNo, orderItemCount, orderPayMethod, orderPayStatus, orderTotalPrice, orderUsePoint, orderCouponNo, orderReviewYN, orderItemColor, orderItemSize, impUid, itemNo, memberNo, orderStatusNo, deliveryNo, itemName, orderStatus);
+//		OrderProduct order = orderService.selectOneOrderPaymentsComplete(orderNo);
+
+		
+		
+		
+		model.addAttribute("itemList={}",itemList);
+		model.addAttribute("member={}",member);
+//		logger.debug("order={}",order);
+//		model.addAttribute("order",order);
+		
+	}
+	
+	
+	//결제 db등록하기
+	//@RequestMapping("/order/paymentsComplete")
+	@PostMapping("/shop/orderEnd.do")
 	public ModelAndView paymentsComplete(ModelAndView mav, OrderProduct order) {
 		
 		logger.debug("order={}"+order);
-/*		logger.debug("orderId={}"+orderId);*/
 		logger.debug("결제정보저장");
 		Map<String, String> map = new HashMap<>();
 		
-		//List<OrderProduct> order_product = orderService.
-		//map.put("order", order);
-/*		map.put("orderId", orderId);*/
 		orderService.insertOrder(map);
-		mav.setViewName("redirect:/cc");
+		mav.setViewName("redirect:/shop/checkout");
 		
 		return mav;
 	}
+	
+	
+	
 	
 	
 /*	//결제 후 이동

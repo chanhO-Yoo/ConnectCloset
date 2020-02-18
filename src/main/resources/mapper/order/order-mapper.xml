@@ -33,14 +33,16 @@
 					#{orderStatusNo},
 					#{deliveryNo}
 		)
-		
-		
-		
-		
-<!-- 		 <selectKey keyProperty="itemNo" resultType="_int" order="AFTER">
+
+	 <selectKey keyProperty="itemNo" resultType="_int" order="AFTER">
 					select seq_item_no.currval from dual
-		</selectKey> -->	
+		</selectKey> 
 	</insert> 
+	
+	<select id="selectOneOrderPaymentsComplete" parameterType="hashMap">
+		selct * from order_product where orderNo = #{orderNo}
+	</select>
+		
    <!-- ===================하은 끝=================== -->
 
 
