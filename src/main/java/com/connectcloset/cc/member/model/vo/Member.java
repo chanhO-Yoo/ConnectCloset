@@ -2,6 +2,10 @@ package com.connectcloset.cc.member.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
+
+import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public class Member implements Serializable {
 
@@ -21,6 +25,18 @@ public class Member implements Serializable {
 	private Date enrollDate;
 	private int memberPoint;
 	
+	//주문내역 조인을 위한 변수
+	private List<OrderProduct> orderProductList;
+	private List<Item> itemList;
+
+	public List<Item> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
+	}
+
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,7 +44,8 @@ public class Member implements Serializable {
 
 	public Member(int memberNo, String memberEmail, String memberPassword, String memberName, String memberPhone,
 			int memberPostcode, String memberAddress, String memberDetailAddress, char memberGender,
-			Date memberBirthday, String memberValidateKey, Date enrollDate, int memberPoint) {
+			Date memberBirthday, String memberValidateKey, Date enrollDate, int memberPoint,
+			List<OrderProduct> orderProductList, List<Item> itemList) {
 		super();
 		this.memberNo = memberNo;
 		this.memberEmail = memberEmail;
@@ -43,6 +60,8 @@ public class Member implements Serializable {
 		this.memberValidateKey = memberValidateKey;
 		this.enrollDate = enrollDate;
 		this.memberPoint = memberPoint;
+		this.orderProductList = orderProductList;
+		this.itemList = itemList;
 	}
 
 	public int getMemberNo() {
@@ -149,6 +168,14 @@ public class Member implements Serializable {
 		this.memberPoint = memberPoint;
 	}
 
+	public List<OrderProduct> getOrderProductList() {
+		return orderProductList;
+	}
+
+	public void setOrderProductList(List<OrderProduct> orderProductList) {
+		this.orderProductList = orderProductList;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -159,14 +186,9 @@ public class Member implements Serializable {
 				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberPostcode=" + memberPostcode
 				+ ", memberAddress=" + memberAddress + ", memberDetailAddress=" + memberDetailAddress
 				+ ", memberGender=" + memberGender + ", memberBirthday=" + memberBirthday + ", memberValidateKey="
-				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint + "]";
+				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint
+				+ ", orderProductList=" + orderProductList + ", itemList=" + itemList + "]";
 	}
-
-	
-	
-
-	
-	
 	
 	
 	

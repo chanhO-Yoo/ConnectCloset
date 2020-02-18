@@ -60,7 +60,7 @@
 
                                         <li>
                                             <ul>
-                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemList.do"><b>TYPE</b></a></li>
+                                                <li class="mega-menu-title"><a href="${pageContext.request.contextPath }/shop/shopItemTypeList.do"><b>TYPE</b></a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/outerList.do">OUTERWEARS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/topList.do">TOPS</a></li>
                                                 <li><a href="${pageContext.request.contextPath }/shop/bottomList.do">BOTTOMS</a></li>
@@ -112,11 +112,11 @@
                         </nav>
                     </div>
                     <div class="header-right-wrap mt-55">
-                    	<div class="header-search mr-20">
+                    	<%-- <div class="header-search mr-20">
                     		<button class="sidebar-trigger-user" onclick="location.href='${pageContext.request.contextPath }/member/login-register.do'">
                     			<span class="ti-user"></span>
                     		</button>
-                    	</div>
+                    	</div> --%>
                         <div class="header-search mr-20">
                             <button class="sidebar-trigger-search">
                                 <span class="ti-search"></span>
@@ -289,7 +289,7 @@
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
                                         <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                          <c:if test="${memberLoggedIn == null }">
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
+                                        <%-- <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li> --%>
                                          </c:if>
                                     </ul>
                                 </li>
@@ -320,12 +320,18 @@
                         <div class="summary-list">
                             <ul>
                             <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님환영합니다</li>
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
                             
                             </c:if>
                                 
                                  <c:if test="${memberLoggedIn == null }">
-	                               <li><i class="ti-location-pin"></i>로그인후 이용해주세요</li>
+	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
+	                               <form action="${pageContext.request.contextPath }/member/login-register.do" method="GET">
+	                                               
+		                            <div class="submit-btn">
+		                              <button class="btn-hover" type="submit">Log in / register</button>
+		                            </div>
+								</form>
                    				 </c:if>
                                
                             </ul>
@@ -334,7 +340,7 @@
 	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
 	                                               
 		                            <div class="submit-btn">
-		                              <button class="btn-hover" type="submit">Log out</button>
+		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
                           </p>
@@ -353,6 +359,7 @@
 
                            
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-review.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}">리뷰 확인</a></li>
 
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>

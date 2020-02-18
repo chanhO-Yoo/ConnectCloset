@@ -9,7 +9,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <style>
 div#board-container label.custom-file-label{text-align:left;}
@@ -274,6 +274,10 @@ div#board-container label.custom-file-label{text-align:left;}
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
 	$(function(){
 		//파일 선택,취소시에 파일명 노출하기
 		$("[name=upFile]").on("change",function(){

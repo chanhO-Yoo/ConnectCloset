@@ -10,7 +10,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
   <div class="checkout-area pt-95 pb-100" style="height: 750px;">
             <div class="container">
@@ -60,6 +60,7 @@
                             <th>날짜</th>
                             <th>사용/적립</th>
                             <th>사유</th>
+                            
                             <th>금액</th>
                         </tr>
                         <tr class="point-save">
@@ -79,7 +80,7 @@
                             <td>${p.pointChangeReason} </td>
                             <td>${p.pointAmount}</td>
                         </tr>
-                    
+               
                     </table>
                 </div>
                 </c:forEach>
@@ -89,3 +90,9 @@
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
+</script>
