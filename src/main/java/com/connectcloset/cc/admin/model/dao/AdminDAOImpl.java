@@ -115,6 +115,18 @@ public class AdminDAOImpl implements AdminDAO {
 	public int selectSearchItemCount(String searchKeyword) {
 		return sqlSession.selectOne("admin.selectSearchItemCount","%"+searchKeyword+"%");
 	}
+	
+	@Override
+	public List<ItemAndImageVO> adminSearchItembyBrand(String brandNo, int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.adminSearchItembyBrand",brandNo,rowBounds);
+	}
+
+	@Override
+	public int selectItemCount(String brandNo) {
+		return sqlSession.selectOne("admin.selectItemCount2",brandNo);
+	}
+
 	//===================찬호 끝===================
 
 	//===================하은 시작=================

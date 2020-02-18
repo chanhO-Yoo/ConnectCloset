@@ -3,16 +3,13 @@ package com.connectcloset.cc.mypage.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,13 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.service.MemberService;
 import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.order.model.service.OrderService;
 
 
 @Controller
@@ -37,7 +35,13 @@ public class MyPageController {
 	private final static Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	
 	@Autowired
-	MyPageService myPageSerivce;
+	MyPageService myPageService;
+	
+	@Autowired
+	OrderService orderService;
+
+	@Autowired
+	MemberService memberService;
 	
 	//구매후기
 	
@@ -65,10 +69,21 @@ public class MyPageController {
 	//=================희진 시작===================
 	
 	//주문 내역 조회
-	@PostMapping("/mypage/order/detail.do")
-	public ModelAndView orderDetail(ModelAndView mav, Order order) {
+	@RequestMapping("/mypage/mypage-order.do")
+	public ModelAndView orderDetail(ModelAndView mav, @RequestParam int memberNo) {
+
+		logger.info("member={}", memberNo);
+
+//		List<OrderProduct> orderProduct = myPageService.selectOrderByMemberNo(memberNo);
+//		logger.debug("orderProduct={}",orderProduct);
+//		mav.addObject("orderProduct", orderProduct);
+		Member m = myPageService.selectOrderByMemberNo(memberNo);
+		logger.debug("member={}",m);
+		mav.addObject("member", m);
+		mav.setViewName("/mypage/mypage-order");
 		return mav;
 	}
+
 	
 	//=================희진 끝=====================
 	
@@ -79,7 +94,7 @@ public class MyPageController {
 		logger.debug("memberNo@@@@@@={}", memberNo);
 		
 		List<Point> point
-		= myPageSerivce.selectListPoint(memberNo);
+		= myPageService.selectListPoint(memberNo);
 		
 
 		mav.addObject("point",point);
@@ -98,12 +113,12 @@ public class MyPageController {
 		logger.debug("memberNo@@@@@@={}", memberNo);
 		
 		List<ReviewOrederList> orderReviewList =
-				myPageSerivce.selectListReview(memberNo);
+				myPageService.selectListReview(memberNo);
 		
 		logger.debug("OrderReviewList@@@@@@={}", orderReviewList);
 
 		List<ReviewList> reviewList
-		=myPageSerivce.selectReviewList(reviewWriter);
+		=myPageService.selectReviewList(reviewWriter);
 		
 		logger.debug("reviewList@@@@@@={}", reviewList);
 		
@@ -118,7 +133,7 @@ public class MyPageController {
 	public ModelAndView reviewEnroll(ModelAndView mav,@RequestParam("orderNo") int orderNo ) {
 		
 		ReviewOrederList selectOnditemReview 
-		=myPageSerivce.selectOnditemReview(orderNo);
+		=myPageService.selectOnditemReview(orderNo);
 		
 		mav.addObject("selectOnditemReview",selectOnditemReview);
 		
@@ -165,7 +180,7 @@ public class MyPageController {
 		}
 				
 			    
-				int result = myPageSerivce.insertReview(re);
+				int result = myPageService.insertReview(re);
 				
 				//3. view단 처리		
 			
@@ -181,7 +196,7 @@ public class MyPageController {
 		
 		
 		
-		int result =myPageSerivce.deleteReview(reviewNo);
+		int result =myPageService.deleteReview(reviewNo);
 
 		
 		//3. view단 처리		
