@@ -8,9 +8,7 @@
 <%
 int totalPrice = 0;
 List<Item> itemList = (List<Item>)request.getAttribute("itemList");
-
-Object[] arr = itemList.stream().toArray();
-
+System.out.println("@@@"+itemList);
 Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
@@ -413,6 +411,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 
 	 
 	$("#push_module").click(function () {
+		
 		var itemName = $('#itemName')[0].innerText; 
 		var totalPrice =$('#totalPrice').val();
 		var memberId = "<%=member.getMemberEmail()%>";
@@ -460,10 +459,10 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			type: "post",
 			data: {
 //				merchant_uid: rsp.merchant_uid,
-				orderId: "<%=member.getMemberEmail()%>",
+				<%-- orderId: "<%=member.getMemberEmail()%>", --%>
 				 /* {list:JSON.stringify($scope.lists), param1:'param1', param2:'param2'}; */
-				itemList: <%=arr%>,
-				member : <%=member%>,
+				itemList: '<%=itemList%>',
+				<%-- member : <%=member%>, --%>
 				imp_uid: rsp.imp_uid,
 				payMethod: "card",
 				itemName: "itemName",
