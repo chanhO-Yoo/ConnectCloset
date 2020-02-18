@@ -10,7 +10,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
@@ -523,3 +523,9 @@
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
+</script>
