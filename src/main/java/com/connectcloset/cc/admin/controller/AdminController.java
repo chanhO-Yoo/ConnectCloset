@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Controller
 public class AdminController {
 
+	
 	private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
