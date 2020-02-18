@@ -402,15 +402,15 @@
                         <h5>마이페이지</h5>
                        
                         <div class="sidebar-contact-list">
+                        	<c:if test="${memberLoggedIn != null }">
                             <ul>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지1</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지2</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
-                               
-                           
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-order.do?memberNo=${memberLoggedIn.memberNo}" >주문내역 조회</a></li>
+                        	</c:if>
                             </ul>
                         </div>
                         

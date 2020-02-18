@@ -1,16 +1,20 @@
 package com.connectcloset.cc.mypage.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.connectcloset.cc.member.model.service.MemberService;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.mypage.model.service.MyPageService;
+import com.connectcloset.cc.order.model.service.OrderService;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Controller
 public class MyPageController {
@@ -18,7 +22,14 @@ public class MyPageController {
 	private final static Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	
 	@Autowired
-	MyPageService myPageSerivce;
+	MyPageService myPageService;
+	
+	@Autowired
+	OrderService orderService;
+	
+	@Autowired
+	MemberService memberService;
+	
 	
 	//구매후기
 	
@@ -27,27 +38,28 @@ public class MyPageController {
 	//1:1문의
 	
 	//최근 본 상품
-	@GetMapping("/mypage/viewed_items.do")
-	@ResponseBody
-	public void viewedItems() {
-		
-	}
 	
 	//좋아요
 	
 	//마이 사이즈
-	@PostMapping("/mypage/mysize.do")
-	@ResponseBody
-	public void mySize() {
-		
-	}
+
 	
 	
 	//=================희진 시작===================
 	
 	//주문 내역 조회
-	@PostMapping("/mypage/order/detail.do")
-	public ModelAndView orderDetail(ModelAndView mav, Order order) {
+	@RequestMapping("/mypage/mypage-order.do")
+	public ModelAndView orderDetail(ModelAndView mav, @RequestParam int memberNo) {
+		
+		logger.info("member={}", memberNo);
+		
+//		List<OrderProduct> orderProduct = myPageService.selectOrderByMemberNo(memberNo);
+//		logger.debug("orderProduct={}",orderProduct);
+//		mav.addObject("orderProduct", orderProduct);
+		Member m = myPageService.selectOrderByMemberNo(memberNo);
+		logger.debug("member={}",m);
+		mav.addObject("member", m);
+		mav.setViewName("/mypage/mypage-order");
 		return mav;
 	}
 	
