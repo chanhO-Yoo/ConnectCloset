@@ -13,7 +13,7 @@ public class BlogAttachVO implements Serializable {
 	
 	private int blogNo;
 	private String blogTitle;
-	private String blogWriter;
+	private int memberNo;
 	private String blogContent;
 	private Date blogDate;
 	private int readCount;
@@ -30,12 +30,12 @@ public class BlogAttachVO implements Serializable {
 	
 	
 	
-	BlogAttachVO(int blogNo, String blogTitle, String blogWriter, String blogContent, Date blogDate,
+	BlogAttachVO(int blogNo, String blogTitle, int memberNo, String blogContent, Date blogDate,
 			int readCount, int fileCount, List<Attachment> attachmentList) {
 		super();
 		this.blogNo = blogNo;
 		this.blogTitle = blogTitle;
-		this.blogWriter = blogWriter;
+		this.memberNo = memberNo;
 		this.blogContent = blogContent;
 		this.blogDate = blogDate;
 		this.readCount = readCount;
@@ -57,11 +57,11 @@ public class BlogAttachVO implements Serializable {
 	public void setblogTitle(String blogTitle) {
 		this.blogTitle = blogTitle;
 	}
-	public String getblogWriter() {
-		return blogWriter;
+	public int gememberNo() {
+		return memberNo;
 	}
-	public void setblogWriter(String blogWriter) {
-		this.blogWriter = blogWriter;
+	public void setmemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 	public String getblogContent() {
 		return blogContent;
@@ -110,7 +110,7 @@ public class BlogAttachVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "blogAttachVo [blogNo=" + blogNo + ", blogTitle=" + blogTitle + ", blogWriter=" + blogWriter
+		return "blogAttachVo [blogNo=" + blogNo + ", blogTitle=" + blogTitle + ", memberNo=" + memberNo
 				+ ", blogContent=" + blogContent + ", blogDate=" + blogDate + ", readCount=" + readCount
 				+ ", fileCount=" + fileCount + ", attachmentList=" + attachmentList + "]";
 	}

@@ -19,6 +19,8 @@
     <package name="com.connectcloset.cc"/>
     <package name="com.connectcloset.cc.personalQna.model.vo"/>
     <package name="com.connectcloset.cc.order.model.vo"/>
+    <package name="com.connectcloset.cc.blog.model.vo"/>
+    <package name="com.connectcloset.cc.attachment.model.vo"/>
 
 <!--     <package name="com.kh.spring.demo.model.vo"/>
     <package name="com.kh.spring.member.model.vo"/> -->
