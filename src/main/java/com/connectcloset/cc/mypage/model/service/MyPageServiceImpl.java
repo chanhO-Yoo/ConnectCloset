@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -71,6 +72,14 @@ public class MyPageServiceImpl implements MyPageService {
 		return  mypageDAO.deleteReview(reviewNo);
 	}
 
+
+	//------------희진 주문내역 시작-------------------------
+	@Override
+	public Member selectOrderByMemberNo(int memberNo) {
+		return mypageDAO.selectOrderList(memberNo);
+	}
+	
+	//-----------희진 주문내역 끝--------------------------------
 
 
 

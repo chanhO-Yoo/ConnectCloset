@@ -3,6 +3,7 @@ package com.connectcloset.cc.mypage.model.dao;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
@@ -26,6 +27,9 @@ public interface MyPageDAO {
 
 	int deleteReview(int reviewNo);
 
+	//-----------희진 주문내역 시작------------------
+	Member selectOrderList(int memberNo);
+	//---------- 희진 주문내역 끝--------------------
 
 
 }

@@ -3,6 +3,7 @@ package com.connectcloset.cc.mypage.model.service;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
@@ -26,8 +27,9 @@ public interface MyPageService {
 	
 	int deleteReview(int reviewNo);
 	//------------주영 리뷰 끝 -----------
-
-
-
-
+	
+	//------------희진 주문내역 시작-------------
+	Member selectOrderByMemberNo(int memberNo);
+	
+	//------------희진 주문내역 끝-------------------
 }
