@@ -96,13 +96,12 @@ public class ItemController {
 	@RequestMapping("/qna/qnaFormEnd.do")
 		public ModelAndView qnaFormEnd(ModelAndView mav, ItemQna itemQna,HttpServletRequest request) {
 		
-	
-			
-			
 			int result = itemService.insertQna(itemQna);
+		
+			int itemNo = Integer.parseInt(request.getParameter("itemNo"));
 			
 			mav.addObject("msg", result>0? "게시물등록성공" : "실패!!");
-			mav.addObject("loc", "/shop/single-product.do");
+			mav.addObject("loc", "/shop/single-product.do?itemNo="+itemNo);
 			mav.setViewName("common/msg");
 			
 	
