@@ -88,7 +88,7 @@
                                     </ul>
                                 </li>
                                 
-                                <li><a href="#">Store</a>
+                                <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">Store</a>
                                 </li>
                                 
                                 <li><a href="#">Pages </a>

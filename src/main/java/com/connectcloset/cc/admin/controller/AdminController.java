@@ -132,6 +132,8 @@ public class AdminController {
 		int totalContents = adminService.selectItemCount();
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 0;
+		mav.addObject("brandYn",brandYn);
 		mav.addObject("list", list);
 		mav.addObject("numPerPage", numPerPage);
 		mav.addObject("cPage", cPage);
@@ -298,6 +300,8 @@ public class AdminController {
 		int totalContents = adminService.selectSearchItemCount(searchKeyword);
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 0;
+		mav.addObject("brandYn",brandYn);
 		map.put("list",list);
 		map.put("numPerPage",numPerPage);
 		map.put("cPage",cPage);
@@ -320,6 +324,9 @@ public class AdminController {
 		int totalContents = adminService.selectItemCount(brandNo);
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 1;
+		mav.addObject("brandYn",brandYn);
+		mav.addObject("brandNo",brandNo);
 		mav.addObject("list", list);
 		mav.addObject("numPerPage", numPerPage);
 		mav.addObject("cPage", cPage);
