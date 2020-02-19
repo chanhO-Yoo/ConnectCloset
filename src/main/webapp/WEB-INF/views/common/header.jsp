@@ -360,6 +360,7 @@
                            
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-review.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}">리뷰 확인</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-pQnA.do?memberNo=${memberLoggedIn.memberNo}">1:1문의</a></li>
 
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>

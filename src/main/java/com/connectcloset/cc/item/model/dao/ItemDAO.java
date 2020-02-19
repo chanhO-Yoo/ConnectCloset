@@ -5,6 +5,8 @@ import java.util.List;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 
 
 public interface ItemDAO {
@@ -47,6 +49,9 @@ public interface ItemDAO {
 	List<ItemImage> selectitemImagetList(int itmeNo);
 
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
+
+
+	List<Review> selectReviewList(int itmeNo);
 
 
 

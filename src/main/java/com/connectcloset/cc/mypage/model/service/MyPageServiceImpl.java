@@ -12,6 +12,8 @@ import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -46,10 +48,9 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return  mypageDAO.selectOnditemReview(orderNo);
 	}
-	// -----------주영 리뷰 끝 -------------------
 
 
-
+ 
 	@Override
 	public int insertReview(Review re) {
 		// TODO Auto-generated method stub
@@ -72,16 +73,75 @@ public class MyPageServiceImpl implements MyPageService {
 		return  mypageDAO.deleteReview(reviewNo);
 	}
 
+	// -----------주영 리뷰 끝 -------------------
 
 	//------------희진 주문내역 시작-------------------------
 	@Override
 	public Member selectOrderByMemberNo(int memberNo) {
 		return mypageDAO.selectOrderList(memberNo);
 	}
+
+
+
 	
 	//-----------희진 주문내역 끝--------------------------------
 
+	/// ---------------주영 1:1 문의 시작------------------------
+	@Override
+	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectMypagePQnaList(cPage,numPerPage,memberNo);
+	}
+	
+	
+	
+	@Override
+	public int selectMypagePQnaListCount(int memberNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectMypagePQnaListCount(memberNo);
+	}
 
+
+
+	@Override
+	public int mypagepQnAFormEnd(PersonalQna pQnA) {
+		// TODO Auto-generated method stub
+		return mypageDAO.mypagepQnAFormEnd(pQnA);
+	}
+
+
+
+	@Override
+	public int deletepQnA(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.deletepQnA(pQnaNo);
+	}
+
+
+
+	@Override
+	public PersonalQna selectOneEnrollQnA(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectOneEnrollQnA(pQnaNo);
+	}
+
+
+
+	@Override
+	public int pQnAEnrollEnd(PersonalQna pQnA) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.pQnAEnrollEnd(pQnA);
+	}
+
+
+
+	@Override
+	public List<PersonalQnaAns> mypagePQnaAns(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.mypagePQnaAns(pQnaNo);
+	}
+
+	/// ---------------주영 1:1 문의 시작------------------------
 
 
 }
