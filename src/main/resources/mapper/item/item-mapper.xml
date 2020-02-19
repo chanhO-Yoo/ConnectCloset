@@ -21,7 +21,7 @@
 	<!--하은 시작-->
 	<select id="selectItemNumber" resultMap="itemMap">
 		select * from item
-		where item_No = 102
+		where item_No = #{itemNo}
 	</select>
 	<!--하은 끝-->	
 
@@ -218,7 +218,7 @@
 
 	<!--주영 상품 상세보기 시작 -->
 	<select id="selectOneitemImage" resultMap="itemImage">
-		SELECT * FROM item_image IME JOIN  ITEM I ON IME.ITEM_NO = I.ITEM_NO
+		SELECT * FROM ITEM I left JOIN item_image IME ON IME.ITEM_NO = I.ITEM_NO
 	 where I.item_no=#{itemNo}
 	</select>
 	<resultMap type="itemandimagevo2" id="itemImage">
