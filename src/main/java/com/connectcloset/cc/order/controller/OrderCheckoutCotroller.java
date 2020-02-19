@@ -77,53 +77,43 @@ public class OrderCheckoutCotroller {
 	public void paymentsComplete(Model model, HttpServletRequest request ) {
 		
 		
-
-		String itemNoList = (String)request.getParameter("itemNoList");
-		String member = (String)request.getParameter("member");
-		JSONObject json = (JSONObject)JSONValue.parse(member);
+		String orderId = (String)request.getParameter("orderId"); 
+		String orderPayMethod = (String)request.getParameter("payMethod");
+		int orderTotalPrice = Integer.parseInt(request.getParameter("orderTotalPrice"));
+		String impUid = (String)request.getParameter("imp_uid");
+		String[] itemNoList = (String[])request.getParameterValues("itemNoList");
+		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
 		
-		logger.debug("itemNoList={}",itemNoList);
-		logger.debug("json={}",json);
+		logger.debug("itemNoList.length={}",itemNoList.length);
 		
+		for(int i=0;i<itemNoList.length;i++) {
+			logger.debug("@@@@@@itemNoList[]={}",itemNoList[i]);
 			
-		/*String orderNo = null;
-		String orderId  = request.getParameter("orderId");	
-		Date orderDate = null;
-		
-		int orderItemNo  =  Integer.parseInt(request.getParameter("orderItemNo"));
-		int orderItemCount  =  Integer.parseInt(request.getParameter("orderItemCount"));
-		String orderPayMethod  = request.getParameter("orderPayMethod");
-		String orderPayStatus  = request.getParameter("orderPayStatus");
-
-		int orderTotalPrice  =  Integer.parseInt(request.getParameter("orderTotalPrice"));
-		int orderUsePoint  =  Integer.parseInt(request.getParameter("orderUsePoint"));
-		int orderCouponNo  =  Integer.parseInt(request.getParameter("orderCouponNo"));
-
-		String orderReviewYN  = request.getParameter("orderReviewYN");
-		String orderItemColor  = request.getParameter("orderItemColor");
-		String orderItemSize  = request.getParameter("orderItemSize");
-		
-		
-		String impUid  = request.getParameter( "impUid");
-		int itemNo  =  Integer.parseInt(request.getParameter("itemNo"));
-		int memberNo  =  Integer.parseInt(request.getParameter("memberNo"));
-		String orderStatusNo  = request.getParameter("orderStatusNo");
-		String deliveryNo  = request.getParameter("deliveryNo");
- 
-		String itemName  = request.getParameter("itemName");
-		String orderStatus  = request.getParameter("orderStatus");*/
-		
-		
-//		OrderProduct order = new OrderProduct(orderNo, orderId, orderDate, orderItemNo, orderItemCount, orderPayMethod, orderPayStatus, orderTotalPrice, orderUsePoint, orderCouponNo, orderReviewYN, orderItemColor, orderItemSize, impUid, itemNo, memberNo, orderStatusNo, deliveryNo, itemName, orderStatus);
-//		OrderProduct order = orderService.selectOneOrderPaymentsComplete(orderNo);
-
+			int orderItemNo = Integer.parseInt(itemNoList[i]);
+			
+			OrderProduct op = new OrderProduct();
+			
+			op.setOrderId(orderId);
+			op.setOrderItemNo(orderItemNo);
+			op.setOrderItemCount(1);
+			op.setOrderPayMethod(orderPayMethod);
+			op.setOrderTotalPrice(orderTotalPrice);
+			op.setOrderItemColor("black");
+			op.setOrderItemSize("xl");
+			op.setImpUid(impUid);
+			op.setItemNo(orderItemNo);
+			op.setMemberNo(memberNo);
+			
+			logger.debug("orderProduct={}",op);
+			
+			int result = orderService.enrollOrderProduct(op);
+			logger.debug("@@@result={}",result);
+		}
 		
 		
 		
 		model.addAttribute("itemNoList={}",itemNoList);
-//		logger.debug("order={}",order);
-//		model.addAttribute("order",order);
 		
 	}
 	

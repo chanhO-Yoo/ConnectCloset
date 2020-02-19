@@ -42,6 +42,29 @@
 	<select id="selectOneOrderPaymentsComplete" parameterType="hashMap">
 		selct * from order_product where orderNo = #{orderNo}
 	</select>
+	
+	<insert id="enrollOrderProduct">
+		insert into order_product values(
+				seq_order_no.nextval,
+					#{orderId},
+					default,
+					#{orderItemNo},
+					#{orderItemCount},
+					#{orderPayMethod},
+					'y',
+					#{orderTotalPrice},
+					#{orderUsePoint},
+					#{orderCouponNo},
+					default,
+					#{orderItemColor},
+					#{orderItemSize},
+					#{impUid},
+					#{itemNo},
+					#{memberNo},
+					'os-001',
+					'os-001'
+		)
+	</insert>
 		
    <!-- ===================하은 끝=================== -->
 

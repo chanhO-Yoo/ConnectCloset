@@ -25,5 +25,10 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectOne("order.selectOneOrderPaymentsComplete",orderNo);
 	}
 
+	@Override
+	public int enrollOrderProduct(OrderProduct op) {
+		return sqlSession.insert("order.enrollOrderProduct", op);
+	}
+
 	//=====================하은 끝 ==========================
 }

@@ -11,5 +11,7 @@ public interface OrderDAO {
 
 	OrderProduct selectOneOrderPaymentsComplete(int orderNo);
 
+	int enrollOrderProduct(OrderProduct op);
+
 	//=====================하은 끝 ==========================
 }

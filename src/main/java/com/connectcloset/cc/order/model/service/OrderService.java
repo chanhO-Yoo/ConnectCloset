@@ -11,6 +11,8 @@ public interface OrderService {
 	int insertOrder(Map<String, String> map);
 
 	OrderProduct selectOneOrderPaymentsComplete(int orderNo);
+
+	int enrollOrderProduct(OrderProduct op);
 	
 	//================하은 끝======================
 }

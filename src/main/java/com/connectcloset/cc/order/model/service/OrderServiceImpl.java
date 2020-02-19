@@ -24,6 +24,10 @@ public class OrderServiceImpl implements OrderService {
 	public OrderProduct selectOneOrderPaymentsComplete(int orderNo) {
 		return orderDAO.selectOneOrderPaymentsComplete(orderNo);
 	}
+	@Override
+	public int enrollOrderProduct(OrderProduct op) {
+		return orderDAO.enrollOrderProduct(op);
+	}
 	//================하은 끝======================
 
 }

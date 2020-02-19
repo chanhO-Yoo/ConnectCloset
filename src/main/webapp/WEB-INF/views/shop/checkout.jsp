@@ -8,11 +8,6 @@
 <%
 int totalPrice = 0;
 List<Item> itemList = (List<Item>)request.getAttribute("itemList");
-int[] itemNoArr = new int[itemList.size()];
-for(int i=0;i<itemList.size();i++){
-	itemNoArr[i] = itemList.get(i).getItemNo();
-}
-System.out.println("@@@itemNoArr="+itemNoArr);
 Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
@@ -414,11 +409,14 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 <script>
 
 	var itemNoArr = new Array();
-	var itemSize = <%=itemList.size()%>;
 	
 	<%for(int i=0;i<itemList.size();i++){%>
+	
 		itemNoArr[<%=i%>]=<%=itemList.get(i).getItemNo()%>;
+	
 	<%}%>
+	
+	itemNoArr[1] = 170;
 	
 	console.log(itemNoArr);
 	
@@ -471,10 +469,14 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			type: "post",
 			traditional:true,
 			data: {
-				<%-- orderId: "<%=member.getMemberEmail()%>", --%>
-				 /* {list:JSON.stringify($scope.lists), param1:'param1', param2:'param2'}; */
-				itemNoList: JSON.stringify(itemNoArr),
-				member : JSON.stringify(<%=member%>)
+				orderId: "<%=member.getMemberEmail()%>",
+				payMethod: "card",
+				orderTotalPrice : <%=totalPrice%>,
+<%-- 				orderItemColor : "<%=orderItemColor%>",
+				orderItemSize : "<%=orderItemSize%>", --%>				
+				imp_uid: rsp.imp_uid,
+				itemNoList : itemNoArr,
+				memberNo : <%=member.getMemberNo()%>
 			},
 			dataType: "json"
 	
