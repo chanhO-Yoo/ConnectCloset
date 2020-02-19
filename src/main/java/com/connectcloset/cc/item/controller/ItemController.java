@@ -17,6 +17,8 @@ import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 
 @Controller
 public class ItemController {
@@ -68,11 +70,14 @@ public class ItemController {
 		List<ItemImage> itemImage
 		= itemService.selectitemImagetList(itmeNo);
 		
+		List<Review> reviewList
+		=itemService.selectReviewList(itmeNo);
 
+		mav.addObject("reviewList",reviewList);
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
 
-		logger.debug("@@@@@@itemImage={}", itemImage);
+		logger.debug("@@@@@@reviewList={}", reviewList);
 		logger.debug("item@@@@@@={}", item);
 		mav.setViewName("/shop/single-product");
 		

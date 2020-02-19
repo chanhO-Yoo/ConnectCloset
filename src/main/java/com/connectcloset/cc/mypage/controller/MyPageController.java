@@ -168,8 +168,8 @@ public class MyPageController {
 				int rndNum = (int)(Math.random()*1000);
 				
 				//서버컴퓨터에 파일저장
-				try {
-					f.transferTo(new File(saveDirectory));
+				try {   
+					f.transferTo(new File(saveDirectory+"/"+originalFileName));
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

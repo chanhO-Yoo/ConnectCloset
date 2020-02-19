@@ -217,6 +217,18 @@
 		SELECT * FROM item_image where item_no=#{itemNo} ORDER BY item_image_no
 	</select>
 	<resultMap type="ItemImage" id="itemImageMap"></resultMap>
+	
+	<select id="selectReviewList" resultMap="selectReviewMap">
+		select
+    		*
+        from
+         review
+         where review_item_no= #{itemNo}
+
+	</select>
+	<resultMap type="Review" id="selectReviewMap"></resultMap>
+	
+	
 	<!--주영 상품 상세보기 끝 -->
 	
 

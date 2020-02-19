@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -134,6 +136,12 @@ public class ItemDAOImpl implements ItemDAO {
 	public ItemAndImageVO2 selectOneitemImage(int itmeNo) {
 		// TODO Auto-generated method stub
 		return  sqlSession.selectOne("item.selectOneitemImage",itmeNo);
+	}
+
+	@Override
+	public List<Review> selectReviewList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("item.selectReviewList",itmeNo);
 	}
 
 
