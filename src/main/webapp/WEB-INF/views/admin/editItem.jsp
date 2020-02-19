@@ -96,10 +96,14 @@ div#board-container label.custom-file-label{text-align:left;}
 										%>
 										    <select multiple class="form-control" id="itemColors" name="itemColors" style="width:170px">
 										    	<option value="blue" ${colorList.contains("blue")?"selected":""}>blue</option>
+										    	<option value="red" ${colorList.contains("red")?"selected":""}>red</option>
+										    	<option value="ivory" ${colorList.contains("ivory")?"selected":""}></option>
 										    	<option value="maroon" ${colorList.contains("maroon")?"selected":""}>maroon</option>
 										    	<option value="gray" ${colorList.contains("gray")?"selected":""}>gray</option>
 										    	<option value="green" ${colorList.contains("green")?"selected":""}>green</option>
 										    	<option value="yellow" ${colorList.contains("yellow")?"selected":""}>yellow</option>
+										    	<option value="beige" ${colorList.contains("beige")?"selected":""}>beige</option>
+										    	<option value="brown" ${colorList.contains("brown")?"selected":""}>brown</option>
 										    	<option value="white" ${colorList.contains("white")?"selected":""}>white</option>
 										    	<option value="black" ${colorList.contains("black")?"selected":""}>black</option>
 											</select>
@@ -127,6 +131,7 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option value="l" ${sizeList.contains("l")?"selected":'' }>l</option>
 										    	<option value="xl" ${sizeList.contains("xl")?"selected":'' }>xl</option>
 										    	<option value="xxl" ${sizeList.contains("xxl")?"selected":'' }>xxl</option>
+										    	<option value="free" ${sizeList.contains("free")?"selected":'' }>free</option>
 											</select>
 										</c:if>
 										<c:if test="${item.itemTypeNo.equals('itype-009')==true}">

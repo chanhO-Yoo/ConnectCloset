@@ -10563,6 +10563,16 @@ blockquote.blockquote-style2 {
     border: 1px solid #4798f3;
 }
 
+.pro-details-color2-content ul li.red {
+    background-color: ##FF0000;
+    border: 1px solid ##FF0000;
+}
+
+.pro-details-color2-content ul li.ivory {
+    background-color: #FDF5E6;
+    border: 1px solid #FDF5E6;
+}
+
 .pro-details-color2-content ul li.maroon {
     background-color: #736751;
     border: 1px solid #736751;
@@ -10581,6 +10591,16 @@ blockquote.blockquote-style2 {
 .pro-details-color2-content ul li.yellow {
     background-color: #e28b37;
     border: 1px solid #e28b37;
+}
+
+.pro-details-color2-content ul li.beige {
+    background-color: #FDD296;
+    border: 1px solid #FDD296;
+}
+
+.pro-details-color2-content ul li.brown {
+    background-color: #8B4513;
+    border: 1px solid #8B4513;
 }
 
 .pro-details-color2-content ul li.white {
