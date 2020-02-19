@@ -10608,6 +10608,21 @@ blockquote.blockquote-style2 {
     border: 1px solid #e7e7e7;
 }
 
+.pro-details-color2-content ul li.pink {
+    background-color: #FF607F;
+    border: 1px solid #FF607F;
+}
+
+.pro-details-color2-content ul li.orange {
+    background-color: #FF8200;
+    border: 1px solid #FF8200;
+}
+
+.pro-details-color2-content ul li.khaki {
+    background-color: #414700;
+    border: 1px solid #414700;
+}
+
 .pro-details-size-color2 {
     display: flex;
 }
