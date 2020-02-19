@@ -60,6 +60,11 @@ public interface ItemDAO {
  
 //-------------하라  상품 상세보기 - QnA 시작 -------------------
 	int insertQna(ItemQna itemQna);
+
+
+	List<ItemQna> itemQnaList(int itmeNo);
+
+
 	
 	
 //-------------하라  상품 상세보기 - QnA 끝 -------------------

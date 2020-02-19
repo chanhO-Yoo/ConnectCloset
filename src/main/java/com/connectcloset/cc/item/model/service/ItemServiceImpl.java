@@ -179,6 +179,13 @@ public class ItemServiceImpl implements ItemService{
                                                                                                            
 		return result;
 			}
+
+	@Override
+	public List<ItemQna> itemQnaList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return itemDAO.itemQnaList(itmeNo);
+	}
+
 		
 }		
 	

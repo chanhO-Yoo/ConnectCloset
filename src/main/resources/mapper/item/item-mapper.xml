@@ -253,6 +253,7 @@
 	<!--주영 상품 상세보기 끝 -->
 	
 	<!-- 하라 상품 상세보기 - QnA 시작 -->
+	
 	<insert id="insertQna">
 	insert into item_qna(item_qna_no , member_no, item_no, item_qna_title, item_qna_content, item_qna_ans_yn, item_qna_date)
 	values (seq_item_qna_no.nextval, #{memberNo},#{itemNo} ,#{itemQnaTitle},#{itemQnaContent},'n',sysdate)
@@ -260,6 +261,12 @@
 			select seq_item_qna_no.currval from dual
 		</selectKey>
 	</insert>
+	
+	<select id="itemQnaList" resultMap="itemQnaListMap">
+	select * from item_qna
+	where item_no = #{itemNo}
+	</select>
+	<resultMap type="ItemQna" id="itemQnaListMap"></resultMap>
 	<!-- 하라 상품 상세보기 - QnA 끝 -->
 
 </mapper>

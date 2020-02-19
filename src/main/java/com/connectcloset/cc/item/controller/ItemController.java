@@ -79,6 +79,11 @@ public class ItemController {
 		List<ItemImage> itemImage
 		= itemService.selectitemImagetList(itmeNo);
 		
+		List<ItemQna> itemQnaList = itemService.itemQnaList(itmeNo);
+		logger.debug("@@@@@@itemQnaList={}", itemQnaList);
+		
+		
+		mav.addObject("itemQnaList",itemQnaList);
 
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
@@ -100,11 +105,13 @@ public class ItemController {
 		
 			int itemNo = Integer.parseInt(request.getParameter("itemNo"));
 			
+		
+			
 			mav.addObject("msg", result>0? "게시물등록성공" : "실패!!");
 			mav.addObject("loc", "/shop/single-product.do?itemNo="+itemNo);
 			mav.setViewName("common/msg");
 			
-	
+	 
 			
 			
 			//예외를 스프링컨테이너에게 다시 던져서 예외페이지로 연결되도록 한다.

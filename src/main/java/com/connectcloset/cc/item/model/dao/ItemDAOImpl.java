@@ -172,6 +172,12 @@ public class ItemDAOImpl implements ItemDAO {
 	public int insertQna(ItemQna itemQna) {
 		return sqlSession.insert("item.insertQna",itemQna);
 	}
+
+	@Override
+	public List<ItemQna> itemQnaList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("item.itemQnaList",itmeNo);
+	}
 	
 	
 	//-------------하라  상품 상세보기 - QnA 끝 -------------------

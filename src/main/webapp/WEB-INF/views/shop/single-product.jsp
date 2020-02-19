@@ -295,11 +295,12 @@
                                             <div class="review-img">
                                                <%--  <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png"> --%>
                                             </div>
+                                             <c:forEach items="${itemQnaList}" var="itemQna" varStatus="vs">
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
                                                         <div class="review-name">
-                                                            <h4>White Lewis</h4>
+                                                            <h4>${itemQna.itemQnaTitle}</h4>
                                                         </div>
 <!--                                                         <div class="review-rating">
                                                             <i class="ti-star theme-color"></i>
@@ -317,6 +318,7 @@
                                                     <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
                                                 </div>
                                             </div>
+                                            </c:forEach>
                                         </div>
                                         <div class="single-review child-review">
                                             <div class="review-img">
