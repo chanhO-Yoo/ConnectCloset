@@ -38,7 +38,10 @@ public interface ItemDAO {
 	int selectBagCount();
 	List<ItemAndImageVO2> selectShoesList(int cPage, int numPerPage);
 	int selectShoesCount();
-	
+	List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo);
+	int selectTypeItemCount(String itemTypeNo);
+	List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage);
+	int selectAccCount();
 	//------------ 윤지 상품 리스트 끝 ---------------
 	
 
@@ -49,8 +52,6 @@ public interface ItemDAO {
 
 
 	List<Review> selectReviewList(int itmeNo);
-
-
 
 
 

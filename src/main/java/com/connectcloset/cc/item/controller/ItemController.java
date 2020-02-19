@@ -1,7 +1,9 @@
 package com.connectcloset.cc.item.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,8 +63,6 @@ public class ItemController {
 	
 	@RequestMapping("/shop/single-product.do")
 	public ModelAndView singleproduct(ModelAndView mav ,@RequestParam("itemNo") int itmeNo){
-
-		logger.debug("itmeNo={}", itmeNo);
 		
 		ItemAndImageVO2 item
 		=itemService.selectOneitemImage(itmeNo);
@@ -87,40 +87,107 @@ public class ItemController {
 	//===================주영 상세보기 끝======================
 	
 	//===================윤지 상품 리스트 시작=====================
-		@RequestMapping("/shop/shopItemList.do")
-		public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo) {
+	
+	@RequestMapping("/shop/shopItemList.do")
+	public ModelAndView itemList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
 
-			final int numPerPage = 9;
-			
-			List<ItemAndImageVO2> list = new ArrayList<>();
-			int totalContents = 0;
-			
-			if(brandNo.equals("a")) {
-				list = itemService.selectItemAndImageList(cPage, numPerPage);
-				totalContents = itemService.selectItemCount();
-			}
-			else {
-				list = itemService.selectItemAndImageBrandList(cPage, numPerPage, brandNo);
-				totalContents = itemService.selectBrandItemCount(brandNo);
-			}
-			
-			logger.debug("list={}", list);
-			
-			
-			logger.debug("totalBoardCount={}", totalContents);
-			
-			mav.addObject("list", list);
-			mav.addObject("numPerPage", numPerPage);
-			mav.addObject("cPage", cPage);
-			mav.addObject("totalContents", totalContents);
-			
-			mav.addObject("brandNo", brandNo);
-			
-			mav.setViewName("shop/shopItemList");
-			
-			return mav;
+		final int numPerPage = 9;
+		
+		List<ItemAndImageVO2> list = new ArrayList<>();
+		int totalContents = 0;
+		
+		if(brandNo.equals("a") && itemTypeNo.equals("a")) {
+			list = itemService.selectItemAndImageList(cPage, numPerPage);
+			totalContents = itemService.selectItemCount();
+		}
+		else if(brandNo.equals("a") && !itemTypeNo.equals("a")){
+			list = itemService.selectItemAndImageTypeList(cPage, numPerPage, itemTypeNo);
+			totalContents = itemService.selectTypeItemCount(itemTypeNo);
+		}
+		else if(!brandNo.equals("a") && !itemTypeNo.equals("a")){
+			list = itemService.selectItemAndImageBrandList(cPage, numPerPage, brandNo);
+			totalContents = itemService.selectBrandItemCount(brandNo);
+		}
+		else {
+			list = itemService.selectItemAndImageBrandList(cPage, numPerPage, brandNo);
+			totalContents = itemService.selectBrandItemCount(brandNo);
 		}
 		
+		if(itemTypeNo.equals("itype-001") || itemTypeNo.equals("itype-010") || itemTypeNo.equals("itype-011") || itemTypeNo.equals("itype-012") || itemTypeNo.equals("itype-013")){
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-001", "아우터");
+			categoryMap.put("itype-010", "코트");
+			categoryMap.put("itype-011", "조끼");
+			categoryMap.put("itype-012", "자켓");
+			categoryMap.put("itype-013", "가디건");
+			
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 1);
+		}
+		else if(itemTypeNo.equals("itype-002") || itemTypeNo.equals("itype-003") || itemTypeNo.equals("itype-007") || itemTypeNo.equals("itype-008")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-002", "셔츠");
+			categoryMap.put("itype-003", "맨투맨/후드");
+			categoryMap.put("itype-007", "니트");
+			categoryMap.put("itype-008", "티셔츠");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 2);
+		}
+		else if(itemTypeNo.equals("itype-004") || itemTypeNo.equals("itype-005")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-004", "팬츠");
+			categoryMap.put("itype-005", "진");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 3);
+		}
+		else if(itemTypeNo.equals("itype-006")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-006", "드레스/스커트");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 4);
+		}
+		else if(itemTypeNo.equals("itype-0014")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-014", "가방");
+			
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 5);
+		}
+		else if(itemTypeNo.equals("itype-009")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-009", "신발");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 6);
+		}
+		else if(itemTypeNo.equals("itype-015") || itemTypeNo.equals("itype-016") || itemTypeNo.equals("itype-017") || itemTypeNo.equals("itype-018")) {
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-015", "지갑");
+			categoryMap.put("itype-016", "액세서리");
+			categoryMap.put("itype-017", "모자");
+			categoryMap.put("itype-018", "선글라스");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 7);
+		}
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.addObject("brandNo", brandNo);
+		mav.addObject("itemTypeNo", itemTypeNo);
+		
+		mav.setViewName("shop/shopItemList");
+		
+		return mav;
+	}
+	
+
 		@RequestMapping("/shop/outerList.do")
 		public ModelAndView itemOuterList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 			final int numPerPage = 9;
@@ -129,14 +196,24 @@ public class ItemController {
 			
 			int totalContents = itemService.selectOuterCount();
 			
-			logger.debug("list={}", list);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-001", "아우터");
+			categoryMap.put("itype-010", "코트");
+			categoryMap.put("itype-011", "조끼");
+			categoryMap.put("itype-012", "자켓");
+			categoryMap.put("itype-013", "가디건");
+
 			
-			logger.debug("totalBoardCount={}", totalContents);
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort",1);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "outer");
 			
 			mav.setViewName("shop/shopItemList");
 			
@@ -151,14 +228,22 @@ public class ItemController {
 			
 			int totalContents = itemService.selectTopCount();
 			
-			logger.debug("list={}", list);
-			
-			logger.debug("totalBoardCount={}", totalContents);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-002", "셔츠");
+			categoryMap.put("itype-003", "맨투맨/후드");
+			categoryMap.put("itype-007", "니트");
+			categoryMap.put("itype-008", "티셔츠");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 2);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "top");
 			
 			mav.setViewName("shop/shopItemList");
 			
@@ -173,14 +258,20 @@ public class ItemController {
 			
 			int totalContents = itemService.selectBottomCount();
 			
-			logger.debug("list={}", list);
-			
-			logger.debug("totalBoardCount={}", totalContents);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-004", "팬츠");
+			categoryMap.put("itype-005", "진");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 3);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "bottom");
 			
 			mav.setViewName("shop/shopItemList");
 			
@@ -195,14 +286,19 @@ public class ItemController {
 			
 			int totalContents = itemService.selectDressCount();
 			
-			logger.debug("list={}", list);
-			
-			logger.debug("totalBoardCount={}", totalContents);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-006", "드레스/스커트");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 4);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "dress");
 			
 			mav.setViewName("shop/shopItemList");
 			
@@ -217,15 +313,20 @@ public class ItemController {
 			
 			int totalContents = itemService.selectBagCount();
 			
-			logger.debug("list={}", list);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-014", "가방");
 			
-			logger.debug("totalBoardCount={}", totalContents);
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 5);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
 
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "bag");
+			
 			mav.setViewName("shop/shopItemList");
 			
 			return mav;
@@ -239,14 +340,49 @@ public class ItemController {
 			
 			int totalContents = itemService.selectShoesCount();
 			
-			logger.debug("list={}", list);
-			
-			logger.debug("totalBoardCount={}", totalContents);
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-009", "신발");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 6);
 			
 			mav.addObject("list", list);
 			mav.addObject("numPerPage", numPerPage);
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "shose");
+			
+			mav.setViewName("shop/shopItemList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/shop/accList.do")
+		public ModelAndView itemAccList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO2> list = itemService.selectAccList(cPage, numPerPage);
+			
+			int totalContents = itemService.selectAccCount();
+			
+			Map<String,String> categoryMap = new HashMap<>();
+			categoryMap.put("itype-015", "지갑");
+			categoryMap.put("itype-016", "액세서리");
+			categoryMap.put("itype-017", "모자");
+			categoryMap.put("itype-018", "선글라스");
+
+			mav.addObject("categoryMap",categoryMap);
+			mav.addObject("sort", 7);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.addObject("brandNo", "a");
+			mav.addObject("itemTypeNo", "acc");
 			
 			mav.setViewName("shop/shopItemList");
 			

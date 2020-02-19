@@ -121,6 +121,28 @@ public class ItemDAOImpl implements ItemDAO {
 	public int selectShoesCount() {
 		return sqlSession.selectOne("item.selectShoesCount");
 	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectItemAndImageTypeList", itemTypeNo, rowBounds);
+	}
+
+	@Override
+	public int selectTypeItemCount(String itemTypeNo) {
+		return sqlSession.selectOne("item.selectTypeItemCount", itemTypeNo);
+	}
+	
+	@Override
+	public List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.selectAccList", null, rowBounds);
+	}
+
+	@Override
+	public int selectAccCount() {
+		return sqlSession.selectOne("item.selectAccCount");
+	}
 	//===================윤지 상품 리스트  끝=======================	
 		
 		
@@ -143,6 +165,7 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("item.selectReviewList",itmeNo);
 	}
+
 
 
 
