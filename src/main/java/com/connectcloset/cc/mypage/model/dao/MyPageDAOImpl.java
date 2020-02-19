@@ -14,6 +14,7 @@ import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
 
@@ -86,22 +87,44 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	@Override
 	public int selectMypagePQnaListCount(int memberNo) {
-		// TODO Auto-generated method stub
+
 		return sqlSession.selectOne("mypage.selectPQnaListCount",memberNo);
 	}
 
 
 	@Override
 	public int mypagepQnAFormEnd(PersonalQna pQnA) {
-		// TODO Auto-generated method stub
+
 		return sqlSession.insert("mypage.mypagepQnAFormEnd",pQnA);
 	}
 
 
 	@Override
 	public int deletepQnA(int pQnaNo) {
-		// TODO Auto-generated method stub
+
 		return sqlSession.delete("mypage.deletepQnA",pQnaNo);
+	}
+
+
+	@Override
+	public PersonalQna selectOneEnrollQnA(int pQnaNo) {
+
+		return sqlSession.selectOne("mypage.selectOneEnrollQnA",pQnaNo);
+	}
+
+
+	@Override
+	public int pQnAEnrollEnd(PersonalQna pQnA) {
+
+		return sqlSession.update("mypage.pQnAEnrollEnd",pQnA);
+		
+	}
+
+
+	@Override
+	public List<PersonalQnaAns> mypagePQnaAns(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mypage.mypagePQnaAns",pQnaNo);
 	}
 	
 	//-------------------주영 1:1문의  끝 ---------------------------

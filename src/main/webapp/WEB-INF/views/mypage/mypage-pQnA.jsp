@@ -35,8 +35,12 @@ input#btn-add{float:right; margin: 0 0 15px;}
             <!-- 문의글 등록하기 -->
             <section class="my-header">
                 <h3 class="sr-only">문의글 등록하기</h3>
-                <div class="line-style text-center">
-                    <a href="<%=request.getContextPath()%>/mypage/mypage-pQnAForm.do" class="btn-radius btn-qna">1:1문의 등록하기</a>
+                <div class="text-center">
+                 <div class="submit-btn">
+                    <a href="<%=request.getContextPath()%>/mypage/mypage-pQnAForm.do" >
+                 <button type="button" class="btn btn-success btn-hover" >1:1문의 등록하기</button>
+                    </a>
+		          </div>
                 </div>
             </section>
         </div>
@@ -50,9 +54,10 @@ input#btn-add{float:right; margin: 0 0 15px;}
 			<th>문의날짜</th>
 			<th>답변여부</th>
 			<th></th>
+			<th></th>
 		</tr>
 		<c:forEach items="${list }" var="pQna">
-				<tr onclick="location.href='${pageContext.request.contextPath }'">
+				<tr onclick="location.href='${pageContext.request.contextPath }/mypage/mypage-pQnAans.do?pQnaNo=${pQna.pQnaNo }'">
 					<td>${pQna.pQnaNo }</td>
 					<td>${pQna.memberNo }</td>
 					             <c:choose>
@@ -74,6 +79,7 @@ input#btn-add{float:right; margin: 0 0 15px;}
 					<td>${pQna.pQnaTitle }</td>
 					<td>${pQna.pQnaDate }</td>
 					<td>${pQna.pAnsYn }</td>
+					<td><a href="${pageContext.request.contextPath }/mypage/mypage-pQnAEnroll.do?pQnaNo=${pQna.pQnaNo}"><button class="btn btn-success">수정하기</button>  </a></td>
 					<td> <form action="${pageContext.request.contextPath}/mypage/mypage-pQnADelete.do?pQnaNo=${pQna.pQnaNo}&memberNo=${memberLoggedIn.memberNo}" method="post">
                                      	    <input type="submit" class="btn btn-success" value="삭제">
                                      

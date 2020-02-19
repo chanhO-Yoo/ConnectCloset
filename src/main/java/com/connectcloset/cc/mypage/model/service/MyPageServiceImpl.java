@@ -13,6 +13,7 @@ import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -114,6 +115,30 @@ public class MyPageServiceImpl implements MyPageService {
 	public int deletepQnA(int pQnaNo) {
 		// TODO Auto-generated method stub
 		return mypageDAO.deletepQnA(pQnaNo);
+	}
+
+
+
+	@Override
+	public PersonalQna selectOneEnrollQnA(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectOneEnrollQnA(pQnaNo);
+	}
+
+
+
+	@Override
+	public int pQnAEnrollEnd(PersonalQna pQnA) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.pQnAEnrollEnd(pQnA);
+	}
+
+
+
+	@Override
+	public List<PersonalQnaAns> mypagePQnaAns(int pQnaNo) {
+		// TODO Auto-generated method stub
+		return mypageDAO.mypagePQnaAns(pQnaNo);
 	}
 
 	/// ---------------주영 1:1 문의 시작------------------------

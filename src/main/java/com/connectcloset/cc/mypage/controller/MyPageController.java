@@ -28,6 +28,7 @@ import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.order.model.service.OrderService;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 
 @Controller
@@ -263,15 +264,15 @@ public class MyPageController {
 	
 	
 	@PostMapping("/mypage/mypage-pQnADelete.do")
-	public ModelAndView pQnADelete(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo,PersonalQna pQnA  ) {
+	public ModelAndView pQnADelete(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo  ) {
 		
 		
-		
-		 pQnA =myPageService.deletepQnA(pQnaNo);
-
+		int result=
+		 myPageService.deletepQnA(pQnaNo);
+		mav.addObject("result", result);
 		
 		//3. view단 처리		
-	
+		logger.debug("result={}",result);
 		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
 		
 		
@@ -280,17 +281,36 @@ public class MyPageController {
 		return mav;
 	}
 	
-	@PostMapping("/mypage/mypage-pQnAEnroll.do")
-	public ModelAndView pQnAEnroll(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo ) {
+	@RequestMapping("/mypage/mypage-pQnAEnroll.do")
+	public ModelAndView pQnAEnroll(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo ,PersonalQna pQnA ) {
 		
 		
 		
-		int result =myPageService.EnrollQnA(pQnaNo);
+		pQnA =myPageService.selectOneEnrollQnA(pQnaNo);
 
 		
 		//3. view단 처리		
 	
-		mav.setViewName("/mypagemypage-pQnAEnroll");
+		
+		mav.addObject("pQnA", pQnA);
+		
+		mav.setViewName("/mypage/mypage-pQnAEnroll");
+		
+		return mav;
+	}
+	@PostMapping("/mypage/mypage-pQnAEnrollEnd.do")
+	public ModelAndView pQnAEnrollEnd(ModelAndView mav ,@RequestParam("memberNo") int memberNo ,PersonalQna pQnA  ) {
+		
+		
+		int result=
+		 myPageService.pQnAEnrollEnd(pQnA);
+		
+		mav.addObject("result", result);
+		
+		//3. view단 처리		
+	
+		
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
 		
 		
 		
@@ -298,6 +318,22 @@ public class MyPageController {
 		return mav;
 	}
 	
+	@RequestMapping("/mypage/mypage-pQnAans.do")
+	public ModelAndView mypagePQnaAns(ModelAndView mav, @RequestParam int pQnaNo) {
+		
+		PersonalQna pQna = myPageService.selectOneEnrollQnA(pQnaNo);
+		logger.debug("pQna={}",pQna);
+		
+		List<PersonalQnaAns> pQnaAnsList = myPageService.mypagePQnaAns(pQnaNo);
+		logger.debug("pQnaAnsList={}",pQnaAnsList);
+		
+		mav.addObject("pQna",pQna);
+		mav.addObject("pQnaAnsList",pQnaAnsList);
+		
+		mav.setViewName("/mypage/mypage-pQnAans");
+		
+		return mav;
+	}
 	
 	//---------------주영 1:1 문의  끝 ------------------
 }

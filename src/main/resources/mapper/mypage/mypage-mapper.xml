@@ -94,6 +94,29 @@ insert into  personal_qna values
 	delete from personal_qna where p_qna_No = #{pQnaNo}
 	</delete>
 	
+	<select id="selectOneEnrollQnA" resultMap="selectOneEnrollQnAMap">
+		select *from personal_qna where p_qna_No = #{pQnaNo}
+	</select>
+	
+	<resultMap type="PersonalQna" id="selectOneEnrollQnAMap"></resultMap>
+	
+	<update id="pQnAEnrollEnd">
+	update personal_qna set 
+	
+	p_qna_title=#{pQnaTitle},
+	
+	p_qna_type_no=#{pQnaTypeNo},
+	
+	 p_qna_content=#{pQnaContent}
+	
+	   where p_qna_No = #{pQnaNo}
+	
+	</update>
+	
+	<select id="mypagePQnaAns" resultMap="personalQnaAnsMap">
+		select * from personal_qna_ans where p_qna_no=#{pQnaNo} order by p_qna_ans_no
+	</select>
+	<resultMap type="personalQnaAns" id="personalQnaAnsMap"></resultMap>
 	
 </mapper>
     

@@ -14,10 +14,10 @@
 	<div class="row">
 	
 	    <div class="col-md-10 content-wrapper">
-	        <h2 class="sr-only">1:1문의등록</h2>
+	        <h2 class="sr-only">1:1문의수정</h2>
 	        <!-- 문의등록 폼 -->
 	        <section>
-	            <form action="<%=request.getContextPath() %>/mypage/mypage-pQnAFormEnd.do" id="pQnAForm" method="post" enctype="multipart/form-data">
+	            <form action="<%=request.getContextPath() %>/mypage/mypage-pQnAEnrollEnd.do" id="pQnAForm" method="post" enctype="multipart/form-data">
 	                <div class="qSort-wrapper">
 	                    <label for="q-sort">문의유형</label>
 	                    <select name="pQnaTypeNo" id="pQnaTypeNo">
@@ -28,11 +28,12 @@
 	                </div>
 	                <div class="qTitle-wrapper">
 	                    <label for="q-title">문의제목</label>
-	                    <input type="text" name="pQnaTitle" id="pQnaTitle" required>
+	                    <input type="text" name="pQnaTitle" value="${pQnA.pQnaTitle }" id="pQnaTitle" required>
+	                    <input type="hidden" name="pQnaNo" value="${pQnA.pQnaNo}" id="pQnaNo" >
 	                </div>
 	                <div class="qContent-wrapper">
 	                    <label for="q-content">문의내용</label>
-	                    <textarea name="pQnaContent" id="pQnaContent" cols="50" rows="10" required></textarea>
+	                    <textarea name="pQnaContent" id="pQnaContent" cols="50" rows="10" required>${pQnA.pQnaContent }</textarea>
 	                </div>
 	            
 	                <div class="memberId-wrapper">
@@ -41,7 +42,7 @@
 	                </div>
 	                <div class="btnForm-wrapper text-center">
 	                    <button type="button" class="btn-radius" onclick="exit();">취소</button>
-	                    <button type="submit" class="btn-radius" onclick="return boardValidate();">등록</button>
+	                    <button type="submit" class="btn-radius" onclick="return boardValidate();">수정</button>
 	                </div>
 	            </form>
 	        </section>
