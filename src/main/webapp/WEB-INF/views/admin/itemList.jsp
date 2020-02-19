@@ -35,7 +35,7 @@
             </div>
         </div>
         
-       <!-- ㅇㄹㄴㅇㄹ -->
+       
         <div class="blog-area pt-80 pb-80 gray-bg-4 container-padding-res blog-sidebar-page">
             <div class="container">
                 <p>총 ${totalContents }개의 상품이 있습니다.</p>
