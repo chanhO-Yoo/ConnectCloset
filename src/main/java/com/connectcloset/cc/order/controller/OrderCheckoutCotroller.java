@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,13 +76,17 @@ public class OrderCheckoutCotroller {
 	@RequestMapping("/order/paymentsComplete.do")
 	public void paymentsComplete(Model model, HttpServletRequest request ) {
 		
-		List<Item> itemList = (List<Item>)request.getAttribute("itemList");
-		Member member = (Member)request.getAttribute("member");
 		
-		logger.debug("itemList={}",itemList);
-		logger.debug("member={}",member);
+
+		String itemNoList = (String)request.getParameter("itemNoList");
+		String member = (String)request.getParameter("member");
+		JSONObject json = (JSONObject)JSONValue.parse(member);
 		
 		
+		logger.debug("itemNoList={}",itemNoList);
+		logger.debug("json={}",json);
+		
+			
 		/*String orderNo = null;
 		String orderId  = request.getParameter("orderId");	
 		Date orderDate = null;
@@ -115,8 +121,7 @@ public class OrderCheckoutCotroller {
 		
 		
 		
-		model.addAttribute("itemList={}",itemList);
-		model.addAttribute("member={}",member);
+		model.addAttribute("itemNoList={}",itemNoList);
 //		logger.debug("order={}",order);
 //		model.addAttribute("order",order);
 		
@@ -125,7 +130,7 @@ public class OrderCheckoutCotroller {
 	
 	//결제 db등록하기
 	//@RequestMapping("/order/paymentsComplete")
-	@PostMapping("/shop/orderEnd.do")
+	@RequestMapping("/shop/orderEnd.do")
 	public ModelAndView paymentsComplete(ModelAndView mav, OrderProduct order) {
 		
 		logger.debug("order={}"+order);

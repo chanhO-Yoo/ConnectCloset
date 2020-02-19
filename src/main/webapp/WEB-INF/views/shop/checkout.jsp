@@ -8,7 +8,11 @@
 <%
 int totalPrice = 0;
 List<Item> itemList = (List<Item>)request.getAttribute("itemList");
-System.out.println("@@@"+itemList);
+int[] itemNoArr = new int[itemList.size()];
+for(int i=0;i<itemList.size();i++){
+	itemNoArr[i] = itemList.get(i).getItemNo();
+}
+System.out.println("@@@itemNoArr="+itemNoArr);
 Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
@@ -409,7 +413,15 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 
 <script>
 
-	 
+	var itemNoArr = new Array();
+	var itemSize = <%=itemList.size()%>;
+	
+	<%for(int i=0;i<itemList.size();i++){%>
+		itemNoArr[<%=i%>]=<%=itemList.get(i).getItemNo()%>;
+	<%}%>
+	
+	console.log(itemNoArr);
+	
 	$("#push_module").click(function () {
 		
 		var itemName = $('#itemName')[0].innerText; 
@@ -457,21 +469,12 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 	 $.ajax({
 			url: "${pageContext.request.contextPath}/order/paymentsComplete.do",
 			type: "post",
+			traditional:true,
 			data: {
-//				merchant_uid: rsp.merchant_uid,
 				<%-- orderId: "<%=member.getMemberEmail()%>", --%>
 				 /* {list:JSON.stringify($scope.lists), param1:'param1', param2:'param2'}; */
-				itemList: '<%=itemList%>',
-				<%-- member : <%=member%>, --%>
-				imp_uid: rsp.imp_uid,
-				payMethod: "card",
-				itemName: "itemName",
-				//totalItemEa: 1,
-				totalPrice: totalPrice
-				//usePoint: userPoint,
-				<%-- itemNo: <%=item.getItemNo()%>,
-				rentType: "<%=rentOptNo%>",
-				ea: <%=ea%> --%>
+				itemNoList: JSON.stringify(itemNoArr),
+				member : JSON.stringify(<%=member%>)
 			},
 			dataType: "json"
 	
@@ -485,7 +488,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			alert(msg);
 		});
 	//성공 시 이동 페이지
-	location.href="${pageContext.request.contextPath}/shop/orderEnd.do?";
+//	location.href="${pageContext.request.contextPath}/shop/orderEnd.do";
 	
 	} 
 		//결제실패
