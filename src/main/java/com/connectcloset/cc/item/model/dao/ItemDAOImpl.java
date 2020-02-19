@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -163,7 +164,16 @@ public class ItemDAOImpl implements ItemDAO {
 
 
 
+
 	//===================주영  상품 상세보기 끝========================
 
+	//-------------하라  상품 상세보기 - QnA 시작 -------------------
+	@Override
+	public int insertQna(ItemQna itemQna) {
+		return sqlSession.insert("item.insertQna",itemQna);
+	}
+	
+	
+	//-------------하라  상품 상세보기 - QnA 끝 -------------------
 
 }

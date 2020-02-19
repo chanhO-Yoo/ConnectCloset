@@ -5,6 +5,7 @@ import java.util.List;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
 
 
 public interface ItemDAO {
@@ -51,10 +52,17 @@ public interface ItemDAO {
 
 
 
+
+
 	
 //-------------주영 상세보기 끝 -------------------
 
  
+//-------------하라  상품 상세보기 - QnA 시작 -------------------
+	int insertQna(ItemQna itemQna);
+	
+	
+//-------------하라  상품 상세보기 - QnA 끝 -------------------
 
 
 }

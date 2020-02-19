@@ -293,7 +293,7 @@
                                     <div class="review-wrapper">
                                         <div class="single-review">
                                             <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                               <%--  <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png"> --%>
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
@@ -320,7 +320,7 @@
                                         </div>
                                         <div class="single-review child-review">
                                             <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                                <%-- <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png"> --%>
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
@@ -351,7 +351,8 @@
                                     <div class="ratting-form-wrapper pl-50">
                                         <h3>Add a QnA</h3>
                                         <div class="ratting-form">
-                                            <form action="#">
+                                            <!-- <form action="#"> -->
+                                            <form name="QnaFrm" action="${pageContext.request.contextPath}/qna/qnaFormEnd.do" method="post" enctype="multipart/form-data" onsubmit="return validate();">
                                             <br />
 <!--                                                 <div class="star-box">
                                                     <span>Your rating:</span>
@@ -366,17 +367,22 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="rating-form-style mb-10">
-                                                            <input placeholder="Name" type="text">
+                                                            <input placeholder="Name" type="text" value="${memberLoggedIn.memberName}">
+                                                            <input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="rating-form-style mb-10">
-                                                            <input placeholder="Email" type="email">
+                                                            <input placeholder="Email" type="email" value="${memberLoggedIn.memberEmail}">
+                                                            <input type="hidden" name="itemNo" value="${item.itemNo }" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
+                                                    	<input placeholder="Title" type="title" name="itemQnaTitle" > 
+                                                    </div> 
+                                                    <div class="col-md-12">
                                                         <div class="rating-form-style form-submit">
-                                                            <textarea name="Your Review" placeholder="Message"></textarea>
+                                                            <textarea name="itemQnaContent" placeholder="Content"></textarea>
                                                             <input type="submit" value="Submit">
                                                         </div>
                                                     </div>
