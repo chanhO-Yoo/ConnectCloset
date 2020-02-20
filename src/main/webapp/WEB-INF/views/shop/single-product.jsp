@@ -10,7 +10,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
@@ -174,8 +174,7 @@
                     <div class="tab-content description-review-bottom">
                         <div id="des-details1" class="tab-pane active">
                             <div class="product-description-wrapper">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar massa metus, vitae pharetra lacus sodales sit amet. Morbi accumsan suscipit lacus, sit amet egestas magna elemen tum nec. Mauris urna enim, rutrum in iaculis nec, vehicula ut libero. Etiam sit amet ex orci. Duis eget consectetur libero, eget interdum metus. Aliquam rhoncus porttitor felis, a tincidunt ex scel erisque et. Morbi faucibus venenatis dignissim. Nullam ut facilisis mauris. In hac habitasse platea dictumst. </p>
-                                <p>Pellentesque luctus augue ipsum, ut tincidunt odio tempus at. Nullam ac quam venenatis, bibendum eros at, placerat risus. Maecenas cursus elit non nisl finibus congue. Donec posuere fringilla ante eu vehicula. Fusce sed erat quis nisi gravida vehicula id vitae dolor. In at libero pretium, maximus lorem vitae, pharetra turpis feugiat facilisis ullamcorper.  </p>
+                         <p>${item.itemDetailInfo} </p>
                             </div>
                         </div>
                         <div id="des-details2" class="tab-pane ">
@@ -188,205 +187,55 @@
                                 </ul>
                             </div>
                         </div>
+                        <!--        리뷰 시작!      -->
                         <div id="des-details3" class="tab-pane">
+                       
                             <div class="row">
                                 <div class="col-lg-7">
+                                            <c:if test="${reviewList != null }">
+                        			<c:forEach items="${reviewList}" var="re">
+                        		
                                     <div class="review-wrapper">
                                         <div class="single-review">
                                             <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            <c:if test="${re.reviewImage !=null}">
+                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
+                                            </c:if>
+                                            
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
                                                         <div class="review-name">
-                                                            <h4>White Lewis</h4>
+                                                            <h4>${re.reviewTitle}</h4>
                                                         </div>
+                                                       
                                                         <div class="review-rating">
+                                                        	<c:forEach  begin="1" end="${re.reviewStar}">
                                                             <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
+                                                           	</c:forEach>
+                                                           	<c:forEach  begin="1" end="${5-re.reviewStar}">
+                                                            <i class="ti-star theme-gray"></i>
+                                                           	</c:forEach>
                                                         </div>
+         
                                                     </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
+                                                    <p>${re.reviewContent}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="single-review child-review">
-                                            <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
-                                                        </div>
-                                                        <div class="review-rating">
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        
+                                    </div> 
+                                     </c:forEach>
+                                     </c:if>
                                 </div>
-                                <div class="col-lg-5">
-                                    <div class="ratting-form-wrapper pl-50">
-                                        <h3>Add a Review</h3>
-                                        <div class="ratting-form">
-                                            <form action="#">
-                                                 <div class="star-box">
-                                                    <span>Your rating:</span>
-                                                    <div class="ratting-star">
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Name" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Email" type="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="rating-form-style form-submit">
-                                                            <textarea name="Your Review" placeholder="Message"></textarea>
-                                                            <input type="submit" value="Submit">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                             
                             </div>
                         </div>
-                        <div id="des-details4" class="tab-pane">
-                            <div class="row">
-                                <div class="col-lg-7">
-                                    <div class="review-wrapper">
-                                        <div class="single-review">
-                                            <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
-                                                        </div>
-<!--                                                         <div class="review-rating">
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
-                                                        </div> -->
-                                                    </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-review child-review">
-                                            <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
-                                                        </div>
-<!--                                                         <div class="review-rating">
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
-                                                        </div> -->
-                                                    </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="ratting-form-wrapper pl-50">
-                                        <h3>Add a QnA</h3>
-                                        <div class="ratting-form">
-                                            <form action="#">
-                                            <br />
-<!--                                                 <div class="star-box">
-                                                    <span>Your rating:</span>
-                                                    <div class="ratting-star">
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                    </div>
-                                                </div> -->
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Name" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Email" type="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="rating-form-style form-submit">
-                                                            <textarea name="Your Review" placeholder="Message"></textarea>
-                                                            <input type="submit" value="Submit">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -523,3 +372,9 @@
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
+</script>

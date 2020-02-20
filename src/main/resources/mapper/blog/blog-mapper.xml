@@ -3,98 +3,77 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="blog">
-    <!-- ===================하라 시작=================== -->
- <resultMap type="blog" id="blogMap"></resultMap>
  
-<insert id="insertBlog">
-		insert into blog(blog_no, blog_title, member_no, blog_content, blog_date)
-		values(seq_blog_no.nextval, #{blogTitle}, #{memberNo}, #{blogContent}, sysdate)
-		<selectKey keyProperty = "blogNo" resultType="_int" order="AFTER">
-			select seq_blog_no.currval from dual
-		</selectKey>
-	</insert>
+ <resultMap type="blog" id="blogMap">
+ 	<result column="boardreadcount" property="readCount"></result>
+ </resultMap>
+ 
 	
- 	<select id="selectBlogList" resultMap="blogMap">
-	select B.*
-	from blog B
-	order by blog_date desc
+ 	<select id="selectBlogList" resultType="blog" resultMap="blogMap">
+	select b.*, (select count(*) from blog_attachment where blogNo = b.blog_No)
+	fileCount from blog b order by blog_Date desc
 	</select>
 	
 	<select id="selectTotalContents" resultType="_int">
 		select count(*) from blog
 	</select> 
-
-	<select id="selectOneBlog">
-		select * from blog where= #{blogNo}
-	</select>
-	
-<!-- 		<select id="selectOneBlogCollection" resultMap="blogCollectionMap">
-		select *
-		from blog B left join attachment A
-		        on B.blogno = A.blogno
-		where B.blogno = #{blogno}
-	</select> -->
-	
-
-
-	<!-- <resultMap type="blog" id="blogMap">
-		<result column="blogreadcount" property="readCount"/>
-	</resultMap>
-	<select id="selectBlogList" resultMap="blogMap">
-		select B.*,
-			   (select count(*) from attachment where blogno = B.blogno) filecount
-		from blog B
-		order by blogdate desc
-	</select>
-	
-	<select id="selectTotalContents" resultType="_int">
-		select count(*) from blog
-	</select>
 	
 	<insert id="insertBlog">
-		insert into blog(blogno, blogtitle, blogwriter, blogcontent)
-		values(seq_blogno.nextval, #{blogTitle}, #{blogWriter}, #{blogContent})
-		<selectKey keyProperty = "blogNo" resultType="_int" order="AFTER">
-			select seq_blogno.currval from dual
+	insert into blog(blog_no , blog_title, member_no, blog_content)
+	values (seq_blog_no.nextval,#{blogTitle}, #{memberNo},#{blogContent})
+		<selectKey keyProperty="blogNo" resultType="_int" order="AFTER">
+			select seq_blog_no.currval from dual
 		</selectKey>
 	</insert>
+	
 	<insert id="insertAttachment">
-		insert into attachment(attachmentno, blogno, originalfilename, renamedfilename)
-		values(seq_attachmentno.nextval, #{blogNo}, #{originalFileName}, #{renamedFileName})
+	insert into blog_attachment(attachmentNo, blogNo, originalfilename, renamedfilename)
+	values (seq_attachmentno.nextval,#{blogNo},#{originalFileName},#{renamedFileName})
+	
 	</insert>
 	
-	<select id="selectOneBlog">
-		select * from blog where= #{blogNo}
+	<select id="selectOneBlog" resultType="blog">
+	select * from blog
+	where blog_no = #{blogNo}
 	</select>
 	
-	<select id="selectAttachmentList">
-		select * from attachment where blogno= #{blogNo}
+	<select id="selectAttachmentList" resultMap="Attachmentlist">
+	select * from blog_attachment
+	where blogno = #{blogNo}
 	</select>
+	
+	<resultMap type="attachment" id="Attachmentlist"></resultMap>
 	
 	<select id="selectOneBlogCollection" resultMap="blogCollectionMap">
-		select *
-		from blog B left join attachment A
-		        on B.blogno = A.blogno
-		where B.blogno = #{blogno}
-	</select>
-	<resultMap type="blogAttachVO" id="blogCollectionMap">
-		<id column="blogno" property="blogNo"/>
-		<result column="blogtitle" property="blogTitle"/>
-		<result column="blogwriter" property="blogWriter"/>
-		<result column="blogcontent" property="blogContent"/>
-		<result column="blogdate" property="blogDate"/>
-		<result column="readcount" property="readCount"/>
-		1:N관계의 테이블을 조인해서 리턴하는 경우
-		<collection property="attachmentList" ofType="attachment">
-			<id column="attachmentno" property="attachmentNo"/>
-			<result column="blogno" property="blogNo"/>		
-			<result column="originalfilename" property="originalFileName"/>		
-			<result column="renamedfilename" property="renamedFileName"/>		
-			<result column="uploaddate" property="uploadDate"/>		
-			<result column="downloadcount" property="downloadCount"/>		
-			<result column="status" property="status"/>		
-		</collection>
-	</resultMap> -->
+	select *
+		from blog B left join blog_attachment A on A.blogno = B.blog_no
+		where b.blog_no = #{blogNo} 
 	
-	    <!-- ===================하라 끝=================== -->
+	</select>
+	
+	<resultMap type="blogAttachVO" id="blogCollectionMap">
+	<id column="blog_no" property="blogNo" />
+	<result column="blog_title" property="blogTitle" />
+	<result column="member_no" property="memberNo" />
+	<result column="blog_content" property="blogContent"/>
+	<result column="blog_date" property="blogDate"/>
+	<result column="boardreadcount" property="readCount"/>
+	
+	
+	<!-- 1: n관계의 테이블을 조인해서 리턴하는 경우  -->
+	<collection property="attachmentList" ofType="attachment">
+	<id column="attachmentno" property="attachmentNo" />
+	<result column="blogno" property="blogNo" />
+	<result column="originalfilename" property="originalFileName" />
+	<result column="renamedfilename" property="renamedFileName"/>
+	<result column="uploaddate" property="uploadDate"/>
+	<result column="downloadcount" property="downloadCount"/>
+	<result column="status" property="status"/>
+	</collection>
+	</resultMap>
+
+	
+
+
+
 </mapper>

@@ -21,7 +21,7 @@
 	<!--하은 시작-->
 	<select id="selectItemNumber" resultMap="itemMap">
 		select * from item
-		where item_No = 102
+		where item_No = #{itemNo}
 	</select>
 	<!--하은 끝-->	
 
@@ -77,6 +77,22 @@
 	<select id="selectBrandItemCount" resultType="_int">
 		select count(*) from item where brand_no = #{brandNo}
 	</select>
+
+	<select id="selectItemAndImageTypeList" resultMap="itemAndImageMap">
+		select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		where item_type_no =#{itemTypeNo}
+		order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectTypeItemCount" resultType="_int">
+		select count(*) from item where item_type_no = #{itemTypeNo}
+	</select>
 	
 	<select id="selectOuterList" resultMap="itemAndImageMap">
 		select * 
@@ -86,13 +102,13 @@
 		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
 		WHERE TMP.RN = 1) II 
 		on I.item_no=II.item_no
-		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012'OR item_type_no = 'itype-013'
+		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012' OR item_type_no = 'itype-013'
 		order by I.item_no desc, II.item_image_no asc
 	</select>
 	
 	<select id="selectOuterCount" resultType="_int">
 		select count(*) from item
-		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012'OR item_type_no = 'itype-013'
+		where item_type_no = 'itype-001' OR item_type_no = 'itype-010' OR item_type_no = 'itype-011' OR item_type_no = 'itype-012' OR item_type_no = 'itype-013'
 	</select>
 	
 	<select id="selectTopList" resultMap="itemAndImageMap">
@@ -179,13 +195,30 @@
 		select count(*) from item
 		where item_type_no = 'itype-009'
 	</select>
+	
+	<select id="selectAccList" resultMap="itemAndImageMap">
+		select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		where item_type_no = 'itype-015' OR item_type_no = 'itype-016' OR item_type_no = 'itype-017' OR item_type_no = 'itype-018'
+		order by I.item_no desc, II.item_image_no asc
+	</select>
+	
+	<select id="selectAccCount" resultType="_int">
+		select count(*) from item
+		where item_type_no = 'itype-015' OR item_type_no = 'itype-016' OR item_type_no = 'itype-017' OR item_type_no = 'itype-018'
+	</select>
 	<!-- 윤지  상품 리스트 끝 -->
 
 
 
 	<!--주영 상품 상세보기 시작 -->
 	<select id="selectOneitemImage" resultMap="itemImage">
-		SELECT * FROM item_image IME JOIN  ITEM I ON IME.ITEM_NO = I.ITEM_NO
+		SELECT * FROM ITEM I left JOIN item_image IME ON IME.ITEM_NO = I.ITEM_NO
 	 where I.item_no=#{itemNo}
 	</select>
 	<resultMap type="itemandimagevo2" id="itemImage">
@@ -217,6 +250,18 @@
 		SELECT * FROM item_image where item_no=#{itemNo} ORDER BY item_image_no
 	</select>
 	<resultMap type="ItemImage" id="itemImageMap"></resultMap>
+	
+	<select id="selectReviewList" resultMap="selectReviewMap">
+		select
+    		*
+        from
+         review
+         where review_item_no= #{itemNo}
+
+	</select>
+	<resultMap type="Review" id="selectReviewMap"></resultMap>
+	
+	
 	<!--주영 상품 상세보기 끝 -->
 	
 

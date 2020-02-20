@@ -1,6 +1,7 @@
 package com.connectcloset.cc.blog.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,13 +18,6 @@ public class BlogDAOImpl implements BlogDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	//==================== 하라 시작 =========================
-
-	@Override
-	public int insertBlog(Blog blog) {
-		return sqlSession.insert("blog.insertBlog",blog);
-	}
-
 	@Override
 	public List<Blog> selectBlogList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
@@ -36,6 +30,15 @@ public class BlogDAOImpl implements BlogDAO {
 		return sqlSession.selectOne("blog.selectTotalContents");
 	}
 
+	@Override
+	public int insertBlog(Blog blog) {
+		return sqlSession.insert("blog.insertBlog",blog);
+	}
+
+	@Override
+	public int insertAttahment(Attachment a) {
+		return sqlSession.insert("blog.insertAttachment",a);
+	}
 
 	@Override
 	public Blog selectOneBlog(int blogNo) {
@@ -52,10 +55,4 @@ public class BlogDAOImpl implements BlogDAO {
 		return sqlSession.selectOne("blog.selectOneBlogCollection",blogNo);
 	}
 
-//	@Override
-//	public int insertAttachment(Attachment a) {
-//		return sqlSession.insert("blog.insertAttachment",a);
-//	}
-	
-	//==================== 하라 끝 =========================
 }

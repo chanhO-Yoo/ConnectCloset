@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Controller
 public class AdminController {
 
+	
 	private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
@@ -103,7 +104,7 @@ public class AdminController {
 		
 		
 		mav.addObject("msg",result>0?"아이템 등록 성공.":"아이템 등록 실패.");
-		mav.addObject("loc","/admin/itemList2.do");
+		mav.addObject("loc","/admin/itemList.do");
 		mav.setViewName("common/msg");
 		}catch(Exception e) {
 			logger.error(e.getMessage(),e);
@@ -222,7 +223,7 @@ public class AdminController {
 		
 		
 		mav.addObject("msg",result>0?"상품 수정 성공.":"상품 수정 실패.");
-		mav.addObject("loc","/admin/itemList2.do");
+		mav.addObject("loc","/admin/itemList.do");
 		mav.setViewName("common/msg");
 		}catch(Exception e) {
 			logger.error(e.getMessage(),e);
