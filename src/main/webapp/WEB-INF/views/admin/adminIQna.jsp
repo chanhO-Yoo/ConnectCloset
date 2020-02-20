@@ -8,22 +8,22 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section id="board-container" class="container pt-150">
-	<form action="${pageContext.request.contextPath }/admin/adminPQnaEnd.do" id="pQnaAnsForm" method="POST">
-		<input type="hidden" name="pQnaNo" value="${pQna.pQnaNo }"/>
+	<form action="${pageContext.request.contextPath }/admin/adminIQnaEnd.do" id="iQnaAnsForm" method="POST">
+		<input type="hidden" name="iQnaNo" value="${iQna.itemQnaNo }"/>
 		<table id="tbl-board" class="table">
 			<tr>
 				<td>문의번호</td>
-				<td>${pQna.pQnaNo }</td>
+				<td>${iQna.itemQnaNo }</td>
 				<td>문의유형</td>
-				<td>${pQna.pQnaTypeNo }</td>
+				<td>${iQna.itemQnaType }</td>
 				<td>문의제목</td>
-				<td>${pQna.pQnaTitle }</td>
+				<td>${iQna.itemQnaTitle }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td colspan="2">${pQna.memberNo }</td>
+				<td colspan="2">${iQna.memberNo }</td>
 				<td>작성일</td>
-				<td colspan="2">${pQna.pQnaDate }</td>
+				<td colspan="2">${iQna.itemQnaDate }</td>
 			</tr>
 			<tr>
 				<td colspan="6">
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td colspan="6">
-					<p>${pQna.pQnaContent }</p>
+					<p>${iQna.iQnaContent }</p>
 				</td>
 			</tr>
 			<tr>
@@ -41,11 +41,11 @@
 				</td>
 			</tr>
 			<!-- 답변이 있다면 -->
-			<c:if test="${pQnaAnsList != null }">
-				<c:forEach items="${pQnaAnsList }" var="pQnaAns">	
+			<c:if test="${iQnaAnsList != null }">
+				<c:forEach items="${iQnaAnsList }" var="iQnaAns">	
 					<tr>
 						<td colspan="6">
-							<p class="pl-30 mb-0"><strong>${pQnaAns.pQnaAnsContent }</strong></p>
+							<p class="pl-30 mb-0"><strong>${iQnaAns.itemQnaAnsContent }</strong></p>
 						</td>
 					</tr>
 				</c:forEach>
@@ -53,7 +53,7 @@
 			<!-- 답변이 있다면 -->
 			<tr>
 				<td colspan="6">
-					<textarea class="form-control" id="pQna_Ans" name="pQnaAnsContent" rows="3"></textarea>
+					<textarea class="form-control" id="iQna_Ans" name="iQnaAnsContent" rows="3"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -68,7 +68,7 @@
 	
 	<script>
 		function submit(){
-			$("#pQnaAnsForm").submit();
+			$("#iQnaAnsForm").submit();
 		}
 	</script>
 	
@@ -80,6 +80,6 @@
 	$(document).ready(function(){
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
-		console.log('실행됬냐?');
+		console.log('실행됐냐?');
 	});
 </script>

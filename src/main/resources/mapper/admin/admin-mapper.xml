@@ -195,15 +195,15 @@
 	</select>
 	
 	<select id="adminIQna" resultMap="itemQnaMap">
-		select * from item_qna where item_qna_no=#{iQnaNo}
+		select * from item_qna where item_qna_no=#{itemQnaNo}
 	</select>
 	
 	<insert id="adminIQnaEnd">
-		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{iQnaNo},#{iQnaAnsContent},default)
+		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{itemQnaNo},#{itemQnaAnsContent},default)
 	</insert>
 	
 	<select id="adminIQnaAns" resultMap="itemQnaAnsMap">
-		select * from item_qna_ans where item_qna_no=#{iQnaNo} order by item_qna_ans_no
+		select * from item_qna_ans where item_qna_no=#{itemQnaNo} order by item_qna_ans_no
 	</select>
 	<resultMap type="itemQnaAns" id="itemQnaAnsMap">
 		

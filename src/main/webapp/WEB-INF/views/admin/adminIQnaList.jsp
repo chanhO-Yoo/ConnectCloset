@@ -33,14 +33,14 @@ input#btn-add{float:right; margin: 0 0 15px;}
 			<th>문의날짜</th>
 			<th>답변여부</th>
 		</tr>
-		<c:forEach items="${list }" var="pQna">
-				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminPQna.do?pQnaNo=${pQna.pQnaNo }'">
-					<td>${pQna.pQnaNo }</td>
-					<td>${pQna.memberNo }</td>
-					<td>${pQna.pQnaTypeNo }</td>
-					<td>${pQna.pQnaTitle }</td>
-					<td>${pQna.pQnaDate }</td>
-					<td>${pQna.pAnsYn }</td>
+		<c:forEach items="${list }" var="iQna">
+				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminIQna.do?itemQnaNo=${iQna.itemQnaNo }'">
+					<td>${iQna.itemQnaNo }</td>
+					<td>${iQna.memberNo }</td>
+					<td>${iQna.itemQnaType }</td>
+					<td>${iQna.itemQnaTitle }</td>
+					<td>${iQna.itemQnaDate }</td>
+					<td>${iQna.itemQnaAnsYn }</td>
 				</tr>
 		</c:forEach>
 		
@@ -56,6 +56,6 @@ input#btn-add{float:right; margin: 0 0 15px;}
 	$(document).ready(function(){
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
-		console.log('실행됬냐?');
+		console.log('실행됐냐?');
 	});
 </script>

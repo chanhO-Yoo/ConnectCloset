@@ -28,7 +28,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
-import com.connectcloset.cc.itemQna.model.vo.ItemQnaAns;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
@@ -438,6 +438,7 @@ public class AdminController {
 				*/
 
 		//===================하은 끝===================
+		
 		//===================하라 시작===================
 		@RequestMapping("/admin/adminIQnaList.do")
 		public ModelAndView adminIQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
@@ -479,7 +480,7 @@ public class AdminController {
 		
 		@PostMapping("/admin/adminIQnaEnd.do")
 		public ModelAndView adminIQnaEnd(ModelAndView mav, ItemQnaAns iQnaAns) {
-			logger.debug("pQnaAns={}",iQnaAns);
+			logger.debug("iQnaAns={}",iQnaAns);
 			
 			int result = adminService.adminIQnaEnd(iQnaAns);
 			logger.debug("result={}",result);
