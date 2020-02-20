@@ -1,5 +1,6 @@
 package com.connectcloset.cc.item.model.dao;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -145,6 +146,12 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	//===================윤지 상품 리스트  끝=======================	
 		
+	//===================찬호 시작=======================
+	@Override
+	public ItemImage recetnItem(String itemNo) {
+		return sqlSession.selectOne("item.recentItem",itemNo);
+	}
+	//===================찬호 끝=======================	
 		
 	//===================주영 상품 상세보기 시작========================
 
@@ -165,6 +172,8 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("item.selectReviewList",itmeNo);
 	}
+
+
 
 
 

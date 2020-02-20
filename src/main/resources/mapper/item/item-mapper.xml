@@ -214,7 +214,11 @@
 	</select>
 	<!-- 윤지  상품 리스트 끝 -->
 
-
+	<!-- 찬호 시작 -->
+	<select id="recentItem" resultMap="itemImageMap">
+		SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1 and item_no=#{itemNo}
+	</select>
+	<!-- 찬호 끝 -->
 
 	<!--주영 상품 상세보기 시작 -->
 	<select id="selectOneitemImage" resultMap="itemImage">

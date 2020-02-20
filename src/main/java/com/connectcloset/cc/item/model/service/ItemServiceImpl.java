@@ -147,6 +147,12 @@ public class ItemServiceImpl implements ItemService{
 		}
 		//===================윤지 상품 리스트 끝========================
 	
+		//===================찬호 시작========================
+		@Override
+		public ItemImage recentItem(String itemNo) {
+			return itemDAO.recetnItem(itemNo);
+		}
+		//===================찬호 끝========================
 	
 	//===================주영 상품 상세보기 시작========================
 	
@@ -170,6 +176,8 @@ public class ItemServiceImpl implements ItemService{
 		return  itemDAO.selectReviewList(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
+
+
 
 
 
