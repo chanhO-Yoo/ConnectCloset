@@ -7,7 +7,7 @@
  <!-- 주영 리뷰 시작  -->
 <select id="selectListReview" resultMap="selectListReviewMAP">
 select * from order_product op left join (select I.item_no,i.item_name,i.item_price,ii.item_image_re_name from item I left join (SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) 
-II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on op.item_no=zzz.item_no where op.member_no= #{memberNo} AND delivery_no ='os-001' and order_review_yn = 'Y'
+II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc) zzz on op.item_no=zzz.item_no where op.member_no= #{memberNo} AND delivery_no ='os-001' and order_review_yn = 'N'
 
 	</select>
 	
