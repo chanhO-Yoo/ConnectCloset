@@ -73,15 +73,15 @@ public interface AdminDAO {
 	//===================하은 끝===================
 	
 	//===================하라 시작===================
-	List<ItemQna> selectIQnaList(int cPage, int numPerPage);
+	List<ItemQna> selectItemQnaList(int cPage, int numPerPage);
 
-	int selectIQnaListCount();
+	int selectItemQnaListCount();
 
-	ItemQna adminIQna(int iQnaNo);
+	ItemQna adminItemQna(int itemQnaNo);
 
-	List<ItemQnaAns> adminIQnaAns(int iQnaNo);
+	List<ItemQnaAns> adminItemQnaAns(int itemQnaNo);
 
-	int adminIQnaEnd(ItemQnaAns iQnaAns);
+	int adminItemQnaEnd(ItemQnaAns itemQnaAns);
 	
 	
 	//===================하라 끝===================

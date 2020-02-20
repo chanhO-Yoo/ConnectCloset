@@ -182,7 +182,7 @@
     
     
     <!-- ===================하라 시작=================== -->
-    	<select id="selectIQnaList" resultMap="itemQnaMap">
+    	<select id="selectItemQnaList" resultMap="itemQnaMap">
 		select * from item_qna
 	</select>
 	
@@ -190,19 +190,19 @@
 	<resultMap type="itemQna" id="itemQnaMap">
 	</resultMap>
 	
-	<select id="selectIQnaListCount" resultType="_int">
+	<select id="selectItemQnaListCount" resultType="_int">
 		select count(*) from item_qna
 	</select>
 	
-	<select id="adminIQna" resultMap="itemQnaMap">
+	<select id="adminItemQna" resultMap="itemQnaMap">
 		select * from item_qna where item_qna_no=#{itemQnaNo}
 	</select>
 	
-	<insert id="adminIQnaEnd">
+	<insert id="adminItemQnaEnd">
 		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{itemQnaNo},#{itemQnaAnsContent},default)
 	</insert>
 	
-	<select id="adminIQnaAns" resultMap="itemQnaAnsMap">
+	<select id="adminItemQnaAns" resultMap="itemQnaAnsMap">
 		select * from item_qna_ans where item_qna_no=#{itemQnaNo} order by item_qna_ans_no
 	</select>
 	<resultMap type="itemQnaAns" id="itemQnaAnsMap">

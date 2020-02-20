@@ -204,28 +204,28 @@ public class AdminServiceImpl implements AdminService {
 	
 	//===================하라 시작===================
 	@Override
-	public List<ItemQna> selectIQnaList(int cPage, int numPerPage) {
-		return adminDAO.selectIQnaList(cPage,numPerPage);
+	public List<ItemQna> selectItemQnaList(int cPage, int numPerPage) {
+		return adminDAO.selectItemQnaList(cPage,numPerPage);
 	}
 
 	@Override
-	public int selectIQnaListCount() {
-		return adminDAO.selectIQnaListCount();
+	public int selectItemQnaListCount() {
+		return adminDAO.selectItemQnaListCount();
 	}
 
 	@Override
-	public ItemQna adminIQna(int iQnaNo) {
-		return adminDAO.adminIQna(iQnaNo);
+	public ItemQna adminItemQna(int itemQnaNo) {
+		return adminDAO.adminItemQna(itemQnaNo);
 	}
 
 	@Override
-	public List<ItemQnaAns> adminIQnaAns(int iQnaNo) {
-		return adminDAO.adminIQnaAns(iQnaNo);
+	public List<ItemQnaAns> adminItemQnaAns(int itemQnaNo) {
+		return adminDAO.adminItemQnaAns(itemQnaNo);
 	}
 
 	@Override
-	public int adminIQnaEnd(ItemQnaAns iQnaAns) {
-		return adminDAO.adminIQnaEnd(iQnaAns);
+	public int adminItemQnaEnd(ItemQnaAns itemQnaAns) {
+		return adminDAO.adminItemQnaEnd(itemQnaAns);
 	}
 
 

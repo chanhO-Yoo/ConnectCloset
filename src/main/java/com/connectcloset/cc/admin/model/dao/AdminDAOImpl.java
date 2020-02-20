@@ -177,32 +177,32 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	//===================하라 시작==================
 	@Override
-	public List<ItemQna> selectIQnaList(int cPage, int numPerPage) {
+	public List<ItemQna> selectItemQnaList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
-		return sqlSession.selectList("admin.selectIQnaList",null,rowBounds);
+		return sqlSession.selectList("admin.selectItemQnaList",null,rowBounds);
 	}
 
 	@Override
-	public int selectIQnaListCount() {
-		return sqlSession.selectOne("admin.selectIQnaListCount");
+	public int selectItemQnaListCount() {
+		return sqlSession.selectOne("admin.selectItemQnaListCount");
 	}
 
 	@Override
-	public ItemQna adminIQna(int iQnaNo) {
-		return sqlSession.selectOne("admin.adminIQna",iQnaNo);
+	public ItemQna adminItemQna(int itemQnaNo) {
+		return sqlSession.selectOne("admin.adminItemQna",itemQnaNo);
 	}
 	
 	
 	
 
 	@Override
-	public List<ItemQnaAns> adminIQnaAns(int iQnaNo) {
-		return sqlSession.selectList("admin.adminIQnaAns",iQnaNo);
+	public List<ItemQnaAns> adminItemQnaAns(int itemQnaNo) {
+		return sqlSession.selectList("admin.adminItemQnaAns",itemQnaNo);
 	}
 
 	@Override
-	public int adminIQnaEnd(ItemQnaAns iQnaAns) {
-		return sqlSession.insert("admin.adminIQnaEnd",iQnaAns);
+	public int adminItemQnaEnd(ItemQnaAns itemQnaAns) {
+		return sqlSession.insert("admin.adminItemQnaEnd",itemQnaAns);
 	}
 	
 	

@@ -440,15 +440,15 @@ public class AdminController {
 		//===================하은 끝===================
 		
 		//===================하라 시작===================
-		@RequestMapping("/admin/adminIQnaList.do")
-		public ModelAndView adminIQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+		@RequestMapping("/admin/adminItemQnaList.do")
+		public ModelAndView adminItemQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
 			
 			final int numPerPage = 10;
 			
-			List<ItemQna> list = adminService.selectIQnaList(cPage,numPerPage);
+			List<ItemQna> list = adminService.selectItemQnaList(cPage,numPerPage);
 			logger.debug("list={}",list);
 			
-			int totalContents = adminService.selectIQnaListCount();
+			int totalContents = adminService.selectItemQnaListCount();
 			logger.debug("totalBoardCount={}",totalContents);
 			
 			mav.addObject("list", list);
@@ -456,37 +456,37 @@ public class AdminController {
 			mav.addObject("cPage", cPage);
 			mav.addObject("totalContents", totalContents);
 			
-			mav.setViewName("admin/adminIQnaList");
+			mav.setViewName("admin/adminItemQnaList");
 			
 			return mav;
 		}
 		
-		@RequestMapping("/admin/adminIQna.do")
-		public ModelAndView adminIQna(ModelAndView mav, @RequestParam int iQnaNo) {
+		@RequestMapping("/admin/adminItemQna.do")
+		public ModelAndView adminItemQna(ModelAndView mav, @RequestParam int itemQnaNo) {
 			
-			ItemQna iQna = adminService.adminIQna(iQnaNo);
-			logger.debug("iQna={}",iQna);
+			ItemQna itemQna = adminService.adminItemQna(itemQnaNo);
+			logger.debug("itemQna={}",itemQna);
 			
-			List<ItemQnaAns> iQnaAnsList = adminService.adminIQnaAns(iQnaNo);
-			logger.debug("iQnaAnsList={}",iQnaAnsList);
+			List<ItemQnaAns> itemQnaAnsList = adminService.adminItemQnaAns(itemQnaNo);
+			logger.debug("iQtemnaAnsList={}",itemQnaAnsList);
 			
-			mav.addObject("iQna",iQna);
-			mav.addObject("iQnaAnsList",iQnaAnsList);
+			mav.addObject("itemQna",itemQna);
+			mav.addObject("itemQnaAnsList",itemQnaAnsList);
 			
-			mav.setViewName("admin/adminIQna");
+			mav.setViewName("admin/adminItemQna");
 			
 			return mav;
 		}
 		
-		@PostMapping("/admin/adminIQnaEnd.do")
-		public ModelAndView adminIQnaEnd(ModelAndView mav, ItemQnaAns iQnaAns) {
-			logger.debug("iQnaAns={}",iQnaAns);
+		@PostMapping("/admin/adminItemQnaEnd.do")
+		public ModelAndView adminItemQnaEnd(ModelAndView mav, ItemQnaAns itemQnaAns) {
+			logger.debug("itemQnaAns={}",itemQnaAns);
 			
-			int result = adminService.adminIQnaEnd(iQnaAns);
+			int result = adminService.adminItemQnaEnd(itemQnaAns);
 			logger.debug("result={}",result);
 			
 			mav.addObject("msg",result>0?"1대1문의 답변작성 성공.":"1대1문의 답변작성 실패.");
-			mav.addObject("loc","/admin/adminIQnaList.do");
+			mav.addObject("loc","/admin/adminItemQnaList.do");
 			mav.setViewName("common/msg");
 			
 			return mav;

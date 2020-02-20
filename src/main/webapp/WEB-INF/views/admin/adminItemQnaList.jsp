@@ -9,7 +9,7 @@
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "adminPQna.do"; //간단한 상대주소로 접근
+	String url = "adminItemQna.do"; //간단한 상대주소로 접근
 	
 	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
 	
@@ -33,14 +33,14 @@ input#btn-add{float:right; margin: 0 0 15px;}
 			<th>문의날짜</th>
 			<th>답변여부</th>
 		</tr>
-		<c:forEach items="${list }" var="iQna">
-				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminIQna.do?itemQnaNo=${iQna.itemQnaNo }'">
-					<td>${iQna.itemQnaNo }</td>
-					<td>${iQna.memberNo }</td>
-					<td>${iQna.itemQnaType }</td>
-					<td>${iQna.itemQnaTitle }</td>
-					<td>${iQna.itemQnaDate }</td>
-					<td>${iQna.itemQnaAnsYn }</td>
+		<c:forEach items="${list }" var="itemQna">
+				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminItemQna.do?itemQnaNo=${itemQna.itemQnaNo }'">
+					<td>${itemQna.itemQnaNo }</td>
+					<td>${itemQna.memberNo }</td>
+					<td>${itemQna.itemQnaType }</td>
+					<td>${itemQna.itemQnaTitle }</td>
+					<td>${itemQna.itemQnaDate }</td>
+					<td>${itemQna.itemQnaAnsYn }</td>
 				</tr>
 		</c:forEach>
 		
