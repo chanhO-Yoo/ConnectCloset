@@ -302,21 +302,21 @@
                                                             <h4>${itemQna.itemQnaTitle}</h4>
                                                         </div>
                                                 <div class="review-top-wrap">
-                                                    <div class="review-left">
-<!--                                                         <div class="review-rating">
+                                                    <!-- <div class="review-left">
+                                                        <div class="review-rating">
                                                             <i class="ti-star theme-color"></i>
                                                             <i class="ti-star theme-color"></i>
                                                             <i class="ti-star theme-color"></i>
                                                             <i class="ti-star theme-color"></i>
                                                             <i class="ti-star gray-color"></i>
-                                                        </div> -->
-                                                    </div>
+                                                        </div>
+                                                    </div> -->
                                                     <!-- <div class="review-left">
                                                         <a href="#">Reply</a>
                                                     </div> -->
 
                                                 <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
+                                                    <p>${itemQna.itemQnaContent}</p>
                                                 </div>
                                             </div>
                                             

@@ -10165,12 +10165,13 @@ blockquote.blockquote-style2 {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0 0 8px;
+    margin: 0 0 8px 0;
 }
 
 .review-left {
     align-items: center;
     display: flex;
+
 }
 
 .review-name {
@@ -10209,6 +10210,11 @@ blockquote.blockquote-style2 {
 
 .review-content{
 	padding-top: 15px;
+}
+
+.review-bottom{
+	margin-top: 7px;
+	margin-left: 20px;
 }
 
 .review-bottom > p {
