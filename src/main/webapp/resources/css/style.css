@@ -10112,7 +10112,7 @@ blockquote.blockquote-style2 {
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
-    margin: 0 5px 0 0;
+    margin: 0 5px -15px 0;
     padding: 18px 35px;
 }
 
@@ -10173,6 +10173,10 @@ blockquote.blockquote-style2 {
     display: flex;
 }
 
+.review-name {
+	width: 150px;
+}
+
 .review-name > h4 {
     font-size: 16px;
     margin: 0;
@@ -10203,10 +10207,13 @@ blockquote.blockquote-style2 {
     text-transform: uppercase;
 }
 
+.review-content{
+	padding-top: 15px;
+}
+
 .review-bottom > p {
     font-size: 13px;
     margin: 0;
-    padding-bottom: 35px;
 }
 
 .single-review.child-review {

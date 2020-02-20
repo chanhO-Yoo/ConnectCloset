@@ -298,11 +298,11 @@
                                                 <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
                                             </div> --%>
                                             <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
                                                         <div class="review-name">
                                                             <h4>${itemQna.itemQnaTitle}</h4>
                                                         </div>
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
 <!--                                                         <div class="review-rating">
                                                             <i class="ti-star theme-color"></i>
                                                             <i class="ti-star theme-color"></i>
@@ -311,16 +311,31 @@
                                                             <i class="ti-star gray-color"></i>
                                                         </div> -->
                                                     </div>
-                                                    <div class="review-left">
+                                                    <!-- <div class="review-left">
                                                         <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
+                                                    </div> -->
+
                                                 <div class="review-bottom">
                                                     <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
                                                 </div>
                                             </div>
+                                            
+<!--                                                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+													  Link with href
+													</a> -->
+													<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
+													  답변 버튼
+													</button>
+													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
+													  <div class="well">
+													    답변 테스트 중이긴 한데 길게 쓰면 어케 되징? 
+													  </div>
+													</div>
+                                                </div>
+                                            
                                         </div>
                                             </c:forEach>
+                                            
                    <%--                      <div class="single-review child-review">
                                             <div class="review-img">
                                                 <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
