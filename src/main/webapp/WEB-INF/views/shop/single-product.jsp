@@ -168,7 +168,7 @@
                             </div>
                             <div class="pro-details-quality mt-50 mb-45">
                                 <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                                 </div>
                                 <div class="pro-details-cart">
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
