@@ -57,7 +57,7 @@ public class OrderCheckoutCotroller {
 	//================하은 시작======================
 	@RequestMapping("/shop/checkout.do")
 	@ResponseBody
-	public ModelAndView checkout(ModelAndView mav,  @RequestParam int itemNo) {		
+	public ModelAndView checkout(ModelAndView mav,  @RequestParam int itemNo ,@RequestParam int orderCount) {		
 		
 		//int itemNo = 41;
 		//logger.info("itemNo={}",itemNo);
@@ -65,7 +65,9 @@ public class OrderCheckoutCotroller {
 		List<Item> item = itemService.selectItemNumber(itemNo);
 		//logger.debug("itemNo={}",itemNo);
 		
+		System.out.println("@@@@#!@#!@#!"+orderCount);
 		mav.addObject("itemList",item);
+		mav.addObject("orderCount",orderCount);
 		mav.setViewName("/shop/checkout");
 		return mav;
 		
@@ -114,6 +116,7 @@ public class OrderCheckoutCotroller {
 		
 		
 		model.addAttribute("itemNoList={}",itemNoList);
+		
 		
 	}
 	

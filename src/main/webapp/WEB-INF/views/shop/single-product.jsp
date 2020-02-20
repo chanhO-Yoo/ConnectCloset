@@ -33,9 +33,67 @@
 
 
 
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script>
+
+$(function(){
+
+//바로구입 누를때 넘기기기
+$("#btn-goOrder").on('click', function(){
+	let orderCount = document.querySelector("#orderItemCount").value;
+
+		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
+		
+		/* $.ajax({
+			url: "${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}",
+			type: "GET",
+			data: {
+			
+				orderCount:orderCount
+			},
+			dataType: "json",
+			success: data => {
+				console.log(data);
+				
+				
+				
+			},
+			error: (jqxhr, textStatus, errorThrown)=>{
+				console.log(jqxhr, textStatus, errorThrown);
+			} 
+		}); */
+	
+		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount;
+	}); 
+	
+function changeOrderNo(num){
+	let stockStr = ${item.itemStock}; //상품 재고
+	let inputOrderNo = document.querySelector("#orderItemCount");
+	let oldNo = inputOrderNo.value;
+	let newNo = (inputOrderNo.value*1)+num; //수량(정수형)
+	
+	if(newNo < 1) {
+		newNo = 1;
+		alert("수량은 반드시 1개 이상 선택되어야 합니다.");
+	}
+	if(newNo > stockStr) {
+		newNo = stockStr;
+		alert("수량은 상품재고보다 더 많이 선택될 수 없습니다.\n현재 상품의 수량은 ["+stockStr+"]입니다.");
+	}
+	
+	
+}
+	
+});
+function goLogin(){
+	if(!confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")) return;
+	location.href = "${pageContext.request.contextPath }/member/login-register.do"
+}
+
+</script>
 
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
@@ -51,6 +109,7 @@
                          <img class="zoompro" src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="zoom"/>
                          
 						</c:forEach>
+                            
                             
                             <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
                              <c:forEach var="image" items="${itemImage}" begin="1" end="1">
@@ -142,13 +201,15 @@
                             </div>
                             <div class="pro-details-quality mt-50 mb-45">
                                 <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                <!--상품 수량  -->
+                                    <input class="cart-plus-minus-box" type="text"  value="1" onclick="changeOrderNo(-1);" id="orderItemCount" name="orderItemCount">
                                 </div>
                                 <div class="pro-details-cart">
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}"><i class="ti-heart"></i></a>
+                                	<button type="button" class=" btn-hover" id="btn-goOrder"><i class="ti-heart"></i></button>
+                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
                                 </div>
                             </div>
                             <div class="pro-details-info-wrap">
