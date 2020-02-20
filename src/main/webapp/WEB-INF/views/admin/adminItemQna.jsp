@@ -67,7 +67,7 @@
 	
 	
 	<script>
-		function submit(){
+		function submit(){ 
 			$("#itemQnaAnsForm").submit();
 		}
 	</script>
