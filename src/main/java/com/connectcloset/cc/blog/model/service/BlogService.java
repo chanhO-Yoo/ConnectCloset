@@ -1,6 +1,7 @@
 package com.connectcloset.cc.blog.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.connectcloset.cc.blog.model.vo.Attachment;
 import com.connectcloset.cc.blog.model.vo.Blog;
@@ -8,13 +9,12 @@ import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 
 public interface BlogService {
 
-	//==================== 하라 시작 =========================
-	
-	int insertBlog(Blog blog);
 
 	List<Blog> selectBlogList(int cPage, int numPerPage);
 
 	int selectTotalContents();
+
+	int insertBlog(Blog blog, List<Attachment> attachList);
 
 	Blog selectOneBlog(int blogNo);
 
@@ -23,6 +23,6 @@ public interface BlogService {
 	BlogAttachVO selectOneBlogCollection(int blogNo);
 
 
-	//==================== 하라 끝 =========================
+
 
 }

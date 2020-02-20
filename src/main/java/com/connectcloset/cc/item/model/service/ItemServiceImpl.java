@@ -11,6 +11,8 @@ import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -124,6 +126,25 @@ public class ItemServiceImpl implements ItemService{
 			return itemDAO.selectShoesCount();
 		}
 
+		@Override
+		public List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo) {
+			return itemDAO.selectItemAndImageTypeList(cPage, numPerPage, itemTypeNo);
+		}
+		
+		@Override
+		public int selectTypeItemCount(String itemTypeNo) {
+			return itemDAO.selectTypeItemCount(itemTypeNo);
+		}
+
+		@Override
+		public List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage) {
+			return itemDAO.selectAccList(cPage, numPerPage);
+		}
+
+		@Override
+		public int selectAccCount() {
+			return itemDAO.selectAccCount();
+		}
 		//===================윤지 상품 리스트 끝========================
 	
 	
@@ -143,11 +164,12 @@ public class ItemServiceImpl implements ItemService{
 		// TODO Auto-generated method stub
 		return itemDAO.selectOneitemImage(itmeNo);
 	}
+	@Override
+	public List<Review> selectReviewList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return  itemDAO.selectReviewList(itmeNo);
+	}
 	//===================주영  상품 상세보기  끝========================
-
-
-
-
 
 
 

@@ -37,6 +37,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Controller
 public class AdminController {
 
+	
 	private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	@Autowired
@@ -103,7 +104,7 @@ public class AdminController {
 		
 		
 		mav.addObject("msg",result>0?"아이템 등록 성공.":"아이템 등록 실패.");
-		mav.addObject("loc","/admin/itemList2.do");
+		mav.addObject("loc","/admin/itemList.do");
 		mav.setViewName("common/msg");
 		}catch(Exception e) {
 			logger.error(e.getMessage(),e);
@@ -131,6 +132,8 @@ public class AdminController {
 		int totalContents = adminService.selectItemCount();
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 0;
+		mav.addObject("brandYn",brandYn);
 		mav.addObject("list", list);
 		mav.addObject("numPerPage", numPerPage);
 		mav.addObject("cPage", cPage);
@@ -222,7 +225,7 @@ public class AdminController {
 		
 		
 		mav.addObject("msg",result>0?"상품 수정 성공.":"상품 수정 실패.");
-		mav.addObject("loc","/admin/itemList2.do");
+		mav.addObject("loc","/admin/itemList.do");
 		mav.setViewName("common/msg");
 		}catch(Exception e) {
 			logger.error(e.getMessage(),e);
@@ -297,6 +300,8 @@ public class AdminController {
 		int totalContents = adminService.selectSearchItemCount(searchKeyword);
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 0;
+		mav.addObject("brandYn",brandYn);
 		map.put("list",list);
 		map.put("numPerPage",numPerPage);
 		map.put("cPage",cPage);
@@ -319,6 +324,9 @@ public class AdminController {
 		int totalContents = adminService.selectItemCount(brandNo);
 		logger.debug("totalBoardCount={}",totalContents);
 		
+		int brandYn = 1;
+		mav.addObject("brandYn",brandYn);
+		mav.addObject("brandNo",brandNo);
 		mav.addObject("list", list);
 		mav.addObject("numPerPage", numPerPage);
 		mav.addObject("cPage", cPage);

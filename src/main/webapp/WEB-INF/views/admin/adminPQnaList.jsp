@@ -16,7 +16,7 @@
 	pageContext.setAttribute("pageBar", pageBar);
 %>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <style>
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
@@ -52,3 +52,10 @@ input#btn-add{float:right; margin: 0 0 15px;}
 </section> 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+		console.log('실행됬냐?');
+	});
+</script>

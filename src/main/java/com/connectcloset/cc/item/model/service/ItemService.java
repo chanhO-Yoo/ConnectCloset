@@ -5,6 +5,8 @@ import java.util.List;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
 
 public interface ItemService {
 
@@ -34,7 +36,10 @@ public interface ItemService {
 	int selectBagCount();
 	List<ItemAndImageVO2> selectShoesList(int cPage, int numPerPage);
 	int selectShoesCount();
-	
+	List<ItemAndImageVO2> selectItemAndImageTypeList(int cPage, int numPerPage, String itemTypeNo);
+	int selectTypeItemCount(String itemTypeNo);
+	List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage);
+	int selectAccCount();
 	//--------- 윤지 상품 리스트 끝 -------------------
 
 	//------------ 주영 상품 상세보기 시작 -------------
@@ -42,19 +47,10 @@ public interface ItemService {
 
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
 
-
-
-
-
-
-
-
-
-
-
+	List<Review> selectReviewList(int itmeNo);
 
 	//------------ 주영 상품 상세보기 끝-------------
-	
+
 
 
 }

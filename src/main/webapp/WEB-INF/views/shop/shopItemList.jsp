@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,15 +7,53 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
+	//쿠키 가져오기
+	Cookie[] ck =request.getCookies();
+
 	//페이지바 작업
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
 	
 	String brandNo = (String)request.getAttribute("brandNo");
-	String url = "shopItemList.do?brandNo="+brandNo;
+	String itemTypeNo = (String)request.getAttribute("itemTypeNo");
 	
-	String pageBar = Utils.getBrandPageBar(totalContents, cPage, numPerPage, url);
+	String url= "";
+	String pageBar = "";
+	
+	if(itemTypeNo.equals("outer")){
+		url = "outerList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("top")){
+		url = "topList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("bottom")){
+		url = "bottomList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("dress")){
+		url = "dressList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("bag")){
+		url = "bagList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("shoes")){
+		url = "shoesList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else if(itemTypeNo.equals("acc")){
+		url = "accList.do";
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else{
+		url = "shopItemList.do?brandNo="+brandNo+"&itemTypeNo="+itemTypeNo;
+		pageBar = Utils.getBrandPageBar(totalContents, cPage, numPerPage, url);
+	}
+	
 	
 	pageContext.setAttribute("pageBar", pageBar);		
 %>
@@ -158,13 +197,44 @@
                                 </div>
                             </div>
                             <div class="sidebar-widget">
-                                <h4 class="pro-sidebar-title">Product Categories </h4>
+								<h4 class="pro-sidebar-title">Product Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
-                                        <li><a href="#">Artwork  <span>(9)</span></a></li>
-                                        <li><a href="#">Branding  <span>(12)</span></a></li>
-                                        <li><a href="#">Graphics  <span>(5)</span></a></li>
-                                        <li><a href="#">Photography  <span>(16)</span></a></li>
+                                    	<c:if test="${sort == 1}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 2}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 3}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+										<c:if test="${sort == 4}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 5}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 6}">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
+                                   	 	<c:if test="${sort == 7 }">
+	                                    	<c:forEach items="${categoryMap }" var="map">
+	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
+	                                    	</c:forEach>
+                                   	 	</c:if>
                                     </ul>
                                 </div>
                             </div>
@@ -189,3 +259,14 @@
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+쿠키테스트 : 
+<%
+if(ck!=null){
+	for(Cookie c : ck){
+		if(c.getName().indexOf("sname") != -1){
+			out.println(URLDecoder.decode(c.getValue(),"UTF-8")+"<br/>");
+		}
+	}
+}
+%>
+

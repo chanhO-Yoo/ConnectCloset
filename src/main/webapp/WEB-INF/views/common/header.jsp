@@ -43,7 +43,7 @@
                                 <li><a href="${pageContext.request.contextPath }/">home</a>
                                 </li>
                                 
-                                <li><a href="#">Product</a>
+                                <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do">Product</a>
                                     <ul class="mega-menu mega-menu-2col">
                                         <li>
                                             <ul>
@@ -73,32 +73,17 @@
                                     </ul>
                                 </li>
                                 
-                                <li><a href="blog-grid3-col.html">Blog</a>
-                                	<ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
-                                    </ul>
+                                <li><a href="${pageContext.request.contextPath }/blog/blogList.do">Blog</a>
                                 </li>
                                 
-                                <li><a href="#">Store</a>
+                                <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">Store</a>
                                 </li>
                                 
                                 <li><a href="#">Pages </a>
                                     <ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
@@ -320,12 +305,18 @@
                         <div class="summary-list">
                             <ul>
                             <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님환영합니다</li>
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
                             
                             </c:if>
                                 
                                  <c:if test="${memberLoggedIn == null }">
-	                               <li><i class="ti-location-pin"></i><a href="${pageContext.request.contextPath }/member/login-register.do">로그인</a> 후 이용해주세요</li>
+	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
+	                               <form action="${pageContext.request.contextPath }/member/login-register.do" method="GET">
+	                                               
+		                            <div class="submit-btn">
+		                              <button class="btn-hover" type="submit">Log in / register</button>
+		                            </div>
+								</form>
                    				 </c:if>
                                
                             </ul>
@@ -334,7 +325,7 @@
 	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
 	                                               
 		                            <div class="submit-btn">
-		                              <button class="btn-hover" type="submit">Log out</button>
+		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
                           </p>
@@ -354,6 +345,7 @@
                            
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-review.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}">리뷰 확인</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-pQnA.do?memberNo=${memberLoggedIn.memberNo}">1:1문의</a></li>
 
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>

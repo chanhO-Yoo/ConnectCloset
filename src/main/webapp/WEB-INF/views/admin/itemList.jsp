@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,13 +6,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
+
+
 	//페이비자 작업
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "itemList.do"; //간단한 상대주소로 접근
 	
-	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	int brandYn = (int)request.getAttribute("brandYn");
+	
+	String url = "";
+	String pageBar = "";
+	if(brandYn == 0){
+		url = "itemList.do"; //간단한 상대주소로 접근
+		pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	}
+	else{
+		String brandNo = (String)request.getAttribute("brandNo");
+		url = "adminSearchItembyBrand.do?brandNo="+brandNo;
+		pageBar = Utils.getBrandPageBar(totalContents, cPage, numPerPage, url);
+	}
+	
+	
 	
 	pageContext.setAttribute("pageBar", pageBar);
 %>
@@ -114,6 +130,9 @@
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+
+
+
 <script>
 function search(event) {
 	 event.preventDefault();
@@ -162,8 +181,8 @@ function search(event) {
 			let pageBar= pageBarFunc(data.totalContents, data.cPage, data.numPerPage, url);
 			
 			console.log(pageBar);
-			$("#pagination").html(pageBar);
-			
+			$(".pagination").html(pageBar);
+			console.log("changed!!");
 		},
 		error: (x,s,e) => {
 			console.log("ajax요청실패",x,s,e);
@@ -222,7 +241,8 @@ function changePage(cPage) {
 			let pageBar= pageBarFunc(data.totalContents, data.cPage, data.numPerPage, url);
 			
 			console.log(pageBar);
-			$("#pagination").html(pageBar);
+			$(".pagination").html(pageBar);
+			console.log("changed!!");
 			
 		},
 		error: (x,s,e) => {

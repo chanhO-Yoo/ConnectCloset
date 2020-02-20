@@ -55,9 +55,6 @@
                                                 </div>
                                             </form>
                                           
-                                            <div>
-                                            <h2>${memberLoggedIn.memberEmail} 환영한디</h2>
-                                            </div>
                                             <div class="login-social-wrap">
                                                 <p>Or Log In With</p>
                                                 <div class="login-social-btn">

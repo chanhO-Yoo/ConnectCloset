@@ -9,7 +9,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <style>
 div#board-container label.custom-file-label{text-align:left;}
@@ -95,13 +95,20 @@ div#board-container label.custom-file-label{text-align:left;}
 											pageContext.setAttribute("colorList", colorList);
 										%>
 										    <select multiple class="form-control" id="itemColors" name="itemColors" style="width:170px">
-										    	<option value="blue" ${colorList.contains("blue")?"selected":""}>blue</option>
-										    	<option value="maroon" ${colorList.contains("maroon")?"selected":""}>maroon</option>
-										    	<option value="gray" ${colorList.contains("gray")?"selected":""}>gray</option>
-										    	<option value="green" ${colorList.contains("green")?"selected":""}>green</option>
-										    	<option value="yellow" ${colorList.contains("yellow")?"selected":""}>yellow</option>
-										    	<option value="white" ${colorList.contains("white")?"selected":""}>white</option>
-										    	<option value="black" ${colorList.contains("black")?"selected":""}>black</option>
+										    	<option value="blue" ${colorlist.contains("blue")?"selected":""}>blue</option>
+										    	<option value="red" ${colorlist.contains("red")?"selected":""}>red</option>
+										    	<option value="ivory" ${colorlist.contains("ivory")?"selected":""}>ivory</option>
+										    	<option value="maroon" ${colorlist.contains("maroon")?"selected":""}>maroon</option>
+										    	<option value="gray" ${colorlist.contains("gray")?"selected":""}>gray</option>
+										    	<option value="green" ${colorlist.contains("green")?"selected":""}>green</option>
+										    	<option value="yellow" ${colorlist.contains("yellow")?"selected":""}>yellow</option>
+										    	<option value="beige" ${colorlist.contains("beige")?"selected":""}>beige</option>
+										    	<option value="brown" ${colorlist.contains("brown")?"selected":""}>brown</option>
+										    	<option value="white" ${colorlist.contains("white")?"selected":""}>white</option>
+										    	<option value="black" ${colorlist.contains("black")?"selected":""}>black</option>
+										    	<option value="pink" ${colorlist.contains("pink")?"selected":""}>pink</option>
+										    	<option value="orange" ${colorlist.contains("orange")?"selected":""}>orange</option>
+										    	<option value="khaki" ${colorlist.contains("khaki")?"selected":""}>khaki</option>
 											</select>
 										</div>
 	                                </div>
@@ -127,6 +134,7 @@ div#board-container label.custom-file-label{text-align:left;}
 										    	<option value="l" ${sizeList.contains("l")?"selected":'' }>l</option>
 										    	<option value="xl" ${sizeList.contains("xl")?"selected":'' }>xl</option>
 										    	<option value="xxl" ${sizeList.contains("xxl")?"selected":'' }>xxl</option>
+										    	<option value="free" ${sizeList.contains("free")?"selected":'' }>free</option>
 											</select>
 										</c:if>
 										<c:if test="${item.itemTypeNo.equals('itype-009')==true}">
@@ -274,6 +282,10 @@ div#board-container label.custom-file-label{text-align:left;}
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <script>
+	$(document).ready(function(){
+		var header=$("header").attr('class','theme-bg');
+		console.log(header);
+	});
 	$(function(){
 		//파일 선택,취소시에 파일명 노출하기
 		$("[name=upFile]").on("change",function(){
