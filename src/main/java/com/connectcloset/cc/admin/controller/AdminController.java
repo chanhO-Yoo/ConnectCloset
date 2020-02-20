@@ -483,9 +483,11 @@ public class AdminController {
 			logger.debug("itemQnaAns={}",itemQnaAns);
 			
 			int result = adminService.adminItemQnaEnd(itemQnaAns);
+			
+			
 			logger.debug("result={}",result);
 			
-			mav.addObject("msg",result>0?"1대1문의 답변작성 성공.":"1대1문의 답변작성 실패.");
+			mav.addObject("msg",result>0?"QnA 답변작성 성공.":"QnA 답변작성 실패.");
 			mav.addObject("loc","/admin/adminItemQnaList.do");
 			mav.setViewName("common/msg");
 			

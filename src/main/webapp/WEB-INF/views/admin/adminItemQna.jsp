@@ -14,14 +14,15 @@
 			<tr>
 				<td>문의번호</td>
 				<td>${itemQna.itemQnaNo }</td>
-				<td>문의유형</td>
-				<td>${itemQna.itemQnaType }</td>
+ 				<td>문의유형</td>
+				<td>${itemQna.itemQnaType }</td> 
 				<td>문의제목</td>
 				<td>${itemQna.itemQnaTitle }</td>
 			</tr>
 			<tr>
 				<td>작성자</td>
-				<td colspan="2">${itemQna.memberNo }</td>
+				<td colspan="2" >${memberLoggedIn.memberEmail}</td>
+					<input name="itemQnaAnsWriter" value="${memberLoggedIn.memberEmail}" type="hidden" >
 				<td>작성일</td>
 				<td colspan="2">${itemQna.itemQnaDate }</td>
 			</tr>
@@ -32,7 +33,8 @@
 			</tr>
 			<tr>
 				<td colspan="6">
-					<p>${itemQna.itemQnaContent }</p>
+					<p name="itemQnaAnsContent">${itemQna.itemQnaContent }</p>
+				
 				</td>
 			</tr>
 			<tr>
@@ -42,10 +44,10 @@
 			</tr>
 			<!-- 답변이 있다면 -->
 			<c:if test="${itemQnaAnsList != null }">
-				<c:forEach items="${itemQnaAnsList }" var="itemQnaAns">	
+				<c:forEach items="${itemQnaAnsList}" var="itemQnaAns">	
 					<tr>
 						<td colspan="6">
-							<p class="pl-30 mb-0"><strong>${itemQnaAns.itemQnaAnsContent }</strong></p>
+							<p class="pl-30 mb-0"><strong>${itemQnaAns.itemQnaAnsContent}</strong></p>
 						</td>
 					</tr>
 				</c:forEach>

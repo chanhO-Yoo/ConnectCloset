@@ -199,7 +199,7 @@
 	</select>
 	
 	<insert id="adminItemQnaEnd">
-		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{itemQnaNo},#{itemQnaAnsContent},default)
+		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{itemQnaNo},#{itemQnaAnsWriter},#{itemQnaAnsContent},sysdate)
 	</insert>
 	
 	<select id="adminItemQnaAns" resultMap="itemQnaAnsMap">
