@@ -357,7 +357,7 @@
 
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-order.do?memberNo=${memberLoggedIn.memberNo}" >주문내역 조회</a></li>
                             </ul>
                         </div>
                         
