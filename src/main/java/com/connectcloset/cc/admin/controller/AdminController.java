@@ -27,6 +27,8 @@ import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.itemQna.model.vo.ItemQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
@@ -436,4 +438,57 @@ public class AdminController {
 				*/
 
 		//===================하은 끝===================
+		//===================하라 시작===================
+		@RequestMapping("/admin/adminIQnaList.do")
+		public ModelAndView adminIQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			
+			final int numPerPage = 10;
+			
+			List<ItemQna> list = adminService.selectIQnaList(cPage,numPerPage);
+			logger.debug("list={}",list);
+			
+			int totalContents = adminService.selectIQnaListCount();
+			logger.debug("totalBoardCount={}",totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("admin/adminIQnaList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/admin/adminIQna.do")
+		public ModelAndView adminIQna(ModelAndView mav, @RequestParam int iQnaNo) {
+			
+			ItemQna iQna = adminService.adminIQna(iQnaNo);
+			logger.debug("iQna={}",iQna);
+			
+			List<ItemQnaAns> iQnaAnsList = adminService.adminIQnaAns(iQnaNo);
+			logger.debug("iQnaAnsList={}",iQnaAnsList);
+			
+			mav.addObject("iQna",iQna);
+			mav.addObject("iQnaAnsList",iQnaAnsList);
+			
+			mav.setViewName("admin/adminIQna");
+			
+			return mav;
+		}
+		
+		@PostMapping("/admin/adminIQnaEnd.do")
+		public ModelAndView adminIQnaEnd(ModelAndView mav, ItemQnaAns iQnaAns) {
+			logger.debug("pQnaAns={}",iQnaAns);
+			
+			int result = adminService.adminIQnaEnd(iQnaAns);
+			logger.debug("result={}",result);
+			
+			mav.addObject("msg",result>0?"1대1문의 답변작성 성공.":"1대1문의 답변작성 실패.");
+			mav.addObject("loc","/admin/adminIQnaList.do");
+			mav.setViewName("common/msg");
+			
+			return mav;
+		}
+		//===================하라 끝===================
 }

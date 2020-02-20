@@ -291,11 +291,11 @@
                             <div class="row">
                                 <div class="col-lg-7">
                                     <div class="review-wrapper">
-                                        <div class="single-review">
-                                            <div class="review-img">
-                                               <%--  <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png"> --%>
-                                            </div>
                                              <c:forEach items="${itemQnaList}" var="itemQna" varStatus="vs">
+                                        <div class="single-review">
+                                            <%-- <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div> --%>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
@@ -318,11 +318,11 @@
                                                     <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
                                                 </div>
                                             </div>
-                                            </c:forEach>
                                         </div>
-                                        <div class="single-review child-review">
+                                            </c:forEach>
+                   <%--                      <div class="single-review child-review">
                                             <div class="review-img">
-                                                <%-- <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png"> --%>
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
@@ -346,7 +346,7 @@
                                                     <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --%>
                                     </div>
                                 </div>
                                 <div class="col-lg-5">

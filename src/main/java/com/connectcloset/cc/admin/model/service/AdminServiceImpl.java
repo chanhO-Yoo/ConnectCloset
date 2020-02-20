@@ -16,6 +16,8 @@ import com.connectcloset.cc.admin.model.exception.AdminException;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.itemQna.model.vo.ItemQnaAns;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
@@ -197,14 +199,39 @@ public class AdminServiceImpl implements AdminService {
 		return  adminDAO.delivery(deliveryNo);
 	}
 
+	
+	//===================하은 끝===================
+	
+	//===================하라 시작===================
+	@Override
+	public List<ItemQna> selectIQnaList(int cPage, int numPerPage) {
+		return adminDAO.selectIQnaList(cPage,numPerPage);
+	}
 
+	@Override
+	public int selectIQnaListCount() {
+		return adminDAO.selectIQnaListCount();
+	}
 
+	@Override
+	public ItemQna adminIQna(int iQnaNo) {
+		return adminDAO.adminIQna(iQnaNo);
+	}
 
+	@Override
+	public List<ItemQnaAns> adminIQnaAns(int iQnaNo) {
+		return adminDAO.adminIQnaAns(iQnaNo);
+	}
 
-
+	@Override
+	public int adminIQnaEnd(ItemQnaAns iQnaAns) {
+		return adminDAO.adminIQnaEnd(iQnaAns);
+	}
 
 
 	
-	//===================하은 끝===================
+	
+	
+	//===================하라 끝===================
 	
 }

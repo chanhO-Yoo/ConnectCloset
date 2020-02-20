@@ -179,4 +179,34 @@
 	</select>
 	
     <!-- ===================하은 끝=================== -->
+    
+    
+    <!-- ===================하라 시작=================== -->
+    	<select id="selectIQnaList" resultMap="itemQnaMap">
+		select * from item_qna
+	</select>
+	
+		
+	<resultMap type="itemQna" id="itemQnaMap">
+	</resultMap>
+	
+	<select id="selectIQnaListCount" resultType="_int">
+		select count(*) from item_qna
+	</select>
+	
+	<select id="adminIQna" resultMap="itemQnaMap">
+		select * from item_qna where item_qna_no=#{iQnaNo}
+	</select>
+	
+	<insert id="adminIQnaEnd">
+		insert into item_qna_ans values(seq_item_qna_ans_no.nextval,#{iQnaNo},#{iQnaAnsContent},default)
+	</insert>
+	
+	<select id="adminIQnaAns" resultMap="itemQnaAnsMap">
+		select * from item_qna_ans where item_qna_no=#{iQnaNo} order by item_qna_ans_no
+	</select>
+	<resultMap type="itemQnaAns" id="itemQnaAnsMap">
+		
+	</resultMap>
+    <!-- ===================하라 끝=================== -->
 </mapper>
