@@ -44,6 +44,10 @@ public interface ItemDAO {
 	int selectAccCount();
 	//------------ 윤지 상품 리스트 끝 ---------------
 	
+	//------------ 찬호 시작---------------
+	ItemImage recetnItem(String itemNo);
+	
+	//------------ 찬호 끝---------------
 
 //-------------주영  상품 상세보기 시작 -------------------
 	List<ItemImage> selectitemImagetList(int itmeNo);
@@ -52,6 +56,8 @@ public interface ItemDAO {
 
 
 	List<Review> selectReviewList(int itmeNo);
+
+
 
 
 

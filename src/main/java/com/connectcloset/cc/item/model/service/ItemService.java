@@ -41,6 +41,11 @@ public interface ItemService {
 	List<ItemAndImageVO2> selectAccList(int cPage, int numPerPage);
 	int selectAccCount();
 	//--------- 윤지 상품 리스트 끝 -------------------
+	
+	//--------- 찬호 시작 -------------------
+	ItemImage recentItem(String itemNo);
+	
+	//--------- 찬호 끝 -------------------
 
 	//------------ 주영 상품 상세보기 시작 -------------
 	List<ItemImage> selectitemImagetList(int itmeNo);
@@ -48,6 +53,8 @@ public interface ItemService {
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
 
 	List<Review> selectReviewList(int itmeNo);
+
+
 
 	//------------ 주영 상품 상세보기 끝-------------
 
