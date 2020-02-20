@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +7,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <%
+	//쿠키 가져오기
+	Cookie[] ck =request.getCookies();
+
 	//페이지바 작업
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
@@ -255,3 +259,14 @@
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+쿠키테스트 : 
+<%
+if(ck!=null){
+	for(Cookie c : ck){
+		if(c.getName().indexOf("sname") != -1){
+			out.println(URLDecoder.decode(c.getValue(),"UTF-8")+"<br/>");
+		}
+	}
+}
+%>
+

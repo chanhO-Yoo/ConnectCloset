@@ -1,10 +1,35 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="com.connectcloset.cc.item.model.vo.ItemAndImageVO2"%>
+<%@page import="com.connectcloset.cc.item.model.vo.Item"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%
+	ItemAndImageVO2 item = (ItemAndImageVO2)request.getAttribute("item");
+	
+	Cookie[] ck =request.getCookies();
+	String itemName = null;
+	
+	for(int i=0;i<ck.length;i++){
+		if(ck[i].getName().equals("sname")){
+			itemName = URLDecoder.decode(ck[i].getValue(),"UTF-8");
+			itemName = item.getItemName()+","+itemName;
+			System.out.println("++++++쿠키있어요");
+		}
+	}
+	if(itemName == null){
+		itemName=item.getItemName();
+	}
+	System.out.println("*********itemName="+itemName);
+	Cookie cookie = new Cookie("sname",URLEncoder.encode((itemName),"utf-8"));
+	cookie.setMaxAge(60*60*24);
+	response.addCookie(cookie);
 
+%>
 
 
 
