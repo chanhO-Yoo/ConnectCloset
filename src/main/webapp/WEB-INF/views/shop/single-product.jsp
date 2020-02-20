@@ -28,6 +28,7 @@
 	Cookie cookie = new Cookie("sname",URLEncoder.encode((itemName),"utf-8"));
 	cookie.setMaxAge(60*60*24);
 	response.addCookie(cookie);
+	
 
 %>
 
@@ -97,6 +98,31 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content pl-30">
+                        	<c:set var="brandNo" value="${item.brandNo}"/>
+                        	<c:choose>
+                        		<c:when test="${brandNo eq 'brand-001'}">
+                        			<h5>LOW CLASSIC</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-002'}">
+                        			<h5>BALENCIAGA</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-003'}">
+                        			<h5>GIVENCHY</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-004'}">
+                        			<h5>CELINE</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-005'}">
+                        			<h5>VALENTINOs</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-006'}">
+                        			<h5>BURBERRY</h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-007'}">
+                        			<h5>GUCCI</h5>
+                        		</c:when>
+                        	</c:choose>
+                        	
                             <h2>${item.itemName}</h2>
                             <div class="pro-details-rating-wrap">
                                 <div class="pro-details-rating">
