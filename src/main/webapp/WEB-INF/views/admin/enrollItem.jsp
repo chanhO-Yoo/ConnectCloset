@@ -86,20 +86,20 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                    <span>Color</span>
 	                                    <div class="form-group">
 										    <select multiple class="form-control" id="colorSelect" name="itemColors" style="width:170px">
-										    	<option>BLUE</option>
-										    	<option>RED</option>
-										    	<option>IVORY</option>
-										    	<option>MAROON</option>
-										    	<option>GRAY</option>
-										    	<option>GREEN</option>
-										    	<option>YELLOW</option>
-										    	<option>BEIGE</option>
-										    	<option>BROWN</option>
-										    	<option>WHITE</option>
-										    	<option>BLACK</option>
-										    	<option>PINK</option>
-										    	<option>ORANGE</option>
-										    	<option>KHAKI</option>
+										    	<option>blue</option>
+										    	<option>red</option>
+										    	<option>ivory</option>
+										    	<option>maroon</option>
+										    	<option>gray</option>
+										    	<option>green</option>
+										    	<option>yellow</option>
+										    	<option>beige</option>
+										    	<option>brown</option>
+										    	<option>white</option>
+										    	<option>black</option>
+										    	<option>pink</option>
+										    	<option>orange</option>
+										    	<option>khaki</option>
 											</select>
 										</div>
 	                                </div>
@@ -107,14 +107,14 @@ div#board-container label.custom-file-label{text-align:left;}
 	                                	<span>Size</span>
 	                                    <div class="form-group" id="size_div">
 										    <select multiple class="form-control" id="sizeSelect" name="itemSize" style="width:170px">
-										    	<option>XXS</option>
-										    	<option>XS</option>
-										    	<option>S</option>
-										    	<option>M</option>
-										    	<option>L</option>
-										    	<option>XL</option>
-										    	<option>XXL</option>
-										    	<option>FREE</option>
+										    	<option>xxs</option>
+										    	<option>xs</option>
+										    	<option>s</option>
+										    	<option>m</option>
+										    	<option>l</option>
+										    	<option>xl</option>
+										    	<option>xxl</option>
+										    	<option>free</option>
 											</select>
 										</div>
 	                                </div>
