@@ -3,6 +3,7 @@ package com.connectcloset.cc.item.model.service;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -11,12 +12,17 @@ import com.connectcloset.cc.mypage.model.vo.ReviewList;
 public interface ItemService {
 
 	//희진  새로 나온 상품시작
-	List<Item> newItemList(Item item);
+	List<ItemAndImageVO> newItemList(Item item);
 
 	//희진  새로 나온 상품 끝
 	
 	//==하은 시작
 	List<Item> selectItemNumber(int itemNo);
+	
+	List<ItemAndImageVO> selectImageList(int itemNO);
+	
+	List<ItemAndImageVO> shopCategories(Item item);
+	
 	//==하은 끝
 
 	//--------- 윤지 상품 리스트 시작 -------------------
@@ -49,8 +55,10 @@ public interface ItemService {
 
 	List<Review> selectReviewList(int itmeNo);
 
-	//------------ 주영 상품 상세보기 끝-------------
 
+
+
+	//------------ 주영 상품 상세보기 끝-------------
 
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -30,16 +31,40 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+	//==================하은 인덱스 이미지 시작 =====================
+	
+	//곧 주석처리
+	@RequestMapping("/cc/itemImageList.do")
+	public ModelAndView itemImages (ModelAndView mav, int itemNo) {
+	List<ItemAndImageVO> list = itemService.selectImageList(itemNo);
+	logger.debug("list={}",list);
+	mav.addObject("list",list);
+	mav.setViewName("cc/itemImageList");
+	return mav;
+	}
+	
+	
+	@GetMapping("/shopCategories.do")
+	@ResponseBody
+	public List<ItemAndImageVO> shopCategories(Item item){
+		List<ItemAndImageVO> list = itemService.shopCategories(item);
+		logger.debug("categories={}", list);
+		return list;
+	}
+	
+	//==================하은 인덱스 이미지 =====================
+	
 	//===================희진  새로나온 상품시작======================
 	
-	//타입별 상품 나 열
+	//타입별 상품 나열
+	//+이미지추가 
 	
 	
 	//새로 나온 상품
 	@GetMapping("/newItem.do")
 	@ResponseBody
-	public List<Item> newItem(Item item) {
-		List<Item> list = itemService.newItemList(item);
+	public List<ItemAndImageVO> newItem(Item item) {
+		List<ItemAndImageVO> list = itemService.newItemList(item);
 		return list;
 	}
 	

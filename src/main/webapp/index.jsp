@@ -15,13 +15,13 @@
             	<%-- 브랜드 값 넘겨주기 --%>
             	<%
             		HashMap<String, String> map = new HashMap<>();
-            		map.put("balen.jpg", "발렌시아가");
-            		map.put("burberry.jpg", "버버리");
-            		map.put("celine.jpg", "셀린느");
-            		map.put("givenchy.png", "지방시");
-            		map.put("gucci.jpg", "구찌");
-            		map.put("lowclassic.jpg", "로우클래식");
-            		map.put("VALENTINO.jpeg", "발렌티노");
+            		map.put("balen.jpg", "BALENCIAGA");
+            		map.put("burberry.jpg", "BURBERRY");
+            		map.put("celine.jpg", "CELINE");
+            		map.put("givenchy.png", "GIVENCHY");
+            		map.put("gucci.jpg", "GUCCI");
+            		map.put("lowclassic.jpg", "LOW CLASSIC");
+            		map.put("VALENTINO.jpeg", "Valentino");
             		
             		pageContext.setAttribute("map", map);
             	%>
@@ -48,61 +48,82 @@
             </div>
         </div>
        
+       
+<!-- 하은 인덱스 샵 카테고리 이미지 수정 시작 -->      
         <div class="shop-area pt-115 pb-120">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
                     <h2>Shop categories</h2>
                 </div>
                 <div class="categorie-slider-active owl-carousel">
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-1.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Flip flops</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-2.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Sneakers</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-3.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Shoes</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-2.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Sneakers</a>
-                            </div>
-                        </div>
-                    </div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image0" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category0'>
+                				<a href='#'>Flip flops</a>
+                			</div>
+                		</div>
+                	</div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image1" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category1'>
+                				<a href='#'>Flip flops</a>
+                			</div>
+                		</div>
+                	</div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image2" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category2'>
+                				<a href='#'>Flip flops</a>
+                			</div>
+                		</div>
+                	</div>
                 </div>
+                <script>
+                $(()=>{
+                	$.ajax({
+                		url: "${pageContext.request.contextPath}/shopCategories.do",
+                    	type: "GET",
+                    	dataType: "json",
+                    	success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let s = data[i];
+                    			console.log(i);
+                    			
+                    			html ="<img id='image"+i+"'src='${pageContext.request.contextPath }/resources/upload/item/"+s.imageList[0].itemImageReName+"'>";
+                    			html2 = "<a href='#'>category"+i+"</a>";
+                    			$(".image"+i).html(html);
+                    			$(".category"+i).html(html2);
+                    		}
+                    	},		
+                    	error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                	});
+                });
+                </script>
+
             </div>
         </div>
+        <!-- 하은 인덱스 샵 카테고리 이미지 수정 끝 --> 
         
+        <!--하은 새로 나온 상품 이미지 추가 -->
         <!-- 새로 나온 상품 -->
         <div class="shop-area pb-120">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
-                    <h2><strong>새로 나온 상품</strong></h2>
+                    <h2><strong>New Items</strong></h2>
                 </div>
                 <div class="row newItem"> 
                     
@@ -119,13 +140,13 @@
                     		
                     		for(let i in data){
                     			let n = data[i];
-                    			
+                    			console.log(n);
                     		
                     		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
                     			 + "<div class='shop-wrap mb-35'>"
                     			 + "<div class='shop-img'>"
                     			 + "<a href='single-product.html'>"
-                            	 + "<img src='${pageContext.request.contextPath }/resources/img/product/shop-1.jpg'>"
+                            	 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"'>"
                                  + "</a>"
                                  + "<div class='shop-hover'>"  
                                  + "<div class='shop-card'>"
@@ -146,8 +167,6 @@
                                  + "</div>"
                                  + "</div>"
                                  + "</div>";
-                                
-                                
                     		}
                     		$(".row.newItem").append(html);
                     	},
@@ -156,10 +175,7 @@
                     	}
                     	});
                     });
-                    
-                   
                     </script>
-                    
                 </div>
             </div>
         </div>
@@ -168,8 +184,6 @@
 <style>
 #messageinput{
 width: 25%;
-
-
 }
 </style>
 
@@ -220,8 +234,7 @@ print_r($NaverKeyWord);
             
         }
 }
-   
-
+ 
 </script> 
 
 <style>
@@ -454,7 +467,7 @@ print_r($NaverKeyWord);
         <div class="blog-area gray-bg pt-120 pb-90">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
-                    <h2>Latest Blog</h2>
+                    <h2>Blog</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">

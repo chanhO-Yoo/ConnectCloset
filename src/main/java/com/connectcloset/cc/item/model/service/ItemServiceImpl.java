@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -24,24 +25,38 @@ public class ItemServiceImpl implements ItemService{
 	
 	//====================희진 새로 나온 상품 =========================
 	@Override
-	public List<Item> newItemList(Item item) {
+	public List<ItemAndImageVO> newItemList(Item item) {
 		return itemDAO.newItemList(item);
 	}
 
 	//===================희진  새로 나온 상품 끝========================
 
 	
-	/*	//==하은
-	@Override
-	public Item selectItemNumber(String itemNo) {
-		return itemDAO.selectItemNumber(itemNo);
-	}
-*/
+	//===================하은 끝=======================
+	
 	@Override
 	public List<Item> selectItemNumber(int itemNo) {
 		return itemDAO.selectItemNumber(itemNo);
 	}
-	//==하은
+
+	//인덱스 상품 이미지
+	/*@Override
+	public List<ItemAndImageVO> selectItemImageList(int itemNO) {
+		return itemDAO.selectItemImageList(itemNO);
+	}*/
+
+	@Override
+	public List<ItemAndImageVO> selectImageList(int itemNo) {
+		return itemDAO.selectImageList(itemNo);
+	}
+	
+	
+	@Override
+	public List<ItemAndImageVO> shopCategories(Item item) {
+		return itemDAO.shopCategories(item);
+	}
+
+	//===================하은 끝=======================
 
 
 	
@@ -170,6 +185,9 @@ public class ItemServiceImpl implements ItemService{
 		return  itemDAO.selectReviewList(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
+
+
+
 
 
 
