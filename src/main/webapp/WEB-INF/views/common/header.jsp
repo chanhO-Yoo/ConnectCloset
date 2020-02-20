@@ -73,32 +73,17 @@
                                     </ul>
                                 </li>
                                 
-                                <li><a href="blog-grid3-col.html">Blog</a>
-                                	<ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
-                                    </ul>
+                                <li><a href="${pageContext.request.contextPath }/blog/blogList.do">Blog</a>
                                 </li>
                                 
-                                <li><a href="#">Store</a>
+                                <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">Store</a>
                                 </li>
                                 
                                 <li><a href="#">Pages </a>
                                     <ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
