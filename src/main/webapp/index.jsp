@@ -15,13 +15,13 @@
             	<%-- 브랜드 값 넘겨주기 --%>
             	<%
             		HashMap<String, String> map = new HashMap<>();
-            		map.put("balen.jpg", "발렌시아가");
-            		map.put("burberry.jpg", "버버리");
-            		map.put("celine.jpg", "셀린느");
-            		map.put("givenchy.png", "지방시");
-            		map.put("gucci.jpg", "구찌");
-            		map.put("lowclassic.jpg", "로우클래식");
-            		map.put("VALENTINO.jpeg", "발렌티노");
+            		map.put("balen.jpg", "BALENCIAGA");
+            		map.put("burberry.jpg", "BURBERRY");
+            		map.put("celine.jpg", "CELINE");
+            		map.put("givenchy.png", "GIVENCHY");
+            		map.put("gucci.jpg", "GUCCI");
+            		map.put("lowclassic.jpg", "LOW CLASSIC");
+            		map.put("VALENTINO.jpeg", "VALENTINO");
             		
             		pageContext.setAttribute("map", map);
             	%>
@@ -33,7 +33,7 @@
                                 <div class="slider-text slider-animated-1 text-center">
                                     <h1 class="animated">${brand.value }</h1>
                                     <h5 class="animated">
-                                       New Collections 2019 
+                                       New Collections 2020 
                                     </h5>
                                     <div class="slider-btn mt-30">
                                         <a class="sub-slider-btn-1 animated mr-8 btn-hover" href="single-product.html">Shop now</a>
