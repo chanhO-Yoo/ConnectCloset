@@ -328,7 +328,7 @@
 													</button>
 													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
 													  <div class="well">
-													    답변 테스트 중이긴 한데 길게 쓰면 어케 되징? 
+													    답변 작성중이공
 													  </div>
 													</div>
                                                 </div>
