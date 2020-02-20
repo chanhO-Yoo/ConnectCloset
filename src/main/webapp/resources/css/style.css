@@ -10206,6 +10206,7 @@ blockquote.blockquote-style2 {
 .review-bottom > p {
     font-size: 13px;
     margin: 0;
+    padding-bottom: 35px;
 }
 
 .single-review.child-review {

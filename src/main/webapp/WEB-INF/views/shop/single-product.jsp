@@ -287,6 +287,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div id="des-details4" class="tab-pane">
                             <div class="row">
                                 <div class="col-lg-7">
