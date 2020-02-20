@@ -8,6 +8,7 @@ import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public interface MyPageDAO {
 
@@ -29,7 +30,17 @@ public interface MyPageDAO {
 
 	//-----------희진 주문내역 시작------------------
 	Member selectOrderList(int memberNo);
-	//---------- 희진 주문내역 끝--------------------
 
+	int selectOsByMemberNo(int memberNo);
+
+	int selectDeli1ByMemberNo(int memberNo);
+
+	int selectDeli2ByMemberNo(int memberNo);
+
+	int selectDeli3ByMemberNo(int memberNo);
+
+	List<OrderProduct> selectSearchDateList(int startDate);
+
+	//---------- 희진 주문내역 끝--------------------
 
 }

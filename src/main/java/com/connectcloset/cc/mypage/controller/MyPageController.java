@@ -27,6 +27,7 @@ import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.order.model.service.OrderService;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 
 @Controller
@@ -77,13 +78,36 @@ public class MyPageController {
 //		List<OrderProduct> orderProduct = myPageService.selectOrderByMemberNo(memberNo);
 //		logger.debug("orderProduct={}",orderProduct);
 //		mav.addObject("orderProduct", orderProduct);
+		
 		Member m = myPageService.selectOrderByMemberNo(memberNo);
+		
+		//주문현황(주문완료,배송준비중,배송중,배송완료)
+		int os = myPageService.selectOsByMemberNo(memberNo);
+		int deli1 = myPageService.selectDeli1ByMemberNo(memberNo);
+		int deli2 = myPageService.selectDeli2ByMemberNo(memberNo);
+		int deli3 = myPageService.selectDeli3ByMemberNo(memberNo);
+		
+		
 		logger.debug("member={}",m);
 		mav.addObject("member", m);
+		
+		mav.addObject("os", os);
+		mav.addObject("deli1", deli1);
+		mav.addObject("deli2", deli2);
+		mav.addObject("deli3", deli3);
 		mav.setViewName("/mypage/mypage-order");
 		return mav;
 	}
-
+	
+	@RequestMapping("/mypage/searchDate/mypage-order.do")
+	@ResponseBody
+	private List<OrderProduct> deliverySearch(@RequestParam int startDate) {
+		
+		List<OrderProduct> list = myPageService.selectSearchDateList(startDate);
+		logger.debug("list={}",list);
+		
+		return list;
+	}
 	
 	//=================희진 끝=====================
 	
