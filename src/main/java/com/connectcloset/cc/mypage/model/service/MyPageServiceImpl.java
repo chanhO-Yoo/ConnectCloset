@@ -114,6 +114,7 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OrderProduct> selectSearchDateList(int startDate) {
 		return mypageDAO.selectSearchDateList(startDate);
 	}
+
 	
 	//-----------희진 주문내역 끝--------------------------------
 

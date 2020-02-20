@@ -44,6 +44,7 @@ public interface MyPageService {
 	Member selectOrderByMemberNo(int memberNo);
 
 	List<OrderProduct> selectSearchDateList(int startDate);
+
 	
 	//------------희진 주문내역 끝-------------------
 	

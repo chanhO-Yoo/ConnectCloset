@@ -100,6 +100,7 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.selectOne("orderProduct.selectOrderListByMemberNo", memberNo);
 	}
 
+
 	@Override
 	public List<OrderProduct> selectSearchDateList(int startDate) {
 		return sqlSession.selectList("orderProduct.selectSearchDateList",startDate);	
@@ -107,8 +108,6 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	//-----------희진 주문내역 끝------------------------
 
-
-	
 	//-------------------주영 1:1문의  끝 시작---------------------------
 	@Override
 	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
