@@ -15,6 +15,7 @@ import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
 
@@ -107,8 +108,6 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	//-----------희진 주문내역 끝------------------------
 
-	//-----------희진 주문내역 끝------------------------
-
 	//-------------------주영 1:1문의  끝 시작---------------------------
 	@Override
 	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
@@ -160,5 +159,6 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 	
 	//-------------------주영 1:1문의  끝 ---------------------------
+
 
 }

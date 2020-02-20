@@ -43,7 +43,6 @@ public interface MyPageService {
 	
 	Member selectOrderByMemberNo(int memberNo);
 
-
 	List<OrderProduct> selectSearchDateList(int startDate);
 
 	
