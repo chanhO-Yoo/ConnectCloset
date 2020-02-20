@@ -8,6 +8,7 @@ import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
@@ -31,8 +32,18 @@ public interface MyPageService {
 	//------------주영 리뷰 끝 -----------
 	
 	//------------희진 주문내역 시작-------------
+
+	int selectOsByMemberNo(int memberNo);
+
+	int selectDeli1ByMemberNo(int memberNo);
+
+	int selectDeli2ByMemberNo(int memberNo);
+
+	int selectDeli3ByMemberNo(int memberNo);
+	
 	Member selectOrderByMemberNo(int memberNo);
 
+	List<OrderProduct> selectSearchDateList(int startDate);
 	
 	//------------희진 주문내역 끝-------------------
 	
