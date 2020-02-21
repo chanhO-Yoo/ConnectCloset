@@ -57,7 +57,11 @@ public class OrderCheckoutCotroller {
 	//================하은 시작======================
 	@RequestMapping("/shop/checkout.do")
 	@ResponseBody
-	public ModelAndView checkout(ModelAndView mav,  @RequestParam int itemNo ,@RequestParam int orderCount) {		
+	public ModelAndView checkout(ModelAndView mav,
+								@RequestParam int itemNo 
+								,@RequestParam int orderCount 
+								,@RequestParam("orderColor") String orderColor
+								,@RequestParam("orderSize") String orderSize) {		
 		
 		//int itemNo = 41;
 		//logger.info("itemNo={}",itemNo);
@@ -65,9 +69,11 @@ public class OrderCheckoutCotroller {
 		List<Item> item = itemService.selectItemNumber(itemNo);
 		//logger.debug("itemNo={}",itemNo);
 		
-		System.out.println("@@@@#!@#!@#!"+orderCount);
+		
 		mav.addObject("itemList",item);
 		mav.addObject("orderCount",orderCount);
+		mav.addObject("orderSize",orderSize);
+		mav.addObject("orderColor",orderColor);
 		mav.setViewName("/shop/checkout");
 		return mav;
 		
@@ -82,12 +88,19 @@ public class OrderCheckoutCotroller {
 		String orderId = (String)request.getParameter("orderId"); 
 		String orderPayMethod = (String)request.getParameter("payMethod");
 		int orderTotalPrice = Integer.parseInt(request.getParameter("orderTotalPrice"));
+		int OrderItemCount = Integer.parseInt(request.getParameter("OrderItemCount"));
 		String impUid = (String)request.getParameter("imp_uid");
+		String orderItemColor = (String)request.getParameter("orderItemColor");
+		String orderItemSize = (String)request.getParameter("orderItemSize");
 		String[] itemNoList = (String[])request.getParameterValues("itemNoList");
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		
 		
+		
 		logger.debug("itemNoList.length={}",itemNoList.length);
+		logger.debug("OrderItemCount!@#!={}",OrderItemCount);
+		logger.debug("orderItemColor!@#={}",orderItemColor);
+		logger.debug("orderItemSize!@#={}",orderItemSize);
 		
 		for(int i=0;i<itemNoList.length;i++) {
 			logger.debug("@@@@@@itemNoList[]={}",itemNoList[i]);
@@ -98,14 +111,15 @@ public class OrderCheckoutCotroller {
 			
 			op.setOrderId(orderId);
 			op.setOrderItemNo(orderItemNo);
-			op.setOrderItemCount(1);
+			op.setOrderItemCount(OrderItemCount);
 			op.setOrderPayMethod(orderPayMethod);
 			op.setOrderTotalPrice(orderTotalPrice);
-			op.setOrderItemColor("black");
-			op.setOrderItemSize("xl");
+			op.setOrderItemColor(orderItemColor);
+			op.setOrderItemSize(orderItemSize);
 			op.setImpUid(impUid);
 			op.setItemNo(orderItemNo);
 			op.setMemberNo(memberNo);
+			
 			
 			logger.debug("orderProduct={}",op);
 			
@@ -131,7 +145,7 @@ public class OrderCheckoutCotroller {
 		Map<String, String> map = new HashMap<>();
 		
 		orderService.insertOrder(map);
-		mav.setViewName("redirect:/shop/checkout");
+		mav.setViewName("redirect:/cc");
 		
 		return mav;
 	}

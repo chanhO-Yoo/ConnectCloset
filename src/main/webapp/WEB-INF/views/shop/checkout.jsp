@@ -228,15 +228,15 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 											<li><span class="order-middle-left"><span
 													id="itemName" class="order-name">${item.itemName }</span> X
 													
-													${orderCount }</span> <span class="order-price">${item.itemPrice* item.itemStock}
+													${orderCount}</span> <span class="order-price">${item.itemPrice}
 											</span></li>
 										</c:forEach>
 									</ul>
 								</div>
 								<div class="your-order-bottom">
 									<ul>
-										<li class="your-order-shipping">Shipping</li>
-										<li>Free shipping</li>
+										<li class="your-order-shipping">색상:${orderColor}</li>
+										<li>사이즈:${orderSize}</li>
 									</ul>
 								</div>
 								<div class="your-order-total">
@@ -244,7 +244,10 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 										<li class="order-total">Total</li>
 										<li><span><fmt:formatNumber value="${totalPrice*orderCount  }"
 													groupingUsed="true" type="currency" /></span></li>
-										<input type="hidden" id="totalPrice" value="${totalPrice}"></input>
+										<input type="hidden" id="totalPrice" value="${totalPrice*orderCount}"></input>
+										<input type="hidden" id="orderItemColor" value="${orderColor}"></input>
+										<input type="hidden" id="orderItemSize" value="${orderSize}"></input>
+										<input type="hidden" id="orderItemCount" value="${orderCount}"></input>
 									</ul>
 								</div>
 							</div>
@@ -360,6 +363,9 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 		
 		var itemName = $('#itemName')[0].innerText; 
 		var totalPrice =$('#totalPrice').val();
+		var orderItemColor =$('#orderItemColor').val();
+		var orderItemSize =$('#orderItemSize').val();
+		var orderItemCount =$('#orderItemCount').val();
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
 		
@@ -407,9 +413,10 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			data: {
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
-				orderTotalPrice : <%=totalPrice%>,
-<%-- 				orderItemColor : "<%=orderItemColor%>",
-				orderItemSize : "<%=orderItemSize%>", --%>				
+				orderTotalPrice : totalPrice,
+				OrderItemCount:orderItemCount,
+				orderItemColor : orderItemColor,
+				orderItemSize : orderItemSize,				
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>
@@ -426,7 +433,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			alert(msg);
 		});
 	//성공 시 이동 페이지
-//	location.href="${pageContext.request.contextPath}/shop/orderEnd.do";
+	location.href="${pageContext.request.contextPath}";
 	
 	} 
 		//결제실패

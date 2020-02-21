@@ -44,7 +44,10 @@ $(function(){
 //바로구입 누를때 넘기기기
 $("#btn-goOrder").on('click', function(){
 	let orderCount = document.querySelector("#orderItemCount").value;
+	var orderSize = $("#SizeSelect:checked").val();
+	var orderColor= $("#colorSelect:checked").val();
 
+	console.log(orderColor);
 		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
 		
 		/* $.ajax({
@@ -66,7 +69,7 @@ $("#btn-goOrder").on('click', function(){
 			} 
 		}); */
 	
-		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount;
+		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor;
 	}); 
 	
 function changeOrderNo(num){
@@ -176,10 +179,19 @@ function goLogin(){
                                     <div class="pro-details-color2-content">
                                         <ul>
                                         
-                                       <c:forTokens items="${item.itemColors}" delims="," var="item">
-										   <li class="${item}"></li>
-										</c:forTokens>
+										
+										   
+						 <c:forTokens items="${item.itemColors}" delims="," var="item">
+										 
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				
+			
+						<label class="btn ${item } " >
+							<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
+						</label>
 
+					</div>
+						 </c:forTokens>
 
 
                                         </ul>
@@ -191,7 +203,15 @@ function goLogin(){
                                         <ul>
                                         	
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
-                                            <li><a href="#">${item}</a></li>
+                                         <div class="form-group">
+										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
+										    		<label class="btn " >
+														<input type="checkbox" name="jb-radio" id="SizeSelect" value="${item}" >${item}
+													</label>
+										    
+										  	</div>
+					
+										</div>
 										</c:forTokens>
                                      
                                       
