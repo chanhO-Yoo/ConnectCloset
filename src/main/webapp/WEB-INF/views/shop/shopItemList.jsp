@@ -57,6 +57,29 @@
 	
 	pageContext.setAttribute("pageBar", pageBar);		
 %>
+<%
+String newItemNoList = "";
+if(ck!=null){
+	for(Cookie c : ck){
+		if(c.getName().indexOf("itemNoList") != -1){
+			
+			String[] itemNoArr = URLDecoder.decode(c.getValue(),"UTF-8").split(",");
+			if(itemNoArr.length <= 5){
+				for(int j=0;j<itemNoArr.length;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			else{
+				for(int j=0;j<5;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			newItemNoList = newItemNoList.substring(1);
+			
+		}
+	}
+}
+%>
 
 <fmt:requestEncoding value="utf-8"/>
 
@@ -257,16 +280,82 @@
             </div>
             ${pageBar }
         </div>
+<div id="sidebox">
+	<p align="center">최근 본 상품</p>
+	<hr/>
+	<div id="recentImage"></div>
+</div>
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<style>
+#sidebox { background-color:#F0F0F0; position:absolute; width:120px; height:550px; top:200px; right:10px; padding: 3px 10px; z-index: 0; }
+</style>
+<script>
+var currentPosition = parseInt($("#sidebox").css("top")); $(window).scroll(function() { var position = $(window).scrollTop(); $("#sidebox").stop().animate({"top":position+currentPosition+"px"},1000); });
+</script>
 쿠키테스트 : 
-<%
+<%-- <%
 if(ck!=null){
 	for(Cookie c : ck){
-		if(c.getName().indexOf("sname") != -1){
-			out.println(URLDecoder.decode(c.getValue(),"UTF-8")+"<br/>");
+		if(c.getName().indexOf("itemNoList") != -1){
+			
+			String[] itemNoArr = URLDecoder.decode(c.getValue(),"UTF-8").split(",");
+			if(itemNoArr.length <= 5){
+				for(int j=0;j<itemNoArr.length;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			else{
+				for(int j=0;j<5;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			newItemNoList = newItemNoList.substring(1);
+			
+			out.println(newItemNoList);
 		}
 	}
 }
-%>
+%> --%>
+<script>
+$(()=>{
+	var newItemNoList = "<%=newItemNoList%>";
+	console.log(newItemNoList);
+	$.ajax({
+	//최근 본 상품 목록 출력 
+	url: "${pageContext.request.contextPath}/recentItem.do?itemNoList="+newItemNoList,
+	type: "GET",
+	dataType: "json",
+	success: data => {
+		let html = "";
+		console.log(data);
+		
+		for(let i in data){
+			let n = data[i];
+			console.log(n);
+			
+		
+		html += "<div class='col-12'>"
+			 + "<div class='shop-wrap mb-35'>"
+			 + "<div class='shop-img'>"
+			 + "<a href='${pageContext.request.contextPath }/shop/single-product.do?itemNo="+n.itemNo+"'>"
+        	 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.itemImageReName+"'>"
+             + "</a>"
+             + "</div>"
+             + "</div>"
+             + "</div>";
+            
+            
+		}
+		$("#recentImage").append(html);
+	},
+	error: (x,s,e)=>{
+		console.log(x,s,e);
+	}
+	});
+});
+
+
+</script>
 

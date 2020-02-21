@@ -11,7 +11,7 @@ public interface BlogDAO {
 
 
 //게시물보기
-	List<Blog> selectBlogList(int cPage, int numPerPage);
+	List<BlogAttachVO> selectBlogList(int cPage, int numPerPage);
 
 	int selectTotalContents();
 	
@@ -21,10 +21,12 @@ public interface BlogDAO {
 
 	int insertAttahment(Attachment a);
 
-	Blog selectOneBlog(int blogNo);
+	List<BlogAttachVO> selectOneBlog(int blogNo);
 
-	List<Attachment> selectAttachmentList(int blogNo);
+	List<BlogAttachVO> selectAttachmentList(int blogNo);
 
-	BlogAttachVO selectOneBlogCollection(int blogNo);
+	List<BlogAttachVO> selectOneBlogCollection(int blogNo);
+
+	List<BlogAttachVO> selectimgList(int blogNo);
 
 }
