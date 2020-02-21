@@ -167,6 +167,22 @@ public class ItemServiceImpl implements ItemService{
 		public ItemImage recentItem(String itemNo) {
 			return itemDAO.recetnItem(itemNo);
 		}
+		
+		@Override
+		public List<ItemAndImageVO> searchAllItem(int cPage, int numPerPage, String searchKeyword) {
+			return itemDAO.searchAllItem(cPage,numPerPage, searchKeyword);
+		}
+		
+		@Override
+		public int searchAllItemCount(String searchKeyword) {
+			return itemDAO.searchAllItemCount(searchKeyword);
+		}
+		
+		@Override
+		public int addSearchKeyword(String searchKeyword) {
+			return itemDAO.addSearchKeyword(searchKeyword);
+		}
+
 		//===================찬호 끝========================
 	
 	//===================주영 상품 상세보기 시작========================
@@ -191,11 +207,6 @@ public class ItemServiceImpl implements ItemService{
 		return  itemDAO.selectReviewList(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
-
-
-
-
-
 
 
 }
