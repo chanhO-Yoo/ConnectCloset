@@ -3,6 +3,8 @@ package com.connectcloset.cc.mypage.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -102,11 +104,31 @@ public class MyPageController {
 	
 	@RequestMapping("/mypage/searchDate/mypage-order.do")
 	@ResponseBody
-	private List<OrderProduct> deliverySearch(@RequestParam int startDate) {
+	private List<OrderProduct> deliverySearch(@RequestParam int memberNo, @RequestParam int startDate) {
 		
-		List<OrderProduct> list = myPageService.selectSearchDateList(startDate);
-		logger.debug("list={}",list);
+		List<OrderProduct> list = new ArrayList<>();
 		
+		if (startDate==0) {
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("memberNo", memberNo);
+			map.put("startDate", startDate);
+			
+			list = myPageService.selectSearchAllList(map);
+			logger.debug("list={}",list);
+			
+		}
+		
+		else {
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("memberNo", memberNo);
+			map.put("startDate", startDate);
+			
+			list = myPageService.selectSearchDateList(map);
+			logger.debug("list={}",list);
+			
+		}
 		return list;
 	}
 	
