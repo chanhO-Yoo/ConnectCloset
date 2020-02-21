@@ -74,5 +74,12 @@ public class BlogServiceImpl implements BlogService {
 	public List<BlogAttachVO> selectimgList(int blogNo) {
 		return blogDAO.selectimgList(blogNo);
 	}
+	
+	//====================하은 시작 ====================
+	@Override
+	public List<BlogAttachVO> blogShow(Blog blog) {
+		return blogDAO.blogShow(blog);
+	}
 
+	//====================하은 시작 ====================
 } 

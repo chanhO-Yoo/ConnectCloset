@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class BlogAttachVO implements Serializable {
+public class sqlSession. implements Serializable {
 
 	/**
 	 * 

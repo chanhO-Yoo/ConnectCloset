@@ -15,7 +15,6 @@
             	
             	<%-- 브랜드 값 넘겨주기 --%>
             	<%
-
             		HashMap<String, String> map = new LinkedHashMap<>();
             		map.put("lowclassic.jpg", "LOW CLASSIC");
             		map.put("balen.jpg", "BALENCIAGA");
@@ -24,8 +23,6 @@
             		map.put("VALENTINO.jpeg", "Valentino");
             		map.put("burberry.jpg", "BURBERRY");
             		map.put("gucci.jpg", "GUCCI");
-
-            		
             		pageContext.setAttribute("map", map);
             	%>
             	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs">
@@ -187,7 +184,6 @@
 width: 25%;
 }
 </style>
-
 <script>
 function NaverKeyWord(){
     $Curl = curl_init();
@@ -216,7 +212,6 @@ print_r($NaverKeyWord);
       <input type="text" id="sender" value='${session.getmemberId()}' style="display: none;"/>  
 	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
 	 <input type="text" onkeyup="enterkey();" id="messageinput" width="40;"/><button type="button" onclick="send();">전송</button>
-		
     <div>
         <button type="button" onclick="openSocket();">채팅참여</button>
        
@@ -224,18 +219,14 @@ print_r($NaverKeyWord);
     </div>
     <!-- Server responses get written here -->
 </div>	
-   
-
 <script> 
    function enterkey() {
         if (window.event.keyCode == 13) {
         	
              // 엔터키가 눌렸을 때 실행할 내용
              send();
-            
         }
 }
- 
 </script> 
  --%>
 <!-- <style>
@@ -245,12 +236,11 @@ print_r($NaverKeyWord);
  	height:150px;
  }
 </style>
-    
      <div >
    <div id="messages"  ></div> 
 	</div> -->
 <!--     websocket javascript
-<script type="text/javascript"> -->
+<script type="text/javascript"> 
         var ws;
         var messages = document.getElementById("messages");
          
@@ -258,7 +248,6 @@ print_r($NaverKeyWord);
             if(ws !== undefined && ws.readyState !== WebSocket.CLOSED){
             	return;
                 writeResponse("이미 참여되어있습니다.");
-                
             }
             //웹소켓 객체 만드는 코드
             ws = new WebSocket("ws://localhost:9090/cc/chat.do");
@@ -268,22 +257,17 @@ print_r($NaverKeyWord);
                 
                 writeResponse(event.data);
             };
-            
             ws.onmessage = function(event){
                 writeResponse(event.data);
-                   
             };
-            
             ws.onclose = function(event){
                 writeResponse("채팅방을 나왔습니다.");
             };
         }
-        
         function send(){
         	var text = document.getElementById("sender").value + document.getElementById("messageinput").value;
             ws.send(text);
             text = "";
-            
         };
         
         function closeSocket(){
@@ -295,7 +279,6 @@ print_r($NaverKeyWord);
             let $messages = $("#messages");
             var height = $messages.prop('scrollHeight');
     			$messages.scrollTop(height);
-   
         };
 </script>
 
@@ -329,7 +312,7 @@ print_r($NaverKeyWord);
    				 </table>
   			</div>
 		</div>
-              </div>
+     </div>
               
     <style>  
 .weather {
@@ -470,6 +453,7 @@ print_r($NaverKeyWord);
                     <h2>Blog</h2>
                 </div>
                 <div class="row blogShow">
+                </div>
                 <script>
                 $(()=>{
                 	$.ajax({ 
@@ -481,12 +465,12 @@ print_r($NaverKeyWord);
                     		let html = "";
                     		console.log(data);
                     		
-                    		for(let i in data){
-                    			let n = data[i];
-                    			console.log(s);
+                    			let n = data;
+                    			console.log(n);
                 	
                     			html+="<div class='col-lg-4 col-md-6'>"
                     			+"<div class='blog-wrap-2 blog-shadow mb-40'>
+                    			+"<div class='blog-img hover-3'>"
                     			+"<a href='blog-details.html'>"
                     			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg'>"
                     			+"</a>"
@@ -496,6 +480,7 @@ print_r($NaverKeyWord);
                     			+"</a>"
                     			+" </div>"
                     			+"</div>"
+                    			
                     			+"<div class='blog-content-2'>"
                        			+"<div class='blog-meta-3'>"
                        			+"<ul>"
@@ -508,6 +493,62 @@ print_r($NaverKeyWord);
                        			+" </div>"
                        			+"</div>"
                        			+"</div>"
+                       			
+                       			+"<div class='col-lg-4 col-md-6'>"
+                       			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
+                       			+"<div class='blog-img hover-3'>"
+                       			+"<a href='blog-details.html'>"
+                       			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg'>"
+                       			+"</a>"
+                       			+"<div class='readmore-icon'>"
+                       			+"<a href='blog-details.html'>"
+                       			+"<i class='ti-arrow-right'></i>"
+                       			+"</a>"
+                       			+"</div>"
+                       			+"</div>"
+                       			
+                       			+"<div class='blog-content-2'>"
+                       			+"<div class='blog-meta-3'>"
+                       			+"<ul>"
+                       			+"<li>20 April, 2018</li>"
+                       			+" <li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
+                       			+"</ul>"
+                       			+"</div>"
+                       			+"<h4><a href='blog-details.html'>Sienna Miller Has the New Uniform for Cool Moms</a></h4>"
+                       			+" <p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
+                       			+"</div>"
+                       			+"</div>"
+                       			+"</div>"
+                       			
+                       			
+                       			+"<div class='col-lg-4 col-md-6'>"
+                       			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
+                       			+"<div class='blog-img hover-3'>"
+                       			+"<a href='blog-details.html'>"
+                       			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-9.jpg'>"
+                       			+"</a>"
+                       			+"<div class='readmore-icon'>"
+                       			+"<a href='blog-details.html'>"
+                       			+"<i class='ti-arrow-right'></i>"
+                       			+"</a>"
+                       			+"</div>"
+                       			+"</div>"
+                       			
+                       			
+                       			+"<div class='blog-content-2'>"
+                       			+"<div class='blog-meta-3'>"
+                       			+"<ul>"
+                       			+"<li>18 April, 2018</li>"
+                       			+"<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
+                       			+"</ul>"
+                       			+"</div>"
+                       			+"<h4><a href='blog-details.html'>How Nancy Cunard And Her Bangles Inspired an Bronze </a></h4>"
+                       			+"<p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
+                       			+"</div>"
+                       			+"</div>"
+                       			+"</div>";
+                       			
+                       			
                     		}
                     		$(".row.blogShow").append(html);
 	                	},
@@ -520,7 +561,10 @@ print_r($NaverKeyWord);
                 </script>
                 </div>
             </div>
-        </div>
+        
+        
+        
+        
         <div class="instagram-area">
             <div class="instagram-wrap-3">
                 <div class="instragram-active-4 owl-carousel">

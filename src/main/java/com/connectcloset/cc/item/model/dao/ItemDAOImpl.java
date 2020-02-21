@@ -28,7 +28,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	//희진 새로 나온 상품 끝
 	
-	//하은 시작
+	//====================하은 시작 ====================
 		@Override
 	public List<Item> selectItemNumber(int itemNo) {
 		return sqlSession.selectList("item.selectItemNumber",itemNo);
@@ -50,7 +50,7 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList("shopCategories", item);
 	}
 		
-	//==하은 끝
+	//====================하은 끝 ====================
 
 	//===================윤지  상품 리스트 시작=======================
 	@Override

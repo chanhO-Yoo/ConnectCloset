@@ -24,6 +24,11 @@ public interface BlogService {
 
 	List<BlogAttachVO> selectimgList(int blogNo);
 
+	
+	//====================하은 시작 ====================
+	//인덱스 블로그
+	List<BlogAttachVO> blogShow(Blog blog);
+	//====================하은 끝 ====================
 
 
 

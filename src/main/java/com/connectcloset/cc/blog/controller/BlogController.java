@@ -179,10 +179,14 @@ public class BlogController {
 	}
 	
 	//==================하은 인덱스 블로그 시작 =====================
-	//@GetMapping("blogShow.do")
-	//@ResponseBody
-	//public List<>
-	
+	@GetMapping("blogShow.do")
+	@ResponseBody
+	public List<BlogAttachVO> blogShow(Blog blog){
+	 List<BlogAttachVO>	list = blogService.blogShow(blog);
+	 
+	 logger.debug("blogShow={}", blog);
+	 return list;
+	}
 	
 	//==================하은 인덱스 블로그 끝 =====================
 }

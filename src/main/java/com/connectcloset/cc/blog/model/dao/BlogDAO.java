@@ -29,4 +29,9 @@ public interface BlogDAO {
 
 	List<BlogAttachVO> selectimgList(int blogNo);
 
+	//====================하은 시작 ====================
+	//인덱스블로그
+	List<BlogAttachVO> blogShow(Blog blog);
+	//====================하은 끝 ====================
+
 }
