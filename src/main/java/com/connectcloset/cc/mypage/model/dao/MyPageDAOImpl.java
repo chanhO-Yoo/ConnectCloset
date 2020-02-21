@@ -7,14 +7,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.model.vo.Point;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
+
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
 
@@ -69,14 +70,44 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 	
 	//-----------희진 주문내역 시작------------------------
+
+	@Override
+	public int selectOsByMemberNo(int memberNo) {
+		return sqlSession.selectOne("orderProduct.countOs001", memberNo);
+	}
+
+
+	@Override
+	public int selectDeli1ByMemberNo(int memberNo) {
+		return sqlSession.selectOne("orderProduct.countDelivery001", memberNo);
+	}
+
+
+	@Override
+	public int selectDeli2ByMemberNo(int memberNo) {
+		return sqlSession.selectOne("orderProduct.countDelivery002", memberNo);
+	}
+
+
+	@Override
+	public int selectDeli3ByMemberNo(int memberNo) {
+		return sqlSession.selectOne("orderProduct.countDelivery003", memberNo);
+	}
+	
+	//기간별
 	@Override
 	public Member selectOrderList(int memberNo) {
 		return sqlSession.selectOne("orderProduct.selectOrderListByMemberNo", memberNo);
 	}
+
+
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return sqlSession.selectList("orderProduct.selectSearchDateList",startDate);	
+	}
+
 	//-----------희진 주문내역 끝------------------------
 
-
-	
 	//-------------------주영 1:1문의  끝 시작---------------------------
 	@Override
 	public List<PersonalQna> selectMypagePQnaList(int cPage, int numPerPage,int memberNo) {
@@ -128,5 +159,6 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 	
 	//-------------------주영 1:1문의  끝 ---------------------------
+
 
 }

@@ -23,7 +23,7 @@ public class BlogServiceImpl implements BlogService {
 	BlogDAO blogDAO;
 	
 	@Override
-	public List<Blog> selectBlogList(int cPage, int numPerPage) {
+	public List<BlogAttachVO> selectBlogList(int cPage, int numPerPage) {
 		return blogDAO.selectBlogList(cPage, numPerPage);
 	}
 
@@ -56,18 +56,23 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public Blog selectOneBlog(int blogNo) {
+	public List<BlogAttachVO> selectOneBlog(int blogNo) {
 		return blogDAO.selectOneBlog(blogNo);
 	}
 
 	@Override
-	public List<Attachment> selectAttachmentList(int blogNo) {
+	public List<BlogAttachVO> selectAttachmentList(int blogNo) {
 		return blogDAO.selectAttachmentList(blogNo);
 	}
 
 	@Override
-	public BlogAttachVO selectOneBlogCollection(int blogNo) {
+	public List<BlogAttachVO> selectOneBlogCollection(int blogNo) {
 		return blogDAO.selectOneBlogCollection(blogNo);
+	}
+
+	@Override
+	public List<BlogAttachVO> selectimgList(int blogNo) {
+		return blogDAO.selectimgList(blogNo);
 	}
 
 } 

@@ -1,9 +1,15 @@
 package com.connectcloset.cc.item.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +115,28 @@ public class ItemController {
 		}
 	
 	//===================주영 상세보기 끝======================
+	
+	//===================찬호 최근상품 시작=====================
+	@RequestMapping("recentItem.do")
+	@ResponseBody
+	public List<ItemImage> recentItem(String itemNoList) {
+		List<ItemImage> list = new ArrayList<>();
+		
+		logger.debug(itemNoList);
+		String[] itemNoArr = itemNoList.split(",");
+		
+		for(int i=0;i<itemNoArr.length;i++) {
+			ItemImage itemImage = itemService.recentItem(itemNoArr[i]);
+			list.add(itemImage);
+		}
+		
+		logger.debug("list={}",list);
+		
+		return list;
+	}
+	
+	
+	//===================찬호 최근상품 끝======================
 	
 	//===================윤지 상품 리스트 시작=====================
 	
@@ -413,7 +441,7 @@ public class ItemController {
 			return mav;
 		}
 		
-		}
+	}
 		//===================윤지 상품 리스트 끝=====================
 
 

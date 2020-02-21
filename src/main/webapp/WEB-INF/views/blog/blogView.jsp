@@ -17,13 +17,13 @@
                         <div class="blog-details-wrap">
                             <div class="b-details-content-wrap">
                                 <div class="blog-content-3 text-center">
-                                    <h4>${blog.blogTitle }</h4>
+                                    <h4>${blogCollectionMap.blogTitle }</h4>
                                     <div class="blog-meta-3">
                                         <ul>
                                             <li>Photography</li>
-                                            <li>By <a href="#"><span>${blog.memberNo}</span></a></li>
-                                            <li>${blog.blogDate }</li>
-                                            <li><a href="#">${blog.blogNo }</a></li>
+                                            <li>By <a href="#"><span>${blogCollectionMap.memberNo}</span></a></li>
+                                            <li>${blogCollectionMap.blogDate }</li>
+                                            <li><a href="#">${blogCollectionMap.blogNo }</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -38,7 +38,16 @@
                                     <p>In pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut risus vestibul lacinia ultricies sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras consequat felis nonit facilisis pharetra. Nunc molestie quis dolor vitae sagittis. Sed tempor, est a tempor congue, leo erat pellentesque neque, ac efficitur et ante.</p>
                                     <div class="b-middle-img-wrap">
                                         <div class="b-middle-img mt-5">
-                                            <img alt="" src="assets/img/blog/blog-details2.jpg">
+                                        
+                                         <div class="b-middle-img mt-5">
+                                            < c:if test="${blogCollectionMap.attachmentList[0].renamedFileName == null }">
+                                         		 <img src="${pageContext.request.contextPath }/resources/upload/${blogCollectionMap.renamedFileName}" alt="">
+                                          	</c:if> 
+                                          	 <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName != null }">
+		                                            <img src="${pageContext.request.contextPath }/resources/upload/blog/${blogCollectionMap.attachmentList[0].renamedFileName}" alt="">
+	                                         </c:if>    
+                                        </div>
+                                           
                                         </div>
                                         <div class="b-middle-content">
                                             <p>Etiam cursus ex non pellen tesque laoreet. Donec ucibus ipsum. Sed geta blandit orciplacerat elauris amolestie quis ante eget dapibus. Suspendisse fringilla posuere sem eu suscipit. Suspendisse non enim convallis gravida. In vehicula oner turpis eget neque luctus ipsum dolor sit amet, conctetur. </p>

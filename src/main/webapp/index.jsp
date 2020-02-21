@@ -15,6 +15,7 @@
             	
             	<%-- 브랜드 값 넘겨주기 --%>
             	<%
+
             		HashMap<String, String> map = new LinkedHashMap<>();
             		map.put("lowclassic.jpg", "LOW CLASSIC");
             		map.put("balen.jpg", "BALENCIAGA");
@@ -23,6 +24,7 @@
             		map.put("VALENTINO.jpeg", "Valentino");
             		map.put("burberry.jpg", "BURBERRY");
             		map.put("gucci.jpg", "GUCCI");
+
             		
             		pageContext.setAttribute("map", map);
             	%>
@@ -208,7 +210,7 @@ function NaverKeyWord(){
 $NaverKeyWord = NaverKeyWord();
 print_r($NaverKeyWord);
 ​</script>
- <h3>채팅</h3>
+<%--  <h3>채팅</h3>
 ​<div id="div_chat">
 	<!-- 채팅 -->
       <input type="text" id="sender" value='${session.getmemberId()}' style="display: none;"/>  
@@ -235,8 +237,8 @@ print_r($NaverKeyWord);
 }
  
 </script> 
-
-<style>
+ --%>
+<!-- <style>
  #messages{
  	overflow-y :auto; 
  	width:500px; 
@@ -246,9 +248,9 @@ print_r($NaverKeyWord);
     
      <div >
    <div id="messages"  ></div> 
-	</div>
-    <!-- websocket javascript -->
-<script type="text/javascript">
+	</div> -->
+<!--     websocket javascript
+<script type="text/javascript"> -->
         var ws;
         var messages = document.getElementById("messages");
          

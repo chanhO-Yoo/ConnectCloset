@@ -10661,6 +10661,10 @@ blockquote.blockquote-style2 {
     padding-right: 0;
 }
 
+.col-lg-6 h5 {
+	padding-bottom: 8px;
+}
+
 
 /*---------- 44. Cart page -------*/
 
