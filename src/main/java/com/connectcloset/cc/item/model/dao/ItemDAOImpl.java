@@ -44,7 +44,6 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList("item.selectImageList",itemNo);
 	}
 		
-	
 	@Override
 	public List<ItemAndImageVO> shopCategories(Item item) {
 		return sqlSession.selectList("shopCategories", item);

@@ -465,14 +465,16 @@ print_r($NaverKeyWord);
                     		let html = "";
                     		console.log(data);
                     		
-                    			let n = data;
+                    		
+                    		for(let i in data){
+                    			let n = data[i];
                     			console.log(n);
-                	
+                    		
                     			html+="<div class='col-lg-4 col-md-6'>"
-                    			+"<div class='blog-wrap-2 blog-shadow mb-40'>
+                    			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
                     			+"<div class='blog-img hover-3'>"
                     			+"<a href='blog-details.html'>"
-                    			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg'>"
+                    			+"<img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/blog/"+n.renamedFileName+"'>"
                     			+"</a>"
                     			+"<div class='readmore-icon'>"
                     			+"<a href='blog-details.html'>"
@@ -484,71 +486,15 @@ print_r($NaverKeyWord);
                     			+"<div class='blog-content-2'>"
                        			+"<div class='blog-meta-3'>"
                        			+"<ul>"
-                       			+"<li>22 April, 2018</li>"
+                       			+"<li>"+n.blogDate+"</li>"
                        			+"<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
                        			+"</ul>"
                        			+"</div>"
-                       			+"<h4><a href='blog-details.html'>Karla Welch Launches Her Levi’s Collaboration With</a></h4>"
-                       			+"<p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
+                       			+"<h4><a href='blog-details.html'>"+n.blogTitle+"</a></h4>"
+                       			+"<p>"+n.blogContent+"</p>"
                        			+" </div>"
                        			+"</div>"
-                       			+"</div>"
-                       			
-                       			+"<div class='col-lg-4 col-md-6'>"
-                       			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
-                       			+"<div class='blog-img hover-3'>"
-                       			+"<a href='blog-details.html'>"
-                       			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg'>"
-                       			+"</a>"
-                       			+"<div class='readmore-icon'>"
-                       			+"<a href='blog-details.html'>"
-                       			+"<i class='ti-arrow-right'></i>"
-                       			+"</a>"
-                       			+"</div>"
-                       			+"</div>"
-                       			
-                       			+"<div class='blog-content-2'>"
-                       			+"<div class='blog-meta-3'>"
-                       			+"<ul>"
-                       			+"<li>20 April, 2018</li>"
-                       			+" <li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
-                       			+"</ul>"
-                       			+"</div>"
-                       			+"<h4><a href='blog-details.html'>Sienna Miller Has the New Uniform for Cool Moms</a></h4>"
-                       			+" <p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
-                       			+"</div>"
-                       			+"</div>"
-                       			+"</div>"
-                       			
-                       			
-                       			+"<div class='col-lg-4 col-md-6'>"
-                       			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
-                       			+"<div class='blog-img hover-3'>"
-                       			+"<a href='blog-details.html'>"
-                       			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-9.jpg'>"
-                       			+"</a>"
-                       			+"<div class='readmore-icon'>"
-                       			+"<a href='blog-details.html'>"
-                       			+"<i class='ti-arrow-right'></i>"
-                       			+"</a>"
-                       			+"</div>"
-                       			+"</div>"
-                       			
-                       			
-                       			+"<div class='blog-content-2'>"
-                       			+"<div class='blog-meta-3'>"
-                       			+"<ul>"
-                       			+"<li>18 April, 2018</li>"
-                       			+"<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
-                       			+"</ul>"
-                       			+"</div>"
-                       			+"<h4><a href='blog-details.html'>How Nancy Cunard And Her Bangles Inspired an Bronze </a></h4>"
-                       			+"<p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
-                       			+"</div>"
-                       			+"</div>"
                        			+"</div>";
-                       			
-                       			
                     		}
                     		$(".row.blogShow").append(html);
 	                	},

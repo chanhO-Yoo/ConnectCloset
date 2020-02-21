@@ -31,6 +31,7 @@ import com.connectcloset.cc.blog.model.service.BlogService;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
 
@@ -179,12 +180,12 @@ public class BlogController {
 	}
 	
 	//==================하은 인덱스 블로그 시작 =====================
-	@GetMapping("blogShow.do")
+	@GetMapping("/blogShow.do")
 	@ResponseBody
-	public List<BlogAttachVO> blogShow(Blog blog){
-	 List<BlogAttachVO>	list = blogService.blogShow(blog);
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex){
+	 List<AttachmentIndex>	list = blogService.blogShow(attachmentIndex);
 	 
-	 logger.debug("blogShow={}", blog);
+	 logger.debug("blogShow@@@@@@@@@@@@@@@={}", attachmentIndex);
 	 return list;
 	}
 	

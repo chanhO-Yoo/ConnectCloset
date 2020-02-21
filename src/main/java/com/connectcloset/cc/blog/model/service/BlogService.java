@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 
@@ -27,7 +28,7 @@ public interface BlogService {
 	
 	//====================하은 시작 ====================
 	//인덱스 블로그
-	List<BlogAttachVO> blogShow(Blog blog);
+	List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex);
 	//====================하은 끝 ====================
 
 
