@@ -472,7 +472,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
 				orderTotalPrice : <%=totalPrice%>,
-<%-- 				orderItemColor : "<%=orderItemColor%>",
+<%-- 			orderItemColor : "<%=orderItemColor%>",
 				orderItemSize : "<%=orderItemSize%>", --%>				
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,

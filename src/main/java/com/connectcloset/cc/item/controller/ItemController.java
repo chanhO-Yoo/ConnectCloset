@@ -44,6 +44,7 @@ public class ItemController {
 	}
 	
 	
+	//index shopCategroies json
 	@GetMapping("/shopCategories.do")
 	@ResponseBody
 	public List<ItemAndImageVO> shopCategories(Item item){
@@ -58,8 +59,6 @@ public class ItemController {
 	
 	//타입별 상품 나열
 	//+이미지추가 
-	
-	
 	//새로 나온 상품
 	@GetMapping("/newItem.do")
 	@ResponseBody
