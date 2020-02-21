@@ -91,13 +91,13 @@ public class BlogAttachVO implements Serializable {
 	
 
 
-	protected synchronized List<Attachment> getAttachmentList() {
+	public List<Attachment> getAttachmentList() {
 		return attachmentList;
 	}
 
 
 
-	protected synchronized void setAttachmentList(List<Attachment> attachmentList) {
+	public void setAttachmentList(List<Attachment> attachmentList) {
 		this.attachmentList = attachmentList;
 	}
 

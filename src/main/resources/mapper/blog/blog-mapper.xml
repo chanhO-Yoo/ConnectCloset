@@ -9,9 +9,10 @@
  </resultMap>
  
 	
- 	<select id="selectBlogList" resultType="blog" resultMap="blogMap">
-	select b.*, (select count(*) from blog_attachment where blogNo = b.blog_No)
-	fileCount from blog b order by blog_Date desc
+ 	<select id="selectBlogList" resultMap="blogCollectionMap">
+	select * from blog b left join (SELECT blogno, renamedfilename FROM ( SELECT blogno, renamedfilename, ROW_NUMBER() 
+	OVER ( PARTITION BY blogno ORDER BY attachmentno ) 
+	AS RN FROM  blog_attachment ) TMP WHERE TMP.RN = 1) ba on b.blog_no = ba.blogno order by b.blog_no desc
 	</select>
 	
 	<select id="selectTotalContents" resultType="_int">
@@ -32,44 +33,56 @@
 	
 	</insert>
 	
-	<select id="selectOneBlog" resultType="blog">
-	select * from blog
-	where blog_no = #{blogNo}
+	<select id="selectOneBlog" resultMap="blogCollectionMap">
+	select *
+		from blog B left join blog_attachment BA on BA.blogno = B.blog_no
+		where b.blog_no = #{blogNo}
 	</select>
+	<resultMap type="blogAttachVO" id="blogSelectOneMap"></resultMap>
 	
 	<select id="selectAttachmentList" resultMap="Attachmentlist">
 	select * from blog_attachment
 	where blogno = #{blogNo}
 	</select>
 	
-	<resultMap type="attachment" id="Attachmentlist"></resultMap>
+	<resultMap type="attachment" id="Attachmentlist">
 	
-	<select id="selectOneBlogCollection" resultMap="blogCollectionMap">
+	
+	</resultMap>
+	
+	<!-- <select id="selectOneBlogCollection" resultMap="blogCollectionMap">
 	select *
 		from blog B left join blog_attachment A on A.blogno = B.blog_no
 		where b.blog_no = #{blogNo} 
 	
+	</select> -->
+	
+	
+	<select id="selectimgList">
+	select renamedfilename from blog_attachment
+	where blogno = blogno;
+	
 	</select>
 	
 	<resultMap type="blogAttachVO" id="blogCollectionMap">
-	<id column="blog_no" property="blogNo" />
-	<result column="blog_title" property="blogTitle" />
-	<result column="member_no" property="memberNo" />
-	<result column="blog_content" property="blogContent"/>
-	<result column="blog_date" property="blogDate"/>
-	<result column="boardreadcount" property="readCount"/>
+		<id column="blog_no" property="blogNo" />
+		<result column="blog_title" property="blogTitle" />
+		<result column="member_no" property="memberNo" />
+		<result column="blog_content" property="blogContent"/>
+		<result column="blog_date" property="blogDate"/>
+		<result column="boardreadcount" property="readCount"/>
 	
 	
 	<!-- 1: n관계의 테이블을 조인해서 리턴하는 경우  -->
-	<collection property="attachmentList" ofType="attachment">
-	<id column="attachmentno" property="attachmentNo" />
-	<result column="blogno" property="blogNo" />
-	<result column="originalfilename" property="originalFileName" />
-	<result column="renamedfilename" property="renamedFileName"/>
-	<result column="uploaddate" property="uploadDate"/>
-	<result column="downloadcount" property="downloadCount"/>
-	<result column="status" property="status"/>
-	</collection>
+		<collection property="attachmentList" ofType="attachment">
+			<id column="attachmentno" property="attachmentNo" />
+			<result column="blogno" property="blogNo" />
+			<result column="originalfilename" property="originalFileName" />
+			<result column="renamedfilename" property="renamedFileName"/>
+			<result column="uploaddate" property="uploadDate"/>
+			<result column="downloadcount" property="downloadCount"/>
+			<result column="status" property="status"/>
+		</collection>
 	</resultMap>
 
 	
