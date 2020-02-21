@@ -12,6 +12,7 @@ import com.connectcloset.cc.mypage.model.dao.MyPageDAO;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
@@ -76,12 +77,43 @@ public class MyPageServiceImpl implements MyPageService {
 	// -----------주영 리뷰 끝 -------------------
 
 	//------------희진 주문내역 시작-------------------------
+	
+	@Override
+	public int selectOsByMemberNo(int memberNo) {
+		return mypageDAO.selectOsByMemberNo(memberNo);
+	}
+
+
+
+	@Override
+	public int selectDeli1ByMemberNo(int memberNo) {
+		return mypageDAO.selectDeli1ByMemberNo(memberNo);
+	}
+
+
+
+	@Override
+	public int selectDeli2ByMemberNo(int memberNo) {
+		return mypageDAO.selectDeli2ByMemberNo(memberNo);
+	}
+
+
+
+	@Override
+	public int selectDeli3ByMemberNo(int memberNo) {
+		return mypageDAO.selectDeli3ByMemberNo(memberNo);
+	}
+
+	//전체
 	@Override
 	public Member selectOrderByMemberNo(int memberNo) {
 		return mypageDAO.selectOrderList(memberNo);
 	}
 
-
+	@Override
+	public List<OrderProduct> selectSearchDateList(int startDate) {
+		return mypageDAO.selectSearchDateList(startDate);
+	}
 
 	
 	//-----------희진 주문내역 끝--------------------------------

@@ -1,10 +1,79 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="com.connectcloset.cc.item.model.vo.ItemAndImageVO2"%>
+<%@page import="com.connectcloset.cc.item.model.vo.Item"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%
+	ItemAndImageVO2 item = (ItemAndImageVO2)request.getAttribute("item");
+	
+	Cookie[] ck =request.getCookies();
+	String itemNoList = null;
+	String newItemNoList = "";
+	
+	for(int i=0;i<ck.length;i++){
+		//itemNoList가 있다면
+		if(ck[i].getName().equals("itemNoList")){
+			//itemNoList를 문자열로 저장
+			itemNoList = URLDecoder.decode(ck[i].getValue(),"UTF-8");
+			
+			//itemNoArr에 배열로 저장
+			String[] itemNoArr = itemNoList.split(",");
+			int duplicate = 0;
+			
 
+			//itemNoArr이 5보다 작을 때 전부다 배열로 만들기
+			if(itemNoArr.length <= 5){
+				for(int j=0;j<itemNoArr.length;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			//itemNoArr이 5보다 클 때 배열을 5개까지만 만들기
+			else{
+				for(int j=0;j<5;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			
+			//새로운 아이템리스트 배열
+			String[] newItemNoArr = newItemNoList.substring(1).split(",");
+			
+			//새 아이템 리스트 배열에 중복이 있다면 1씩증가/ 없다면 0
+			for(int j=0;j<newItemNoArr.length;j++){
+				if(newItemNoArr[j].equals(Integer.toString(item.getItemNo()))){
+					duplicate += 1;
+				}
+			}
+			// 0이 아닐경우 중복이 있었다고 판단하여 새로 추가하지 않음
+			if(duplicate != 0){
+				itemNoList = newItemNoList.substring(1);
+			}
+			// 0인경우 중복이 없다고 판단하여 새로 추가하여 만듬
+			else{
+				itemNoList = Integer.toString(item.getItemNo())+","+newItemNoList.substring(1);
+			}
+			
+			
+			System.out.println("++++++쿠키있어요");
+		}
+	}
+	
+	
+	if(itemNoList == null){
+		itemNoList=Integer.toString(item.getItemNo());
+	}
+	System.out.println("*********itemNoList="+itemNoList);
+	
+	Cookie cookie = new Cookie("itemNoList",URLEncoder.encode((itemNoList),"utf-8"));
+	cookie.setMaxAge(60*60*24);
+	response.addCookie(cookie);
+	
+
+%>
 
 
 
@@ -72,6 +141,31 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content pl-30">
+                        	<c:set var="brandNo" value="${item.brandNo}"/>
+                        	<c:choose>
+                        		<c:when test="${brandNo eq 'brand-001'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-001">LOW CLASSIC</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-002'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-002">BALENCIAGA</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-003'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-003">GIVENCHY</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-004'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-004">CELINE</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-005'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-005">VALENTINO</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-006'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-006">BURBERRY</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-007'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-007">GUCCI</a></h5>
+                        		</c:when>
+                        	</c:choose>
+                        	
                             <h2>${item.itemName}</h2>
                             <div class="pro-details-rating-wrap">
                                 <div class="pro-details-rating">
@@ -117,7 +211,7 @@
                             </div>
                             <div class="pro-details-quality mt-50 mb-45">
                                 <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1">
                                 </div>
                                 <div class="pro-details-cart">
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
