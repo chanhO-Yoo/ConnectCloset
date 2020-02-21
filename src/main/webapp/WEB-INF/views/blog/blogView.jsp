@@ -40,9 +40,9 @@
                                         <div class="b-middle-img mt-5">
                                         
                                          <div class="b-middle-img mt-5">
-                                            < c:if test="${blogCollectionMap.attachmentList[0].renamedFileName == null }">
+                                            <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName == null }">
                                          		 <img src="${pageContext.request.contextPath }/resources/upload/${blogCollectionMap.renamedFileName}" alt="">
-                                          	</c:if> 
+                                          	</c:if>
                                           	 <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName != null }">
 		                                            <img src="${pageContext.request.contextPath }/resources/upload/blog/${blogCollectionMap.attachmentList[0].renamedFileName}" alt="">
 	                                         </c:if>    
