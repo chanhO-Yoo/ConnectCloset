@@ -3,6 +3,7 @@ package com.connectcloset.cc.item.model.service;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -45,6 +46,11 @@ public interface ItemService {
 	//--------- 찬호 시작 -------------------
 	ItemImage recentItem(String itemNo);
 	
+	List<ItemAndImageVO> searchAllItem(int cPage, int numPerPage, String searchKeyword);
+
+	int searchAllItemCount(String searchKeyword);
+
+	int addSearchKeyword(String searchKeyword);
 	//--------- 찬호 끝 -------------------
 
 	//------------ 주영 상품 상세보기 시작 -------------
@@ -53,6 +59,9 @@ public interface ItemService {
 	ItemAndImageVO2 selectOneitemImage(int itmeNo);
 
 	List<Review> selectReviewList(int itmeNo);
+
+
+
 
 
 

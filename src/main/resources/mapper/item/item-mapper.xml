@@ -218,6 +218,24 @@
 	<select id="recentItem" resultMap="itemImageMap">
 		SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1 and item_no=#{itemNo}
 	</select>
+	
+	<select id="searchRank" resultMap="rank">
+		select * from (select ROW_NUMBER() OVER (ORDER BY count DESC) as rank, a.* from (select search_keyword,count(search_keyword) as count from (select * from search_rank where TO_CHAR(search_date,'YY/MM/DD hh24') > TO_CHAR(SYSDATE-3/24,'YY/MM/DD hh24')) group by search_keyword order by count desc) a) where rank between 1 and 10
+	</select>
+	
+	<resultMap type="Rank" id="rank"></resultMap>
+	
+	<select id="searchAllItem" resultMap="itemAndImageMap">
+		select * from item I left join (SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no where item_name like #{searchKeyword} order by I.item_no desc, II.item_image_no asc
+	</select>	
+	
+	<select id="searchAllItemCount" resultType="_int">
+		select count(*) from item where item_name like #{searchKeyword}
+	</select>
+	
+	<insert id="addSearchKeyword">
+		insert into search_rank values (seq_search_no.nextval,#{searchKeyword},default)
+	</insert>
 	<!-- 찬호 끝 -->
 
 	<!--주영 상품 상세보기 시작 -->

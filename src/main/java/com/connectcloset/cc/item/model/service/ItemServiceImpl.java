@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
@@ -152,6 +153,22 @@ public class ItemServiceImpl implements ItemService{
 		public ItemImage recentItem(String itemNo) {
 			return itemDAO.recetnItem(itemNo);
 		}
+		
+		@Override
+		public List<ItemAndImageVO> searchAllItem(int cPage, int numPerPage, String searchKeyword) {
+			return itemDAO.searchAllItem(cPage,numPerPage, searchKeyword);
+		}
+		
+		@Override
+		public int searchAllItemCount(String searchKeyword) {
+			return itemDAO.searchAllItemCount(searchKeyword);
+		}
+		
+		@Override
+		public int addSearchKeyword(String searchKeyword) {
+			return itemDAO.addSearchKeyword(searchKeyword);
+		}
+
 		//===================찬호 끝========================
 	
 	//===================주영 상품 상세보기 시작========================
@@ -176,6 +193,9 @@ public class ItemServiceImpl implements ItemService{
 		return  itemDAO.selectReviewList(itmeNo);
 	}
 	//===================주영  상품 상세보기  끝========================
+
+
+
 
 
 
