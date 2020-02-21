@@ -33,71 +33,6 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 		</div>
 	</div>
 </div>
-<!-- main-search start -->
-<div class="main-search-active">
-	<div class="sidebar-search-icon">
-		<button class="search-close">
-			<span class="ti-close"></span>
-		</button>
-	</div>
-	<div class="sidebar-search-input">
-		<form>
-			<div class="form-search">
-				<input id="search" class="input-text" value=""
-					placeholder="Search Entire Store" type="search">
-				<button>
-					<i class="ti-search"></i>
-				</button>
-			</div>
-		</form>
-	</div>
-</div>
-<!-- summary-info start -->
-<div class="summary-info sidebar-active">
-	<div class="wrap-sidebar">
-		<div class="sidebar-nav-icon">
-			<button class="op-sidebar-close">
-				<span class="ti-close"></span>
-			</button>
-		</div>
-		<div class="summary-info-all">
-			<div class="summary-logo">
-				<a href="index.html"> <img
-					src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png"
-					alt="">
-				</a>
-			</div>
-			<div class="summary-list-wrap">
-				<p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do
-					eiusmod tempor incididu ut labore et dolore magna aliqua. Ut enim
-					ad minim.</p>
-				<div class="summary-list">
-					<ul>
-						<li><i class="ti-hand-point-right"></i>Project Management</li>
-						<li><i class="ti-hand-point-right"></i>Portfolio Showcasing</li>
-						<li><i class="ti-hand-point-right"></i>Blogs & Content
-							Sharing</li>
-						<li><i class="ti-hand-point-right"></i>Social Work Management</li>
-						<li><i class="ti-hand-point-right"></i>eCommerce Shop
-							Management</li>
-					</ul>
-				</div>
-			</div>
-			<div class="sidebar-contact">
-				<h5>Fell Free To contact Us</h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipis elit, sed do
-					eiusmod tempor incididu.</p>
-				<div class="sidebar-contact-list">
-					<ul>
-						<li><i class="ti-location-pin"></i>123 - 45678910</li>
-						<li><i class="ti-email"></i><a href="#">info@example.com</a></li>
-						<li><i class="ti-location-pin"></i>115 5th Ave, New York</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <div class="checkout-area pt-95 pb-100">
@@ -292,23 +227,27 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 												value="${item.itemPrice + item.itemStock}" />
 											<li><span class="order-middle-left"><span
 													id="itemName" class="order-name">${item.itemName }</span> X
-													${item.itemStock }</span> <span class="order-price">${item.itemPrice* item.itemStock}
+													
+													${orderCount}</span> <span class="order-price">${item.itemPrice}
 											</span></li>
 										</c:forEach>
 									</ul>
 								</div>
 								<div class="your-order-bottom">
 									<ul>
-										<li class="your-order-shipping">Shipping</li>
-										<li>Free shipping</li>
+										<li class="your-order-shipping">색상:${orderColor}</li>
+										<li>사이즈:${orderSize}</li>
 									</ul>
 								</div>
 								<div class="your-order-total">
 									<ul>
 										<li class="order-total">Total</li>
-										<li><span><fmt:formatNumber value="${totalPrice }"
+										<li><span><fmt:formatNumber value="${totalPrice*orderCount  }"
 													groupingUsed="true" type="currency" /></span></li>
-										<input type="hidden" id="totalPrice" value="${totalPrice }"></input>
+										<input type="hidden" id="totalPrice" value="${totalPrice*orderCount}"></input>
+										<input type="hidden" id="orderItemColor" value="${orderColor}"></input>
+										<input type="hidden" id="orderItemSize" value="${orderSize}"></input>
+										<input type="hidden" id="orderItemCount" value="${orderCount}"></input>
 									</ul>
 								</div>
 							</div>
@@ -424,6 +363,9 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 		
 		var itemName = $('#itemName')[0].innerText; 
 		var totalPrice =$('#totalPrice').val();
+		var orderItemColor =$('#orderItemColor').val();
+		var orderItemSize =$('#orderItemSize').val();
+		var orderItemCount =$('#orderItemCount').val();
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
 		
@@ -471,9 +413,12 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			data: {
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
-				orderTotalPrice : <%=totalPrice%>,
-<%-- 			orderItemColor : "<%=orderItemColor%>",
-				orderItemSize : "<%=orderItemSize%>", --%>				
+
+				orderTotalPrice : totalPrice,
+				OrderItemCount:orderItemCount,
+				orderItemColor : orderItemColor,
+				orderItemSize : orderItemSize,				
+
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>
@@ -490,7 +435,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			alert(msg);
 		});
 	//성공 시 이동 페이지
-//	location.href="${pageContext.request.contextPath}/shop/orderEnd.do";
+	location.href="${pageContext.request.contextPath}";
 	
 	} 
 		//결제실패
