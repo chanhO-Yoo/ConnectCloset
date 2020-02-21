@@ -84,9 +84,16 @@
 			<result column="status" property="status"/>
 		</collection>
 	</resultMap>
-
 	
+	<resultMap type="AttachmentIndex" id="AttachmentIndexMap">
+	</resultMap>
 
-
+	<!-- 하은 인덱스 블로그 시작-->
+	<select id="blogShow" resultMap="AttachmentIndexMap" >
+	<![CDATA[
+	select * from (select v.*, rownum rnum from (select b.*, BA.* from blog b left join blog_attachment BA on BA.blogno = B.blog_no order by blog_date desc) v) where rnum < 4
+	]]>
+	</select>
+	<!-- 하은 인덱스 블로그 끝-->
 
 </mapper>
