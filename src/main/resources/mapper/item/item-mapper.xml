@@ -5,9 +5,20 @@
 <mapper namespace="item">
 
 	<!-- 희진시작 -->
-	<select id="newItemList" resultMap="itemMap">
+	<!--하은 상품이미지 때문에 아래코드 수정했었음  -->
+	<select id="newItemList" resultMap="itemAndImageMap">
 		<![CDATA[
-		select * from (select v.*, rownum rnum from (select p.* from item p order by ITEM_ENROLL_DATE desc) v) where rnum < 7
+		select * from (select v.*, rownum rnum from (select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM 
+        ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+        
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		order by I.item_no desc, II.item_image_no asc) v) where rnum < 7		
+		
 		]]>
 	</select>
 	
@@ -23,7 +34,31 @@
 		select * from item
 		where item_No = #{itemNo}
 	</select>
-	<!--하은 끝-->	
+	
+	 <select id="selectImageList" resultMap="itemAndImageMap">
+	select * from item I left join 
+(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM 
+( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER 
+( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
+	</select>
+
+<select id="shopCategories" resultMap="itemAndImageMap">
+<![CDATA[
+
+select * from (select v.*, rownum rnum from (select * 
+		from item I left join 
+		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+		FROM 
+        ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
+		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
+        
+		WHERE TMP.RN = 1) II 
+		on I.item_no=II.item_no
+		order by I.item_no desc, II.item_image_no asc) v) where rnum < 4
+]]>
+
+</select>
+<!--하은 끝-->	
 
 	<!-- 윤지 상품 리스트 시작 -->
 	<resultMap type="itemAndImageVO" id="itemAndImageMap">
