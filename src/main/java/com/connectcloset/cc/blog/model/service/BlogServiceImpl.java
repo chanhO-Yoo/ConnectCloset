@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.connectcloset.cc.blog.model.dao.BlogDAO;
 import com.connectcloset.cc.blog.model.exception.BlogException;
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.blog.model.dao.BlogDAO;
@@ -74,5 +75,12 @@ public class BlogServiceImpl implements BlogService {
 	public List<BlogAttachVO> selectimgList(int blogNo) {
 		return blogDAO.selectimgList(blogNo);
 	}
+	
+	//====================하은 시작 ====================
+	@Override
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex) {
+		return blogDAO.blogShow(attachmentIndex);
+	}
 
+	//====================하은 시작 ====================
 } 
