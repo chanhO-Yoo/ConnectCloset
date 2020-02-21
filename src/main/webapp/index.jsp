@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedHashMap"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,14 +15,16 @@
             	
             	<%-- 브랜드 값 넘겨주기 --%>
             	<%
-            		HashMap<String, String> map = new HashMap<>();
-            		map.put("balen.jpg", "발렌시아가");
-            		map.put("burberry.jpg", "버버리");
-            		map.put("celine.jpg", "셀린느");
-            		map.put("givenchy.png", "지방시");
-            		map.put("gucci.jpg", "구찌");
-            		map.put("lowclassic.jpg", "로우클래식");
-            		map.put("VALENTINO.jpeg", "발렌티노");
+
+            		HashMap<String, String> map = new LinkedHashMap<>();
+            		map.put("lowclassic.jpg", "LOW CLASSIC");
+            		map.put("balen.jpg", "BALENCIAGA");
+            		map.put("givenchy.png", "GIVENCHY");
+            		map.put("celine.jpg", "CELINE");
+            		map.put("VALENTINO.jpeg", "Valentino");
+            		map.put("burberry.jpg", "BURBERRY");
+            		map.put("gucci.jpg", "GUCCI");
+
             		
             		pageContext.setAttribute("map", map);
             	%>
@@ -33,10 +36,10 @@
                                 <div class="slider-text slider-animated-1 text-center">
                                     <h1 class="animated">${brand.value }</h1>
                                     <h5 class="animated">
-                                       New Collections 2019 
+                                       New Collections 2020 
                                     </h5>
                                     <div class="slider-btn mt-30">
-                                        <a class="sub-slider-btn-1 animated mr-8 btn-hover" href="single-product.html">Shop now</a>
+                                        <a class="sub-slider-btn-1 animated mr-8 btn-hover" data-dot="${vs.count }" href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-00${vs.count}">Shop now</a>
                                     </div>                   
                                 </div>
                             </div>
@@ -44,65 +47,84 @@
                     </div>
                 </div> 
             	</c:forEach>
-                          
             </div>
         </div>
        
+<!-- 하은 인덱스 샵 카테고리 이미지 수정 시작 -->      
         <div class="shop-area pt-115 pb-120">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
                     <h2>Shop categories</h2>
                 </div>
                 <div class="categorie-slider-active owl-carousel">
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-1.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Flip flops</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-2.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Sneakers</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-3.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Shoes</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img zoom-hover">
-                            <a href="single-product.html">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-categories-2.jpg" alt="">
-                            </a>
-                            <div class="shop-categories">
-                                <a href="#">Sneakers</a>
-                            </div>
-                        </div>
-                    </div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image0" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category0'>
+                				<a href='#'>TEST</a>
+                			</div>
+                		</div>
+                	</div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image1" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category1'>
+                				<a href='#'>HAT</a>
+                			</div>
+                		</div>
+                	</div>
+                	<div class='shop-wrap'>
+                		<div class='shop-img zoom-hover'>
+                			<a class="image2" href='single-product.html'>
+                				<img/>
+                			</a>
+                			<div class='shop-categories category2'>
+                				<a href='#'>Pants</a>
+                			</div>
+                		</div>
+                	</div>
                 </div>
+                <script>
+                $(()=>{
+                	$.ajax({
+                		url: "${pageContext.request.contextPath}/shopCategories.do",
+                    	type: "GET",
+                    	dataType: "json",
+                    	success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let s = data[i];
+                    			console.log(i);
+                    			
+                    			html ="<img id='image"+i+"'src='${pageContext.request.contextPath }/resources/upload/item/"+s.imageList[0].itemImageReName+"'>";
+                    			html2 = "<a href='#'>category"+i+"</a>";
+                    			$(".image"+i).html(html);
+                    			$(".category"+(i+1)).html(html2);
+                    		}
+                    	},		
+                    	error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                	});
+                });
+                </script>
+
             </div>
         </div>
+        <!-- 하은 인덱스 샵 카테고리 이미지 수정 끝 --> 
         
+        <!--하은 새로 나온 상품 이미지 추가 -->
         <!-- 새로 나온 상품 -->
         <div class="shop-area pb-120">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
-                    <h2><strong>새로 나온 상품</strong></h2>
+                    <h2><strong>New Items</strong></h2>
                 </div>
                 <div class="row newItem"> 
                     
@@ -119,13 +141,13 @@
                     		
                     		for(let i in data){
                     			let n = data[i];
-                    			
+                    			console.log(n);
                     		
                     		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
                     			 + "<div class='shop-wrap mb-35'>"
                     			 + "<div class='shop-img'>"
                     			 + "<a href='single-product.html'>"
-                            	 + "<img src='${pageContext.request.contextPath }/resources/img/product/shop-1.jpg'>"
+                            	 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"'>"
                                  + "</a>"
                                  + "<div class='shop-hover'>"  
                                  + "<div class='shop-card'>"
@@ -146,8 +168,6 @@
                                  + "</div>"
                                  + "</div>"
                                  + "</div>";
-                                
-                                
                     		}
                     		$(".row.newItem").append(html);
                     	},
@@ -156,10 +176,7 @@
                     	}
                     	});
                     });
-                    
-                   
                     </script>
-                    
                 </div>
             </div>
         </div>
@@ -168,8 +185,6 @@
 <style>
 #messageinput{
 width: 25%;
-
-
 }
 </style>
 
@@ -195,7 +210,7 @@ function NaverKeyWord(){
 $NaverKeyWord = NaverKeyWord();
 print_r($NaverKeyWord);
 ​</script>
- <h3>채팅</h3>
+<%--  <h3>채팅</h3>
 ​<div id="div_chat">
 	<!-- 채팅 -->
       <input type="text" id="sender" value='${session.getmemberId()}' style="display: none;"/>  
@@ -220,11 +235,10 @@ print_r($NaverKeyWord);
             
         }
 }
-   
-
+ 
 </script> 
-
-<style>
+ --%>
+<!-- <style>
  #messages{
  	overflow-y :auto; 
  	width:500px; 
@@ -234,9 +248,9 @@ print_r($NaverKeyWord);
     
      <div >
    <div id="messages"  ></div> 
-	</div>
-    <!-- websocket javascript -->
-<script type="text/javascript">
+	</div> -->
+<!--     websocket javascript
+<script type="text/javascript"> -->
         var ws;
         var messages = document.getElementById("messages");
          
@@ -448,87 +462,62 @@ print_r($NaverKeyWord);
       });
     </script>
     
-    
-    
 
+<!--하은 블로그 시작  -->
         <div class="blog-area gray-bg pt-120 pb-90">
             <div class="container">
                 <div class="section-title-7 text-center mb-45">
-                    <h2>Latest Blog</h2>
+                    <h2>Blog</h2>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap-2 blog-shadow mb-40">
-                            <div class="blog-img hover-3">
-                                <a href="blog-details.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
-                                </a>
-                                <div class="readmore-icon">
-                                    <a href="blog-details.html">
-                                        <i class="ti-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="blog-content-2">
-                                <div class="blog-meta-3">
-                                    <ul>
-                                        <li>22 April, 2018</li>
-                                        <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Karla Welch Launches Her Levi’s Collaboration With</a></h4>
-                                <p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap-2 blog-shadow mb-40">
-                            <div class="blog-img hover-3">
-                                <a href="blog-details.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/blog/blog-8.jpg" alt="">
-                                </a>
-                                <div class="readmore-icon">
-                                    <a href="blog-details.html">
-                                        <i class="ti-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="blog-content-2">
-                                <div class="blog-meta-3">
-                                    <ul>
-                                        <li>20 April, 2018</li>
-                                        <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">Sienna Miller Has the New Uniform for Cool Moms</a></h4>
-                                <p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-wrap-2 blog-shadow mb-40">
-                            <div class="blog-img hover-3">
-                                <a href="blog-details.html">
-                                    <img src="${pageContext.request.contextPath }/resources/img/blog/blog-9.jpg" alt="">
-                                </a>
-                                <div class="readmore-icon">
-                                    <a href="blog-details.html">
-                                        <i class="ti-arrow-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="blog-content-2">
-                                <div class="blog-meta-3">
-                                    <ul>
-                                        <li>18 April, 2018</li>
-                                        <li><a href="#">4 <i class="ti-comment-alt"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h4><a href="blog-details.html">How Nancy Cunard And Her Bangles Inspired an Bronze </a></h4>
-                                <p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row blogShow">
+                <script>
+                $(()=>{
+                	$.ajax({ 
+                		//blog 최신글 요청
+                    	url: "${pageContext.request.contextPath}/blogShow.do",
+                    	type: "GET",
+                    	dataType: "json",
+                		success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let n = data[i];
+                    			console.log(s);
+                	
+                    			html+="<div class='col-lg-4 col-md-6'>"
+                    			+"<div class='blog-wrap-2 blog-shadow mb-40'>
+                    			+"<a href='blog-details.html'>"
+                    			+"<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg'>"
+                    			+"</a>"
+                    			+"<div class='readmore-icon'>"
+                    			+"<a href='blog-details.html'>"
+                    			+"<i class='ti-arrow-right'></i>"
+                    			+"</a>"
+                    			+" </div>"
+                    			+"</div>"
+                    			+"<div class='blog-content-2'>"
+                       			+"<div class='blog-meta-3'>"
+                       			+"<ul>"
+                       			+"<li>22 April, 2018</li>"
+                       			+"<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
+                       			+"</ul>"
+                       			+"</div>"
+                       			+"<h4><a href='blog-details.html'>Karla Welch Launches Her Levi’s Collaboration With</a></h4>"
+                       			+"<p>Aenean sollicitudin, lorem quis on endum uctor nisi elitod the cona sequat ipsum, necas sagittis sem natoque nibh id penatibus elit imperdiet... </p>"
+                       			+" </div>"
+                       			+"</div>"
+                       			+"</div>"
+                    		}
+                    		$(".row.blogShow").append(html);
+	                	},
+                		error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                		
+                		});
+                	});
+                </script>
                 </div>
             </div>
         </div>

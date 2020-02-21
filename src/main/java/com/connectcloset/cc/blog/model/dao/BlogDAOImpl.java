@@ -19,7 +19,7 @@ public class BlogDAOImpl implements BlogDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Blog> selectBlogList(int cPage, int numPerPage) {
+	public List<BlogAttachVO> selectBlogList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
 //		select * from board order by boardno desc 
 		return sqlSession.selectList("blog.selectBlogList", null, rowBounds);
@@ -41,18 +41,23 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public Blog selectOneBlog(int blogNo) {
+	public List<BlogAttachVO> selectOneBlog(int blogNo) {
 		return sqlSession.selectOne("blog.selectOneBlog",blogNo);
 	}
 
 	@Override
-	public List<Attachment> selectAttachmentList(int blogNo) {
+	public List<BlogAttachVO> selectAttachmentList(int blogNo) {
 		return sqlSession.selectList("blog.selectAttachmentList",blogNo);
 	}
 
 	@Override
-	public BlogAttachVO selectOneBlogCollection(int blogNo) {
+	public List<BlogAttachVO> selectOneBlogCollection(int blogNo) {
 		return sqlSession.selectOne("blog.selectOneBlogCollection",blogNo);
+	}
+
+	@Override
+	public List<BlogAttachVO> selectimgList(int blogNo) {
+		return sqlSession.selectOne("blog.selectimgList",blogNo);
 	}
 
 }

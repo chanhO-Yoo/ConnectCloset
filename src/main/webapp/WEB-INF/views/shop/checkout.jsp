@@ -413,10 +413,12 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 			data: {
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
+
 				orderTotalPrice : totalPrice,
 				OrderItemCount:orderItemCount,
 				orderItemColor : orderItemColor,
 				orderItemSize : orderItemSize,				
+
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>

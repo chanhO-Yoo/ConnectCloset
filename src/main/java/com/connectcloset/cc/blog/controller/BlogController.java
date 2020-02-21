@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,7 +47,6 @@ public class BlogController {
 	@Autowired
 	BlogService blogService;
 	
-	
 	@RequestMapping("/blog/blogList.do")
 	public ModelAndView selectBlogList(ModelAndView mav,
 				@RequestParam(defaultValue="1") int cPage) {
@@ -53,7 +54,7 @@ public class BlogController {
 		final int numPerPage = 10;
 
 		//1.업무로직
-		List<Blog> list = blogService.selectBlogList(cPage, numPerPage);
+		List<BlogAttachVO> list = blogService.selectBlogList(cPage, numPerPage);
 		logger.debug("list={}", list);
 		int totalContents = blogService.selectTotalContents();
 		
@@ -66,6 +67,23 @@ public class BlogController {
 		mav.setViewName("blog/blogList");
 		return mav;
 		}
+	
+	//img
+	@RequestMapping("/blog/blogimgView.do")
+	public String blogimgView(Model model, @RequestParam("blogNo") int blogNo) {
+		
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+blogNo);
+		List<BlogAttachVO> blog = blogService.selectOneBlog(blogNo);
+		
+		List<BlogAttachVO> attachmentList = blogService.selectimgList(blogNo);
+		
+		logger.debug("블로그다다다다다다={}", blog);
+		model.addAttribute("blog", blog);
+		model.addAttribute("attachmentList",attachmentList);
+		
+		return "blog/blogimgView";
+	}
+	
 	
 	@RequestMapping("/blog/blogForm.do")
 		public void blogForm() {
@@ -95,6 +113,7 @@ public class BlogController {
 					
 					String originalFileName = f.getOriginalFilename();
 					String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+					logger.debug(ext+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHssSSS");
 					int rndNum = (int)(Math.random()*1000);
 					String renamedFileName = sdf.format(new Date())+"_"+rndNum+ext;
@@ -141,9 +160,9 @@ public class BlogController {
 	public String blogView(Model model, @RequestParam("blogNo") int blogNo) {
 		
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+blogNo);
-		Blog blog = blogService.selectOneBlog(blogNo);
+		List<BlogAttachVO> blog = blogService.selectOneBlog(blogNo);
 		
-		List<Attachment> attachmentList = blogService.selectAttachmentList(blogNo);
+		List<BlogAttachVO> attachmentList = blogService.selectAttachmentList(blogNo);
 		
 		model.addAttribute("blog", blog);
 		model.addAttribute("attachmentList",attachmentList);
@@ -154,8 +173,16 @@ public class BlogController {
 	@RequestMapping("/blog/blogViewCollection.do")
 	public void blogViewCollection(Model model, @RequestParam("blogNo") int blogNo) {
 		
-		BlogAttachVO blog = blogService.selectOneBlogCollection(blogNo);
+		List<BlogAttachVO> blog = blogService.selectOneBlogCollection(blogNo);
 		
 		model.addAttribute("blog",blog);
 	}
+	
+	//==================하은 인덱스 블로그 시작 =====================
+	//@GetMapping("blogShow.do")
+	//@ResponseBody
+	//public List<>
+	
+	
+	//==================하은 인덱스 블로그 끝 =====================
 }
