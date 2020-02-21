@@ -76,7 +76,6 @@ if(ck!=null){
 			}
 			newItemNoList = newItemNoList.substring(1);
 			
-			out.println(newItemNoList);
 		}
 	}
 }
