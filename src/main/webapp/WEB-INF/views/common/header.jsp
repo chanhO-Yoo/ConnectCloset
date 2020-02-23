@@ -467,6 +467,12 @@
 				        </div>
 				        <!-- 실시간검색어 추가 -->
 				        <script>
+				        $('#search').keydown(function(event) {
+				        	let html = "";
+				        	$("#saveSearchKeyword").html(html);
+				        });
+
+				        
 				        function saveKeyword() {
 				        	$.ajax({
 	                        	//새로 등록된 상품 json요청
