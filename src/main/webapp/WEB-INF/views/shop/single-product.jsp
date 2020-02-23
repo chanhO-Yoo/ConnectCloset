@@ -73,7 +73,13 @@
 	response.addCookie(cookie);
 	
 
-%>
+	/* 윤지 시작 */
+	int videoNo = (int)request.getAttribute("videoNo");
+	
+	double randomNo = Math.random();
+	int rndNo = (int)(randomNo * 3)+1;
+	/* 윤지 끝 */
+	%>
 
 
 
@@ -423,12 +429,12 @@ function goLogin(){
                     <h4>Recommended videos</h4>
                 </div>
                 <div class="row" onload="showVideo()">
-                <%
+                <%-- <%
                 	String src = "";
                 	src = "https://www.youtube.com/embed/OUiDCI9Fr6Y";
-                %>
+                %> --%>
                 	<div class="col-lg-6">
- 	 	              	<iframe width="560" height="315" src="${src }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	              	<iframe width="560" height="315" src="https://youtu.be/fj_C9T1ariU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  	 	            </div>
  	 	            <div class="col-lg-6">
  	 	              	<iframe width="560" height="315" src="https://www.youtube.com/embed/OUiDCI9Fr6Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -455,6 +461,8 @@ function goLogin(){
 		var videoNum = Math.round(Math.random()*2);
 		var Video = document.getElementById("Video");
 		objVideo.src = videoArray[videoNum];
+		
+		$("Video").attr('src', 'https://youtu.be/fj_C9T1ariU');
 	}
 	
 	/* 윤지 끝 */
