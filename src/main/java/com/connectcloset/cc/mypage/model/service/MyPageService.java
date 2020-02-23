@@ -17,6 +17,10 @@ public interface MyPageService {
 	//-----------주영 포인트 시작--------------
 	
 	List<Point> selectListPoint(int memberNo);
+	
+	int selectoneTotalPoint(int memberNo);
+	
+	
 	//-----------주영 포인트 끝--------------
 
 	//------------주영 리뷰 시작 -----------
@@ -64,6 +68,8 @@ public interface MyPageService {
 	
 	List<PersonalQnaAns> mypagePQnaAns(int pQnaNo);
 	//-----------주영 1:1 문의 끝----------------------
+
+
 
 
 

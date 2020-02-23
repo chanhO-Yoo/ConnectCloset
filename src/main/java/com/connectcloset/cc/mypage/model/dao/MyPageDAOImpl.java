@@ -30,6 +30,13 @@ public class MyPageDAOImpl implements MyPageDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.selectListPoint",memberNo);
 	}
+	
+	@Override
+	public int selectoneTotalPoint(int memberNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectoneTotalPoint",memberNo);
+	}
+	
 	//-----------주영 포인트 끝--------------
 
 
@@ -157,6 +164,9 @@ public class MyPageDAOImpl implements MyPageDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("mypage.mypagePQnaAns",pQnaNo);
 	}
+
+
+
 	
 	//-------------------주영 1:1문의  끝 ---------------------------
 

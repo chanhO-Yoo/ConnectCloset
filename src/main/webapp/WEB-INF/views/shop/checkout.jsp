@@ -52,7 +52,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
 								<label>이름</label> <input type="text" name="memeberName"
-									" value="${memberLoggedIn.memberName}" />
+									 value="${memberLoggedIn.memberName}" />
 							</div>
 						</div>
 						<!--  <div class="col-lg-12">
@@ -239,6 +239,22 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 										<li>사이즈:${orderSize}</li>
 									</ul>
 								</div>
+								<div class="your-order-totalPoint">
+									<ul>
+									  <li>
+                                <span class="have-point">보유포인트</span>
+                                <span id="memberHavePoint">:${totalPoint}</span>
+                            </li>
+                            <li>
+                                <span class="use-point">사용포인트</span>
+                                <input type="number" id="inputPoint" class="text-right" value="0">
+                                <button type="button" id="btn-useAll" class="btn-radius">전액사용</button>
+                            </li>
+                            
+									
+							
+									</ul>
+								</div>
 								<div class="your-order-total">
 									<ul>
 										<li class="order-total">Total</li>
@@ -354,18 +370,22 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 		itemNoArr[<%=i%>]=<%=itemList.get(i).getItemNo()%>;
 	
 	<%}%>
+
 	
 	itemNoArr[1] = 170;
 	
 	console.log(itemNoArr);
 	
 	$("#push_module").click(function () {
+		//사용 포인트
+
 		
 		var itemName = $('#itemName')[0].innerText; 
 		var totalPrice =$('#totalPrice').val();
 		var orderItemColor =$('#orderItemColor').val();
 		var orderItemSize =$('#orderItemSize').val();
 		var orderItemCount =$('#orderItemCount').val();
+		var userPoint =$('#inputPoint').val();
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
 		
@@ -418,7 +438,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 				OrderItemCount:orderItemCount,
 				orderItemColor : orderItemColor,
 				orderItemSize : orderItemSize,				
-
+				usePoint: userPoint,
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>
