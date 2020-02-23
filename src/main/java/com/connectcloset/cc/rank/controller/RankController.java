@@ -1,6 +1,6 @@
 package com.connectcloset.cc.rank.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.connectcloset.cc.rank.model.service.RankService;
@@ -37,5 +38,16 @@ public class RankController {
 
 		
 		return map;
+	}
+	
+	@RequestMapping("/saveKeyword.do")
+	@ResponseBody
+	public List<Rank> saveKeyword(@RequestParam(defaultValue="-1") int memberNo){
+		List<Rank> list = new ArrayList<>();
+		
+		list = rankService.saveKeyword(memberNo);
+		logger.debug("saveKeyword@list={}",list);
+		
+		return list;
 	}
 }

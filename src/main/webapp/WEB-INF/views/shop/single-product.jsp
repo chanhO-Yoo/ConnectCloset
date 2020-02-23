@@ -422,128 +422,13 @@ function goLogin(){
                 <div class="related-product-title text-center mb-25">
                     <h4>Related products</h4>
                 </div>
-                <div class="related-product-active owl-carousel">
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-9.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-10.jpg" alt="">
-                            </a>
-                            <span class="new">New</span>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-1.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-2.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-3.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
+                	<div class="col-lg-6">
+ 	 	              	<iframe width="560" height="315" src="https://www.youtube.com/embed/OUiDCI9Fr6Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	            </div>
+ 	 	            <div class="col-lg-6">
+ 	 	              	<iframe width="560" height="315" src="https://www.youtube.com/embed/OUiDCI9Fr6Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	            </div>
                 </div>
             </div>
         </div>

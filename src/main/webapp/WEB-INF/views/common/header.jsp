@@ -26,10 +26,14 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<!-- 실시간검색어 css 추가 -->
 		<style>
 				        	#rank-content {
-							    margin: 20px;
+							    margin-top: 20px;
+							    margin-bottom: 20px;
+							    margin-left: 20px;
+							    margin-right: 20px;
 							    padding: 10px;
 							    background: #000;
 							}
@@ -429,15 +433,20 @@
             </div>
             <div class="sidebar-search-input">
                 <form action="${pageContext.request.contextPath }/item/searchAllItem.do">
-                    <div class="form-search">
-                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search">
+                    <div class="form-search ui-widget">
+                    	<input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }"/>
+                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search" onclick="saveKeyword()">
                         <button>
                             <i class="ti-search"></i>
                         </button>
-                        
+                        <div id="saveSearchKeyword" style="background-color: white;">
+                        </div>
                         
                         <!-- 실시간검색어 추가 -->
-                        <div id="rank-content">
+                        <div id="rank-content" class="mt-10">
+                        	<div>
+                        		<span style="color: white;">실시간 급상승 검색어(최근3시간)</span>
+                        	</div>
 				            <dl id="rank-list">
 				                <dt>실시간 검색어</dt>
 				                <dd>
@@ -456,9 +465,35 @@
 				                </dd>
 				            </dl>
 				        </div>
-				        <div id="test22"></div>
 				        <!-- 실시간검색어 추가 -->
 				        <script>
+				        function saveKeyword() {
+				        	$.ajax({
+	                        	//새로 등록된 상품 json요청
+	                        	url: "${pageContext.request.contextPath}/saveKeyword.do?memberNo=${memberLoggedIn.memberNo}",
+	                        	type: "GET",
+	                        	dataType: "json",
+	                        	success: data => {
+	                        		let html = "";
+	                        		console.log(data);
+	                        		
+	                        		for(let i in data){
+	                        			let n = data[i];
+	                        			console.log("test : " + n);
+	                        		
+	                        		html += "<span><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n.searchKeyword+"'>"+n.searchKeyword+"</a></span><br>";
+	                                    
+	                                    
+	                        		}
+	                        		console.log(html);
+	                        		$("#saveSearchKeyword").html(html);
+	                        	},
+	                        	error: (x,s,e)=>{
+	                        		console.log(x,s,e);
+	                        	}
+	                        	});
+						};
+				        
                     $(()=>{
                     	$.ajax({
                         	//새로 등록된 상품 json요청
@@ -473,7 +508,7 @@
                         			let n = data[i];
                         			console.log(n);
                         		
-                        		html += "<li><a href='#' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                        		html += "<li><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n+"' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
                                     
                                     
                         		}
@@ -518,7 +553,6 @@
                     
                    
                     </script>
-
                         
                         
                     </div>

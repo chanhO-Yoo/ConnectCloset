@@ -136,13 +136,18 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/item/searchAllItem.do")
-	public ModelAndView searchAllItem(ModelAndView mav, @RequestParam String searchKeyword, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
+	public ModelAndView searchAllItem(ModelAndView mav, @RequestParam(defaultValue="0") int memberNo, @RequestParam String searchKeyword, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
 		logger.debug("searchKeyword={}",searchKeyword);
 		final int numPerPage = 9;
 		
 		List<ItemAndImageVO> list = itemService.searchAllItem(cPage, numPerPage,searchKeyword);
 		int totalContents = itemService.searchAllItemCount(searchKeyword);
-		int result = itemService.addSearchKeyword(searchKeyword);
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("searchKeyword", searchKeyword);
+		map.put("memberNo", Integer.toString(memberNo));
+		
+		int result = itemService.addSearchKeyword(map);
 		logger.debug("result@searchKeyword={}",result);
 		
 		mav.addObject("list", list);

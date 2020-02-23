@@ -1,6 +1,7 @@
 package com.connectcloset.cc.item.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -179,8 +180,8 @@ public class ItemServiceImpl implements ItemService{
 		}
 		
 		@Override
-		public int addSearchKeyword(String searchKeyword) {
-			return itemDAO.addSearchKeyword(searchKeyword);
+		public int addSearchKeyword(Map<String, String> map) {
+			return itemDAO.addSearchKeyword(map);
 		}
 
 		//===================찬호 끝========================

@@ -1,6 +1,7 @@
 package com.connectcloset.cc.item.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
@@ -55,7 +56,7 @@ public interface ItemService {
 
 	int searchAllItemCount(String searchKeyword);
 
-	int addSearchKeyword(String searchKeyword);
+	int addSearchKeyword(Map<String, String> map);
 	//--------- 찬호 끝 -------------------
 
 	//------------ 주영 상품 상세보기 시작 -------------

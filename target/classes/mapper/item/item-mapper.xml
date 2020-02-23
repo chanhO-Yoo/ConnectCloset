@@ -269,8 +269,12 @@ select * from (select v.*, rownum rnum from (select *
 	</select>
 	
 	<insert id="addSearchKeyword">
-		insert into search_rank values (seq_search_no.nextval,#{searchKeyword},default)
+		insert into search_rank values (seq_search_no.nextval,#{searchKeyword},default,#{memberNo})
 	</insert>
+	
+	<select id="saveKeyword" resultMap="rank">
+		select * from (select ROW_NUMBER() OVER (ORDER BY search_date DESC) as recent, sr.* from search_rank sr where member_no=#{memberNo}) where recent between 1 and 10
+	</select>
 	<!-- 찬호 끝 -->
 
 	<!--주영 상품 상세보기 시작 -->

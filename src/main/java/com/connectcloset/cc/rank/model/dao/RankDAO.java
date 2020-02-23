@@ -9,5 +9,7 @@ public interface RankDAO {
 	//=====================찬호 시작 ==========================
 	List<Rank> searchRank();
 
+	List<Rank> saveKeyword(int memberNo);
+
 	//=====================찬호 끝 ==========================
 }
