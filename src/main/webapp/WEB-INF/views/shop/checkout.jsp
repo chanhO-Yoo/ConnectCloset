@@ -19,6 +19,62 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function(){
+function usePoint(){
+	console.log("usePoint");
+	//포인트관련 변수
+	let memberHavePoint = document.querySelector("#memberHavePoint").innerText;
+	memberHavePoint = memberHavePoint.replace(",", "").replace("원", "")*1;
+	let inputPoint = document.querySelector("#inputPoint"); //사용할 포인트 입력태그
+	var totalPrice2 =${item.itemPrice*orderCount};
+	console.log(totalPrice2);
+
+	let showUsePoint = document.querySelector("#showUsePoint"); //결제금액 사용포인트란
+	let userPoint = document.querySelector("#userPoint"); //최종결제금액 포인트사용란
+	
+	//최종결제금액 변수
+	let userItemPrice = document.querySelector("#userItemPrice").innerText.replace(",","")*1; //주문상품
+
+
+	let userTotalPrice = document.querySelector("#userTotalPrice"); //총 결제금액
+	
+	//사용자가 포인트 입력한 후
+	inputPoint.addEventListener('blur', function(){
+		let val = this.value*1;
+		let userPointNum = 0;
+		
+		//유효성검사
+		if(val > memberHavePoint){
+			alert("보유금액 이상 사용은 불가능합니다.");
+			this.value = memberHavePoint;
+			showUsePoint.innerText = memberHavePoint.toLocaleString();
+			userPoint.innerText = memberHavePoint.toLocaleString();
+			
+			
+			//총결제금액
+			userPointNum = userPoint.innerText.replace(",", "");
+			userTotalPrice.innerText = (totalPrice2-userPointNum).toLocaleString();
+			return;
+		}
+		
+		
+		showUsePoint.innerText = val.toLocaleString();
+		userPoint.innerText = val.toLocaleString();
+		
+		//총결제금액
+		userPointNum = userPoint.innerText.replace(",", "");
+		userTotalPrice.innerText = (totalPrice2-userPointNum).toLocaleString();
+	});
+	
+
+	
+}
+ usePoint(); //포인트 계산
+});
+
+</script>
 <!-- breadcrumb area -->
 <div class="breadcrumb-area bg-img pt-230 pb-152"
 	style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
@@ -223,8 +279,8 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 								<div class="your-order-middle" id="your-order-middle">
 									<ul>
 										<c:forEach items="${itemList}" var="item" varStatus="vs">
-											<c:set var="totalPrice"
-												value="${item.itemPrice + item.itemStock}" />
+											<%-- <c:set var="totalPrice"
+												value="${item.itemPrice*orderCount }" /> --%>
 											<li><span class="order-middle-left"><span
 													id="itemName" class="order-name">${item.itemName }</span> X
 													
@@ -247,10 +303,15 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
                             </li>
                             <li>
                                 <span class="use-point">사용포인트</span>
-                                <input type="number" id="inputPoint" class="text-right" value="0">
-                                <button type="button" id="btn-useAll" class="btn-radius">전액사용</button>
-                            </li>
+                                <input type="text" id="inputPoint" class="text-right" value="0">
                             
+                            </li>
+                             <ul class="list-unstyled">
+                        <li>주문상품<span class="ab-right">￦<span id="userItemPrice"></span></span></li>
+                  
+                        <li>포인트 사용<span class="em-blue ab-right">￦<span id="userPoint">0</span></span></li>
+                    		</ul>
+                         <span id="total-point" class="ab-right em-blue">￦<span id="showUsePoint">0</span></span>
 									
 							
 									</ul>
@@ -258,8 +319,9 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 								<div class="your-order-total">
 									<ul>
 										<li class="order-total">Total</li>
-										<li><span><fmt:formatNumber value="${totalPrice*orderCount  }"
-													groupingUsed="true" type="currency" /></span></li>
+									<%-- 	<li><span><fmt:formatNumber value="${totalPrice  }"
+													groupingUsed="true" type="currency" /></span></li> --%>
+										<p>최종결제금액 <span id="ttPrice-inner" class="ab-right em-pink strong">￦<span id="userTotalPrice"></span></span></p>
 										<input type="hidden" id="totalPrice" value="${totalPrice*orderCount}"></input>
 										<input type="hidden" id="orderItemColor" value="${orderColor}"></input>
 										<input type="hidden" id="orderItemSize" value="${orderSize}"></input>
