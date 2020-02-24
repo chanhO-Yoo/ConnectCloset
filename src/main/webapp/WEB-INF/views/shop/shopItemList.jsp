@@ -238,18 +238,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget mt-55">
-                                <div class="facebook-banner-wrap default-overlay-2">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/resources/img/banner/banner-18.jpg" alt=""></a>
-                                    <div class="shop-offer">
-                                        <h4>80</h4>
-                                        <div class="offer-percent-wrap">
-                                            <span class="offer-percent">%</span>
-                                            <span class="offer-off">OFF</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         </div>
                     </div>
