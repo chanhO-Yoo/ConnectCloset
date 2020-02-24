@@ -1,6 +1,7 @@
 package com.connectcloset.cc.rank.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,4 +51,24 @@ public class RankController {
 		
 		return list;
 	}
+	
+	@RequestMapping("/searchAuto.do")
+	@ResponseBody
+	public List<String> searchAuto(@RequestParam String term){
+		logger.debug("searchKeyword={}",term);
+		
+		Map<String,String> map = new HashMap<String, String>();
+		
+		List<String> list = rankService.searchAuto(term);
+		
+		logger.debug("searchAuto@list={}",list);
+		
+/*		for(String str:list) {
+			map.put("data", str);
+		}*/
+		
+		logger.debug("map={}",map);
+		return list;
+	}
+	
 }

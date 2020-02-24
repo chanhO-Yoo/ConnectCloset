@@ -2,6 +2,7 @@ package com.connectcloset.cc.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +32,7 @@ import com.connectcloset.cc.member.model.service.UserMailSendService;
 import com.connectcloset.cc.member.model.vo.Member;
 import com.connectcloset.cc.member.naver.bo.NaverLoginBO;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.google.gson.JsonIOException;
 
 /*value로 지정한 이름의 변수들은 session에 담아둔다.*/
 @SessionAttributes(value= {"memberLoggedIn"})
@@ -290,6 +293,23 @@ public class MemberController {
    		return mav;
    	}
 	// 주영 끝
+	
+	//찬호시작
+	@RequestMapping("/member/checkIdDuplicate.do")
+	@ResponseBody
+	public Map<String,Object> checkIdDuplicate(@RequestParam("memberEmail") String memberEmail) throws JsonIOException, IOException {
+		//json문자열로 변환될 맵
+		logger.debug("@@@@@@@@@@memberEmail={}",memberEmail);
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberEmail", memberEmail);
+		
+		boolean isUsable = memberService.selectOneMember(memberEmail) == null?true:false;
+		map.put("isUsable", isUsable);
+		
+		
+		return map;
+	}
+	//찬호끝
 	
 	//수업자료 ============
 	

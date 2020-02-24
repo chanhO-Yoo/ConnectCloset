@@ -11,5 +11,7 @@ public interface RankDAO {
 
 	List<Rank> saveKeyword(int memberNo);
 
+	List<String> searchAuto(String searchKeyword);
+
 	//=====================찬호 끝 ==========================
 }

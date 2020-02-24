@@ -26,6 +26,11 @@ public class RankServiceImpl implements RankService {
 		return rankDAO.saveKeyword(memberNo);
 	}
 
+	@Override
+	public List<String> searchAuto(String searchKeyword) {
+		return rankDAO.searchAuto(searchKeyword);
+	}
+
 	//=====================찬호 끝 ==========================	
 
 }

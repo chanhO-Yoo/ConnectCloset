@@ -26,9 +26,16 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+ 
 		<!-- 실시간검색어 css 추가 -->
 		<style>
+.ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    background-color: #fff}
+		
 				        	#rank-content {
 							    margin-top: 20px;
 							    margin-bottom: 20px;
@@ -49,7 +56,7 @@
 							
 							#rank-list {
 							    overflow: hidden;
-							    width: 160px;
+							    width: 320px;
 							    height: 20px;
 							    margin: 0;
 							}
@@ -441,7 +448,6 @@
                         </button>
                         <div id="saveSearchKeyword" style="background-color: white;">
                         </div>
-                        
                         <!-- 실시간검색어 추가 -->
                         <div id="rank-content" class="mt-10">
                         	<div>
@@ -559,7 +565,20 @@
                     
                    
                     </script>
-                        
+  <script>
+  $("#search").autocomplete({
+      source : "${pageContext.request.contextPath}/searchAuto.do",
+      //조회를 위한 최소글자수
+      minLength: 2,
+      select: function( event, ui ) {
+      }
+  });
+
+  
+</script>
+
+
+
                         
                     </div>
                 </form>

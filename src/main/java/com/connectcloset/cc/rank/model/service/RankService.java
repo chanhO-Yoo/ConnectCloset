@@ -10,6 +10,8 @@ public interface RankService {
 	List<Rank> searchRank();
 
 	List<Rank> saveKeyword(int memberNo);
+
+	List<String> searchAuto(String searchKeyword);
 	
 	//================찬호 끝======================
 }
