@@ -1,4 +1,4 @@
-package com.connectcloset.cc.common.AbsteactController;
+package com.connectcloset.cc.common.AbstractController;
 
 import java.io.IOException;
 
