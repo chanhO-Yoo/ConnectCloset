@@ -42,7 +42,7 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public List<BlogAttachVO> selectOneBlog(int blogNo) {
+	public Blog selectOneBlog(int blogNo) {
 		return sqlSession.selectOne("blog.selectOneBlog",blogNo);
 	}
 
@@ -51,7 +51,7 @@ public class BlogDAOImpl implements BlogDAO {
 		return sqlSession.selectList("blog.selectAttachmentList",blogNo);
 	}
 
-	@Override
+	/*@Override
 	public List<BlogAttachVO> selectOneBlogCollection(int blogNo) {
 		return sqlSession.selectOne("blog.selectOneBlogCollection",blogNo);
 	}
@@ -59,11 +59,17 @@ public class BlogDAOImpl implements BlogDAO {
 	@Override
 	public List<BlogAttachVO> selectimgList(int blogNo) {
 		return sqlSession.selectOne("blog.selectimgList",blogNo);
+	}*/
+	
+	@Override
+	public BlogAttachVO blogView(int blogNo) {
+		return sqlSession.selectOne("blog.blogView",blogNo);
 	}
 
 	@Override
 	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex) {
 		return sqlSession.selectList("blogShow",attachmentIndex);
 	}
+
 
 }

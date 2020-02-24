@@ -3,8 +3,9 @@ package com.connectcloset.cc.blog.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
-public class BlogAttachVO implements Serializable {
+public class BlogAttachVO  implements Serializable {
 
 	/**
 	 * 
@@ -57,7 +58,7 @@ public class BlogAttachVO implements Serializable {
 	public void setblogTitle(String blogTitle) {
 		this.blogTitle = blogTitle;
 	}
-	public int gememberNo() {
+	public int getmemberNo() {
 		return memberNo;
 	}
 	public void setmemberNo(int memberNo) {
