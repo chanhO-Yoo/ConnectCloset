@@ -28,15 +28,12 @@ function usePoint(){
 	let memberHavePoint = document.querySelector("#memberHavePoint").innerText;
 	memberHavePoint = memberHavePoint.replace(",", "").replace("원", "")*1;
 	let inputPoint = document.querySelector("#inputPoint"); //사용할 포인트 입력태그
-	var totalPrice2 =${item.itemPrice*orderCount};
-	console.log(totalPrice2);
 
 	let showUsePoint = document.querySelector("#showUsePoint"); //결제금액 사용포인트란
 	let userPoint = document.querySelector("#userPoint"); //최종결제금액 포인트사용란
 	
 	//최종결제금액 변수
 	let userItemPrice = document.querySelector("#userItemPrice").innerText.replace(",","")*1; //주문상품
-
 
 	let userTotalPrice = document.querySelector("#userTotalPrice"); //총 결제금액
 	
@@ -55,7 +52,7 @@ function usePoint(){
 			
 			//총결제금액
 			userPointNum = userPoint.innerText.replace(",", "");
-			userTotalPrice.innerText = (totalPrice2-userPointNum).toLocaleString();
+			userTotalPrice.innerText = (totalPrice-userPointNum).toLocaleString();
 			return;
 		}
 		
@@ -65,7 +62,7 @@ function usePoint(){
 		
 		//총결제금액
 		userPointNum = userPoint.innerText.replace(",", "");
-		userTotalPrice.innerText = (totalPrice2-userPointNum).toLocaleString();
+		userTotalPrice.innerText = (totalPrice-userPointNum).toLocaleString();
 	});
 	
 
@@ -279,8 +276,8 @@ function usePoint(){
 								<div class="your-order-middle" id="your-order-middle">
 									<ul>
 										<c:forEach items="${itemList}" var="item" varStatus="vs">
-											<%-- <c:set var="totalPrice"
-												value="${item.itemPrice*orderCount }" /> --%>
+											 <c:set var="totalPrice"
+												value="${item.itemPrice*orderCount }" /> 
 											<li><span class="order-middle-left"><span
 													id="itemName" class="order-name">${item.itemName }</span> X
 													
@@ -319,9 +316,8 @@ function usePoint(){
 								<div class="your-order-total">
 									<ul>
 										<li class="order-total">Total</li>
-									<%-- 	<li><span><fmt:formatNumber value="${totalPrice  }"
-													groupingUsed="true" type="currency" /></span></li> --%>
-										<p>최종결제금액 <span id="ttPrice-inner" class="ab-right em-pink strong">￦<span id="userTotalPrice"></span></span></p>
+									<li><span id="userTotalPrice"></span></li> 
+										
 										<input type="hidden" id="totalPrice" value="${totalPrice*orderCount}"></input>
 										<input type="hidden" id="orderItemColor" value="${orderColor}"></input>
 										<input type="hidden" id="orderItemSize" value="${orderSize}"></input>
@@ -426,6 +422,9 @@ function usePoint(){
 <script>
 
 	var itemNoArr = new Array();
+	var totalPrice =$('#totalPrice').val();
+
+
 	
 	<%for(int i=0;i<itemList.size();i++){%>
 	
@@ -443,24 +442,24 @@ function usePoint(){
 
 		
 		var itemName = $('#itemName')[0].innerText; 
-		var totalPrice =$('#totalPrice').val();
 		var orderItemColor =$('#orderItemColor').val();
 		var orderItemSize =$('#orderItemSize').val();
 		var orderItemCount =$('#orderItemCount').val();
 		var userPoint =$('#inputPoint').val();
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
-		
-		
+		let userTotalPrice = document.querySelector("#userTotalPrice").innerText.replace(",", "")*1; //총 결제금액		
+		console.log(userTotalPrice)
 		var $radioChk = $("input[type=radio]:checked").val();
 		//결제수단 선택 유효성
 		if($radioChk===undefined){
 			alert("결제수단을 선택해주세요.");
 			return;
 		}
-			
+	
 		console.log(itemName);
-		console.log(totalPrice);
+		console.log(userTotalPrice);
+	
 		
 
 	//아임포트 변수 초기화	
@@ -475,7 +474,7 @@ function usePoint(){
 	merchant_uid: 'connectcloset' + new Date().getTime(),
 	name: itemName,
 //결제창에서 보여질 이름
-	amount: totalPrice,
+	amount: userTotalPrice,
 	//amount: 1000,
 
 	buyer_email: '<%=member.getMemberEmail()%>',
@@ -496,11 +495,11 @@ function usePoint(){
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
 
-				orderTotalPrice : totalPrice,
+				orderTotalPrice : userTotalPrice,
 				OrderItemCount:orderItemCount,
 				orderItemColor : orderItemColor,
 				orderItemSize : orderItemSize,				
-				usePoint: userPoint,
+				usePoint: inputPoint,
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>
