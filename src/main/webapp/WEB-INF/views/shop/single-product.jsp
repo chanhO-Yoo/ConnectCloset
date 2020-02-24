@@ -1,3 +1,6 @@
+<%@page import="com.connectcloset.cc.video.vo.Video"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="com.connectcloset.cc.item.model.vo.ItemAndImageVO2"%>
 <%@page import="com.connectcloset.cc.item.model.vo.Item"%>
@@ -10,7 +13,7 @@
 
 <%
 	ItemAndImageVO2 item = (ItemAndImageVO2)request.getAttribute("item");
-	
+
 	Cookie[] ck =request.getCookies();
 	String itemNoList = null;
 	String newItemNoList = "";
@@ -66,7 +69,6 @@
 	if(itemNoList == null){
 		itemNoList=Integer.toString(item.getItemNo());
 	}
-	System.out.println("*********itemNoList="+itemNoList);
 	
 	Cookie cookie = new Cookie("itemNoList",URLEncoder.encode((itemNoList),"utf-8"));
 	cookie.setMaxAge(60*60*24);
@@ -74,13 +76,11 @@
 	
 
 	/* 윤지 시작 */
-	int videoNo = (int)request.getAttribute("videoNo");
 	
-	double randomNo = Math.random();
-	int rndNo = (int)(randomNo * 3)+1;
+	
 	/* 윤지 끝 */
 	%>
-
+	
 
 
 
@@ -428,17 +428,13 @@ function goLogin(){
                 <div class="related-product-title text-center mb-25">
                     <h4>Recommended videos</h4>
                 </div>
-                <div class="row" onload="showVideo()">
-                <%-- <%
-                	String src = "";
-                	src = "https://www.youtube.com/embed/OUiDCI9Fr6Y";
-                %> --%>
+                <div class="row" >
+                <c:forEach items="${videoList}" var="video" end="1">
                 	<div class="col-lg-6">
- 	 	              	<iframe width="560" height="315" src="https://youtu.be/fj_C9T1ariU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	              	<iframe width="560" height="315" src="${video.videoUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  	 	            </div>
- 	 	            <div class="col-lg-6">
- 	 	              	<iframe width="560" height="315" src="https://www.youtube.com/embed/OUiDCI9Fr6Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
- 	 	            </div>
+                </c:forEach>
+ 	 	          
                 </div>
             </div>
         </div>
@@ -452,7 +448,7 @@ function goLogin(){
 	
 	/* 윤지 시작 */
 	//랜덤 동영상 추천
-	var videoArray = new Array();
+	/* var videoArray = new Array();
 	videoArray[0] = "https://youtu.be/fj_C9T1ariU";
 	videoArray[1] = "https://youtu.be/V5x2FYwlhRo";
 	videoArray[2] = "https://youtu.be/9ac8j3MlV4g";
@@ -463,7 +459,7 @@ function goLogin(){
 		objVideo.src = videoArray[videoNum];
 		
 		$("Video").attr('src', 'https://youtu.be/fj_C9T1ariU');
-	}
+	} */
 	
 	/* 윤지 끝 */
 </script>

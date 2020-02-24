@@ -21,6 +21,8 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+import com.connectcloset.cc.video.service.VideoService;
+import com.connectcloset.cc.video.vo.Video;
 
 @Controller
 public class ItemController {
@@ -30,6 +32,9 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+	
+	@Autowired
+	VideoService videoService;
 	//===================희진  새로나온 상품시작======================
 	
 	//타입별 상품 나 열
@@ -72,10 +77,13 @@ public class ItemController {
 		
 		List<Review> reviewList
 		=itemService.selectReviewList(itmeNo);
+		
+		List<Video> videoList = videoService.selectVideoList();
 
 		mav.addObject("reviewList",reviewList);
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
+		mav.addObject("videoList",videoList);
 
 		logger.debug("@@@@@@reviewList={}", reviewList);
 		logger.debug("item@@@@@@={}", item);

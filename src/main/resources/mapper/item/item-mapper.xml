@@ -42,7 +42,7 @@
 		<result column="item_limited_type" property="itemLimitedType" />
 		<result column="item_sale_type" property="itemSaleType" />
 		<collection property="imageList" ofType="itemImage">
-			<id column="item_image_no" property="itemImageNo"/>
+			<id column="item_image_no" property="itemImageNo"/>    
 			<result column="item_image_origin_name" property="itemImageOriginName"/>
 			<result column="item_image_re_name" property="itemImageReName"/>
 			<result column="item_no" property="itemNo"/>
