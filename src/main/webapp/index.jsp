@@ -61,7 +61,7 @@
                 				<img/>
                 			</a>
                 			<div class='shop-categories category0'>
-                				<a href='#'>TEST</a>
+                				<a href='${pageContext.request.contextPath}/shop/outerList.do'>OUTER</a>
                 			</div>
                 		</div>
                 	</div>
@@ -71,17 +71,17 @@
                 				<img/>
                 			</a>
                 			<div class='shop-categories category1'>
-                				<a href='#'>HAT</a>
+                				<a href='${pageContext.request.contextPath}/shop/bottomList.do'>PANTS</a>
                 			</div>
                 		</div>
                 	</div>
                 	<div class='shop-wrap'>
                 		<div class='shop-img zoom-hover'>
-                			<a class="image2" href='single-product.html'>
+                			<a class="image2" href='${pageContext.request.contextPath}/shop/shoesList.do'>
                 				<img/>
                 			</a>
                 			<div class='shop-categories category2'>
-                				<a href='#'>Pants</a>
+                				<a href='#'>SHOES</a>
                 			</div>
                 		</div>
                 	</div>
@@ -99,10 +99,12 @@
                     		for(let i in data){
                     			let s = data[i];
                     			console.log(i);
+                    			let str = "${pageContext.request.contextPath}/shop/single-product.do?itemNo="+s.itemNo;
                     			
                     			html ="<img id='image"+i+"'src='${pageContext.request.contextPath }/resources/upload/item/"+s.imageList[0].itemImageReName+"'>";
-                    			html2 = "<a href='#'>category"+i+"</a>";
+                    			html2 = "<a href='${pageContext.request.contextPath}/shop/single-product.do?itemNo="+s.itemNo+"'>category"+i+"</a>";
                     			$(".image"+i).html(html);
+                    			$(".image"+i).attr('href',str);
                     			$(".category"+(i+1)).html(html2);
                     		}
                     	},		
@@ -144,7 +146,7 @@
                     		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
                     			 + "<div class='shop-wrap mb-35'>"
                     			 + "<div class='shop-img'>"
-                    			 + "<a href='single-product.html'>"
+                    			 + "<a href='${pageContext.request.contextPath }/shop/single-product.do?itemNo="+n.itemNo+"'>"
                             	 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"'>"
                                  + "</a>"
                                  + "<div class='shop-hover'>"  
@@ -386,11 +388,11 @@
                     			html+="<div class='col-lg-4 col-md-6'>"
                     			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
                     			+"<div class='blog-img hover-3'>"
-                    			+"<a href='blog-details.html'>"
+                    			+"<a href='${pageContext.request.contextPath}/blog/blogView.do?blogNo="+n.blogNo+"'>"
                     			+"<img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/blog/"+n.renamedFileName+"'>"
                     			+"</a>"
                     			+"<div class='readmore-icon'>"
-                    			+"<a href='blog-details.html'>"
+                    			+"<a href='${pageContext.request.contextPath}/blog/blogView.do?blogNo="+n.blogNo+"'>"
                     			+"<i class='ti-arrow-right'></i>"
                     			+"</a>"
                     			+" </div>"
@@ -403,7 +405,7 @@
                        			+"<li><a href='#'>4 <i class='ti-comment-alt'></i></a></li>"
                        			+"</ul>"
                        			+"</div>"
-                       			+"<h4><a href='blog-details.html'>"+n.blogTitle+"</a></h4>"
+                       			+"<h4><a href='${pageContext.request.contextPath}/blog/blogView.do?blogNo="+n.blogNo+"'>"+n.blogTitle+"</a></h4>"
                        			+"<p>"+n.blogContent+"</p>"
                        			+" </div>"
                        			+"</div>"
