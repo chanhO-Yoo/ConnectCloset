@@ -292,30 +292,6 @@ if(ck!=null){
 <script>
 var currentPosition = parseInt($("#sidebox").css("top")); $(window).scroll(function() { var position = $(window).scrollTop(); $("#sidebox").stop().animate({"top":position+currentPosition+"px"},1000); });
 </script>
-쿠키테스트 : 
-<%-- <%
-if(ck!=null){
-	for(Cookie c : ck){
-		if(c.getName().indexOf("itemNoList") != -1){
-			
-			String[] itemNoArr = URLDecoder.decode(c.getValue(),"UTF-8").split(",");
-			if(itemNoArr.length <= 5){
-				for(int j=0;j<itemNoArr.length;j++) {
-					newItemNoList = newItemNoList+","+itemNoArr[j];
-				}
-			}
-			else{
-				for(int j=0;j<5;j++) {
-					newItemNoList = newItemNoList+","+itemNoArr[j];
-				}
-			}
-			newItemNoList = newItemNoList.substring(1);
-			
-			out.println(newItemNoList);
-		}
-	}
-}
-%> --%>
 <script>
 $(()=>{
 	var newItemNoList = "<%=newItemNoList%>";
