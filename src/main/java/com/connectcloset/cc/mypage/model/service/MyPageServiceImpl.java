@@ -1,6 +1,8 @@
 package com.connectcloset.cc.mypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,8 +120,13 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<OrderProduct> selectSearchDateList(int startDate) {
-		return mypageDAO.selectSearchDateList(startDate);
+	public List<OrderProduct> selectSearchDateList(HashMap<String, Integer> map) {
+		return mypageDAO.selectSearchDateList(map);
+	}
+	
+	@Override
+	public List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map) {
+		return mypageDAO.selectSearchAllList(map);
 	}
 
 	
@@ -180,9 +187,6 @@ public class MyPageServiceImpl implements MyPageService {
 		return mypageDAO.mypagePQnaAns(pQnaNo);
 	}
 
-
-
-	
 
 	/// ---------------주영 1:1 문의 시작------------------------
 

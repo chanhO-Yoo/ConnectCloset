@@ -23,7 +23,9 @@
 
     <package name="com.connectcloset.cc.order.model.vo"/>
     <package name="com.connectcloset.cc.blog.model.vo"/>
-   
+    <package name="com.connectcloset.cc.attachment.model.vo"/>
+    <package name="com.connectcloset.cc.Video.model.vo"/>
+    <package name="com.connectcloset.cc.rank.model.vo"/>
 
 
 <!--     <package name="com.kh.spring.demo.model.vo"/>

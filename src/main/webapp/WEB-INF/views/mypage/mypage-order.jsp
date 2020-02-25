@@ -8,6 +8,13 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="" name="pageTitle"/>
 </jsp:include>
+<style>
+.orderImage{
+	width: 81px;
+	height: 85px;
+	object-fit: cover;
+}
+</style>
 
 		<div class="checkout-area pt-95 pb-100">
             <div class="container">
@@ -96,9 +103,9 @@
                                 <td><strong>기간검색</strong></td>
                                 <td>
                                     <button type="button" class="btn btn-light1" name="orderDate" id="oneMonth" value="30" onclick="search(this.value)">1개월</button>
-                                    <button type="button" class="btn btn-light3" name="orderDate" id="twoMonth" value="60" onclick="search(this.value)">3개월</button>
-                                    <button type="button" class="btn btn-light6" name="orderDate" id="sixMonth" value="90" onclick="search(this.value)">6개월</button>
-                                    <button type="button" class="btn btn-lightAll" name="orderDate" id="allMonth" value="365">전체</button>
+                                    <button type="button" class="btn btn-light3" name="orderDate" id="twoMonth" value="90" onclick="search(this.value)">3개월</button>
+                                    <button type="button" class="btn btn-light6" name="orderDate" id="sixMonth" value="180" onclick="search(this.value)">6개월</button>
+                                    <button type="button" class="btn btn-lightAll" name="orderDate" id="allMonth" value="0" onclick="search(this.value)">전체</button>
                                 </td>
                             </tr>
                         </table>
@@ -174,7 +181,7 @@
 	 console.log(sDate);
 
 	 $.ajax({
-			url: "${pageContext.request.contextPath}/admin/searchDate/deliveryList.do?startDate="+sDate,
+			url: "${pageContext.request.contextPath}/mypage/searchDate/mypage-order.do?memberNo="+${memberLoggedIn.memberNo}+"&startDate="+sDate,
 			type: "GET",
 			dataType: "json",
 			success: data => {
@@ -182,20 +189,52 @@
 				console.log(data);
 				
 				var table = $("<table id='tbl-board' class='table table-striped table-hover'></table>");
-				table.append("<tr><th>주문번호</th><th>고객ID</th><th>상품명</th><th>상품가격</th><th>구매수량</th><<th>상품색상</th><th>상품사이즈</th><th>구매일</th></tr>");
+				table.append("<tr><th>주문번호</th><th>상품명</th><th>상품가격</th><th>구매수량</th><<th>상품색상</th><th>상품사이즈</th><th>구매일</th><th>주문상태</th></tr>");
 				
 				$.each(data,(idx, date)=>{
 					
 					var tr =$("<tr></tr>");
 					
 					tr.append("<td>"+date.orderNo+"</td>");
-					tr.append("<td>"+date.orderId+"</td>");
+					
+					tr.append("<img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/item/"+date.itemImageReName+"'>");
+					
 					tr.append("<td>"+date.itemName+"</td>");
 					tr.append("<td>"+date.orderTotalPrice+"</td>");
 					tr.append("<td>"+date.orderItemCount+"</td>");
 					tr.append("<td>"+date.orderItemColor+"</td>");
 					tr.append("<td>"+date.orderItemSize+"</td>");
 					tr.append("<td>"+date.orderDate+"</td>");
+					
+						switch (date.deliveryNo) {
+						case 'os-001':
+							tr.append("<td> 주문완료 </td>");
+							break;
+						case 'os-002':
+							tr.append("<td> 구매확정 </td>");
+							break;
+						case 'os-003':
+							tr.append("<td> 주문취소 </td>");
+							break;
+						case 'os-004' :
+							tr.append("<td> 상품교환 </td>");
+							break;
+						case 'os-005' :
+							tr.append("<td> 상품반품 </td>");
+							break;
+						case 'deli-001' :
+							tr.append("<td> 배송준비중 </td>");
+							break;
+						case 'deli-002' :
+							tr.append("<td> 배송중 </td>");
+							break;
+						case 'deli-003' :
+							tr.append("<td> 배송완료 </td>");
+							break;
+							
+						default:
+							break;
+						}
 
 					table.append(tr);
 				});	

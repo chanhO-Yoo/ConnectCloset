@@ -28,7 +28,7 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	//희진 새로 나온 상품 끝
 	
-	//하은 시작
+	//====================하은 시작 ====================
 		@Override
 	public List<Item> selectItemNumber(int itemNo) {
 		return sqlSession.selectList("item.selectItemNumber",itemNo);
@@ -44,13 +44,12 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList("item.selectImageList",itemNo);
 	}
 		
-	
 	@Override
 	public List<ItemAndImageVO> shopCategories(Item item) {
 		return sqlSession.selectList("shopCategories", item);
 	}
 		
-	//==하은 끝
+	//====================하은 끝 ====================
 
 	//===================윤지  상품 리스트 시작=======================
 	@Override
@@ -169,6 +168,22 @@ public class ItemDAOImpl implements ItemDAO {
 	public ItemImage recetnItem(String itemNo) {
 		return sqlSession.selectOne("item.recentItem",itemNo);
 	}
+	
+	@Override
+	public List<ItemAndImageVO> searchAllItem(int cPage, int numPerPage, String searchKeyword) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.searchAllItem","%"+searchKeyword+"%",rowBounds);
+	}
+	
+	@Override
+	public int searchAllItemCount(String searchKeyword) {
+		return sqlSession.selectOne("item.searchAllItemCount","%"+searchKeyword+"%");
+	}
+
+	@Override
+	public int addSearchKeyword(String searchKeyword) {
+		return sqlSession.insert("item.addSearchKeyword", searchKeyword);
+	}
 	//===================찬호 끝=======================	
 		
 	//===================주영 상품 상세보기 시작========================
@@ -190,7 +205,6 @@ public class ItemDAOImpl implements ItemDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("item.selectReviewList",itmeNo);
 	}
-
 
 	//===================주영  상품 상세보기 끝========================
 

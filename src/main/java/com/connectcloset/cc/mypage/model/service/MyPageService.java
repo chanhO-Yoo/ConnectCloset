@@ -1,5 +1,6 @@
 package com.connectcloset.cc.mypage.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
@@ -47,8 +48,9 @@ public interface MyPageService {
 	
 	Member selectOrderByMemberNo(int memberNo);
 
-	List<OrderProduct> selectSearchDateList(int startDate);
+	List<OrderProduct> selectSearchDateList(HashMap<String, Integer> map);
 
+	List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map);
 	
 	//------------희진 주문내역 끝-------------------
 	

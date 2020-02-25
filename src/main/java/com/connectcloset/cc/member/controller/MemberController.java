@@ -216,7 +216,7 @@ public class MemberController {
 			else {
 				logger.debug("여기까지는 들어왔다@@@@@@@@@@@@@@@");
 				if(bcryptPasswordEncoder.matches(password, m.getMemberPassword())) {
-					msg="로그인성공! "+m.getMemberName()+"님 환영합니다.";
+					msg="로그인 성공! "+m.getMemberName()+"님 환영합니다.";
 					
 					//세션에 로그인 객체 저장  
 					mav.addObject("memberLoggedIn",m);

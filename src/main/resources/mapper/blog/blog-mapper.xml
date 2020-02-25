@@ -7,7 +7,7 @@
  <resultMap type="blog" id="blogMap">
  	<result column="boardreadcount" property="readCount"></result>
  </resultMap>
- 
+
 	
  	<select id="selectBlogList" resultMap="blogCollectionMap">
 	select * from blog b left join (SELECT blogno, renamedfilename FROM ( SELECT blogno, renamedfilename, ROW_NUMBER() 
@@ -33,23 +33,32 @@
 	
 	</insert>
 	
-	<select id="selectOneBlog" resultMap="blogCollectionMap">
+	<select id="blogView" resultMap="blogCollectionMap">
+	select * from blog b left join (SELECT blogno, renamedfilename FROM ( SELECT blogno, renamedfilename, ROW_NUMBER() 
+	OVER ( PARTITION BY blogno ORDER BY attachmentno ) 
+	AS RN FROM  blog_attachment ) TMP WHERE TMP.RN = 1) ba on b.blog_no = ba.blogno where b.blog_no = #{blogNo} order by b.blog_no desc
+	</select>
+	 
+	
+	
+<!--  <select id="blogView" resultMap="blogSelectOneMap">
+	select * from blog b left join (SELECT blogno, renamedfilename FROM ( SELECT blogno, renamedfilename, ROW_NUMBER() 
+	OVER ( PARTITION BY blogno ORDER BY attachmentno ) 
+	AS RN FROM  blog_attachment ) TMP WHERE TMP.RN = 1) ba on b.blog_no = ba.blogno order by b.blog_no desc
+	</select>
+	 <resultMap type="blogAttachVO" id="blogSelectOneMap"></resultMap>  -->
+	
+	<!-- <select id="selectAttachmentList" resultMap="blogCollectionMap">
 	select *
 		from blog B left join blog_attachment BA on BA.blogno = B.blog_no
 		where b.blog_no = #{blogNo}
-	</select>
-	<resultMap type="blogAttachVO" id="blogSelectOneMap"></resultMap>
+	</select> -->
 	
-	<select id="selectAttachmentList" resultMap="Attachmentlist">
-	select * from blog_attachment
-	where blogno = #{blogNo}
-	</select>
-	
-	<resultMap type="attachment" id="Attachmentlist">
+	<!-- <resultMap type="attachment" id="Attachmentlist">
 	
 	
-	</resultMap>
-	
+	</resultMap> 
+	 -->
 	<!-- <select id="selectOneBlogCollection" resultMap="blogCollectionMap">
 	select *
 		from blog B left join blog_attachment A on A.blogno = B.blog_no
@@ -58,11 +67,11 @@
 	</select> -->
 	
 	
-	<select id="selectimgList">
+<!-- 	<select id="selectimgList">
 	select renamedfilename from blog_attachment
 	where blogno = blogno;
 	
-	</select>
+	</select> -->
 	
 	<resultMap type="blogAttachVO" id="blogCollectionMap">
 		<id column="blog_no" property="blogNo" />
@@ -71,8 +80,6 @@
 		<result column="blog_content" property="blogContent"/>
 		<result column="blog_date" property="blogDate"/>
 		<result column="boardreadcount" property="readCount"/>
-	
-	
 	<!-- 1: n관계의 테이블을 조인해서 리턴하는 경우  -->
 		<collection property="attachmentList" ofType="attachment">
 			<id column="attachmentno" property="attachmentNo" />
@@ -84,9 +91,16 @@
 			<result column="status" property="status"/>
 		</collection>
 	</resultMap>
-
 	
+	<resultMap type="AttachmentIndex" id="AttachmentIndexMap">
+	</resultMap>
 
-
+	<!-- 하은 인덱스 블로그 시작-->
+	<select id="blogShow" resultMap="AttachmentIndexMap" >
+	<![CDATA[
+	select * from (select v.*, rownum rnum from (select b.*, BA.* from blog b left join blog_attachment BA on BA.blogno = B.blog_no order by blog_date desc) v) where rnum < 4
+	]]>
+	</select>
+	<!-- 하은 인덱스 블로그 끝-->
 
 </mapper>

@@ -31,11 +31,9 @@ import com.connectcloset.cc.blog.model.service.BlogService;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
-
-
-
 
 /*value로 지정한 이름의 변수들은 session에 담아둔다.*/
 @SessionAttributes(value= {"memberLoggedIn"})
@@ -67,29 +65,11 @@ public class BlogController {
 		mav.setViewName("blog/blogList");
 		return mav;
 		}
-	
-	//img
-	@RequestMapping("/blog/blogimgView.do")
-	public String blogimgView(Model model, @RequestParam("blogNo") int blogNo) {
-		
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+blogNo);
-		List<BlogAttachVO> blog = blogService.selectOneBlog(blogNo);
-		
-		List<BlogAttachVO> attachmentList = blogService.selectimgList(blogNo);
-		
-		logger.debug("블로그다다다다다다={}", blog);
-		model.addAttribute("blog", blog);
-		model.addAttribute("attachmentList",attachmentList);
-		
-		return "blog/blogimgView";
-	}
-	
-	
+
 	@RequestMapping("/blog/blogForm.do")
 		public void blogForm() {
 			logger.debug("게시물등록 페이지 요청");
 	}
-	
 	
 	@RequestMapping("/blog/blogFormEnd.do")
 		public ModelAndView blogFormEnd(ModelAndView mav, Blog blog,@RequestParam(value="upFile", required=false) MultipartFile[] upFile,
@@ -157,32 +137,29 @@ public class BlogController {
 		return mav;
 	}			
 	@RequestMapping("/blog/blogView.do")
-	public String blogView(Model model, @RequestParam("blogNo") int blogNo) {
+	public ModelAndView blogView(ModelAndView mav, @RequestParam int blogNo) {
+		logger.debug("blogNo############={}",blogNo);
+		BlogAttachVO blog = blogService.blogView(blogNo);
+		logger.debug("blog@@@@@@@@@@@@@@={}",blog);
+		logger.debug("mav@@@@@@@@@@@@@@={}",mav);
+		mav.addObject("blog",blog);
+		mav.setViewName("/blog/blogView");
 		
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+blogNo);
-		List<BlogAttachVO> blog = blogService.selectOneBlog(blogNo);
+		return mav;
 		
-		List<BlogAttachVO> attachmentList = blogService.selectAttachmentList(blogNo);
-		
-		model.addAttribute("blog", blog);
-		model.addAttribute("attachmentList",attachmentList);
-		
-		return "blog/blogView";
 	}
 	
-	@RequestMapping("/blog/blogViewCollection.do")
-	public void blogViewCollection(Model model, @RequestParam("blogNo") int blogNo) {
-		
-		List<BlogAttachVO> blog = blogService.selectOneBlogCollection(blogNo);
-		
-		model.addAttribute("blog",blog);
-	}
+
 	
 	//==================하은 인덱스 블로그 시작 =====================
-	//@GetMapping("blogShow.do")
-	//@ResponseBody
-	//public List<>
-	
+	@GetMapping("/blogShow.do")
+	@ResponseBody
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex){
+	 List<AttachmentIndex>	list = blogService.blogShow(attachmentIndex);
+	 
+	 logger.debug("blogShow@@@@@@@@@@@@@@@={}", attachmentIndex);
+	 return list;
+	}
 	
 	//==================하은 인덱스 블로그 끝 =====================
 }

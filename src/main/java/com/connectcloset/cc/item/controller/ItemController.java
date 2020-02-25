@@ -28,6 +28,8 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+import com.connectcloset.cc.video.service.VideoService;
+import com.connectcloset.cc.video.vo.Video;
 
 @Controller
 public class ItemController {
@@ -37,6 +39,8 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+	@Autowired
+	VideoService videoService;
 	//==================하은 인덱스 이미지 시작 =====================
 	
 	//곧 주석처리
@@ -60,7 +64,7 @@ public class ItemController {
 	}
 	
 	//==================하은 인덱스 이미지 =====================
-	
+
 	//===================희진  새로나온 상품시작======================
 	
 	//타입별 상품 나열
@@ -102,10 +106,13 @@ public class ItemController {
 		
 		List<Review> reviewList
 		=itemService.selectReviewList(itmeNo);
+		
+		List<Video> videoList = videoService.selectVideoList();
 
 		mav.addObject("reviewList",reviewList);
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
+		mav.addObject("videoList",videoList);
 
 		logger.debug("@@@@@@reviewList={}", reviewList);
 		logger.debug("item@@@@@@={}", item);
@@ -117,7 +124,7 @@ public class ItemController {
 	//===================주영 상세보기 끝======================
 	
 	//===================찬호 최근상품 시작=====================
-	@RequestMapping("recentItem.do")
+	@RequestMapping("/recentItem.do")
 	@ResponseBody
 	public List<ItemImage> recentItem(String itemNoList) {
 		List<ItemImage> list = new ArrayList<>();
@@ -133,6 +140,29 @@ public class ItemController {
 		logger.debug("list={}",list);
 		
 		return list;
+	}
+	
+	@RequestMapping("/item/searchAllItem.do")
+	public ModelAndView searchAllItem(ModelAndView mav, @RequestParam String searchKeyword, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
+		logger.debug("searchKeyword={}",searchKeyword);
+		final int numPerPage = 9;
+		
+		List<ItemAndImageVO> list = itemService.searchAllItem(cPage, numPerPage,searchKeyword);
+		int totalContents = itemService.searchAllItemCount(searchKeyword);
+		int result = itemService.addSearchKeyword(searchKeyword);
+		logger.debug("result@searchKeyword={}",result);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.addObject("brandNo", brandNo);
+		mav.addObject("itemTypeNo", itemTypeNo);
+		
+		mav.setViewName("shop/shopItemList");
+		
+		return mav;
 	}
 	
 	

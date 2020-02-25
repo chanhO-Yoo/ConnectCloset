@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.connectcloset.cc.blog.model.dao.BlogDAO;
 import com.connectcloset.cc.blog.model.exception.BlogException;
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.blog.model.dao.BlogDAO;
@@ -56,7 +57,7 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public List<BlogAttachVO> selectOneBlog(int blogNo) {
+	public Blog selectOneBlog(int blogNo) {
 		return blogDAO.selectOneBlog(blogNo);
 	}
 
@@ -65,7 +66,7 @@ public class BlogServiceImpl implements BlogService {
 		return blogDAO.selectAttachmentList(blogNo);
 	}
 
-	@Override
+	/*@Override
 	public List<BlogAttachVO> selectOneBlogCollection(int blogNo) {
 		return blogDAO.selectOneBlogCollection(blogNo);
 	}
@@ -73,6 +74,18 @@ public class BlogServiceImpl implements BlogService {
 	@Override
 	public List<BlogAttachVO> selectimgList(int blogNo) {
 		return blogDAO.selectimgList(blogNo);
+	}*/
+	
+	@Override
+	public BlogAttachVO blogView(int blogNo) {
+		return blogDAO.blogView(blogNo);
 	}
-
+	
+	
+	//====================하은 시작 ====================
+	@Override
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex) {
+		return blogDAO.blogShow(attachmentIndex);
+	}
+	//====================하은 시작 ====================
 } 

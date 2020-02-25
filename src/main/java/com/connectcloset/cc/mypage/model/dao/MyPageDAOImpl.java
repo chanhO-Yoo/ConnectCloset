@@ -1,6 +1,8 @@
 package com.connectcloset.cc.mypage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -109,9 +111,15 @@ public class MyPageDAOImpl implements MyPageDAO {
 
 
 	@Override
-	public List<OrderProduct> selectSearchDateList(int startDate) {
-		return sqlSession.selectList("orderProduct.selectSearchDateList",startDate);	
+	public List<OrderProduct> selectSearchDateList(HashMap<String, Integer> map) {
+		return sqlSession.selectList("orderProduct.selectSearchDateList", map);	
 	}
+	
+	@Override
+	public List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map) {
+		return sqlSession.selectList("orderProduct.selectSearchAllList", map);
+	}
+	
 
 	//-----------희진 주문내역 끝------------------------
 

@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,6 +26,70 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+		<!-- 실시간검색어 css 추가 -->
+		<style>
+				        	#rank-content {
+							    margin: 20px;
+							    padding: 10px;
+							    background: #000;
+							}
+							
+							#rank-list a {
+							    color: #FFF;
+							    text-decoration: none;
+							}
+							
+							#rank-list a:hover {
+							    text-decoration: underline;
+							}
+							
+							#rank-list {
+							    overflow: hidden;
+							    width: 160px;
+							    height: 20px;
+							    margin: 0;
+							}
+							
+							#rank-list dt {
+							    display: none;
+							}
+							
+							#rank-list dd {
+							    position: relative;
+							    margin: 0;
+							}
+							
+							#rank-list ol {
+							    position: absolute;
+							    top: 0;
+							    left: 0;
+							    margin: 0;
+							    padding: 0;
+							    list-style-type: none;
+							}
+							
+							#rank-list li {
+							    height: 20px;
+							    line-height: 20px;
+							}
+				        </style>
+				        <script>
+				        $(function() {
+				            var count = $('#rank-list li').length;
+				            var height = $('#rank-list li').height();
+
+				            function step(index) {
+				                $('#rank-list ol').delay(2000).animate({
+				                    top: -height * index,
+				                }, 500, function() {
+				                    step((index + 1) % count);
+				                });
+				            }
+
+				            step(1);
+				        });
+				        </script>
+				        <!-- 실시간검색어 css/js 추가 -->
     </head>
     <body class="wrapper">
         <!-- header start -->
@@ -363,12 +428,99 @@
                 <button class="search-close"><span class="ti-close"></span></button>
             </div>
             <div class="sidebar-search-input">
-                <form>
+                <form action="${pageContext.request.contextPath }/item/searchAllItem.do">
                     <div class="form-search">
-                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
+                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search">
                         <button>
                             <i class="ti-search"></i>
                         </button>
+                        
+                        
+                        <!-- 실시간검색어 추가 -->
+                        <div id="rank-content">
+				            <dl id="rank-list">
+				                <dt>실시간 검색어</dt>
+				                <dd>
+				                    <ol id="realtiemRank">
+				                        <li><a href="#" id="rank1">1 순위</a></li>
+				                        <li><a href="#" id="rank2">2 순위</a></li>
+				                        <li><a href="#" id="rank3">3 순위</a></li>
+				                        <li><a href="#" id="rank4">4 순위</a></li>
+				                        <li><a href="#" id="rank5">5 순위</a></li>
+				                        <li><a href="#" id="rank6">6 순위</a></li>
+				                        <li><a href="#" id="rank7">7 순위</a></li>
+				                        <li><a href="#" id="rank8">8 순위</a></li>
+				                        <li><a href="#" id="rank9">9 순위</a></li>
+				                        <li><a href="#" id="rank10">10 순위</a></li>
+				                    </ol>
+				                </dd>
+				            </dl>
+				        </div>
+				        <div id="test22"></div>
+				        <!-- 실시간검색어 추가 -->
+				        <script>
+                    $(()=>{
+                    	$.ajax({
+                        	//새로 등록된 상품 json요청
+                        	url: "${pageContext.request.contextPath}/searchRank.do",
+                        	type: "GET",
+                        	dataType: "json",
+                        	success: data => {
+                        		let html = "";
+                        		console.log(data);
+                        		
+                        		for(let i in data){
+                        			let n = data[i];
+                        			console.log(n);
+                        		
+                        		html += "<li><a href='#' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                                    
+                                    
+                        		}
+                        		console.log(html);
+                        		$("#realtiemRank").html(html);
+                        	},
+                        	error: (x,s,e)=>{
+                        		console.log(x,s,e);
+                        	}
+                        	});
+                    	
+                    	timer = setInterval( function () {
+                    	
+                    	$.ajax({
+                    	//새로 등록된 상품 json요청
+                    	url: "${pageContext.request.contextPath}/searchRank.do",
+                    	type: "GET",
+                    	dataType: "json",
+                    	success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let n = data[i];
+                    			console.log(n);
+                    		
+                    		html += "<li><a href='#' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                                
+                                
+                    		}
+                    		console.log(html);
+                    		$("#realtiemRank").html(html);
+                    	},
+                    	error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                    	});
+                    	
+                        }, 25000);
+                    	
+                    });
+                    
+                   
+                    </script>
+
+                        
+                        
                     </div>
                 </form>
             </div>
