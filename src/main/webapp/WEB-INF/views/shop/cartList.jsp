@@ -108,7 +108,7 @@
 		                                               <div class="pro-dec-cart">${cart.ITEM_QUANTITY }</div></td>
 		                                            <td class="cart-subtotal"><span>${cart.ITEM_PRICE }</span></td>
 		                                            	<td class="cart-remove">
-		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('야 정말 삭제 한다??');"><i class="ti-close"></i></a>
+		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('정말 삭제 하시겠습니까?');"><i class="ti-close"></i></a>
 		                                           		</td>
 		                                     		</tr>
 		                                     		<c:set var="totalPrice" value="${totalPrice + cart.ITEM_QUANTITY * cart.ITEM_PRICE}"/>
@@ -123,15 +123,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="cart-shiping-update-wrapper mt-25">
-                                        <div class="cart-clear">
+                                    <!-- <div class="cart-shiping-update-wrapper mt-25"> -->
+                                        <!-- <div class="cart-clear">
                                             <button class="btn-hover">update shopping cart</button>
-                                        </div>
+                                        </div> -->
                                         <div class="cart-shiping-update">
-                                            <a class="btn-hover" href="#">Continue Shopping</a>
+                                            <a class="btn-hover" href="${pageContext.request.contextPath }/shop/shopItemList.do">Continue Shopping</a>
                                         </div>
                                         
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </form>	  
