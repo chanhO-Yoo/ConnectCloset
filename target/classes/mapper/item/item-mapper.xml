@@ -18,7 +18,6 @@
 		WHERE TMP.RN = 1) II 
 		on I.item_no=II.item_no
 		order by I.item_no desc, II.item_image_no asc) v) where rnum < 7		
-		
 		]]>
 	</select>
 	
@@ -37,24 +36,32 @@
 	
 	 <select id="selectImageList" resultMap="itemAndImageMap">
 	select * from item I left join 
-(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM 
-( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER 
-( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
+	(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM 
+	( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER 
+	( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
 	</select>
 
 <select id="shopCategories" resultMap="itemAndImageMap">
 <![CDATA[
-
-select * from (select v.*, rownum rnum from (select * 
-		from item I left join 
-		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
-		FROM 
-        ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
-		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
-        
-		WHERE TMP.RN = 1) II 
-		on I.item_no=II.item_no
-		order by I.item_no desc, II.item_image_no asc) v) where rnum < 4
+select * 
+  from (
+      select item_type_no, item_image_re_name,item_no
+        from (
+          select I.*, II.item_image_no,II.item_image_origin_name,II.item_image_re_name , ROW_NUMBER() OVER ( PARTITION BY I.item_type_no ORDER BY II.item_image_no ) AS RN2
+            from item I 
+            left join 
+            (
+                SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+                  FROM 
+                    ( SELECT II.*, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN 
+                        FROM  item_image II
+                    ) TMP 
+                 WHERE TMP.RN = 1) II 
+              on I.item_no=II.item_no
+              where I.item_no in('326','89','339')
+           ) v
+         where v.RN2 = 1 and item_type_no in ('itype-001','itype-009','itype-005')
+    )
 ]]>
 
 </select>
