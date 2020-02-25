@@ -41,7 +41,8 @@ function usePoint(){
 	inputPoint.addEventListener('blur', function(){
 		let val = this.value*1;
 		let userPointNum = 0;
-		
+		console.log(memberHavePoint);
+		console.log(val);
 		//유효성검사
 		if(val > memberHavePoint){
 			alert("보유금액 이상 사용은 불가능합니다.");
@@ -296,7 +297,7 @@ function usePoint(){
 									<ul>
 									  <li>
                                 <span class="have-point">보유포인트</span>
-                                <span id="memberHavePoint">:${totalPoint}</span>
+                                <span id="memberHavePoint">${totalPoint}</span>
                             </li>
                             <li>
                                 <span class="use-point">사용포인트</span>
@@ -304,11 +305,11 @@ function usePoint(){
                             
                             </li>
                              <ul class="list-unstyled">
-                        <li>주문상품<span class="ab-right">￦<span id="userItemPrice"></span></span></li>
+                        <li><span class="ab-right"><input type="hidden" id="userItemPrice"></span></span></li>
                   
-                        <li>포인트 사용<span class="em-blue ab-right">￦<span id="userPoint">0</span></span></li>
+                        <li><span class="em-blue ab-right"><input type="hidden" id="userPoint"></span></span></li>
                     		</ul>
-                         <span id="total-point" class="ab-right em-blue">￦<span id="showUsePoint">0</span></span>
+                         <span id="total-point" class="ab-right em-blue"><input type="hidden"  id="showUsePoint"></span></span>
 									
 							
 									</ul>
@@ -499,7 +500,7 @@ function usePoint(){
 				OrderItemCount:orderItemCount,
 				orderItemColor : orderItemColor,
 				orderItemSize : orderItemSize,				
-				usePoint: inputPoint,
+				usePoint: userPoint,
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>
