@@ -2,6 +2,7 @@ package com.connectcloset.cc.item.model.dao;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -181,8 +182,8 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 
 	@Override
-	public int addSearchKeyword(String searchKeyword) {
-		return sqlSession.insert("item.addSearchKeyword", searchKeyword);
+	public int addSearchKeyword(Map<String, String> map) {
+		return sqlSession.insert("item.addSearchKeyword", map);
 	}
 	//===================찬호 끝=======================	
 		

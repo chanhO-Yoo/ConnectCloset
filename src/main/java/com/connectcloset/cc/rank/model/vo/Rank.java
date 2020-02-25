@@ -10,16 +10,18 @@ public class Rank implements Serializable {
 	private int rank;
 	private String searchKeyword;
 	private int count;
+	private int memberNo;
 	
 	public Rank() {
 		super();
 	}
 
-	public Rank(int rank, String searchKeyword, int count) {
+	public Rank(int rank, String searchKeyword, int count, int memberNo) {
 		super();
 		this.rank = rank;
 		this.searchKeyword = searchKeyword;
 		this.count = count;
+		this.memberNo = memberNo;
 	}
 
 	public int getRank() {
@@ -46,14 +48,24 @@ public class Rank implements Serializable {
 		this.count = count;
 	}
 
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public String toString() {
-		return "Rank [rank=" + rank + ", searchKeyword=" + searchKeyword + ", count=" + count + "]";
+		return "Rank [rank=" + rank + ", searchKeyword=" + searchKeyword + ", count=" + count + ", memberNo=" + memberNo
+				+ "]";
 	}
+	
 	
 	
 	

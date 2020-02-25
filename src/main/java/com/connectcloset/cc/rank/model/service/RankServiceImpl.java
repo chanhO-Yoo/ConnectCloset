@@ -15,11 +15,22 @@ public class RankServiceImpl implements RankService {
 	@Autowired
 	RankDAO rankDAO;
 
+	//=====================찬호 시작 ==========================	
 	@Override
 	public List<Rank> searchRank() {
 		return rankDAO.searchRank();
 	}
 
+	@Override
+	public List<Rank> saveKeyword(int memberNo) {
+		return rankDAO.saveKeyword(memberNo);
+	}
 
+	@Override
+	public List<String> searchAuto(String searchKeyword) {
+		return rankDAO.searchAuto(searchKeyword);
+	}
+
+	//=====================찬호 끝 ==========================	
 
 }

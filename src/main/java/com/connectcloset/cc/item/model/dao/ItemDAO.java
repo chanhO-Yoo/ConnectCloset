@@ -1,6 +1,7 @@
 package com.connectcloset.cc.item.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
@@ -57,7 +58,7 @@ public interface ItemDAO {
 	
 	int searchAllItemCount(String searchKeyword);
 	
-	int addSearchKeyword(String searchKeyword);
+	int addSearchKeyword(Map<String, String> map);
 	
 	//------------ 찬호 끝---------------
 
