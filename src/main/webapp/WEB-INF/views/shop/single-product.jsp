@@ -69,6 +69,7 @@
 	if(itemNoList == null){
 		itemNoList=Integer.toString(item.getItemNo());
 	}
+
 	
 	Cookie cookie = new Cookie("itemNoList",URLEncoder.encode((itemNoList),"utf-8"));
 	cookie.setMaxAge(60*60*24);
@@ -81,6 +82,7 @@
 	/* 윤지 끝 */
 	%>
 	
+
 
 
 
@@ -446,20 +448,5 @@ function goLogin(){
 		console.log(header);
 	});
 	
-	/* 윤지 시작 */
-	//랜덤 동영상 추천
-	/* var videoArray = new Array();
-	videoArray[0] = "https://youtu.be/fj_C9T1ariU";
-	videoArray[1] = "https://youtu.be/V5x2FYwlhRo";
-	videoArray[2] = "https://youtu.be/9ac8j3MlV4g";
-	
-	function showVideo(){
-		var videoNum = Math.round(Math.random()*2);
-		var Video = document.getElementById("Video");
-		objVideo.src = videoArray[videoNum];
-		
-		$("Video").attr('src', 'https://youtu.be/fj_C9T1ariU');
-	} */
-	
-	/* 윤지 끝 */
+
 </script>

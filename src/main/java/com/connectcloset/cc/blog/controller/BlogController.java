@@ -17,9 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,11 +31,9 @@ import com.connectcloset.cc.blog.model.service.BlogService;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
-
-
-
 
 /*value로 지정한 이름의 변수들은 session에 담아둔다.*/
 @SessionAttributes(value= {"memberLoggedIn"})
@@ -45,7 +45,6 @@ public class BlogController {
 	@Autowired
 	BlogService blogService;
 	
-	
 	@RequestMapping("/blog/blogList.do")
 	public ModelAndView selectBlogList(ModelAndView mav,
 				@RequestParam(defaultValue="1") int cPage) {
@@ -53,7 +52,7 @@ public class BlogController {
 		final int numPerPage = 10;
 
 		//1.업무로직
-		List<Blog> list = blogService.selectBlogList(cPage, numPerPage);
+		List<BlogAttachVO> list = blogService.selectBlogList(cPage, numPerPage);
 		logger.debug("list={}", list);
 		int totalContents = blogService.selectTotalContents();
 		
@@ -66,12 +65,11 @@ public class BlogController {
 		mav.setViewName("blog/blogList");
 		return mav;
 		}
-	
+
 	@RequestMapping("/blog/blogForm.do")
 		public void blogForm() {
 			logger.debug("게시물등록 페이지 요청");
 	}
-	
 	
 	@RequestMapping("/blog/blogFormEnd.do")
 		public ModelAndView blogFormEnd(ModelAndView mav, Blog blog,@RequestParam(value="upFile", required=false) MultipartFile[] upFile,
@@ -95,6 +93,7 @@ public class BlogController {
 					
 					String originalFileName = f.getOriginalFilename();
 					String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+					logger.debug(ext+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHssSSS");
 					int rndNum = (int)(Math.random()*1000);
 					String renamedFileName = sdf.format(new Date())+"_"+rndNum+ext;
@@ -138,24 +137,29 @@ public class BlogController {
 		return mav;
 	}			
 	@RequestMapping("/blog/blogView.do")
-	public String blogView(Model model, @RequestParam("blogNo") int blogNo) {
+	public ModelAndView blogView(ModelAndView mav, @RequestParam int blogNo) {
+		logger.debug("blogNo############={}",blogNo);
+		BlogAttachVO blog = blogService.blogView(blogNo);
+		logger.debug("blog@@@@@@@@@@@@@@={}",blog);
+		logger.debug("mav@@@@@@@@@@@@@@={}",mav);
+		mav.addObject("blog",blog);
+		mav.setViewName("/blog/blogView");
 		
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+blogNo);
-		Blog blog = blogService.selectOneBlog(blogNo);
+		return mav;
 		
-		List<Attachment> attachmentList = blogService.selectAttachmentList(blogNo);
-		
-		model.addAttribute("blog", blog);
-		model.addAttribute("attachmentList",attachmentList);
-		
-		return "blog/blogView";
 	}
 	
-	@RequestMapping("/blog/blogViewCollection.do")
-	public void blogViewCollection(Model model, @RequestParam("blogNo") int blogNo) {
-		
-		BlogAttachVO blog = blogService.selectOneBlogCollection(blogNo);
-		
-		model.addAttribute("blog",blog);
+
+	
+	//==================하은 인덱스 블로그 시작 =====================
+	@GetMapping("/blogShow.do")
+	@ResponseBody
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex){
+	 List<AttachmentIndex>	list = blogService.blogShow(attachmentIndex);
+	 
+	 logger.debug("blogShow@@@@@@@@@@@@@@@={}", attachmentIndex);
+	 return list;
 	}
+	
+	//==================하은 인덱스 블로그 끝 =====================
 }

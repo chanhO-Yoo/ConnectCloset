@@ -1,6 +1,8 @@
 package com.connectcloset.cc.mypage.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.model.vo.Member;
@@ -42,7 +44,7 @@ public interface MyPageDAO {
 
 	int selectDeli3ByMemberNo(int memberNo);
 
-	List<OrderProduct> selectSearchDateList(int startDate);
+	List<OrderProduct> selectSearchDateList(HashMap<String, Integer> map);
 
 	//---------- 희진 주문내역 끝--------------------
 
@@ -61,6 +63,8 @@ public interface MyPageDAO {
 	int pQnAEnrollEnd(PersonalQna pQnA);
 
 	List<PersonalQnaAns> mypagePQnaAns(int pQnaNo);
+
+	List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map);
 
 	//------------주영 1:1 문의---------------------
 

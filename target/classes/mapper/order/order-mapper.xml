@@ -29,11 +29,15 @@
 		</collection>
 	</resultMap>
 	
-	<resultMap type="couponList" id="couponListMap">
-	
+	<resultMap type="OrderProduct" id="orderProductMap">
+		
 	</resultMap>
 	
-	<resultMap type="OrderProduct" id="orderProductMap">
+	<resultMap type="OrderProduct2" id="orderProduct2Map">
+		
+	</resultMap>
+	
+	<resultMap type="ItemImage" id="itemImageMap">
 		
 	</resultMap>
 	
@@ -56,10 +60,17 @@
 	<!-- 희진 끝 -->
 	
 	<!-- 기간별조회 -->
-	<select id="selectSearchDateList" resultMap="memberCollectionMap">
+	<select id="selectSearchDateList" resultMap="orderProduct2Map" >
 		<![CDATA[
-		select * from order_product, item
-		where  order_product.item_no = item.item_no and order_date > sysdate-#{startDate}
+		select * from order_product, item, item_Image
+		where order_product.member_no = #{memberNo} and order_product.item_no = item.item_no and item.item_no = item_image.item_no(+) and order_date > sysdate-#{startDate}
+		order by order_date desc
+		]]>
+	</select>
+	<select id="selectSearchAllList" resultMap="orderProduct2Map" >
+		<![CDATA[
+		select * from order_product, item, item_Image
+		where  order_product.member_no = #{memberNo} and order_product.item_no = item.item_no and item.item_no = item_image.item_no(+)
 		order by order_date desc
 		]]>
 	</select>
