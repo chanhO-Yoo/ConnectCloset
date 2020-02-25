@@ -71,13 +71,13 @@
                 				<img/>
                 			</a>
                 			<div class='shop-categories category1'>
-                				<a href='#'>ACCESSORIES</a>
+                				<a href='${pageContext.request.contextPath}/shop/bottomList.do'>PANTS</a>
                 			</div>
                 		</div>
                 	</div>
                 	<div class='shop-wrap'>
                 		<div class='shop-img zoom-hover'>
-                			<a class="image2" href='single-product.html'>
+                			<a class="image2" href='${pageContext.request.contextPath}/shop/shoesList.do'>
                 				<img/>
                 			</a>
                 			<div class='shop-categories category2'>
