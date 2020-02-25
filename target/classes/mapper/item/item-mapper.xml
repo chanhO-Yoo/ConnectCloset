@@ -60,7 +60,7 @@ select *
               on I.item_no=II.item_no
               where I.item_no in('326','89','339')
            ) v
-         where v.RN2 = 1 and item_type_no in ('itype-001','itype-009','itype-005')
+         where v.RN2 = 1 and item_type_no in ('itype-001','itype-009','itype-004')
     )
 ]]>
 
