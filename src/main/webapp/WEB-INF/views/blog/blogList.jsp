@@ -347,7 +347,7 @@
                                 </form>
                             </div>
                             <div class="sidebar-widget mb-55">
-                                <h4 class="pro-sidebar-title">Recent Projects </h4>
+                     <%--            <h4 class="pro-sidebar-title">Recent Projects </h4>
                                 <div class="sidebar-project-wrap mt-30">
                                     <div class="single-sidebar-project">
                                         <div class="sidebar-project-img">
@@ -376,9 +376,9 @@
                                             <h4><a href="#">Space Tesla Design</a></h4>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --%>
                             </div>
-                            <div class="sidebar-widget">
+                          <!--   <div class="sidebar-widget">
                                 <h4 class="pro-sidebar-title">Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
@@ -388,7 +388,63 @@
                                         <li><a href="#">Photography  <span>(16)</span></a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
+                            
+<!--==============================================성준 채팅 시작  -->       
+
+<script>
+$(()=>{
+	console.log("jquery로딩 완료");
+	$("#btn-connect").click(()=>{
+		var $userId = $("#userId");
+		if($userId.val().trim().length==0) return;
+		
+		location.href = "<%=request.getContextPath()%>/chat/chatRoom?userId="+$userId.val().trim();
+	})
+})
+</script>
+<tbody>
+	 <h4 font-><a href="#"><i class="fa fa-twitter" ></i>Cc Chat</a></h4>
+
+	
+	<div class="input-container">
+		<input type="text" id="userId" placeholder="접속아이디"   style="width:235px;height:30px;"/>
+		<button id="btn-connect">접속</button>
+	</div>
+</tbody>
+
+<style>
+#talk{
+font-family: fantasy;
+font-size: 40px;
+}
+#btn-connect {
+ padding-bottom: 40px;
+  display: inline-block;
+  padding: .5em .75em;
+  color: #fff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #5cb85c;
+  cursor: pointer;
+  border: 1px solid #4cae4c;
+  border-radius: .25em;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+   padding: 20px 4;
+  background: #F18C7E;
+ float: right;"
+}
+
+#btn-connect:hover {
+  background-color: #6ed36e;
+}
+
+
+</style>
+ <!--==============================================성준 채팅 끝  -->   
+                            
 
 <!-- <style>
 .chat_list_wrap {

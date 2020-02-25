@@ -181,70 +181,22 @@
 
 
 
- <!--==============================================성준 채팅 시작  -->       
-<title>WebSocket</title>
-
-<script>
-$(()=>{
-	console.log("jquery로딩 완료");
-	$("#btn-connect").click(()=>{
-		var $userId = $("#userId");
-		if($userId.val().trim().length==0) return;
-		
-		location.href = "<%=request.getContextPath()%>/chat/chatRoom?userId="+$userId.val().trim();
-	})
-})
-</script>
-<tbody>
-	<h1>채팅</h1>
-
-	
-	<hr />
-	
-	<div class="input-container">
-		<input type="text" id="userId" placeholder="접속아이디" />
-		<button id="btn-connect">접속</button>
-	</div>
-</tbody>
- <!--==============================================성준 채팅 끝  -->         
-
-<!-- <script>
-function NaverKeyWord(){
-    $Curl = curl_init();
-    curl_setopt($Curl, CURLOPT_URL, "https://datalab.naver.com/keyword/realtimeList.naver?where=main");
-    curl_setopt($Curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($Curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-    $Result = curl_exec($Curl);
-    $RandList = explode("<ul class=\"rank_list\">", $Result);
-    $RandList = explode("</ul>", $RandList[1]);
-    $Rand[0] = explode("<span class=\"title\">", $RandList[0]);
-    for($i=1; $i < count($Rand[0]); $i++){
-    $Rand[1] = explode("</span>", $Rand[0][$i]);
-        $ReturnData = trim(strip_tags($Rand[1][0]));
-        if($ReturnData){
-            $Return[] = $ReturnData;
-        }
-    }
-    return $Return;
-}
-$NaverKeyWord = NaverKeyWord();
-print_r($NaverKeyWord);
-​</script> -->
+       
 
 
-<!-- 날씨  --> 
+<!--------------------------------- 성준날씨  ----------------------------------> 
         <div class="discount-area pb-120">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-7 col-md-6">
-                        <div class="discount-img">
+                  <div class="col-lg-7 col-md-6"> 
+                      
                           <div id="current">
     	<h4><bold>HOW'S WEATHER TODAY?</bold></h4>
     	
 ​     <c:set var="temp" value="${Math.floor((data.main.temp - 273.15))}"/> 
 
 
-    	<table border="1" class="weather">
+    	<table  class="weather">
      		
    
        			 <tr>
@@ -261,21 +213,33 @@ print_r($NaverKeyWord);
       					<tbody id="current_mytbody"></tbody>
    				 </table>
   			</div>
-		</div>
-     </div>
-              
+		
+    </div> 
+             
+      
     <style>  
 .weather {
-  border-collapse: collapse;
+  border-style: collapse;
+  /* background: #ddd; */
 }  
 .weather tr {
-  padding: 13px;
+ /*  padding: 13px;
   color: #168;
   border-bottom: 3px solid #168;
-  text-align: center;
+  text-align: center; */
+   padding: 10px;
+  color: #168;
+  border-bottom: 3px solid #168;
+  text-align: left;
 }
 .weather td {
+/*   width : 93px;
   color: #669;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border: 1px solid #333333; */
+  width : 93px;
+    color: #669;
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
@@ -284,13 +248,17 @@ print_r($NaverKeyWord);
 }
 </style> 
                
-                    <div class="col-lg-5 col-md-6">
+                    <div class="col-lg-5 col-md-6"> 
                      <c:set var = "Temp" scope = "session" />
                         <div class="discount-content">
-                            <h2> Fit for today's weather <br><span id="temp"></span>℃ </h2>
+                            <h2 style="font-size:35px"> Fit for today's weather ? <br>
+                             &nbsp
+                              <span id="temp"  ></span>℃ </h2>
+                          
 									
+								
                             <p class="bright-color">
-										Connect Closet is ready for you to worry about what to wear every day. 
+										Connect Closet is ready for you to worry about what to wear every day.<br> 
 											Flex your clothes into your closet to match the weather and temperature of the day.</p>
                            
                            
@@ -330,7 +298,7 @@ print_r($NaverKeyWord);
                             
                             
                         </div>
-                  	</div>
+                  	 </div> 
                 </div>
             </div>
         </div>
@@ -353,7 +321,7 @@ print_r($NaverKeyWord);
               day = "0"+day;
           }
 
-          var today = year+"년 "+month+"월 "+day+"일 ";
+          var today = month+"/"+day;
           return today;
         }
         
@@ -390,7 +358,7 @@ print_r($NaverKeyWord);
       });
     </script>
     
-
+<!----------------------------------------------- 날씨 끝 -------------------------------------  -->
 <!--하은 블로그 시작  -->
         <div class="blog-area gray-bg pt-120 pb-90">
             <div class="container">
