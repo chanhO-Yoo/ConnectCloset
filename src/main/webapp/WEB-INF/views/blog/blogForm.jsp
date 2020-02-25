@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/common/header2.jsp">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param value="게시글 작성" name="pageTitle"/>
 </jsp:include>
 
@@ -91,5 +91,11 @@ $(function(){
 				   .html(fileName);
 			
 	});
+});
+</script>
+<script>
+$(document).ready(function(){
+    var header=$("header").attr('class','theme-bg');
+    console.log(header);
 });
 </script>

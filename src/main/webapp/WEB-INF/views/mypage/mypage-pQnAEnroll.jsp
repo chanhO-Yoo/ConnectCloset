@@ -8,7 +8,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <div class="mypage-pQnAForm-area pt-180 pb-180">
 	<div class="row">
@@ -73,3 +73,9 @@
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+$(document).ready(function(){
+    var header=$("header").attr('class','theme-bg');
+    console.log(header);
+});
+</script>
