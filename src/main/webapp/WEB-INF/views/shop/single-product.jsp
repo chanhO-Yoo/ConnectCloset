@@ -98,6 +98,7 @@ $("#btn-goOrder").on('click', function(){
 	let orderCount = document.querySelector("#orderItemCount").value;
 	var orderSize = $("#SizeSelect:checked").val();
 	var orderColor= $("#colorSelect:checked").val();
+	var memberNo= ${memberLoggedIn.memberNo}
 
 	console.log(orderColor);
 		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
@@ -121,7 +122,7 @@ $("#btn-goOrder").on('click', function(){
 			} 
 		}); */
 	
-		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor;
+		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor+"&memberNo="+memberNo;
 	}); 
 	
 function changeOrderNo(num){
