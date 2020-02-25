@@ -77,11 +77,11 @@
                 	</div>
                 	<div class='shop-wrap'>
                 		<div class='shop-img zoom-hover'>
-                			<a class="image2" href='${pageContext.request.contextPath}/shop/shoesList.do'>
+                			<a class="image2" href='single-product.html'>
                 				<img/>
                 			</a>
                 			<div class='shop-categories category2'>
-                				<a href='#'>SHOES</a>
+                				<a href='${pageContext.request.contextPath}/shop/shoesList.do'>SHOES</a>
                 			</div>
                 		</div>
                 	</div>
