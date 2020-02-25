@@ -107,20 +107,18 @@ if(ck!=null){
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+#shop-img {
+	height: 300px !important;
+}
+
+.pro-col-40 .row div[class^="col-"] {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+</style>
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
-                    <h2>Shop</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="active">Shop Grid with Sidebar </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <!-- main-search start -->
         <div class="main-search-active">
             <div class="sidebar-search-icon">
@@ -230,7 +228,6 @@ if(ck!=null){
                                     </button>
                                 </form>
                             </div>
-
                             <div class="sidebar-widget">
 								<h4 class="pro-sidebar-title">Categories</h4>
                                 <div class="sidebar-categori mt-25">
@@ -357,6 +354,9 @@ $(()=>{
 	});
 });
 
-
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
 </script>
 
