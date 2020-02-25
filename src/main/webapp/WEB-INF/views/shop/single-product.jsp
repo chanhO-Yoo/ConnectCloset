@@ -353,7 +353,6 @@ function goLogin(){
                 <div class="description-review-wrapper">
                     <div class="description-review-topbar nav">
                         <a class="active" data-toggle="tab" href="#des-details1">Description</a>
-                        <a data-toggle="tab" href="#des-details2">Additional information</a>
                         <a data-toggle="tab" href="#des-details3">Reviews</a>
                         <a data-toggle="tab" href="#des-details4">QnA</a>
                     </div>
