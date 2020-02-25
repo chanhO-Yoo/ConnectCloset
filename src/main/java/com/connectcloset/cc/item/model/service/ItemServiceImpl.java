@@ -14,6 +14,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -182,9 +183,18 @@ public class ItemServiceImpl implements ItemService{
 
 	@Override
 	public List<ItemQna> itemQnaList(int itmeNo) {
-		// TODO Auto-generated method stub
 		return itemDAO.itemQnaList(itmeNo);
 	}
+
+	@Override
+	public List<ItemQnaAns> ItemQnaAnsList() {
+		return itemDAO.itemQnaAnsList();
+	}
+
+
+
+	
+
 
 		
 }		

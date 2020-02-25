@@ -6,6 +6,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 
 public interface ItemService {
 
@@ -65,6 +66,9 @@ public interface ItemService {
 	int insertQna(ItemQna itemQna);
 
 	List<ItemQna> itemQnaList(int itmeNo);
+
+	List<ItemQnaAns> ItemQnaAnsList();
+
 
 
 

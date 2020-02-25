@@ -11,6 +11,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -177,6 +178,11 @@ public class ItemDAOImpl implements ItemDAO {
 	public List<ItemQna> itemQnaList(int itmeNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("item.itemQnaList",itmeNo);
+	}
+
+	@Override
+	public List<ItemQnaAns> itemQnaAnsList() {
+		return sqlSession.selectList("item.itemQnaAnsList");
 	}
 	
 	

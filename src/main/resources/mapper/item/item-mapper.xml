@@ -267,6 +267,14 @@
 	where item_no = #{itemNo}
 	</select>
 	<resultMap type="ItemQna" id="itemQnaListMap"></resultMap>
+	
+		<select id="itemQnaAnsList" resultMap="itemQnaAnsListMap">
+	select * from item_qna_ans
+
+	</select>
+	<resultMap type="ItemQnaAns" id="itemQnaAnsListMap"></resultMap>
+	
+	
 	<!-- 하라 상품 상세보기 - QnA 끝 -->
 
 </mapper>

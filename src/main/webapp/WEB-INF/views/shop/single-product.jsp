@@ -328,7 +328,11 @@
 													</button>
 													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
 													  <div class="well">
-													    답변 작성중이공
+													   <c:forEach items="${itemQnaAnsList}" var="itemQnaAns" varStatus="vs">
+													   <c:if test="${itemQna.itemQnaNo == itemQnaAns.itemQnaNo}">
+														${itemQnaAns.itemQnaAnsContent}
+													   </c:if>
+													   </c:forEach>
 													  </div>
 													</div>
                                                 </div>

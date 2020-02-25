@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.blog.model.exception.BlogException;
 import com.connectcloset.cc.blog.model.vo.Attachment;
 import com.connectcloset.cc.blog.model.vo.Blog;
@@ -30,6 +31,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 
 @Controller
 public class ItemController {
@@ -38,6 +40,8 @@ public class ItemController {
 	
 	@Autowired
 	ItemService itemService;
+	
+
 	
 	//===================희진  새로나온 상품시작======================
 	
@@ -81,9 +85,12 @@ public class ItemController {
 		
 		List<ItemQna> itemQnaList = itemService.itemQnaList(itmeNo);
 		logger.debug("@@@@@@itemQnaList={}", itemQnaList);
-		
+
+		List<ItemQnaAns> itemQnaAnsList = itemService.ItemQnaAnsList();
+		logger.debug("iQtemnaAnsList={}",itemQnaAnsList);
 		
 		mav.addObject("itemQnaList",itemQnaList);
+		mav.addObject("itemQnaAnsList",itemQnaAnsList);
 
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
@@ -98,6 +105,8 @@ public class ItemController {
 	//===================주영 상세보기 끝======================
 	
 	//===================하라 상세보기 - Qna 시작 ======================
+	
+	
 	@RequestMapping("/qna/qnaFormEnd.do")
 		public ModelAndView qnaFormEnd(ModelAndView mav, ItemQna itemQna,HttpServletRequest request) {
 		

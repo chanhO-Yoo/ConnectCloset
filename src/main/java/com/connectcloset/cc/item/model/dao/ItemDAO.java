@@ -6,6 +6,7 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 
 
 public interface ItemDAO {
@@ -63,6 +64,9 @@ public interface ItemDAO {
 
 
 	List<ItemQna> itemQnaList(int itmeNo);
+
+
+	List<ItemQnaAns> itemQnaAnsList();
 
 
 	
