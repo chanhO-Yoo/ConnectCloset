@@ -28,6 +28,8 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.member.controller.MemberController;
 import com.connectcloset.cc.member.model.service.MemberService;
 import com.connectcloset.cc.member.model.vo.Member;
+import com.connectcloset.cc.member.model.vo.Point;
+import com.connectcloset.cc.mypage.model.service.MyPageService;
 import com.connectcloset.cc.order.model.service.OrderService;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -53,6 +55,8 @@ public class OrderCheckoutCotroller {
 	
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	MyPageService myPageService;
 
 	//================하은 시작======================
 	@RequestMapping("/shop/checkout.do")
@@ -61,7 +65,9 @@ public class OrderCheckoutCotroller {
 								@RequestParam int itemNo 
 								,@RequestParam int orderCount 
 								,@RequestParam("orderColor") String orderColor
-								,@RequestParam("orderSize") String orderSize) {		
+								,@RequestParam("orderSize") String orderSize
+								,@RequestParam("memberNo") int memberNo
+								) {		
 		
 		//int itemNo = 41;
 		//logger.info("itemNo={}",itemNo);
@@ -69,8 +75,11 @@ public class OrderCheckoutCotroller {
 		List<Item> item = itemService.selectItemNumber(itemNo);
 		//logger.debug("itemNo={}",itemNo);
 		
+		int totalPoint =myPageService.selectoneTotalPoint(memberNo);
+		
 		
 		mav.addObject("itemList",item);
+		mav.addObject("totalPoint",totalPoint);
 		mav.addObject("orderCount",orderCount);
 		mav.addObject("orderSize",orderSize);
 		mav.addObject("orderColor",orderColor);
@@ -94,13 +103,15 @@ public class OrderCheckoutCotroller {
 		String orderItemSize = (String)request.getParameter("orderItemSize");
 		String[] itemNoList = (String[])request.getParameterValues("itemNoList");
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		int usePoint = Integer.parseInt(request.getParameter("usePoint"));
 		
 		
 		
-		logger.debug("itemNoList.length={}",itemNoList.length);
+	/*	logger.debug("itemNoList.length={}",itemNoList.length);
 		logger.debug("OrderItemCount!@#!={}",OrderItemCount);
 		logger.debug("orderItemColor!@#={}",orderItemColor);
-		logger.debug("orderItemSize!@#={}",orderItemSize);
+		logger.debug("orderItemSize!@#={}",orderItemSize);*/
+		logger.debug("usePoint={}",usePoint);
 		
 		for(int i=0;i<itemNoList.length;i++) {
 			logger.debug("@@@@@@itemNoList[]={}",itemNoList[i]);
@@ -119,6 +130,7 @@ public class OrderCheckoutCotroller {
 			op.setImpUid(impUid);
 			op.setItemNo(orderItemNo);
 			op.setMemberNo(memberNo);
+			op.setOrderUsePoint(usePoint);
 			
 			
 			logger.debug("orderProduct={}",op);

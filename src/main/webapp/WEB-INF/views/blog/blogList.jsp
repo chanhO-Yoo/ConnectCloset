@@ -9,19 +9,6 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content text-center">
-                    <h2>Blog</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="active">Blog </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
        
         <div class="blog-area pt-80 pb-80 gray-bg-4 container-padding-res blog-sidebar-page">
             <div class="container">
@@ -534,3 +521,9 @@ ConnectClost Chat
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
+</script>

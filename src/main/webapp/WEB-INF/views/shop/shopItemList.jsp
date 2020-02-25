@@ -6,6 +6,28 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<style>
+#shop-img {
+	height: 300px;
+}
+
+.shop-area-wrapper {
+	padding-left: 30px;
+	width: 1250px;
+}
+
+
+.pro-sidebar-search-form {
+	width: 180px;
+}
+
+#item-side-bar {
+	padding-left: 130px;
+}
+
+
+</style>
+
 <%
 	//쿠키 가져오기
 	Cookie[] ck =request.getCookies();
@@ -81,23 +103,22 @@ if(ck!=null){
 }
 %>
 
+
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+#shop-img {
+	height: 300px !important;
+}
+
+.pro-col-40 .row div[class^="col-"] {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+</style>
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
-                    <h2>Shop</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="active">Shop Grid with Sidebar </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <!-- main-search start -->
         <div class="main-search-active">
             <div class="sidebar-search-icon">
@@ -154,16 +175,16 @@ if(ck!=null){
         </div>
         <div class="shop-area pt-80 pb-80 pro-col-40 section-padding-1">
             <div class="container-fluid">
-            <p>총 ${totalContents }개의 상품이 있습니다.</p>
+            <p id="p">총 ${totalContents }개의 상품이 있습니다.</p>
                 <div class="row">
-                    <div class="col-xl-10 col-lg-8">
+                    <div class="col-xl-9 col-lg-8">
                         <div class="shop-area-wrapper">
                             <div class="row grid" data-show="9" data-load="3">
                             
                             <c:forEach items="${list }" var="item">
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 item-hidden grid-item">
                                     <div class="shop-wrap mb-40">
-                                        <div class="shop-img">
+                                        <div class="shop-img" id="shop-img">
                                             <a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${item.itemNo}">
                                             	<c:if test="${item.imageList[0].itemImageReName == null }">
 		                                        	<img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
@@ -197,30 +218,18 @@ if(ck!=null){
                     		</div>
                     	</div>
                     </div>
-                    <div class="col-xl-2 col-lg-4">
+                    <div class="col-xl-2 col-lg-4" id="item-side-bar">
                         <div class="shop-sidebar-style pl-10 port-mrg-res sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
                                 <form class="pro-sidebar-search-form" action="#">
-                                    <input type="text" placeholder="Search here...">
+                                    <input type="text" placeholder="Search here">
                                     <button>
                                         <i class="ti-search"></i>
                                     </button>
                                 </form>
                             </div>
-                            <div class="sidebar-widget mb-55">
-                                <h4 class="pro-sidebar-title">Shop Filter </h4>
-                                <div class="price_filter mt-25">
-                                    <div id="slider-range"></div>
-                                    <div class="price_slider_amount">
-                                        <div class="label-input">
-                                            <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
-                                        </div>
-                                        <button type="button">Filter</button> 
-                                    </div>
-                                </div>
-                            </div>
                             <div class="sidebar-widget">
-								<h4 class="pro-sidebar-title">Product Categories </h4>
+								<h4 class="pro-sidebar-title">Categories</h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>
                                     	<c:if test="${sort == 1}">
@@ -261,18 +270,7 @@ if(ck!=null){
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget mt-55">
-                                <div class="facebook-banner-wrap default-overlay-2">
-                                    <a href="#"><img src="${pageContext.request.contextPath }/resources/img/banner/banner-18.jpg" alt=""></a>
-                                    <div class="shop-offer">
-                                        <h4>80</h4>
-                                        <div class="offer-percent-wrap">
-                                            <span class="offer-percent">%</span>
-                                            <span class="offer-off">OFF</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         </div>
                     </div>
@@ -294,30 +292,6 @@ if(ck!=null){
 <script>
 var currentPosition = parseInt($("#sidebox").css("top")); $(window).scroll(function() { var position = $(window).scrollTop(); $("#sidebox").stop().animate({"top":position+currentPosition+"px"},1000); });
 </script>
-쿠키테스트 : 
-<%-- <%
-if(ck!=null){
-	for(Cookie c : ck){
-		if(c.getName().indexOf("itemNoList") != -1){
-			
-			String[] itemNoArr = URLDecoder.decode(c.getValue(),"UTF-8").split(",");
-			if(itemNoArr.length <= 5){
-				for(int j=0;j<itemNoArr.length;j++) {
-					newItemNoList = newItemNoList+","+itemNoArr[j];
-				}
-			}
-			else{
-				for(int j=0;j<5;j++) {
-					newItemNoList = newItemNoList+","+itemNoArr[j];
-				}
-			}
-			newItemNoList = newItemNoList.substring(1);
-			
-			out.println(newItemNoList);
-		}
-	}
-}
-%> --%>
 <script>
 $(()=>{
 	var newItemNoList = "<%=newItemNoList%>";
@@ -356,6 +330,9 @@ $(()=>{
 	});
 });
 
-
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
 </script>
 

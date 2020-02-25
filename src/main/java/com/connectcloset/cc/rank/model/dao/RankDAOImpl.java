@@ -20,6 +20,16 @@ public class RankDAOImpl implements RankDAO {
 		return sqlSession.selectList("item.searchRank");
 	}
 
+	@Override
+	public List<Rank> saveKeyword(int memberNo) {
+		return sqlSession.selectList("item.saveKeyword",memberNo);
+	}
+
+	@Override
+	public List<String> searchAuto(String searchKeyword) {
+		return sqlSession.selectList("item.searchAuto","%"+searchKeyword+"%");
+	}
+
 
 	//=====================찬호 끝 ==========================
 }

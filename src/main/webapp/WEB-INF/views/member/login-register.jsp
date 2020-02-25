@@ -9,24 +9,12 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<style>
+	span.guide {display:none;font-size: 12px;position:absolute; top:12px; right:10px;}
+	span.ok{color:green;}
+	span.error{color:red;}
+</style>
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-4.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
-                    <h2>Shortcodes</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="index.html">Shortcodes </a>
-                        </li>
-                        <li class="active"> Login/Register </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         
         
         <div class="shortcode-login-regi-area pt-113 pb-120 black-bg-4">
@@ -72,15 +60,15 @@
                                     </div>
                                     <div id="register" class="tab-pane">
                                         <div class="login-register-form">
-                                            <form action="${pageContext.request.contextPath }/member/enrollMember.do" method="post">
+                                            <form action="${pageContext.request.contextPath }/member/enrollMember.do" method="post" onsubmit="return enrollValidate();">
 	                                            <div class="form-group row">
 													<label for="memberEmail" class="col-sm-2 col-form-label">이메일</label>
-													<div class="col-sm-7">
+													<div class="col-sm-10">
 													    <input type="email" class="form-control-plaintext" id="memberEmail" name="memberEmail" placeholder="email@example.com">
+													    <span class="guide ok">이 아이디는 사용가능합니다.</span>
+														<span class="guide error">이 아이디는 사용중입니다.</span>
+														<input type="hidden" id="idValid" value="0" />
 													</div>
-												    <div class="col-sm-3">
-												    	<button type="button" class="btn btn-info btn-lg" style="height:45px;">중복확인</button>
-												    </div>
 												</div>
 												<div class="form-group row">
 												    <label for="memberPassword" class="col-sm-2 col-form-label">비밀번호</label>
@@ -206,6 +194,80 @@
             }
         }).open();
     }
+    
+    
+    //회원가입 비밀번호/아이디 검사
+	$(function(){
+		
+		$("#memberPasswordCheck").blur(function(){
+			var p1=$("#memberPassword").val(), p2=$("#memberPasswordCheck").val();
+			if(p1!=p2){
+				alert("패스워드가 일치하지 않습니다.");
+				$("#memberPassword").focus();
+			}
+		});
+		
+		$("#memberEmail").keyup(function(){
+			var memberEmail = $(this).val().trim();
+			
+			if(memberEmail.length < 6){
+				//아이디 재작성하는 경우 포함
+				$(".guide").hide();
+				$("#idValid").val(0);
+				return;
+			}
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/member/checkIdDuplicate.do",
+				data: {memberEmail: memberEmail},
+				dataType: "json",
+				success: data => {
+					console.log(data);
+					
+					if(data.isUsable == true){
+						$(".guide.error").hide();
+						$(".guide.ok").show();
+						$("#idValid").val(1);
+					}
+					else{
+						$(".guide.error").show();
+						$(".guide.ok").hide();
+						$("#idValid").val(0);
+					}
+				},
+				error: (jqxhr, textStatus, errorThrown) =>{
+					console.log("ajax요청실패!",jqxhr, textStatus, errorThrown)
+				}
+				
+				
+			});
+			
+		})
+		
+		
+	});
+	
+		function enrollValidate(){
+			var emailRegExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			
+			var memberEmail = document.getElementById("memberEmail");
+			
+			console.log(emailRegExp.test(memberEmail.value));
+			
+			if(!emailRegExp.test(memberEmail.value)){
+				alert("아이디가 올바르지 않습니다..");
+				return false;
+			}
+			
+			//아이디 중복검사 여부
+			if($("#idValid").val() ==0){
+				alert("아이디 중복검사 해주세요.");
+				return false;
+			}
+			
+			return true;
+		}
+
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

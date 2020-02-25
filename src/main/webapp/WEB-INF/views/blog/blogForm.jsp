@@ -28,7 +28,7 @@ div#blog-container label.custom-file-label{text-align:left;}
 <br>
 <br>
 <br>
-
+<!-- 	==================== 하라 시작 ========================= -->
 
 <div id="blog-container">
 	<form name="blogFrm" action="${pageContext.request.contextPath}/blog/blogFormEnd.do" method="post" enctype="multipart/form-data" onsubmit="return validate();">

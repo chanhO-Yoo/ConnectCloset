@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="video">
+
+	<select id="selectVideoList" resultMap="videoMap">
+	select * from (select * from video order by dbms_random.value) where <![CDATA[ rownum <= 26 ]]>	
+	</select>
+	
+	<resultMap type="Video" id="videoMap" >
+	
+	</resultMap>
+
+</mapper>
