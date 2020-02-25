@@ -19,6 +19,60 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function(){
+function usePoint(){
+	console.log("usePoint");
+	//포인트관련 변수
+	let memberHavePoint = document.querySelector("#memberHavePoint").innerText;
+	memberHavePoint = memberHavePoint.replace(",", "").replace("원", "")*1;
+	let inputPoint = document.querySelector("#inputPoint"); //사용할 포인트 입력태그
+
+	let showUsePoint = document.querySelector("#showUsePoint"); //결제금액 사용포인트란
+	let userPoint = document.querySelector("#userPoint"); //최종결제금액 포인트사용란
+	
+	//최종결제금액 변수
+	let userItemPrice = document.querySelector("#userItemPrice").innerText.replace(",","")*1; //주문상품
+
+	let userTotalPrice = document.querySelector("#userTotalPrice"); //총 결제금액
+	
+	//사용자가 포인트 입력한 후
+	inputPoint.addEventListener('blur', function(){
+		let val = this.value*1;
+		let userPointNum = 0;
+		console.log(memberHavePoint);
+		console.log(val);
+		//유효성검사
+		if(val > memberHavePoint){
+			alert("보유금액 이상 사용은 불가능합니다.");
+			this.value = memberHavePoint;
+			showUsePoint.innerText = memberHavePoint.toLocaleString();
+			userPoint.innerText = memberHavePoint.toLocaleString();
+			
+			
+			//총결제금액
+			userPointNum = userPoint.innerText.replace(",", "");
+			userTotalPrice.innerText = (totalPrice-userPointNum).toLocaleString();
+			return;
+		}
+		
+		
+		showUsePoint.innerText = val.toLocaleString();
+		userPoint.innerText = val.toLocaleString();
+		
+		//총결제금액
+		userPointNum = userPoint.innerText.replace(",", "");
+		userTotalPrice.innerText = (totalPrice-userPointNum).toLocaleString();
+	});
+	
+
+	
+}
+ usePoint(); //포인트 계산
+});
+
+</script>
 <!-- breadcrumb area -->
 <div class="breadcrumb-area bg-img pt-230 pb-152"
 	style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
@@ -52,7 +106,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 						<div class="col-lg-6 col-md-6">
 							<div class="billing-info mb-25">
 								<label>이름</label> <input type="text" name="memeberName"
-									" value="${memberLoggedIn.memberName}" />
+									 value="${memberLoggedIn.memberName}" />
 							</div>
 						</div>
 						<!--  <div class="col-lg-12">
@@ -223,8 +277,8 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 								<div class="your-order-middle" id="your-order-middle">
 									<ul>
 										<c:forEach items="${itemList}" var="item" varStatus="vs">
-											<c:set var="totalPrice"
-												value="${item.itemPrice + item.itemStock}" />
+											 <c:set var="totalPrice"
+												value="${item.itemPrice*orderCount }" /> 
 											<li><span class="order-middle-left"><span
 													id="itemName" class="order-name">${item.itemName }</span> X
 													
@@ -239,11 +293,32 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 										<li>사이즈:${orderSize}</li>
 									</ul>
 								</div>
+								<div class="your-order-totalPoint">
+									<ul>
+									  <li>
+                                <span class="have-point">보유포인트</span>
+                                <span id="memberHavePoint">${totalPoint}</span>
+                            </li>
+                            <li>
+                                <span class="use-point">사용포인트</span>
+                                <input type="text" id="inputPoint" class="text-right" value="0">
+                            
+                            </li>
+                             <ul class="list-unstyled">
+                        <li><span class="ab-right"><input type="hidden" id="userItemPrice"></span></span></li>
+                  
+                        <li><span class="em-blue ab-right"><input type="hidden" id="userPoint"></span></span></li>
+                    		</ul>
+                         <span id="total-point" class="ab-right em-blue"><input type="hidden"  id="showUsePoint"></span></span>
+									
+							
+									</ul>
+								</div>
 								<div class="your-order-total">
 									<ul>
 										<li class="order-total">Total</li>
-										<li><span><fmt:formatNumber value="${totalPrice*orderCount  }"
-													groupingUsed="true" type="currency" /></span></li>
+									<li><span id="userTotalPrice"></span></li> 
+										
 										<input type="hidden" id="totalPrice" value="${totalPrice*orderCount}"></input>
 										<input type="hidden" id="orderItemColor" value="${orderColor}"></input>
 										<input type="hidden" id="orderItemSize" value="${orderSize}"></input>
@@ -348,37 +423,44 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 <script>
 
 	var itemNoArr = new Array();
+	var totalPrice =$('#totalPrice').val();
+
+
 	
 	<%for(int i=0;i<itemList.size();i++){%>
 	
 		itemNoArr[<%=i%>]=<%=itemList.get(i).getItemNo()%>;
 	
 	<%}%>
+
 	
 	itemNoArr[1] = 170;
 	
 	console.log(itemNoArr);
 	
 	$("#push_module").click(function () {
+		//사용 포인트
+
 		
 		var itemName = $('#itemName')[0].innerText; 
-		var totalPrice =$('#totalPrice').val();
 		var orderItemColor =$('#orderItemColor').val();
 		var orderItemSize =$('#orderItemSize').val();
 		var orderItemCount =$('#orderItemCount').val();
+		var userPoint =$('#inputPoint').val();
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
-		
-		
+		let userTotalPrice = document.querySelector("#userTotalPrice").innerText.replace(",", "")*1; //총 결제금액		
+		console.log(userTotalPrice)
 		var $radioChk = $("input[type=radio]:checked").val();
 		//결제수단 선택 유효성
 		if($radioChk===undefined){
 			alert("결제수단을 선택해주세요.");
 			return;
 		}
-			
+	
 		console.log(itemName);
-		console.log(totalPrice);
+		console.log(userTotalPrice);
+	
 		
 
 	//아임포트 변수 초기화	
@@ -393,7 +475,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 	merchant_uid: 'connectcloset' + new Date().getTime(),
 	name: itemName,
 //결제창에서 보여질 이름
-	amount: totalPrice,
+	amount: userTotalPrice,
 	//amount: 1000,
 
 	buyer_email: '<%=member.getMemberEmail()%>',
@@ -414,11 +496,11 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 				orderId: "<%=member.getMemberEmail()%>",
 				payMethod: "card",
 
-				orderTotalPrice : totalPrice,
+				orderTotalPrice : userTotalPrice,
 				OrderItemCount:orderItemCount,
 				orderItemColor : orderItemColor,
 				orderItemSize : orderItemSize,				
-
+				usePoint: userPoint,
 				imp_uid: rsp.imp_uid,
 				itemNoList : itemNoArr,
 				memberNo : <%=member.getMemberNo()%>

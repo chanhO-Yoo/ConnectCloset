@@ -35,6 +35,13 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.selectListPoint(memberNo);
 	}
+	
+	@Override
+	public int selectoneTotalPoint(int memberNo) {
+		// TODO Auto-generated method stub
+		return  mypageDAO.selectoneTotalPoint(memberNo);
+	}
+	
 	//-----------주영 포인트 끝--------------
 
 

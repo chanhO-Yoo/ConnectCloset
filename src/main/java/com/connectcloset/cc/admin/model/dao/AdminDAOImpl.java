@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
@@ -170,7 +172,43 @@ public class AdminDAOImpl implements AdminDAO {
 
 
 
+
 	//===================하은 끝==================
+	
+	//===================하라 시작==================
+	@Override
+	public List<ItemQna> selectItemQnaList(int cPage, int numPerPage) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("admin.selectItemQnaList",null,rowBounds);
+	}
+
+	@Override
+	public int selectItemQnaListCount() {
+		return sqlSession.selectOne("admin.selectItemQnaListCount");
+	}
+
+	@Override
+	public ItemQna adminItemQna(int itemQnaNo) {
+		return sqlSession.selectOne("admin.adminItemQna",itemQnaNo);
+	}
+	
+	
+	
+
+	@Override
+	public List<ItemQnaAns> adminItemQnaAns(int itemQnaNo) {
+		return sqlSession.selectList("admin.adminItemQnaAns",itemQnaNo);
+	}
+
+	@Override
+	public int adminItemQnaEnd(ItemQnaAns itemQnaAns) {
+		return sqlSession.insert("admin.adminItemQnaEnd",itemQnaAns);
+	}
+	
+	
+	
+	
+	//===================하라 끝==================
 
 
 }
