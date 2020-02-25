@@ -36,9 +36,9 @@
                                 <h4>Contact</h4>
                             </div>
                             <div class="footer-contact2">
-                                <p>745 7th Ave, New York, USA</p>
-                                <p>212-764-4697</p>
-                                <p><a href="#">hello@pace.com</a></p>
+                                <p>9, Teheran-ro 10-gil, Gangnam-gu, Seoul, Republic of Korea</p>
+                                <p>02-1544-9970</p>
+                                <p><a href="#">hello@naver.com</a></p>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             <div class="copyright copyright-hm4">
                                 <p>
                                     Copyright ©
-                                    <a href="#">Donna</a>
+                                    <a href="#">CC</a>
                                     . All Right Reserved.
                                 </p>
                             </div>
