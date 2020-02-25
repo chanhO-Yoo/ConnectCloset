@@ -84,20 +84,18 @@ if(ck!=null){
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+#shop-img {
+	height: 300px !important;
+}
+
+.pro-col-40 .row div[class^="col-"] {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+</style>
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
-            <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
-                    <h2>Shop</h2>
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="active">Shop Grid with Sidebar </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <!-- main-search start -->
         <div class="main-search-active">
             <div class="sidebar-search-icon">
@@ -156,14 +154,14 @@ if(ck!=null){
             <div class="container-fluid">
             <p>총 ${totalContents }개의 상품이 있습니다.</p>
                 <div class="row">
-                    <div class="col-xl-10 col-lg-8">
+                    <div class="col-xl-9 col-lg-8">
                         <div class="shop-area-wrapper">
                             <div class="row grid" data-show="9" data-load="3">
                             
                             <c:forEach items="${list }" var="item">
                                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 item-hidden grid-item">
                                     <div class="shop-wrap mb-40">
-                                        <div class="shop-img">
+                                        <div class="shop-img" id="shop-img">
                                             <a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${item.itemNo}">
                                             	<c:if test="${item.imageList[0].itemImageReName == null }">
 		                                        	<img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
@@ -206,18 +204,6 @@ if(ck!=null){
                                         <i class="ti-search"></i>
                                     </button>
                                 </form>
-                            </div>
-                            <div class="sidebar-widget mb-55">
-                                <h4 class="pro-sidebar-title">Shop Filter </h4>
-                                <div class="price_filter mt-25">
-                                    <div id="slider-range"></div>
-                                    <div class="price_slider_amount">
-                                        <div class="label-input">
-                                            <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
-                                        </div>
-                                        <button type="button">Filter</button> 
-                                    </div>
-                                </div>
                             </div>
                             <div class="sidebar-widget">
 								<h4 class="pro-sidebar-title">Product Categories </h4>
@@ -345,6 +331,9 @@ $(()=>{
 	});
 });
 
-
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
 </script>
 
