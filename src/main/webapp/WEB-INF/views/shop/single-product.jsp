@@ -1,9 +1,87 @@
+<%@page import="com.connectcloset.cc.video.vo.Video"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.net.URLDecoder"%>
+<%@page import="com.connectcloset.cc.item.model.vo.ItemAndImageVO2"%>
+<%@page import="com.connectcloset.cc.item.model.vo.Item"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<%
+	ItemAndImageVO2 item = (ItemAndImageVO2)request.getAttribute("item");
+
+	Cookie[] ck =request.getCookies();
+	String itemNoList = null;
+	String newItemNoList = "";
+	
+	for(int i=0;i<ck.length;i++){
+		//itemNoList가 있다면
+		if(ck[i].getName().equals("itemNoList")){
+			//itemNoList를 문자열로 저장
+			itemNoList = URLDecoder.decode(ck[i].getValue(),"UTF-8");
+			
+			//itemNoArr에 배열로 저장
+			String[] itemNoArr = itemNoList.split(",");
+			int duplicate = 0;
+			
+
+			//itemNoArr이 5보다 작을 때 전부다 배열로 만들기
+			if(itemNoArr.length <= 5){
+				for(int j=0;j<itemNoArr.length;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			//itemNoArr이 5보다 클 때 배열을 5개까지만 만들기
+			else{
+				for(int j=0;j<5;j++) {
+					newItemNoList = newItemNoList+","+itemNoArr[j];
+				}
+			}
+			
+			//새로운 아이템리스트 배열
+			String[] newItemNoArr = newItemNoList.substring(1).split(",");
+			
+			//새 아이템 리스트 배열에 중복이 있다면 1씩증가/ 없다면 0
+			for(int j=0;j<newItemNoArr.length;j++){
+				if(newItemNoArr[j].equals(Integer.toString(item.getItemNo()))){
+					duplicate += 1;
+				}
+			}
+			// 0이 아닐경우 중복이 있었다고 판단하여 새로 추가하지 않음
+			if(duplicate != 0){
+				itemNoList = newItemNoList.substring(1);
+			}
+			// 0인경우 중복이 없다고 판단하여 새로 추가하여 만듬
+			else{
+				itemNoList = Integer.toString(item.getItemNo())+","+newItemNoList.substring(1);
+			}
+			
+			
+			System.out.println("++++++쿠키있어요");
+		}
+	}
+	
+	
+	if(itemNoList == null){
+		itemNoList=Integer.toString(item.getItemNo());
+	}
+
+	
+	Cookie cookie = new Cookie("itemNoList",URLEncoder.encode((itemNoList),"utf-8"));
+	cookie.setMaxAge(60*60*24);
+	response.addCookie(cookie);
+	
+
+	/* 윤지 시작 */
+	
+	
+	/* 윤지 끝 */
+	%>
+	
 
 
 
@@ -11,6 +89,67 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<script>
+
+$(function(){
+
+//바로구입 누를때 넘기기기
+$("#btn-goOrder").on('click', function(){
+	let orderCount = document.querySelector("#orderItemCount").value;
+	var orderSize = $("#SizeSelect:checked").val();
+	var orderColor= $("#colorSelect:checked").val();
+	var memberNo= ${memberLoggedIn.memberNo}
+
+	console.log(orderColor);
+		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
+		
+		/* $.ajax({
+			url: "${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}",
+			type: "GET",
+			data: {
+			
+				orderCount:orderCount
+			},
+			dataType: "json",
+			success: data => {
+				console.log(data);
+				
+				
+				
+			},
+			error: (jqxhr, textStatus, errorThrown)=>{
+				console.log(jqxhr, textStatus, errorThrown);
+			} 
+		}); */
+	
+		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor+"&memberNo="+memberNo;
+	}); 
+	
+function changeOrderNo(num){
+	let stockStr = ${item.itemStock}; //상품 재고
+	let inputOrderNo = document.querySelector("#orderItemCount");
+	let oldNo = inputOrderNo.value;
+	let newNo = (inputOrderNo.value*1)+num; //수량(정수형)
+	
+	if(newNo < 1) {
+		newNo = 1;
+		alert("수량은 반드시 1개 이상 선택되어야 합니다.");
+	}
+	if(newNo > stockStr) {
+		newNo = stockStr;
+		alert("수량은 상품재고보다 더 많이 선택될 수 없습니다.\n현재 상품의 수량은 ["+stockStr+"]입니다.");
+	}
+	
+	
+}
+	
+});
+function goLogin(){
+	if(!confirm("로그인이 필요한 서비스입니다.\n로그인 페이지로 이동하시겠습니까?")) return;
+	location.href = "${pageContext.request.contextPath }/member/login-register.do"
+}
+
+</script>
 
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
@@ -26,6 +165,7 @@
                          <img class="zoompro" src="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" data-zoom-image="${pageContext.request.contextPath }/resources/upload/item/${image.itemImageReName}" alt="zoom"/>
                          
 						</c:forEach>
+                            
                             
                             <div id="gallery" class="mt-15 product-dec-slider dec-slider-overlay">
                              <c:forEach var="image" items="${itemImage}" begin="1" end="1">
@@ -72,6 +212,31 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="product-details-content pl-30">
+                        	<c:set var="brandNo" value="${item.brandNo}"/>
+                        	<c:choose>
+                        		<c:when test="${brandNo eq 'brand-001'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-001">LOW CLASSIC</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-002'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-002">BALENCIAGA</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-003'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-003">GIVENCHY</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-004'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-004">CELINE</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-005'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-005">VALENTINO</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-006'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-006">BURBERRY</a></h5>
+                        		</c:when>
+                        		<c:when test="${brandNo eq 'brand-007'}">
+                        			<h5><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=brand-007">GUCCI</a></h5>
+                        		</c:when>
+                        	</c:choose>
+                        	
                             <h2>${item.itemName}</h2>
                             <div class="pro-details-rating-wrap">
                                 <div class="pro-details-rating">
@@ -92,10 +257,19 @@
                                     <div class="pro-details-color2-content">
                                         <ul>
                                         
-                                       <c:forTokens items="${item.itemColors}" delims="," var="item">
-										   <li class="${item}"></li>
-										</c:forTokens>
+										
+										   
+						 <c:forTokens items="${item.itemColors}" delims="," var="item">
+										 
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				
+			
+						<label class="btn ${item } " >
+							<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
+						</label>
 
+					</div>
+						 </c:forTokens>
 
 
                                         </ul>
@@ -107,7 +281,15 @@
                                         <ul>
                                         	
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
-                                            <li><a href="#">${item}</a></li>
+                                         <div class="form-group">
+										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
+										    		<label class="btn " >
+														<input type="checkbox" name="jb-radio" id="SizeSelect" value="${item}" >${item}
+													</label>
+										    
+										  	</div>
+					
+										</div>
 										</c:forTokens>
                                      
                                       
@@ -117,13 +299,17 @@
                             </div>
                             <div class="pro-details-quality mt-50 mb-45">
                                 <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" type="text" name="qtybutton" value="2">
+
+                                <!--상품 수량  -->
+                                    <input class="cart-plus-minus-box" type="text"  value="1" onclick="changeOrderNo(-1);" id="orderItemCount" name="orderItemCount">
+
                                 </div>
                                 <div class="pro-details-cart">
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}"><i class="ti-heart"></i></a>
+                                	<button type="button" class=" btn-hover" id="btn-goOrder"><i class="ti-heart"></i></button>
+                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
                                 </div>
                             </div>
                             <div class="pro-details-info-wrap">
@@ -174,8 +360,7 @@
                     <div class="tab-content description-review-bottom">
                         <div id="des-details1" class="tab-pane active">
                             <div class="product-description-wrapper">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pulvinar massa metus, vitae pharetra lacus sodales sit amet. Morbi accumsan suscipit lacus, sit amet egestas magna elemen tum nec. Mauris urna enim, rutrum in iaculis nec, vehicula ut libero. Etiam sit amet ex orci. Duis eget consectetur libero, eget interdum metus. Aliquam rhoncus porttitor felis, a tincidunt ex scel erisque et. Morbi faucibus venenatis dignissim. Nullam ut facilisis mauris. In hac habitasse platea dictumst. </p>
-                                <p>Pellentesque luctus augue ipsum, ut tincidunt odio tempus at. Nullam ac quam venenatis, bibendum eros at, placerat risus. Maecenas cursus elit non nisl finibus congue. Donec posuere fringilla ante eu vehicula. Fusce sed erat quis nisi gravida vehicula id vitae dolor. In at libero pretium, maximus lorem vitae, pharetra turpis feugiat facilisis ullamcorper.  </p>
+                         <p>${item.itemDetailInfo} </p>
                             </div>
                         </div>
                         <div id="des-details2" class="tab-pane ">
@@ -188,37 +373,47 @@
                                 </ul>
                             </div>
                         </div>
+                        <!--        리뷰 시작!      -->
                         <div id="des-details3" class="tab-pane">
+                       
                             <div class="row">
                                 <div class="col-lg-7">
+                                            <c:if test="${reviewList != null }">
+                        			<c:forEach items="${reviewList}" var="re">
+                        		
                                     <div class="review-wrapper">
                                         <div class="single-review">
                                             <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            <c:if test="${re.reviewImage !=null}">
+                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
+                                            </c:if>
+                                            
                                             </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
                                                         <div class="review-name">
-                                                            <h4>White Lewis</h4>
+                                                            <h4>${re.reviewTitle}</h4>
                                                         </div>
+                                                       
                                                         <div class="review-rating">
+                                                        	<c:forEach  begin="1" end="${re.reviewStar}">
                                                             <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
+                                                           	</c:forEach>
+                                                           	<c:forEach  begin="1" end="${5-re.reviewStar}">
+                                                            <i class="ti-star theme-gray"></i>
+                                                           	</c:forEach>
                                                         </div>
+         
                                                     </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
+                                                   
                                                 </div>
                                                 <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, convallis conval lis leo. Maecenas bibendum bibendum larius.</p>
+                                                    <p>${re.reviewContent}</p>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="single-review child-review">
                                             <div class="review-img">
                                                 <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
@@ -412,9 +607,17 @@
                                             </form>
                                         </div>
                                     </div>
+
+                                        
+                                    </div> 
+                                     </c:forEach>
+                                     </c:if>
+
                                 </div>
+                             
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -422,130 +625,14 @@
         <div class="related-product mb-75">
             <div class="container">
                 <div class="related-product-title text-center mb-25">
-                    <h4>Related products</h4>
+                    <h4>Recommended videos</h4>
                 </div>
-                <div class="related-product-active owl-carousel">
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-9.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-10.jpg" alt="">
-                            </a>
-                            <span class="new">New</span>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-1.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-2.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-3.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" >
+                <c:forEach items="${videoList}" var="video" end="1">
+                	<div class="col-lg-6">
+ 	 	              	<iframe width="560" height="315" src="${video.videoUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	            </div>
+                </c:forEach>
                 </div>
             </div>
         </div>
@@ -556,4 +643,6 @@
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
 	});
+	
+
 </script>

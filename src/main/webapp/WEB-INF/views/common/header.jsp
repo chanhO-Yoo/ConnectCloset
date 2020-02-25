@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,6 +26,81 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+ 
+		<!-- 실시간검색어 css 추가 -->
+		<style>
+.ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    background-color: #fff}
+		
+				        	#rank-content {
+							    margin-top: 20px;
+							    margin-bottom: 20px;
+							    margin-left: 20px;
+							    margin-right: 20px;
+							    padding: 10px;
+							    background: #000;
+							}
+							
+							#rank-list a {
+							    color: #FFF;
+							    text-decoration: none;
+							}
+							
+							#rank-list a:hover {
+							    text-decoration: underline;
+							}
+							
+							#rank-list {
+							    overflow: hidden;
+							    width: 600px;
+							    height: 20px;
+							    margin: 0;
+							}
+							
+							#rank-list dt {
+							    display: none;
+							}
+							
+							#rank-list dd {
+							    position: relative;
+							    margin: 0;
+							}
+							
+							#rank-list ol {
+							    position: absolute;
+							    top: 0;
+							    left: 0;
+							    margin: 0;
+							    padding: 0;
+							    list-style-type: none;
+							}
+							
+							#rank-list li {
+							    height: 20px;
+							    line-height: 20px;
+							}
+				        </style>
+				        <script>
+				        $(function() {
+				            var count = $('#rank-list li').length;
+				            var height = $('#rank-list li').height();
+
+				            function step(index) {
+				                $('#rank-list ol').delay(2000).animate({
+				                    top: -height * index,
+				                }, 500, function() {
+				                    step((index + 1) % count);
+				                });
+				            }
+
+				            step(1);
+				        });
+				        </script>
+				        <!-- 실시간검색어 css/js 추가 -->
     </head>
     <body class="wrapper">
         <!-- header start -->
@@ -73,32 +149,17 @@
                                     </ul>
                                 </li>
                                 
-                                <li><a href="blog-grid3-col.html">Blog</a>
-                                	<ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList2.do">itemList2</a></li>
-                                    </ul>
+                                <li><a href="${pageContext.request.contextPath }/blog/blogList.do">Blog</a>
                                 </li>
                                 
-                                <li><a href="#">Store</a>
+                                <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">Store</a>
                                 </li>
                                 
                                 <li><a href="#">Pages </a>
                                     <ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/etc/about-us.do">about us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
                                         <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">contact us</a></li>
                                         <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/blog/blogList.do">blog</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
@@ -362,10 +423,11 @@
                            
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-review.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}">리뷰 확인</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-pQnA.do?memberNo=${memberLoggedIn.memberNo}">1:1문의</a></li>
 
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지5</a></li>
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-order.do?memberNo=${memberLoggedIn.memberNo}" >주문내역 조회</a></li>
                             </ul>
                         </div>
                         
@@ -379,12 +441,147 @@
                 <button class="search-close"><span class="ti-close"></span></button>
             </div>
             <div class="sidebar-search-input">
-                <form>
-                    <div class="form-search">
-                        <input id="search" class="input-text" value="" placeholder="Search Entire Store" type="search">
+                <form action="${pageContext.request.contextPath }/item/searchAllItem.do">
+                    <div class="form-search ui-widget">
+                    	<input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }"/>
+                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search" onclick="saveKeyword()">
                         <button>
                             <i class="ti-search"></i>
                         </button>
+                        <div id="saveSearchKeyword" style="background-color: white;">
+                        </div>
+                        <!-- 실시간검색어 추가 -->
+                        <div id="rank-content" class="mt-10">
+                        	<div>
+                        		<span style="color: white;">실시간 급상승 검색어(최근3시간)</span>
+                        	</div>
+				            <dl id="rank-list">
+				                <dt>실시간 검색어</dt>
+				                <dd>
+				                    <ol id="realtiemRank">
+				                        <li><a href="#" id="rank1">1 순위</a></li>
+				                        <li><a href="#" id="rank2">2 순위</a></li>
+				                        <li><a href="#" id="rank3">3 순위</a></li>
+				                        <li><a href="#" id="rank4">4 순위</a></li>
+				                        <li><a href="#" id="rank5">5 순위</a></li>
+				                        <li><a href="#" id="rank6">6 순위</a></li>
+				                        <li><a href="#" id="rank7">7 순위</a></li>
+				                        <li><a href="#" id="rank8">8 순위</a></li>
+				                        <li><a href="#" id="rank9">9 순위</a></li>
+				                        <li><a href="#" id="rank10">10 순위</a></li>
+				                    </ol>
+				                </dd>
+				            </dl>
+				        </div>
+				        <!-- 실시간검색어 추가 -->
+				        <script>
+				        $('#search').keydown(function(event) {
+				        	let html = "";
+				        	$("#saveSearchKeyword").html(html);
+				        });
+
+				        
+				        function saveKeyword() {
+				        	$.ajax({
+	                        	//새로 등록된 상품 json요청
+	                        	url: "${pageContext.request.contextPath}/saveKeyword.do?memberNo=${memberLoggedIn.memberNo}",
+	                        	type: "GET",
+	                        	dataType: "json",
+	                        	success: data => {
+	                        		let html = "";
+	                        		console.log(data);
+	                        		
+	                        		for(let i in data){
+	                        			let n = data[i];
+	                        			console.log("test : " + n);
+	                        		
+	                        		html += "<span><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n.searchKeyword+"'>"+n.searchKeyword+"</a></span><br>";
+	                                    
+	                                    
+	                        		}
+	                        		console.log(html);
+	                        		$("#saveSearchKeyword").html(html);
+	                        	},
+	                        	error: (x,s,e)=>{
+	                        		console.log(x,s,e);
+	                        	}
+	                        	});
+						};
+				        
+                    $(()=>{
+                    	$.ajax({
+                        	//새로 등록된 상품 json요청
+                        	url: "${pageContext.request.contextPath}/searchRank.do",
+                        	type: "GET",
+                        	dataType: "json",
+                        	success: data => {
+                        		let html = "";
+                        		console.log(data);
+                        		
+                        		for(let i in data){
+                        			let n = data[i];
+                        			console.log(n);
+                        		
+                        		html += "<li><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n+"' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                                    
+                                    
+                        		}
+                        		console.log(html);
+                        		$("#realtiemRank").html(html);
+                        	},
+                        	error: (x,s,e)=>{
+                        		console.log(x,s,e);
+                        	}
+                        	});
+                    	
+                    	timer = setInterval( function () {
+                    	
+                    	$.ajax({
+                    	//새로 등록된 상품 json요청
+                    	url: "${pageContext.request.contextPath}/searchRank.do",
+                    	type: "GET",
+                    	dataType: "json",
+                    	success: data => {
+                    		let html = "";
+                    		console.log(data);
+                    		
+                    		for(let i in data){
+                    			let n = data[i];
+                    			console.log(n);
+                    		
+                    		html += "<li><a href='#' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                                
+                                
+                    		}
+                    		console.log(html);
+                    		$("#realtiemRank").html(html);
+                    	},
+                    	error: (x,s,e)=>{
+                    		console.log(x,s,e);
+                    	}
+                    	});
+                    	
+                        }, 25000);
+                    	
+                    });
+                    
+                   
+                    </script>
+  <script>
+  $("#search").autocomplete({
+      source : "${pageContext.request.contextPath}/searchAuto.do",
+      //조회를 위한 최소글자수
+      minLength: 2,
+      select: function( event, ui ) {
+      }
+  });
+
+  
+</script>
+
+
+
+                        
                     </div>
                 </form>
             </div>

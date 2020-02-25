@@ -3,6 +3,8 @@ package com.connectcloset.cc.mypage.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +29,9 @@ import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
 import com.connectcloset.cc.mypage.model.vo.ReviewOrederList;
 import com.connectcloset.cc.order.model.service.OrderService;
-
+import com.connectcloset.cc.order.model.vo.OrderProduct;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
+import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 
 @Controller
 public class MyPageController {
@@ -77,13 +81,56 @@ public class MyPageController {
 //		List<OrderProduct> orderProduct = myPageService.selectOrderByMemberNo(memberNo);
 //		logger.debug("orderProduct={}",orderProduct);
 //		mav.addObject("orderProduct", orderProduct);
+		
 		Member m = myPageService.selectOrderByMemberNo(memberNo);
+		
+		//주문현황(주문완료,배송준비중,배송중,배송완료)
+		int os = myPageService.selectOsByMemberNo(memberNo);
+		int deli1 = myPageService.selectDeli1ByMemberNo(memberNo);
+		int deli2 = myPageService.selectDeli2ByMemberNo(memberNo);
+		int deli3 = myPageService.selectDeli3ByMemberNo(memberNo);
+		
+		
 		logger.debug("member={}",m);
 		mav.addObject("member", m);
+		
+		mav.addObject("os", os);
+		mav.addObject("deli1", deli1);
+		mav.addObject("deli2", deli2);
+		mav.addObject("deli3", deli3);
 		mav.setViewName("/mypage/mypage-order");
 		return mav;
 	}
-
+	
+	@RequestMapping("/mypage/searchDate/mypage-order.do")
+	@ResponseBody
+	private List<OrderProduct> deliverySearch(@RequestParam int memberNo, @RequestParam int startDate) {
+		
+		List<OrderProduct> list = new ArrayList<>();
+		
+		if (startDate==0) {
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("memberNo", memberNo);
+			map.put("startDate", startDate);
+			
+			list = myPageService.selectSearchAllList(map);
+			logger.debug("list={}",list);
+			
+		}
+		
+		else {
+			
+			HashMap<String, Integer> map = new HashMap<String, Integer>();
+			map.put("memberNo", memberNo);
+			map.put("startDate", startDate);
+			
+			list = myPageService.selectSearchDateList(map);
+			logger.debug("list={}",list);
+			
+		}
+		return list;
+	}
 	
 	//=================희진 끝=====================
 	
@@ -166,8 +213,8 @@ public class MyPageController {
 				int rndNum = (int)(Math.random()*1000);
 				
 				//서버컴퓨터에 파일저장
-				try {
-					f.transferTo(new File(saveDirectory));
+				try {   
+					f.transferTo(new File(saveDirectory+"/"+originalFileName));
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
@@ -210,5 +257,128 @@ public class MyPageController {
 	}
 	
 	
-	//---------------주영 끝 시작------------------
+	//---------------주영 리뷰  끝 ------------------
+	//---------------주영 1:1 문의  시작 ------------------
+	
+	
+
+	
+	@RequestMapping("/mypage/mypage-pQnA.do")
+	public ModelAndView mypagepQnAList(ModelAndView mav ,@RequestParam(defaultValue="1") int cPage,@RequestParam("memberNo") int memberNo) {
+		
+	final int numPerPage = 10;
+		
+		List<PersonalQna> list = myPageService.selectMypagePQnaList(cPage,numPerPage,memberNo);
+		logger.debug("list={}",list);
+		
+		int totalContents = myPageService.selectMypagePQnaListCount(memberNo);
+		logger.debug("totalBoardCount={}",totalContents);
+		
+		mav.addObject("list", list);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("cPage", cPage);
+		mav.addObject("totalContents", totalContents);
+		
+		mav.setViewName("/mypage/mypage-pQnA");
+		
+		return mav;
+	}
+	
+	@RequestMapping("mypage/mypage-pQnAForm.do")
+	public ModelAndView mypagepQnAForm(ModelAndView mav) {
+		
+		
+		mav.setViewName("/mypage/mypage-pQnAForm");
+		return mav;
+	}
+	
+	@PostMapping("/mypage/mypage-pQnAFormEnd.do")
+	public ModelAndView mypagepQnAFormEnd(ModelAndView mav ,PersonalQna pQnA ,@RequestParam("memberNo") int memberNo) {
+		
+		logger.debug("pQnA={}",pQnA);
+		int result
+		=myPageService.mypagepQnAFormEnd(pQnA);
+		
+		
+		logger.debug("result={}",result);
+		
+		mav.addObject("result", result);
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
+		return mav;
+	}
+	
+	
+	@PostMapping("/mypage/mypage-pQnADelete.do")
+	public ModelAndView pQnADelete(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo,@RequestParam("memberNo") int memberNo  ) {
+		
+		
+		int result=
+		 myPageService.deletepQnA(pQnaNo);
+		mav.addObject("result", result);
+		
+		//3. view단 처리		
+		logger.debug("result={}",result);
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
+		
+		
+		
+		
+		return mav;
+	}
+	
+	@RequestMapping("/mypage/mypage-pQnAEnroll.do")
+	public ModelAndView pQnAEnroll(ModelAndView mav ,@RequestParam("pQnaNo") int pQnaNo ,PersonalQna pQnA ) {
+		
+		
+		
+		pQnA =myPageService.selectOneEnrollQnA(pQnaNo);
+
+		
+		//3. view단 처리		
+	
+		
+		mav.addObject("pQnA", pQnA);
+		
+		mav.setViewName("/mypage/mypage-pQnAEnroll");
+		
+		return mav;
+	}
+	@PostMapping("/mypage/mypage-pQnAEnrollEnd.do")
+	public ModelAndView pQnAEnrollEnd(ModelAndView mav ,@RequestParam("memberNo") int memberNo ,PersonalQna pQnA  ) {
+		
+		
+		int result=
+		 myPageService.pQnAEnrollEnd(pQnA);
+		
+		mav.addObject("result", result);
+		
+		//3. view단 처리		
+	
+		
+		mav.setViewName("redirect:/mypage/mypage-pQnA.do?memberNo="+memberNo);
+		
+		
+		
+		
+		return mav;
+	}
+	
+	@RequestMapping("/mypage/mypage-pQnAans.do")
+	public ModelAndView mypagePQnaAns(ModelAndView mav, @RequestParam int pQnaNo) {
+		
+		PersonalQna pQna = myPageService.selectOneEnrollQnA(pQnaNo);
+		logger.debug("pQna={}",pQna);
+		
+		List<PersonalQnaAns> pQnaAnsList = myPageService.mypagePQnaAns(pQnaNo);
+		logger.debug("pQnaAnsList={}",pQnaAnsList);
+		
+		mav.addObject("pQna",pQna);
+		mav.addObject("pQnaAnsList",pQnaAnsList);
+		
+		mav.setViewName("/mypage/mypage-pQnAans");
+		
+		return mav;
+	}
+	
+	//---------------주영 1:1 문의  끝 ------------------
 }

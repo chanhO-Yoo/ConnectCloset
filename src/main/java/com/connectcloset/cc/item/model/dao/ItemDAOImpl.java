@@ -1,6 +1,8 @@
 package com.connectcloset.cc.item.model.dao;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,10 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+
 import com.connectcloset.cc.item.model.vo.ItemQna;
 import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+
+import com.connectcloset.cc.mypage.model.vo.Review;
+import com.connectcloset.cc.mypage.model.vo.ReviewList;
+
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -21,17 +29,33 @@ public class ItemDAOImpl implements ItemDAO {
 	
 	//희진  새로 나온 상품 시작
 	@Override
-	public List<Item> newItemList(Item item) {
+	public List<ItemAndImageVO> newItemList(Item item) {
 		return sqlSession.selectList("newItemList", item);
 	}
 	//희진 새로 나온 상품 끝
 	
-	//하은 시작
+	//====================하은 시작 ====================
 		@Override
 	public List<Item> selectItemNumber(int itemNo) {
 		return sqlSession.selectList("item.selectItemNumber",itemNo);
 	}
-	//==하은 끝
+		
+/*	@Override
+	public List<ItemAndImageVO> selectItemImageList(int itemNO) {
+	return sqlSession.selectList("item.selectItemImageList",itemNO);
+	}*/
+		
+	@Override
+	public List<ItemAndImageVO> selectImageList(int itemNo ) {
+		return sqlSession.selectList("item.selectImageList",itemNo);
+	}
+		
+	@Override
+	public List<ItemAndImageVO> shopCategories(Item item) {
+		return sqlSession.selectList("shopCategories", item);
+	}
+		
+	//====================하은 끝 ====================
 
 	//===================윤지  상품 리스트 시작=======================
 	@Override
@@ -145,6 +169,28 @@ public class ItemDAOImpl implements ItemDAO {
 	}
 	//===================윤지 상품 리스트  끝=======================	
 		
+	//===================찬호 시작=======================
+	@Override
+	public ItemImage recetnItem(String itemNo) {
+		return sqlSession.selectOne("item.recentItem",itemNo);
+	}
+	
+	@Override
+	public List<ItemAndImageVO> searchAllItem(int cPage, int numPerPage, String searchKeyword) {
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
+		return sqlSession.selectList("item.searchAllItem","%"+searchKeyword+"%",rowBounds);
+	}
+	
+	@Override
+	public int searchAllItemCount(String searchKeyword) {
+		return sqlSession.selectOne("item.searchAllItemCount","%"+searchKeyword+"%");
+	}
+
+	@Override
+	public int addSearchKeyword(Map<String, String> map) {
+		return sqlSession.insert("item.addSearchKeyword", map);
+	}
+	//===================찬호 끝=======================	
 		
 	//===================주영 상품 상세보기 시작========================
 
@@ -160,10 +206,11 @@ public class ItemDAOImpl implements ItemDAO {
 		return  sqlSession.selectOne("item.selectOneitemImage",itmeNo);
 	}
 
-
-
-
-
+	@Override
+	public List<Review> selectReviewList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("item.selectReviewList",itmeNo);
+	}
 
 
 	//===================주영  상품 상세보기 끝========================

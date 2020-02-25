@@ -28,16 +28,22 @@
                 <div class="row">
                     <div class="col-xl-9 col-lg-8 pro-col-40">
                         <div class="row grid" data-show="9" data-load="3">
-                    <c:forEach items="${list}" var="blog" varStatus="vs">
+                    <c:forEach items="${list}" var="blogCollectionMap" varStatus="vs">
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
-                                    <div class="blog-img hover-3">
-                                         <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blog.blogNo}">
-                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+                                    <div class="blog-img hover-3">	
+                                         <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blogCollectionMap.blogNo}">
+                            			  	 <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName == null }">
+                                         		 <img src="${pageContext.request.contextPath }/resources/upload/${blogCollectionMap.renamedFileName}" alt="">
+                                          	</c:if> 
+                                          
+                                          	 <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName != null }">
+		                                            <img src="${pageContext.request.contextPath }/resources/upload/blog/${blogCollectionMap.attachmentList[0].renamedFileName}" alt="">
+	                                         </c:if>   
                                         </a>
                                         <div class="readmore-icon">
-                                            <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blog.blogNo}">
-                                         <%--     --%>
+                                            <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blogCollectionMap.blogNo}">
+                                        
                                                 <i class="ti-arrow-right"></i>
                                             </a>
                                         </div>
@@ -46,11 +52,12 @@
                                         <div class="blog-meta-3">
                                             <ul>
                                                 <li>${blog.blogDate }</li>
-                                                <li>< <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blog.blogNo}">>4 <i class="ti-comment-alt"></i></a></li>
+                                                <%-- <li>< <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blog.blogNo}">>4 <i class="ti-comment-alt"></i></a></li> --%>
                                             </ul>
                                         </div>
-                                        <h4><a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blog.blogNo}">${blog.blogTitle }</a></h4>
-                                        <p>${blog.blogContent }  </p>
+                                        <h4><a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blogCollectionMap.blogNo}">${blogCollectionMap.blogTitle }</a></h4>
+                                        <p>${blogCollectionMap.blogContent }  </p>
+                       
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +390,7 @@
                                 </div>
                             </div>
 
-<style>
+<!-- <style>
 .chat_list_wrap {
   list-style: none;
 }
@@ -395,38 +402,35 @@
   text-align: center;
   font-family: "Josefin Sans", sans-serif;
 }
-</style>
+</style> -->
 
-<!--실시간 채팅  -->
-<div class="chat_list_wrap">
+ <!--실시간 채팅  -->
+<%-- <div class="chat_list_wrap">
 <div class="header">
 ConnectClost Chat
 </div>
 <div>
-<%-- <c:forEach items="${list}" var="chat" varStatus="vs"> --%>
+<c:forEach items="${list}" var="chat" varStatus="vs"> --%>
 	<!-- 채팅 -->
-      <input type="text" id="sender" value="" style="display: none;">  
+   <!--    <input type="text" id="sender" value="" style="display: none;">   -->
 	 <!-- <input type="text" id="sender" value="seongjun" style="display: none;"> -->
 
-	 <input type="text" id="messageinput"> <button type="button" onclick="send();">Send</button>
-<%-- </c:forEach> --%>
+	<%--  <input type="text" id="messageinput"> <button type="button" onclick="send();">Send</button>
+</c:forEach>
  
 
         <button type="button" onclick="openSocket();">IN</button>
        
         <button type="button" onclick="closeSocket();">OUT</button>
-</div>
-</div>
+<%-- </div> --%>
+<!-- </div>  -->
 ​
-    
-    
-		
-   
+
     <!-- Server responses get written here -->
 	
-    <div id="messages" ></div> 
+   <!--  <div id="messages" ></div>  -->
    
-    <!-- websocket javascript -->
+<!--     websocket javascript
     <script type="text/javascript">
         var ws;
         var messages = document.getElementById("messages");
@@ -470,20 +474,7 @@ ConnectClost Chat
             messages.innerHTML += "<br/>" + text;
         };
         
-  </script>
-
-
-
-
-
-
-
-
-
- 
-
-
-
+  </script> -->
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

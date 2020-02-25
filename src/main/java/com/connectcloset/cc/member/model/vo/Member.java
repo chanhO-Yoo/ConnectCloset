@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.connectcloset.cc.item.model.vo.Item;
+import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public class Member implements Serializable {
@@ -41,6 +42,7 @@ public class Member implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public Member(int memberNo, String memberEmail, String memberPassword, String memberName, String memberPhone,
 			int memberPostcode, String memberAddress, String memberDetailAddress, char memberGender,
@@ -189,6 +191,7 @@ public class Member implements Serializable {
 				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint
 				+ ", orderProductList=" + orderProductList + ", itemList=" + itemList + "]";
 	}
+
 	
 	
 	

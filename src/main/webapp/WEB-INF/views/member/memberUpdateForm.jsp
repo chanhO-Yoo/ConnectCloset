@@ -71,13 +71,13 @@
 												<div class="form-group row">
 												    <label for="memberPhone" class="col-sm-2 col-form-label">연락처</label>
 												    <div class="col-sm-10">
-											    		<input type="tel" class="form-control-plaintext" id="memberPhone" name="memberPhone" placeholder="숫자만 입력해주세요" maxlength="11">
+											    		<input type="tel" class="form-control-plaintext" id="memberPhone" name="memberPhone" placeholder="숫자만 입력해주세요" maxlength="11" value="${ memberLoggedIn.memberPhone}">
 											    	</div>
 												</div>
 												<div class="form-group row" style="margin-bottom: 0px;">
 												    <label for="memberPostCode" class="col-sm-2 col-form-label">주소</label>
 												    <div class="col-sm-7">
-											    		<input type="text" class="form-control-plaintext" id="memberPostcode" name="memberPostcode" placeholder="우편번호">
+											    		<input type="text" class="form-control-plaintext" id="memberPostcode" name="memberPostcode" placeholder="우편번호" value="${memberLoggedIn.memberPostcode}">
 											    	</div>
 											    	<div class="col-sm-3">
 												    	<button type="button" class="btn btn-info btn-lg" style="height:45px;" onclick="findAddress()">주소검색</button>
@@ -85,18 +85,18 @@
 												</div>
 												<div class="form-group row" style="margin-bottom: 0px;">
 												    <div class="offset-sm-2 col-sm-10">
-											    		<input type="text" class="form-control-plaintext" id="memberAddress" name="memberAddress" placeholder="주소">
+											    		<input type="text" class="form-control-plaintext" id="memberAddress" name="memberAddress" placeholder="주소" value="${memberLoggedIn.memberAddress}">
 											    	</div>
 											   	</div>
 												<div class="form-group row" style="margin-bottom: 0px;">
 												    <div class="offset-sm-2 col-sm-10">
-											    		<input type="text" class="form-control-plaintext" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소">
+											    		<input type="text" class="form-control-plaintext" id="memberDetailAddress" name="memberDetailAddress" placeholder="상세주소"value="${memberLoggedIn.memberDetailAddress}">
 											    	</div>
 												</div>
 		                                        <div class="form-group row">
 												    <label for="memberBirthday" class="col-sm-2 col-form-label">생년월일</label>
 												    <div class="col-sm-10">
-											    		<input type="date" class="form-control" id="memberBirthday" name="memberBirthday" value="2011-08-19">
+											    		<input type="date" class="form-control" id="memberBirthday" name="memberBirthday" value="${memberLoggedIn.memberBirthday}">
 											    	</div>
 												</div>
 											
