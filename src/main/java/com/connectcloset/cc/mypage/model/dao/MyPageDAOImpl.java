@@ -28,9 +28,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	//-----------주영 포인트 시작--------------
 	
 	@Override
-	public List<Point> selectListPoint(int memberNo) {
+	public List<Point> selectListPoint(int memberNo ,int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("member.selectListPoint",memberNo);
+		
+		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage,numPerPage);
+		return sqlSession.selectList("member.selectListPoint",memberNo,rowBounds);
 	}
 	
 	@Override

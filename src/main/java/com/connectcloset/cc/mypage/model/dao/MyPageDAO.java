@@ -17,7 +17,7 @@ import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 public interface MyPageDAO {
 
 	//-----------주영 포인트 시작--------------
-	List<Point> selectListPoint(int memberNo);
+	List<Point> selectListPoint(int memberNo, int cPage, int numPerPage);
 	
 	int selectoneTotalPoint(int memberNo);
 	
