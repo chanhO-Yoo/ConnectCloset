@@ -27,6 +27,8 @@ import com.connectcloset.cc.admin.model.service.AdminService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
@@ -443,4 +445,60 @@ public class AdminController {
 				*/
 
 		//===================하은 끝===================
+		
+		//===================하라 시작===================
+		@RequestMapping("/admin/adminItemQnaList.do")
+		public ModelAndView adminItemQnaList(ModelAndView mav, @RequestParam(defaultValue="1") int cPage) {
+			
+			final int numPerPage = 10;
+			
+			List<ItemQna> list = adminService.selectItemQnaList(cPage,numPerPage);
+			logger.debug("list={}",list);
+			
+			int totalContents = adminService.selectItemQnaListCount();
+			logger.debug("totalBoardCount={}",totalContents);
+			
+			mav.addObject("list", list);
+			mav.addObject("numPerPage", numPerPage);
+			mav.addObject("cPage", cPage);
+			mav.addObject("totalContents", totalContents);
+			
+			mav.setViewName("admin/adminItemQnaList");
+			
+			return mav;
+		}
+		
+		@RequestMapping("/admin/adminItemQna.do")
+		public ModelAndView adminItemQna(ModelAndView mav, @RequestParam int itemQnaNo) {
+			
+			ItemQna itemQna = adminService.adminItemQna(itemQnaNo);
+			logger.debug("itemQna={}",itemQna);
+			
+			List<ItemQnaAns> itemQnaAnsList = adminService.adminItemQnaAns(itemQnaNo);
+			logger.debug("iQtemnaAnsList={}",itemQnaAnsList);
+			
+			mav.addObject("itemQna",itemQna);
+			mav.addObject("itemQnaAnsList",itemQnaAnsList);
+			
+			mav.setViewName("admin/adminItemQna");
+			
+			return mav;
+		}
+		
+		@PostMapping("/admin/adminItemQnaEnd.do")
+		public ModelAndView adminItemQnaEnd(ModelAndView mav, ItemQnaAns itemQnaAns) {
+			logger.debug("itemQnaAns={}",itemQnaAns);
+			
+			int result = adminService.adminItemQnaEnd(itemQnaAns);
+			
+			
+			logger.debug("result={}",result);
+			
+			mav.addObject("msg",result>0?"QnA 답변작성 성공.":"QnA 답변작성 실패.");
+			mav.addObject("loc","/admin/adminItemQnaList.do");
+			mav.setViewName("common/msg");
+			
+			return mav;
+		}
+		//===================하라 끝===================
 }

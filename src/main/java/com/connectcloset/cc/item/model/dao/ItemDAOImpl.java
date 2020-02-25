@@ -13,8 +13,13 @@ import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -207,7 +212,27 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList("item.selectReviewList",itmeNo);
 	}
 
+
 	//===================주영  상품 상세보기 끝========================
 
+	//-------------하라  상품 상세보기 - QnA 시작 -------------------
+	@Override
+	public int insertQna(ItemQna itemQna) {
+		return sqlSession.insert("item.insertQna",itemQna);
+	}
+
+	@Override
+	public List<ItemQna> itemQnaList(int itmeNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("item.itemQnaList",itmeNo);
+	}
+
+	@Override
+	public List<ItemQnaAns> itemQnaAnsList() {
+		return sqlSession.selectList("item.itemQnaAnsList");
+	}
+	
+	
+	//-------------하라  상품 상세보기 - QnA 끝 -------------------
 
 }

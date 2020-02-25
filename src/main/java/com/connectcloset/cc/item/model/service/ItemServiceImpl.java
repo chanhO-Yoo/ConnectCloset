@@ -8,13 +8,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.connectcloset.cc.blog.model.exception.BlogException;
+import com.connectcloset.cc.blog.model.vo.Attachment;
 import com.connectcloset.cc.item.model.dao.ItemDAO;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+
 
 @Service
 public class ItemServiceImpl implements ItemService{
@@ -210,5 +217,41 @@ public class ItemServiceImpl implements ItemService{
 	//===================주영  상품 상세보기  끝========================
 
 
+
+	//===================하라  상품 상세보기 - QnA  시작========================
+	
+	@Override
+	public int insertQna(ItemQna itemQna) {
+		int result = 0 ;
+		System.out.println("1111111111111111111");
+		result = itemDAO.insertQna(itemQna);
+		
+                                                                                                           
+		return result;
+			}
+
+	@Override
+	public List<ItemQna> itemQnaList(int itmeNo) {
+		return itemDAO.itemQnaList(itmeNo);
+	}
+
+	@Override
+	public List<ItemQnaAns> ItemQnaAnsList() {
+		return itemDAO.itemQnaAnsList();
+	}
+
+
+
+	
+
+
+		
+}		
+	
+	//===================하라  상품 상세보기 - QnA  끝========================
+
+
+
 }
+
 
