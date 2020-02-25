@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.AttachmentIndex;
 import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.blog.model.vo.BlogAttachVO;
 
@@ -19,7 +20,7 @@ public class BlogDAOImpl implements BlogDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
-	public List<Blog> selectBlogList(int cPage, int numPerPage) {
+	public List<BlogAttachVO> selectBlogList(int cPage, int numPerPage) {
 		RowBounds rowBounds = new RowBounds((cPage-1)*numPerPage, numPerPage);
 //		select * from board order by boardno desc 
 		return sqlSession.selectList("blog.selectBlogList", null, rowBounds);
@@ -46,13 +47,29 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public List<Attachment> selectAttachmentList(int blogNo) {
+	public List<BlogAttachVO> selectAttachmentList(int blogNo) {
 		return sqlSession.selectList("blog.selectAttachmentList",blogNo);
 	}
 
-	@Override
-	public BlogAttachVO selectOneBlogCollection(int blogNo) {
+	/*@Override
+	public List<BlogAttachVO> selectOneBlogCollection(int blogNo) {
 		return sqlSession.selectOne("blog.selectOneBlogCollection",blogNo);
 	}
+
+	@Override
+	public List<BlogAttachVO> selectimgList(int blogNo) {
+		return sqlSession.selectOne("blog.selectimgList",blogNo);
+	}*/
+	
+	@Override
+	public BlogAttachVO blogView(int blogNo) {
+		return sqlSession.selectOne("blog.blogView",blogNo);
+	}
+
+	@Override
+	public List<AttachmentIndex> blogShow(AttachmentIndex attachmentIndex) {
+		return sqlSession.selectList("blogShow",attachmentIndex);
+	}
+
 
 }
