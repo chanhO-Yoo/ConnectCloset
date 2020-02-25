@@ -109,7 +109,7 @@
                 <div class="header-wrap header-flex">
                     <div class="logo mt-45">
                         <a href="${pageContext.request.contextPath }/">
-                            <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo.png">
+                            <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/test.png">
                             <img class="logo-sticky-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png">
                         </a>
                     </div>
