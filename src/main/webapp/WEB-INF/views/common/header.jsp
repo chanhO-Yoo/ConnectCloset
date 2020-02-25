@@ -56,7 +56,7 @@
 							
 							#rank-list {
 							    overflow: hidden;
-							    width: 320px;
+							    width: 600px;
 							    height: 20px;
 							    margin: 0;
 							}
