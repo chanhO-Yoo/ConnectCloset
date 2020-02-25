@@ -6,28 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<style>
-#shop-img {
-	height: 300px;
-}
-
-.shop-area-wrapper {
-	padding-left: 30px;
-	width: 1250px;
-}
-
-
-.pro-sidebar-search-form {
-	width: 180px;
-}
-
-#item-side-bar {
-	padding-left: 130px;
-}
-
-
-</style>
-
 <%
 	//쿠키 가져오기
 	Cookie[] ck =request.getCookies();
@@ -111,11 +89,12 @@ if(ck!=null){
 #shop-img {
 	height: 300px !important;
 }
-
-.pro-col-40 .row div[class^="col-"] {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+#item-side-bar{
+	padding-left: 25px !important; 
 }
+
+
+
 
 </style>
 <!-- breadcrumb area -->
@@ -177,12 +156,12 @@ if(ck!=null){
             <div class="container-fluid">
             <p id="p">총 ${totalContents }개의 상품이 있습니다.</p>
                 <div class="row">
-                    <div class="col-xl-9 col-lg-8">
+                    <div class="col-xl-9 col-lg-9 col-md-9">
                         <div class="shop-area-wrapper">
                             <div class="row grid" data-show="9" data-load="3">
                             
                             <c:forEach items="${list }" var="item">
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 item-hidden grid-item">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 item-hidden grid-item">
                                     <div class="shop-wrap mb-40">
                                         <div class="shop-img" id="shop-img">
                                             <a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${item.itemNo}">
@@ -206,10 +185,10 @@ if(ck!=null){
                                         </div>
                                         <div class="shop-content">
                                             <div class="shop-name">
-                                                <h4><a href="single-product.html">${item.itemName }</a></h4>
+                                                <h4><a href="single-product.html">&nbsp; &nbsp; &nbsp; &nbsp;${item.itemName }</a></h4>
                                             </div>
                                             <div class="shop-price">
-                                                <span>${item.itemPrice }</span>
+                                                <span>${item.itemPrice }&nbsp; &nbsp; &nbsp; &nbsp;</span>
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +197,7 @@ if(ck!=null){
                     		</div>
                     	</div>
                     </div>
-                    <div class="col-xl-2 col-lg-4" id="item-side-bar">
+                    <div class="col-xl-2 col-lg-2 col-md-2" id="item-side-bar">
                         <div class="shop-sidebar-style pl-10 port-mrg-res sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
                                 <form class="pro-sidebar-search-form" action="#">

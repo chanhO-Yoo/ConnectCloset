@@ -8,9 +8,6 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <style>
-.main-menu ul li a {
-	color: #15273E !important;
-}
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -150,7 +147,7 @@ var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		center: new kakao.maps.LatLng(37.498491, 127.032576), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
@@ -420,3 +417,9 @@ function removeAllChildNods(el) {
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+$(document).ready(function(){
+    var header=$("header").attr('class','theme-bg');
+    console.log(header);
+});
+</script>
