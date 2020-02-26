@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-
-
-
 <fmt:requestEncoding value="utf-8"/>
+
+<style>
+
+
+</style>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 

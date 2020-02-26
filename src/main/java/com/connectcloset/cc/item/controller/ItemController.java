@@ -276,7 +276,7 @@ public class ItemController {
 		else if(itemTypeNo.equals("itype-002") || itemTypeNo.equals("itype-003") || itemTypeNo.equals("itype-007") || itemTypeNo.equals("itype-008")) {
 			Map<String,String> categoryMap = new HashMap<>();
 			categoryMap.put("itype-002", "셔츠");
-			categoryMap.put("itype-003", "맨투맨/후드");
+			categoryMap.put("itype-003", "맨투맨 / 후드");
 			categoryMap.put("itype-007", "니트");
 			categoryMap.put("itype-008", "티셔츠");
 
@@ -293,7 +293,7 @@ public class ItemController {
 		}
 		else if(itemTypeNo.equals("itype-006")) {
 			Map<String,String> categoryMap = new HashMap<>();
-			categoryMap.put("itype-006", "드레스/스커트");
+			categoryMap.put("itype-006", "드레스 / 스커트");
 
 			mav.addObject("categoryMap",categoryMap);
 			mav.addObject("sort", 4);

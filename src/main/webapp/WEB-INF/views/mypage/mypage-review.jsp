@@ -33,11 +33,11 @@
                                     <th></th>
                                 </tr>
                                 
-                                <c:forEach var ="r" items="${orderReviewList}" >
+                                <c:forEach var="r" items="${orderReviewList}" >
                                 <tr>
                                   
                                     <td>${r.orderNo} </td>
-                                    <td>${r.itemName} </td>
+                                    <td><a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${r.orderItemNo}">${r.itemName} </a></td>
                                     <td>${r.itemPrice} </td>
                                   
                                    
@@ -69,7 +69,7 @@
                                 <c:forEach var ="re" items="${reviewList}">
                                 <tr>
                                    
-                                    <td>${re.itemName}</td>
+                                    <td><a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${re.reviewItemNo}">${re.itemName}</a></td>
                                     <td>${re.itemPrice}</td>
                                     <td>${re.reviewContent}</td>
                                      
