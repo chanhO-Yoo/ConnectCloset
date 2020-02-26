@@ -477,8 +477,11 @@ public class AdminController {
 			List<ItemQnaAns> itemQnaAnsList = adminService.adminItemQnaAns(itemQnaNo);
 			logger.debug("iQtemnaAnsList={}",itemQnaAnsList);
 			
+			Item item = adminService.selecItemOne(itemQna.getItemNo());
+			
 			mav.addObject("itemQna",itemQna);
 			mav.addObject("itemQnaAnsList",itemQnaAnsList);
+			mav.addObject("item",item);
 			
 			mav.setViewName("admin/adminItemQna");
 			

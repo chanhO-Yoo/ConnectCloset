@@ -102,7 +102,7 @@
 	</delete>
 	
 	<select id="selectPQnaList" resultMap="personalQnaMap">
-		select * from personal_qna
+		select pq.*, m.member_email from personal_qna pq left join member m on pq.member_no = m.member_no order by p_qna_no desc
 	</select>
 	
 	<resultMap type="personalQna" id="personalQnaMap">
@@ -113,7 +113,7 @@
 	</select>
 	
 	<select id="adminPQna" resultMap="personalQnaMap">
-		select * from personal_qna where p_qna_no=#{pQnaNo}
+		select pq.*, m.member_email from personal_qna pq left join member m on pq.member_no = m.member_no where pq.p_qna_no=#{pQnaNo} order by p_qna_no desc
 	</select>
 	
 	<insert id="adminPQnaEnd">
@@ -182,8 +182,8 @@
     
     
     <!-- ===================하라 시작=================== -->
-    	<select id="selectItemQnaList" resultMap="itemQnaMap">
-		select * from item_qna
+    <select id="selectItemQnaList" resultMap="itemQnaMap">
+		select iq.*,m.member_email from item_qna iq left join member m on iq.member_no = m.member_no
 	</select>
 	
 		
@@ -195,7 +195,7 @@
 	</select>
 	
 	<select id="adminItemQna" resultMap="itemQnaMap">
-		select * from item_qna where item_qna_no=#{itemQnaNo}
+		select iq.*, m.member_email from item_qna iq left join member m on iq.member_no = m.member_no where item_qna_no=#{itemQnaNo}
 	</select>
 	
 	<insert id="adminItemQnaEnd">

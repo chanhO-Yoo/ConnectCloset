@@ -16,6 +16,7 @@ public class ItemQna implements Serializable{
 		private String itemQnaContent;
 		private char itemQnaAnsYn;
 		private Date itemQnaDate;
+		private String memberEmail;
 		
 		ItemQna() {
 			super();
@@ -23,7 +24,7 @@ public class ItemQna implements Serializable{
 		}
 
 		ItemQna(int itemQnaNo, int memberNo, int itemNo, String itemQnaType, String itemQnaTitle, String itemQnaContent,
-				char itemQnaAnsYn, Date itemQnaDate) {
+				char itemQnaAnsYn, Date itemQnaDate, String memberEmail) {
 			super();
 			this.itemQnaNo = itemQnaNo;
 			this.memberNo = memberNo;
@@ -33,6 +34,7 @@ public class ItemQna implements Serializable{
 			this.itemQnaContent = itemQnaContent;
 			this.itemQnaAnsYn = itemQnaAnsYn;
 			this.itemQnaDate = itemQnaDate;
+			this.memberEmail = memberEmail;
 		}
 
 		public int getItemQnaNo() {
@@ -102,12 +104,20 @@ public class ItemQna implements Serializable{
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
+		
+		public String getMemberEmail() {
+			return memberEmail;
+		}
+
+		public void setMemberEmail(String memberEmail) {
+			this.memberEmail = memberEmail;
+		}
 
 		@Override
 		public String toString() {
 			return "ItemQna [itemQnaNo=" + itemQnaNo + ", memberNo=" + memberNo + ", itemNo=" + itemNo
 					+ ", itemQnaType=" + itemQnaType + ", itemQnaTitle=" + itemQnaTitle + ", itemQnaContent="
-					+ itemQnaContent + ", itemQnaAnsYn=" + itemQnaAnsYn + ", itemQnaDate=" + itemQnaDate + "]";
+					+ itemQnaContent + ", itemQnaAnsYn=" + itemQnaAnsYn + ", itemQnaDate=" + itemQnaDate + ", memberEmail=" + memberEmail + "]";
 		}
 
 		

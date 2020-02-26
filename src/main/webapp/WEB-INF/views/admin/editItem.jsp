@@ -95,20 +95,20 @@ div#board-container label.custom-file-label{text-align:left;}
 											pageContext.setAttribute("colorList", colorList);
 										%>
 										    <select multiple class="form-control" id="itemColors" name="itemColors" style="width:170px">
-										    	<option value="blue" ${colorlist.contains("blue")?"selected":""}>blue</option>
-										    	<option value="red" ${colorlist.contains("red")?"selected":""}>red</option>
-										    	<option value="ivory" ${colorlist.contains("ivory")?"selected":""}>ivory</option>
-										    	<option value="maroon" ${colorlist.contains("maroon")?"selected":""}>maroon</option>
-										    	<option value="gray" ${colorlist.contains("gray")?"selected":""}>gray</option>
-										    	<option value="green" ${colorlist.contains("green")?"selected":""}>green</option>
-										    	<option value="yellow" ${colorlist.contains("yellow")?"selected":""}>yellow</option>
-										    	<option value="beige" ${colorlist.contains("beige")?"selected":""}>beige</option>
-										    	<option value="brown" ${colorlist.contains("brown")?"selected":""}>brown</option>
-										    	<option value="white" ${colorlist.contains("white")?"selected":""}>white</option>
-										    	<option value="black" ${colorlist.contains("black")?"selected":""}>black</option>
-										    	<option value="pink" ${colorlist.contains("pink")?"selected":""}>pink</option>
-										    	<option value="orange" ${colorlist.contains("orange")?"selected":""}>orange</option>
-										    	<option value="khaki" ${colorlist.contains("khaki")?"selected":""}>khaki</option>
+										    	<option value="blue" ${colorList.contains("blue")?"selected":""}>blue</option>
+										    	<option value="red" ${colorList.contains("red")?"selected":""}>red</option>
+										    	<option value="ivory" ${colorList.contains("ivory")?"selected":""}>ivory</option>
+										    	<option value="maroon" ${colorList.contains("maroon")?"selected":""}>maroon</option>
+										    	<option value="gray" ${colorList.contains("gray")?"selected":""}>gray</option>
+										    	<option value="green" ${colorList.contains("green")?"selected":""}>green</option>
+										    	<option value="yellow" ${colorList.contains("yellow")?"selected":""}>yellow</option>
+										    	<option value="beige" ${colorList.contains("beige")?"selected":""}>beige</option>
+										    	<option value="brown" ${colorList.contains("brown")?"selected":""}>brown</option>
+										    	<option value="white" ${colorList.contains("white")?"selected":""}>white</option>
+										    	<option value="black" ${colorList.contains("black")?"selected":""}>black</option>
+										    	<option value="pink" ${colorList.contains("pink")?"selected":""}>pink</option>
+										    	<option value="orange" ${colorList.contains("orange")?"selected":""}>orange</option>
+										    	<option value="khaki" ${colorList.contains("khaki")?"selected":""}>khaki</option>
 											</select>
 										</div>
 	                                </div>

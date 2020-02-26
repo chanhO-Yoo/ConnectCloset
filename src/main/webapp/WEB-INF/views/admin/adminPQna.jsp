@@ -6,27 +6,39 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
+<style>
+.bg-gray{
+	background-color: #F6F6F6 !important;
+}
+</style>
 <section id="board-container" class="container pt-150">
 	<form action="${pageContext.request.contextPath }/admin/adminPQnaEnd.do" id="pQnaAnsForm" method="POST">
 		<input type="hidden" name="pQnaNo" value="${pQna.pQnaNo }"/>
 		<table id="tbl-board" class="table">
 			<tr>
-				<td>문의번호</td>
+				<td class="bg-gray">문의번호</td>
 				<td>${pQna.pQnaNo }</td>
-				<td>문의유형</td>
-				<td>${pQna.pQnaTypeNo }</td>
-				<td>문의제목</td>
+				<td class="bg-gray">문의유형</td>
+				<c:if test="${pQna.pQnaTypeNo == 'ptype-001' }">
+					<td>상품문의</td>
+				</c:if>
+				<c:if test="${pQna.pQnaTypeNo == 'ptype-002' }">
+					<td>배송문의</td>
+				</c:if>
+				<c:if test="${pQna.pQnaTypeNo == 'ptype-003' }">
+					<td>기타문의</td>
+				</c:if>
+				<td class="bg-gray">문의제목</td>
 				<td>${pQna.pQnaTitle }</td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td colspan="2">${pQna.memberNo }</td>
-				<td>작성일</td>
+				<td class="bg-gray">작성자</td>
+				<td colspan="2">${pQna.memberEmail }</td>
+				<td class="bg-gray">작성일</td>
 				<td colspan="2">${pQna.pQnaDate }</td>
 			</tr>
 			<tr>
-				<td colspan="6">
+				<td colspan="6" class="bg-gray">
 					<strong>문의내용</strong>
 				</td>
 			</tr>
@@ -36,7 +48,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="6">
+				<td colspan="6" class="bg-gray">
 					<strong>답변</strong>
 				</td>
 			</tr>

@@ -25,6 +25,7 @@ public class Member implements Serializable {
 	private String memberValidateKey;
 	private Date enrollDate;
 	private int memberPoint;
+	private char adminYn;
 	
 	//주문내역 조인을 위한 변수
 	private List<OrderProduct> orderProductList;
@@ -46,7 +47,7 @@ public class Member implements Serializable {
 
 	public Member(int memberNo, String memberEmail, String memberPassword, String memberName, String memberPhone,
 			int memberPostcode, String memberAddress, String memberDetailAddress, char memberGender,
-			Date memberBirthday, String memberValidateKey, Date enrollDate, int memberPoint,
+			Date memberBirthday, String memberValidateKey, Date enrollDate, int memberPoint, char adminYn,
 			List<OrderProduct> orderProductList, List<Item> itemList) {
 		super();
 		this.memberNo = memberNo;
@@ -62,6 +63,7 @@ public class Member implements Serializable {
 		this.memberValidateKey = memberValidateKey;
 		this.enrollDate = enrollDate;
 		this.memberPoint = memberPoint;
+		this.adminYn = adminYn;
 		this.orderProductList = orderProductList;
 		this.itemList = itemList;
 	}
@@ -165,6 +167,14 @@ public class Member implements Serializable {
 	public int getMemberPoint() {
 		return memberPoint;
 	}
+	
+	public char getAdminYn() {
+		return adminYn;
+	}
+
+	public void setAdminYn(char adminYn) {
+		this.adminYn = adminYn;
+	}
 
 	public void setMemberPoint(int memberPoint) {
 		this.memberPoint = memberPoint;
@@ -188,7 +198,7 @@ public class Member implements Serializable {
 				+ ", memberName=" + memberName + ", memberPhone=" + memberPhone + ", memberPostcode=" + memberPostcode
 				+ ", memberAddress=" + memberAddress + ", memberDetailAddress=" + memberDetailAddress
 				+ ", memberGender=" + memberGender + ", memberBirthday=" + memberBirthday + ", memberValidateKey="
-				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint
+				+ memberValidateKey + ", enrollDate=" + enrollDate + ", memberPoint=" + memberPoint + ", adminYn=" + adminYn
 				+ ", orderProductList=" + orderProductList + ", itemList=" + itemList + "]";
 	}
 

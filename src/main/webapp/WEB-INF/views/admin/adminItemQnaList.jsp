@@ -28,7 +28,6 @@ input#btn-add{float:right; margin: 0 0 15px;}
 		<tr>
 			<th>문의번호</th>
 			<th>작성자</th>
-			<th>문의유형</th>
 			<th>문의제목</th>
 			<th>문의날짜</th>
 			<th>답변여부</th>
@@ -36,8 +35,7 @@ input#btn-add{float:right; margin: 0 0 15px;}
 		<c:forEach items="${list }" var="itemQna">
 				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminItemQna.do?itemQnaNo=${itemQna.itemQnaNo }'">
 					<td>${itemQna.itemQnaNo }</td>
-					<td>${itemQna.memberNo }</td>
-					<td>${itemQna.itemQnaType }</td>
+					<td>${itemQna.memberEmail }</td>
 					<td>${itemQna.itemQnaTitle }</td>
 					<td>${itemQna.itemQnaDate }</td>
 					<td>${itemQna.itemQnaAnsYn }</td>

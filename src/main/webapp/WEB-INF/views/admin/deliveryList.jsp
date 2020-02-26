@@ -197,6 +197,8 @@ button {
 	<!-- pageBar 출력 부분 -->
 	${pageBar }
 	</div>
+	</div>
+	</section>
 	
 <!--주문/배송처리 스크립트   -->
 <script>
