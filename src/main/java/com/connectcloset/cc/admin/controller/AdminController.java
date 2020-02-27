@@ -11,11 +11,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,12 +29,10 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
 import com.connectcloset.cc.item.model.vo.ItemQnaAns;
-import com.connectcloset.cc.order.model.vo.Delivery;
+import com.connectcloset.cc.order.model.vo.Graph;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonView;
 
 @Controller
 public class AdminController {
@@ -334,6 +332,17 @@ public class AdminController {
 		mav.addObject("cPage", cPage);
 		mav.addObject("totalContents", totalContents);
 		mav.setViewName("admin/itemList");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/admin/adminGraph.do")
+	public ModelAndView adminGraph(ModelAndView mav) {
+		List<Graph> monthly_sales = adminService.selectMonthlySales();
+		logger.debug("monthly_sales={}",monthly_sales);
+		
+		mav.addObject("monthly_sales",monthly_sales);
+		mav.setViewName("admin/adminGraph");
 		
 		return mav;
 	}

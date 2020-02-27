@@ -336,6 +336,7 @@
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">1대1문의</a></li>
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminItemQnaList.do">상품문의</a></li>
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/deliveryList.do">배송현황</a></li>
+                                 <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminGraph.do">주문현황(그래프)</a></li>
                             </ul>
                         </div>
                     </div>

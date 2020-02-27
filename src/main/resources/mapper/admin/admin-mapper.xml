@@ -143,6 +143,15 @@
 		select count(*) from item where brand_no = #{brandNo}
 	</select>
 	
+	<select id="selectMonthlySales" resultMap="graphMap">
+	<![CDATA[
+		select sum(order_total_price) as monthly_sales ,count(*) as monthly_sales_volume, to_char(order_date,'YYYY-MM') as month from order_product where order_date >=trunc(add_months(SYSDATE, -11),'mm') and order_date<trunc(ADD_MONTHS(SYSDATE, + 1),'mm') group by to_char(order_date,'YYYY-MM') order by month
+	]]>
+	</select>
+	<resultMap type="graph" id="graphMap">
+		
+	</resultMap>
+	
     <!-- ===================찬호 끝=================== -->
     
 	 <!-- ===================하은 시작=================== -->

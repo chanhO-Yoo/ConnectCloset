@@ -7,10 +7,10 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
 import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+import com.connectcloset.cc.order.model.vo.Graph;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
-import com.connectcloset.cc.order.model.vo.Delivery;
-import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public interface AdminService {
 	
@@ -33,6 +33,7 @@ public interface AdminService {
 	int selectSearchItemCount(String searchKeyword);
 	List<ItemAndImageVO> adminSearchItembyBrand(String brandNo, int cPage, int numPerPage);
 	int selectItemCount(String brandNo);
+	List<Graph> selectMonthlySales();
 
 	//===================찬호 끝===================
 

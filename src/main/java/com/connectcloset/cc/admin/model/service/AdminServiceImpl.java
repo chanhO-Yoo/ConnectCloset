@@ -5,7 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,10 +17,10 @@ import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
 import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+import com.connectcloset.cc.order.model.vo.Graph;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
-import com.connectcloset.cc.order.model.vo.Delivery;
-import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -164,6 +163,12 @@ public class AdminServiceImpl implements AdminService {
 	public int selectItemCount(String brandNo) {
 		return adminDAO.selectItemCount(brandNo);
 	}
+	
+	@Override
+	public List<Graph> selectMonthlySales() {
+		return adminDAO.selectMonthlySales();
+	}
+
 	//===================찬호 끝===================
 
 
@@ -227,6 +232,7 @@ public class AdminServiceImpl implements AdminService {
 	public int adminItemQnaEnd(ItemQnaAns itemQnaAns) {
 		return adminDAO.adminItemQnaEnd(itemQnaAns);
 	}
+
 
 
 	

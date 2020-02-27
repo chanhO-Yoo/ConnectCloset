@@ -2,16 +2,15 @@ package com.connectcloset.cc.admin.model.dao;
 
 import java.util.List;
 
-
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
 import com.connectcloset.cc.item.model.vo.ItemQna;
 import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+import com.connectcloset.cc.order.model.vo.Graph;
+import com.connectcloset.cc.order.model.vo.OrderProduct;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
-import com.connectcloset.cc.order.model.vo.Delivery;
-import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 public interface AdminDAO {
 
@@ -53,6 +52,9 @@ public interface AdminDAO {
 	List<ItemAndImageVO> adminSearchItembyBrand(String brandNo, int cPage, int numPerPage);
 
 	int selectItemCount(String brandNo);
+
+	List<Graph> selectMonthlySales();
+	
 	//===================찬호 끝===================
 	
 	//===================하은 시작===================
@@ -82,6 +84,7 @@ public interface AdminDAO {
 	List<ItemQnaAns> adminItemQnaAns(int itemQnaNo);
 
 	int adminItemQnaEnd(ItemQnaAns itemQnaAns);
+
 	
 	
 	//===================하라 끝===================
