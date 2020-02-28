@@ -382,14 +382,20 @@
                     
                         <div class="summary-list">
                             <ul>
-                            <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
+                            <c:if test="${memberLoggedIn != null || sessionId != null  || userName != null}">
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} ${userName } ${sessionId}  님 환영합니다</li>
                             
                             </c:if>
+                            
+                            
+              
                                 
-                                 <c:if test="${memberLoggedIn == null }">
+                                 <c:if test="${memberLoggedIn == null && sessionId == null  && userName == null}">
 	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
 	                               <form action="${pageContext.request.contextPath }/member/login-register.do" method="GET">
+	                                            
+	                                            
+	                                            
 	                                               
 		                            <div class="submit-btn">
 		                              <button class="btn-hover" type="submit">Log in / register</button>
@@ -398,14 +404,15 @@
                    				 </c:if>
                                
                             </ul>
-                             <c:if test="${memberLoggedIn != null }">
+                             <c:if test="${memberLoggedIn != null || sessionId != null  || userName != null}">
 						   <p>
-	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
+	                        <form action="logout" method="GET">
 	                                               
 		                            <div class="submit-btn">
 		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
+	                  
                           </p>
                     </c:if>
                         </div>

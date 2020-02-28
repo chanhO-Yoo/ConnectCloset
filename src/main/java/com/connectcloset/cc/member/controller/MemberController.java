@@ -88,13 +88,14 @@ public class MemberController {
 			logger.debug("카카오 토큰:",access_Token);
 			
 			//클라이언트 이메일이 존재할때 세션에 이메일과 토큰 등록
-			  if (userInfo.get("email") != null) {
+			  
 			        //session.setAttribute("userId", userInfo.get("email"));
 			        session.setAttribute("userName", userInfo.get("nickname"));
 
 			        session.setAttribute("access_Token", access_Token);
-			    }
-	        return "/member/login-register";
+			   
+
+	        		return "redirect:/";
 	    }
 	
 	
@@ -126,7 +127,7 @@ public class MemberController {
 	//4.파싱 닉네임 세션으로 저장
 	session.setAttribute("sessionId",nickname); //세션 생성
 	model.addAttribute("result", apiResult);
-	return "/member/login-register";
+	return  "redirect:/";
 	}
 	
 	
@@ -134,21 +135,21 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session, SessionStatus sessionStatus)throws IOException {
 	System.out.println("여기는 logout");
-//	if(session!=null) {
-//		
-//		session.invalidate();
-//	}
+	if(session!=null) {
+		
+		session.invalidate();
+	}
 	
 	if(!sessionStatus.isComplete()) {
 		sessionStatus.setComplete();
 	}
-	//카카오
+/*	//카카오
 	if(session!=null) {
 		
 	  kakao.kakaoLogout((String)session.getAttribute("access_Token"));
 	    session.removeAttribute("access_Token");
 	    session.removeAttribute("userId");
-	}
+	}*/
 	return "redirect:/";
 	}
 	
