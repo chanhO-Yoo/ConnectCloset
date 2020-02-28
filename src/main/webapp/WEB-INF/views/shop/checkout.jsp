@@ -11,7 +11,7 @@ List<Item> itemList = (List<Item>)request.getAttribute("itemList");
 Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
-
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!-- 아임포트 제공 js & payment 스크립트  -->
 <script type="text/javascript"
@@ -20,6 +20,7 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script type="text/javascript">
+
 
 document.addEventListener('DOMContentLoaded', function(){
 function usePoint(){
@@ -75,16 +76,17 @@ function usePoint(){
 </script>
 <!-- breadcrumb area -->
 <div class="breadcrumb-area bg-img pt-230 pb-152"
-	style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
+	style="background:#212529;">
+
 	<div class="container">
-		<div class="breadcrumb-content breadcrumb-black2 text-center">
+		<!-- <div class="breadcrumb-content breadcrumb-black2 text-center">
 			<h2>Shop</h2>
 			<ul>
 				<li><a href="index.html">Home</a></li>
 				<li><a href="shop-grid-col4.html">Shop</a></li>
 				<li class="active">Checkout</li>
 			</ul>
-		</div>
+		</div> -->
 	</div>
 </div>
 
@@ -407,7 +409,7 @@ function usePoint(){
 					<!--결제 버튼으로 작업할 경우   -->
 					<div class="Place-order mt-25">
 						<a class="btn-hover" href="#">
-							<button class="btn-hover" id="push_module" type="button">Place
+							<button class="btn-hover" id="push_module" type="button" >Place
 								Order</button>
 						</a>
 					</div>
@@ -573,5 +575,20 @@ function checkout(){
  	}
  	
 </script> -->
+<style>
+ #push_module{
+  border:0px;
+  color:white;
+ background-color: rgba(0,0,0,0);
 
+ }
+ 
+ .your-order-totalPoint{
+ padding-left:20px;
+ }
+ 
+ #inputPoint{
+
+ }
+</style> 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
