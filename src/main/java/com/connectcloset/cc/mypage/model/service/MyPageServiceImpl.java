@@ -42,6 +42,13 @@ public class MyPageServiceImpl implements MyPageService {
 		return  mypageDAO.selectoneTotalPoint(memberNo);
 	}
 	
+	@Override
+	public int selectListPointCount() {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectListPointCount();
+	}
+
+	
 	//-----------주영 포인트 끝--------------
 
 
@@ -186,6 +193,7 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.mypagePQnaAns(pQnaNo);
 	}
+
 
 
 	/// ---------------주영 1:1 문의 시작------------------------

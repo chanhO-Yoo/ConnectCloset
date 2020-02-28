@@ -21,6 +21,8 @@ public interface MyPageDAO {
 	
 	int selectoneTotalPoint(int memberNo);
 	
+	int selectListPointCount();
+	
 	//-----------주영 포인트 끝--------------
 
 	//-----------주영 리뷰 시작--------------
@@ -69,6 +71,8 @@ public interface MyPageDAO {
 
 
 	List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map);
+
+	
 
 
 	//------------주영 1:1 문의---------------------

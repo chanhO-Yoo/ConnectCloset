@@ -141,17 +141,20 @@ public class MyPageController {
 		
 		final int numPerPage = 9;
 		
-		logger.debug("memberNo@@@@@@={}", memberNo);
+
 		
 		List<Point> point
 		= myPageService.selectListPoint(memberNo, cPage,numPerPage);
 		
+		int totalContents = myPageService.selectListPointCount();
 
 		mav.addObject("point",point);
 		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("totalContents", totalContents);
 		mav.addObject("cPage", cPage);
+		mav.addObject("memberNo", memberNo);
 		
-		logger.debug("point@@@@@@={}", point);
+		logger.debug("point={}", point);
 		mav.setViewName("/mypage/mypage-point");
 		
 		

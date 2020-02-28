@@ -1,9 +1,22 @@
+<%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%
+	//페이비자 작업
+	int totalContents = (int)request.getAttribute("totalContents");
+	int cPage = (int)request.getAttribute("cPage");
+	int numPerPage = (int)request.getAttribute("numPerPage");
+	
+	int memberNo=(int)request.getAttribute("memberNo");
+	String url = "mypage-point.do?memberNo="+memberNo; //간단한 상대주소로 접근
+	
+	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	
+	pageContext.setAttribute("pageBar", pageBar);
+%>
 
 
 
@@ -53,7 +66,7 @@
                         </tr>
                  <c:forEach var="p" items="${point}">
                         <tr class="point-save">
-                            <td>${p.pointChangeDate} </td>
+                            <td>${p.pointChangeDate }</td>
                             <c:choose>
 
 								<c:when test="${p.pointStatus eq 'U'}"> 
@@ -74,9 +87,10 @@
                     </table>
                 </div>
                 
-            	${pageBar }
             </div>
         </div>
+   
+            	${pageBar}
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

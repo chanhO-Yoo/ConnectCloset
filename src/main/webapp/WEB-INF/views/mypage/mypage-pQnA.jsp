@@ -13,7 +13,7 @@
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "adminPQna.do"; //간단한 상대주소로 접근
+	String url = "mypage-pQnA.do"; //간단한 상대주소로 접근
 	
 	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
 	
