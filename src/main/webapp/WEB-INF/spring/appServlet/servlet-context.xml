@@ -80,6 +80,7 @@
 			<mapping path="/**"/>
 			<!-- 관리자 빼고 인터셉터 -->
 			<exclude-mapping path="/admin/**/"></exclude-mapping>
+			<exclude-mapping path="/shop/shopItem/**/"></exclude-mapping>
 			<beans:bean id="loggerInterceptor" class="com.connectcloset.cc.common.interceptor.LoggerInterceptor"></beans:bean>
 
 
@@ -87,9 +88,20 @@
 		
  		<interceptor>
 			<mapping path="/member/memberUpdateForm.do"/>
-			<mapping path="/shop/**/*.do"/>
-			<mapping path="/blog/**/*.do"/>
-			<exclude-mapping path="board/boardList.do" />
+			<!-- <mapping path="/shop/**/*.do"/> -->
+			<mapping path="/shop/cartList.do"/>
+			<mapping path="/shop/wishlist.do"/>
+			<!-- <mapping path="/shop/cartInsert/**/*.do/"/> -->
+			<mapping path="/shop/cartInsert.do"/>
+			<mapping path="/shop/wishlistInsert.do"/>
+		
+			
+			
+			<mapping path="/blog/blogForm.do"/>
+			<mapping path="/mypage/**/*.do"/>
+			<!-- <mapping path="/blog/**/*.do"/> -->
+			<!-- <exclude-mapping path="board/boardList.do" /> -->
+			<exclude-mapping path="/shop/shopItemList/**/*.do"/>
 			<beans:bean id="LoginInterceptor" class="com.connectcloset.cc.common.interceptor.LoginInterceptor"></beans:bean>
 		</interceptor> 
 		

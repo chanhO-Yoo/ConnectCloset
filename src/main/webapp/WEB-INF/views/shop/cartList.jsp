@@ -144,7 +144,7 @@
                                	 	<li><span class="proceed-title proceed-bold">Total</span> <span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
                             	</ul>
                             <div class="proceed-btn">
-                                <a class="btn-hover" href="#">Proceed to Checkout</a>
+                                <a class="btn-hover" href="${pageContext.request.contextPath }/shop/checkout.do?itemNo=${item }&orderCount=${orderItemCount }&orderSize=${orderItemSize }&orderColor=${orderItemColor}&memberNo=${memberNo}">Proceed to Checkout</a>
                             </div>
                         </div>
                     </div>
