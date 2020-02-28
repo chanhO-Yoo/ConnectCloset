@@ -31,9 +31,9 @@ public class MyPageServiceImpl implements MyPageService {
 	//-----------주영 포인트 시작--------------
 
 	@Override
-	public List<Point> selectListPoint(int memberNo) {
+	public List<Point> selectListPoint(int memberNo ,int cPage, int numPerPage) {
 		// TODO Auto-generated method stub
-		return mypageDAO.selectListPoint(memberNo);
+		return mypageDAO.selectListPoint(memberNo,cPage,  numPerPage);
 	}
 	
 	@Override
@@ -41,6 +41,13 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return  mypageDAO.selectoneTotalPoint(memberNo);
 	}
+	
+	@Override
+	public int selectListPointCount() {
+		// TODO Auto-generated method stub
+		return mypageDAO.selectListPointCount();
+	}
+
 	
 	//-----------주영 포인트 끝--------------
 
@@ -186,6 +193,7 @@ public class MyPageServiceImpl implements MyPageService {
 		// TODO Auto-generated method stub
 		return mypageDAO.mypagePQnaAns(pQnaNo);
 	}
+
 
 
 	/// ---------------주영 1:1 문의 시작------------------------

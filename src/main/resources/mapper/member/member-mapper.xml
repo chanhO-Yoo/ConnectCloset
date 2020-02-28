@@ -65,6 +65,10 @@
  
  </select>
  
+ 	<select id="selectListPointCount" resultType="_int">
+		select count(*) from point
+	</select>
+ 
  <!-- 주영 포인트 끝 -->
 </mapper>
     

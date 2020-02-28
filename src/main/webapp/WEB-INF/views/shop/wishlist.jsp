@@ -90,9 +90,17 @@
                                 	
                                     <a href="single-product.html">
  									
-                                        <img src="${pageContext.request.contextPath }/resources/img/product/no-gutter1.jpg" alt="">
+                                        <c:if test="${item.imageList[0].itemImageReName == null }">
+		                                 <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+	                                    </c:if>
+	                                    <c:if test="${item.imageList[0].itemImageReName != null }">
+		                                  <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
+	                                    </c:if>
                                         
                                     </a>
+ 
+ 
+ 
  
                                     
                                     <div class="shop-content3">
@@ -108,7 +116,7 @@
                                                
                                           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                             <a title="Add To Cart" href='${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${wish.ITEM_NO }'><i class="ti-shopping-cart"></i></a>
-                                         <a  href='${pageContext.request.contextPath}/shop/wishlistDelete.do?wishNo=${wish.WISH_NO}'  onclick="return confirm('왜고름?? 삭제 한다??');">
+                                         <a  href='${pageContext.request.contextPath}/shop/wishlistDelete.do?wishNo=${wish.WISH_NO}'  onclick="return confirm('정말 삭제 하시겠습니까?');">
                                           <input type="button" value="&#x02717;" style="WIDTH: 30pt; HEIGHT: 30pt"/> </a>
                                         </div>
                                     </div>
