@@ -26,7 +26,7 @@
             		map.put("gucci.jpg", "GUCCI");
             		pageContext.setAttribute("map", map);
             	%>
-            	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs">
+            	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs" >
                 <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="${vs.count }" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/${brand.key });">
                     <div class="container">
                         <div class="row">

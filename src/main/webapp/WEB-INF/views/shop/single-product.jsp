@@ -100,7 +100,19 @@ $("#btn-goOrder").on('click', function(){
 	var orderColor= $("#colorSelect:checked").val();
 	var memberNo= ${memberLoggedIn.memberNo}
 
-	console.log(orderColor);
+
+	if(orderSize===undefined){
+		alert("사이즈를 선택해주세요.");
+		return;
+	}
+	
+	if(orderColor===undefined){
+		alert("색상을 선택해주세요.");
+		return;
+	}
+	
+	
+	
 		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
 		
 		/* $.ajax({
@@ -238,16 +250,7 @@ function goLogin(){
                         	</c:choose>
                         	
                             <h2>${item.itemName}</h2>
-                            <div class="pro-details-rating-wrap">
-                                <div class="pro-details-rating">
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star gray-color"></i>
-                                </div>
-                                <span>(1 customer review)</span>
-                            </div>
+                    
       
                             <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.itemPrice}" />원</h3>
                             <p>${item.itemInfo}</p>
@@ -255,22 +258,19 @@ function goLogin(){
                                 <div class="pro-details-color2-wrap">
                                     <span>Color</span>
                                     <div class="pro-details-color2-content">
-                                        <ul>
+                                        <ul class="  pr-30">
+								 <c:forTokens items="${item.itemColors}" delims="," var="item">
                                         
 										
 										   
-						 <c:forTokens items="${item.itemColors}" delims="," var="item">
-										 
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				
-			
-						<label class="btn ${item } " >
-							<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
-						</label>
+												 
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn ${item } " >
+									<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
+								</label>	
+							</div>
 
-					</div>
-						 </c:forTokens>
-
+								 </c:forTokens>
 
                                         </ul>
                                     </div>
@@ -278,9 +278,9 @@ function goLogin(){
                                 <div class="pro-details-size2">
                                     <span>Size</span>
                                     <div class="pro-details-size2-content">
-                                        <ul>
-                                        	
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
+                                        <ul >
+                                        	
                                          <div class="form-group">
 										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										    		<label class="btn " >
@@ -290,10 +290,10 @@ function goLogin(){
 										  	</div>
 					
 										</div>
-										</c:forTokens>
                                      
                                       
                                         </ul>
+										</c:forTokens>
                                     </div>
                                 </div>
                             </div>
@@ -308,32 +308,13 @@ function goLogin(){
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                	<button type="button" class=" btn-hover" id="btn-goOrder"><i class="ti-heart"></i></button>
+                                <a class=" btn-hover" id="btn-goOrder">
+                                	<i class="ti-heart"></i></button>
+                                </a>
                                     <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                            <div class="pro-details-info-wrap">
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">SKU</li>
-                                        <li>00010002</li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Categories</li>
-                                        <li><a href="#">Women,</a></li>
-                                        <li><a href="#">Dress</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Tags</li>
-                                        <li><a href="#">Clothing,</a></li>
-                                        <li><a href="#">Summer</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
                             <div class="pro-details-social">
                                 <ul>
                                     <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -413,72 +394,9 @@ function goLogin(){
                                             </div>
                                         </div>
 
-                                        <div class="single-review child-review">
-                                            <div class="review-img">
-                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
-                                                        </div>
-                                                        <div class="review-rating">
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star theme-color"></i>
-                                                            <i class="ti-star gray-color"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-5">
-                                    <div class="ratting-form-wrapper pl-50">
-                                        <h3>Add a Review</h3>
-                                        <div class="ratting-form">
-                                            <form action="#">
-                                                 <div class="star-box">
-                                                    <span>Your rating:</span>
-                                                    <div class="ratting-star">
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                        <i class="ti-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Name" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input placeholder="Email" type="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="rating-form-style form-submit">
-                                                            <textarea name="Your Review" placeholder="Message"></textarea>
-                                                            <input type="submit" value="Submit">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                             
                             </div>
                         </div>
 

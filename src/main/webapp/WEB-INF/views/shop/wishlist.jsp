@@ -90,9 +90,17 @@
                                 	
                                     <a href="single-product.html">
  									
-                                        <img src="${pageContext.request.contextPath }/resources/img/product/no-gutter1.jpg" alt="">
+                                        <c:if test="${item.imageList[0].itemImageReName == null }">
+		                                 <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
+	                                    </c:if>
+	                                    <c:if test="${item.imageList[0].itemImageReName != null }">
+		                                  <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
+	                                    </c:if>
                                         
                                     </a>
+ 
+ 
+ 
  
                                     
                                     <div class="shop-content3">
