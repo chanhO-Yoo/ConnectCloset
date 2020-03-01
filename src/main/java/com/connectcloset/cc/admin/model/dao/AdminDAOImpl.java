@@ -18,6 +18,7 @@ import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
+import com.connectcloset.cc.order.model.vo.Graph;
 import com.connectcloset.cc.order.model.vo.OrderProduct;
 
 @Repository
@@ -129,6 +130,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectOne("admin.selectItemCount2",brandNo);
 	}
 
+	@Override
+	public List<Graph> selectMonthlySales() {
+		return sqlSession.selectList("admin.selectMonthlySales");
+	}
 	//===================찬호 끝===================
 
 	//===================하은 시작=================
@@ -204,6 +209,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public int adminItemQnaEnd(ItemQnaAns itemQnaAns) {
 		return sqlSession.insert("admin.adminItemQnaEnd",itemQnaAns);
 	}
+
 	
 	
 	

@@ -14,13 +14,14 @@ public class PersonalQna implements Serializable {
 	private String pQnaContent;
 	private Date pQnaDate;
 	private char pAnsYn;
+	private String memberEmail;
 	
 	public PersonalQna() {
 		super();
 	}
 
 	public PersonalQna(int pQnaNo, int memberNo, String pQnaTypeNo, String pQnaTitle, String pQnaContent, Date pQnaDate,
-			char pAnsYn) {
+			char pAnsYn, String memberEmail) {
 		super();
 		this.pQnaNo = pQnaNo;
 		this.memberNo = memberNo;
@@ -29,6 +30,7 @@ public class PersonalQna implements Serializable {
 		this.pQnaContent = pQnaContent;
 		this.pQnaDate = pQnaDate;
 		this.pAnsYn = pAnsYn;
+		this.memberEmail = memberEmail;
 	}
 
 	public int getpQnaNo() {
@@ -91,11 +93,19 @@ public class PersonalQna implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+
 	@Override
 	public String toString() {
 		return "PersonalQna [pQnaNo=" + pQnaNo + ", memberNo=" + memberNo + ", pQnaTypeNo=" + pQnaTypeNo
 				+ ", pQnaTitle=" + pQnaTitle + ", pQnaContent=" + pQnaContent + ", pQnaDate=" + pQnaDate + ", pAnsYn="
-				+ pAnsYn + "]";
+				+ pAnsYn + ", memberEmail=" + memberEmail + "]";
 	}
 	
 	

@@ -14,8 +14,8 @@ div#board-container label.custom-file-label{text-align:left;}
 	<div class="pt-100">
         <form action="${pageContext.request.contextPath }/admin/enrollItemEnd.do" method="post" enctype="multipart/form-data">
 			<div class="pro-details-cart pt-80 col-lg-2 offset-lg-5">
-				<a class="default-btn btn-hover" href="#" onclick="showClothSize()">의류</a>
-				<a class="default-btn btn-hover" href="#" onclick="showShoesSize()">신발</a>
+				<a class="default-btn btn-hover" href="#" onclick="showClothSize()" style="width:80px;padding: 17px 22px !important;">의류</a>
+				<a class="default-btn btn-hover" href="#" onclick="showShoesSize()" style="width:80px;padding: 17px 22px !important;">신발</a>
 			</div>
 	        <div class="single-product-area pt-40 pb-80">
 	            <div class="container">

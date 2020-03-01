@@ -101,7 +101,7 @@
 	</delete>
 	
 	<select id="selectPQnaList" resultMap="personalQnaMap">
-		select * from personal_qna
+		select pq.*, m.member_email from personal_qna pq left join member m on pq.member_no = m.member_no order by p_qna_no desc
 	</select>
 	
 	<resultMap type="personalQna" id="personalQnaMap">
@@ -112,7 +112,7 @@
 	</select>
 	
 	<select id="adminPQna" resultMap="personalQnaMap">
-		select * from personal_qna where p_qna_no=#{pQnaNo}
+		select pq.*, m.member_email from personal_qna pq left join member m on pq.member_no = m.member_no where pq.p_qna_no=#{pQnaNo} order by p_qna_no desc
 	</select>
 	
 	<insert id="adminPQnaEnd">
@@ -141,6 +141,15 @@
 	<select id="selectItemCount2" resultType="_int">
 		select count(*) from item where brand_no = #{brandNo}
 	</select>
+	
+	<select id="selectMonthlySales" resultMap="graphMap">
+	<![CDATA[
+		select sum(order_total_price) as monthly_sales ,count(*) as monthly_sales_volume, to_char(order_date,'YYYY-MM') as month from order_product where order_date >=trunc(add_months(SYSDATE, -11),'mm') and order_date<trunc(ADD_MONTHS(SYSDATE, + 1),'mm') group by to_char(order_date,'YYYY-MM') order by month
+	]]>
+	</select>
+	<resultMap type="graph" id="graphMap">
+		
+	</resultMap>
 	
     <!-- ===================찬호 끝=================== -->
     
@@ -181,8 +190,8 @@
     
     
     <!-- ===================하라 시작=================== -->
-    	<select id="selectItemQnaList" resultMap="itemQnaMap">
-		select * from item_qna
+    <select id="selectItemQnaList" resultMap="itemQnaMap">
+		select iq.*,m.member_email from item_qna iq left join member m on iq.member_no = m.member_no
 	</select>
 	
 		
@@ -194,7 +203,7 @@
 	</select>
 	
 	<select id="adminItemQna" resultMap="itemQnaMap">
-		select * from item_qna where item_qna_no=#{itemQnaNo}
+		select iq.*, m.member_email from item_qna iq left join member m on iq.member_no = m.member_no where item_qna_no=#{itemQnaNo}
 	</select>
 	
 	<insert id="adminItemQnaEnd">

@@ -36,8 +36,16 @@ input#btn-add{float:right; margin: 0 0 15px;}
 		<c:forEach items="${list }" var="pQna">
 				<tr onclick="location.href='${pageContext.request.contextPath }/admin/adminPQna.do?pQnaNo=${pQna.pQnaNo }'">
 					<td>${pQna.pQnaNo }</td>
-					<td>${pQna.memberNo }</td>
-					<td>${pQna.pQnaTypeNo }</td>
+					<td>${pQna.memberEmail }</td>
+					<c:if test="${pQna.pQnaTypeNo == 'ptype-001' }">
+						<td>상품문의</td>
+					</c:if>
+					<c:if test="${pQna.pQnaTypeNo == 'ptype-002' }">
+						<td>배송문의</td>
+					</c:if>
+					<c:if test="${pQna.pQnaTypeNo == 'ptype-003' }">
+						<td>기타문의</td>
+					</c:if>
 					<td>${pQna.pQnaTitle }</td>
 					<td>${pQna.pQnaDate }</td>
 					<td>${pQna.pAnsYn }</td>

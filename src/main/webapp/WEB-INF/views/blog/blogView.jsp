@@ -282,23 +282,11 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                     </div>
                                 </div> -->
                       <!--       </div> -->
-                             <div class="sidebar-widget mt-50">
-                                <h4 class="pro-sidebar-title">Categories </h4>
-                                <div class="sidebar-categori mt-25">
-                                    <ul>
-                                        <li><a href="#">Artwork  <span>(9)</span></a></li>
-                                        <li><a href="#">Branding  <span>(12)</span></a></li>
-                                        <li><a href="#">Graphics  <span>(5)</span></a></li>
-                                        <li><a href="#">Photography  <span>(16)</span></a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+<script>
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
+</script>
