@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
-
-
-
 <fmt:requestEncoding value="utf-8"/>
+
+<style>
+
+
+</style>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
@@ -31,7 +32,10 @@
                                     <div class="ratting-form-wrapper pl-50">
                                         <h3>Add a Review</h3>
                                         <div class="ratting-form">
-                                            <form action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" method="post" enctype="multipart/form-data"">
+                                            <form action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" 
+                                            	method="post" enctype="multipart/form-data"
+                                            	name="reviewForm">
+                                            	
                                                 <div class="star-box">
                                                     <span>Your rating:</span>
                                                   
@@ -48,7 +52,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="rating-form-style mb-10">
-                                                            <input type="text"  name="reviewTitle"  >
+                                                            <input type="text" name="reviewTitle" placeholder="제목" >
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -79,12 +83,13 @@
 														</div>
                                                     <div class="col-md-12">
                                                         <div class="rating-form-style form-submit">
-                                                            <textarea name="reviewContent" placeholder="Message" ></textarea>
-                                                            <input type="submit" value="Submit">
+                                                            <textarea name="reviewContent" placeholder="내용" ></textarea>
+                                                            <input type="button" value="Submit" onclick="review()">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -103,6 +108,25 @@
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
 <script >
+//-----------------------윤지 수정
+function review(){
+	var reveiwForm = document.reveiwForm;
+	var reviewStar = reviewForm.reviewStar.value;
+	var reviewTitle = reviewForm.reviewTitle.value;
+	var upFile = reviewForm.upFile.value;
+	var reviewContent = reviewForm.reviewContent.value;
+	
+	if(!reviewContent || !reviewStar || !reviewTitle || !upFile){
+		alert("내용을 다 채워주세요")
+	}
+	else {
+		reviewForm.submit();
+		alert("리뷰 작성 완료");
+	}
+}
+//------------------------------
+
+
 $(document).ready(function(){
 	var header=$("header").attr('class','theme-bg');
 	console.log(header);

@@ -25,7 +25,7 @@
                             </div>
                             <div class="useful-links">
                                 <ul>
-                                    <li><a href="${pageContext.request.contextPath }/etc/about-us.do"><i class="fa fa-angle-right"></i> About</a></li>
+                                    <li><a href="${pageContext.request.contextPath }/etc/about-us.do">About</a></li>
                                 </ul>
                             </div>
                         </div>

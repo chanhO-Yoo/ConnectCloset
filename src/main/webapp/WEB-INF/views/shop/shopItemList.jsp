@@ -85,13 +85,20 @@ if(ck!=null){
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
 <style>
 #shop-img {
 	height: 300px !important;
 }
+
 #item-side-bar{
 	padding-left: 25px !important; 
 }
+
+.shop-area-wrapper{
+	padding-left: 10px !important;
+}
+
 
 
 
@@ -185,10 +192,10 @@ if(ck!=null){
                                         </div>
                                         <div class="shop-content">
                                             <div class="shop-name">
-                                                <h4><a href="single-product.html">&nbsp; &nbsp; &nbsp; &nbsp;${item.itemName }</a></h4>
+                                                <h4><a href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${item.itemNo}">&nbsp; &nbsp; ${item.itemName }</a></h4>
                                             </div>
                                             <div class="shop-price">
-                                                <span>${item.itemPrice }&nbsp; &nbsp; &nbsp; &nbsp;</span>
+                                                <span>&nbsp; &nbsp;${item.itemPrice } &nbsp; &nbsp;</span>
                                             </div>
                                         </div>
                                     </div>
@@ -208,9 +215,10 @@ if(ck!=null){
                                 </form>
                             </div>
                             <div class="sidebar-widget">
-								<h4 class="pro-sidebar-title">Categories</h4>
                                 <div class="sidebar-categori mt-25">
+								<h4 class="pro-sidebar-title">Categories</h4>
                                     <ul>
+                                    <li></li>
                                     	<c:if test="${sort == 1}">
 	                                    	<c:forEach items="${categoryMap }" var="map">
 	   	                                  	  <li><a href="${pageContext.request.contextPath }/shop/shopItemList.do?brandNo=a&itemTypeNo=${map.getKey()}">${map.getValue() }</a></li>
