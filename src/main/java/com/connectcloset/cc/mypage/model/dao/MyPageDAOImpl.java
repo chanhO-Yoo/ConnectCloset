@@ -96,6 +96,12 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.selectOne("orderProduct.countDelivery003", memberNo);
 	}
 	
+	//포인트
+	@Override
+	public int selectPointByMemberNo(int memberNo) {
+		return sqlSession.selectOne("orderProduct.selectPointByMemberNo", memberNo);
+	}
+	
 	//기간별
 	@Override
 	public Member selectOrderList(int memberNo) {
@@ -166,8 +172,6 @@ public class MyPageDAOImpl implements MyPageDAO {
 		return sqlSession.selectList("mypage.mypagePQnaAns",pQnaNo);
 	}
 
-
-	
 	//-------------------주영 1:1문의  끝 ---------------------------
 
 

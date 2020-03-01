@@ -14,13 +14,30 @@
 	height: 85px;
 	object-fit: cover;
 }
+.title {
+    margin: 42px 0 35px;
+    font-weight: 400;
+    font-size: 34px;
+    color: #111;
+    padding-top: 50px;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+.title a:active, .title a:focus, .title a:hover {
+    text-decoration: none;
+    color: black;
+}
 </style>
 
 		<div class="checkout-area pt-95 pb-100">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                            <h4>주문정보</h3>
+                            <h2 class="title">
+                            	<a href="${pageContext.request.contextPath}/mypage/mypage-order.do?memberNo=${memberLoggedIn.memberNo}">주문정보</a>
+                            </h2>
                     </div>
                 </div>
                 <br>
@@ -42,7 +59,7 @@
                                         </h4>
                                         <br>
                                         <h5>
-                                            	포인트${member.memberPoint }원
+                                            	포인트${point}원
                                         </h5>
                                     </div>
                                 </td>
@@ -68,12 +85,12 @@
                                 <col width="25%" />
                                 <col width="25%" />
                             </colgroup>
-                            <tr>
+                            <!-- <tr>
                                 <td><img src="assets/img/order_end.png" alt="" width="100px" height="100px"></td>
                                 <td><img src="assets/img/order_end.png" alt="" width="100px" height="100px"></td>
                                 <td><img src="assets/img/ship_ing.png" alt="" width="100px" height="100px"></td>
                                 <td><img src="assets/img/ship_end.png" alt="" width="100px" height="100px"></td>
-                            </tr>
+                            </tr>  -->
                             <tr>
                                 <td><strong>주문완료</strong></td>
                                 <td><strong>배송준비중</strong></td>
@@ -115,7 +132,7 @@
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1 cart-table">
                         <table class="col-lg-12" id="search-board">
-                        	<thead>
+                        	<%-- <thead>
                             <tr>
                                 <th class="order-product">상품정보</th>
                                 <th class="order-date">주문일자</th>
@@ -170,84 +187,82 @@
 	 							</c:choose>                               
                           		</tr>	
                                 </c:forEach>
-                                </tbody>
-                        </table>
+                                </tbody> --%>
+                        </table> 
                     </div>
                 </div>
                 <!-- 기간별 조회 -->
-<script>
- function search(sDate) {
-		
-	 console.log(sDate);
-
-	 $.ajax({
-			url: "${pageContext.request.contextPath}/mypage/searchDate/mypage-order.do?memberNo="+${memberLoggedIn.memberNo}+"&startDate="+sDate,
-			type: "GET",
-			dataType: "json",
-			success: data => {
-
-				console.log(data);
+				<script>
+				 function search(sDate) {
+						
+					 console.log(sDate);
 				
-				var table = $("<table id='tbl-board' class='table table-striped table-hover'></table>");
-				table.append("<tr><th>주문번호</th><th>상품명</th><th>상품가격</th><th>구매수량</th><<th>상품색상</th><th>상품사이즈</th><th>구매일</th><th>주문상태</th></tr>");
+					 $.ajax({
+							url: "${pageContext.request.contextPath}/mypage/searchDate/mypage-order.do?memberNo="+${memberLoggedIn.memberNo}+"&startDate="+sDate,
+							type: "GET",
+							dataType: "json",
+							success: data => {
 				
-				$.each(data,(idx, date)=>{
+								console.log(data);
+								
+								var table = $("<table class='col-lg-12'></table>");
+								table.append("<thead><tr><th class='order-product'>상품정보</th><th class='order-date'>주문일자</th><th class='order-number'>주문번호</th><th class='order-total'>주문금액</th><th>주문상태</th></tr></thead>");
+								
+								$.each(data,(idx, date)=>{
+									
+									var tr =$("<tr></tr>");
+									
+									tr.append("<td class='order-img-name'><a class='order-img' href='#'><img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/item/"+date.itemImageReName+"'/></a><a class='order-name' href='${pageContext.request.contextPath}/single-product.do?itemNo="+date.itemName+"'>"+date.itemName+"</a></td>");
+									
+									tr.append("<td>"+date.orderDate+"</td>");
+									tr.append("<td>"+date.orderNo+"</td>");
+									tr.append("<td>"+date.orderTotalPrice+"</td>");
+									//tr.append("<td>"+date.orderItemCount+"</td>");
+									//tr.append("<td>"+date.orderItemColor+"</td>");
+									//tr.append("<td>"+date.orderItemSize+"</td>");
+									//tr.append("<td>"+date.orderDate+"</td>");
+									
+										switch (date.deliveryNo) {
+										case 'os-001':
+											tr.append("<td> 주문완료 </td>");
+											break;
+										case 'os-002':
+											tr.append("<td> 구매확정 </td>");
+											break;
+										case 'os-003':
+											tr.append("<td> 주문취소 </td>");
+											break;
+										case 'os-004' :
+											tr.append("<td> 상품교환 </td>");
+											break;
+										case 'os-005' :
+											tr.append("<td> 상품반품 </td>");
+											break;
+										case 'deli-001' :
+											tr.append("<td> 배송준비중 </td>");
+											break;
+										case 'deli-002' :
+											tr.append("<td> 배송중 </td>");
+											break;
+										case 'deli-003' :
+											tr.append("<td> 배송완료 </td>");
+											break;
+											
+										default:
+											break;
+										}
+				
+									table.append(tr);
+								});	
+								$("#search-board").html(table);
+							},
 					
-					var tr =$("<tr></tr>");
-					
-					tr.append("<td>"+date.orderNo+"</td>");
-					
-					tr.append("<img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/item/"+date.itemImageReName+"'>");
-					
-					tr.append("<td>"+date.itemName+"</td>");
-					tr.append("<td>"+date.orderTotalPrice+"</td>");
-					tr.append("<td>"+date.orderItemCount+"</td>");
-					tr.append("<td>"+date.orderItemColor+"</td>");
-					tr.append("<td>"+date.orderItemSize+"</td>");
-					tr.append("<td>"+date.orderDate+"</td>");
-					
-						switch (date.deliveryNo) {
-						case 'os-001':
-							tr.append("<td> 주문완료 </td>");
-							break;
-						case 'os-002':
-							tr.append("<td> 구매확정 </td>");
-							break;
-						case 'os-003':
-							tr.append("<td> 주문취소 </td>");
-							break;
-						case 'os-004' :
-							tr.append("<td> 상품교환 </td>");
-							break;
-						case 'os-005' :
-							tr.append("<td> 상품반품 </td>");
-							break;
-						case 'deli-001' :
-							tr.append("<td> 배송준비중 </td>");
-							break;
-						case 'deli-002' :
-							tr.append("<td> 배송중 </td>");
-							break;
-						case 'deli-003' :
-							tr.append("<td> 배송완료 </td>");
-							break;
-							
-						default:
-							break;
-						}
-
-					table.append(tr);
-				});	
-				$("#search-board").html(table);
-			},
-	
-			error: (x,s,e) => {
-				console.log("ajax요청실패!",x,s,e);
-			}
-		}); 
-};
-	
-</script>
+							error: (x,s,e) => {
+								console.log("ajax요청실패!",x,s,e);
+							}
+						}); 
+				};
+				</script>
 
 
             </div>

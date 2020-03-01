@@ -45,6 +45,8 @@ public interface MyPageDAO {
 	int selectDeli3ByMemberNo(int memberNo);
 
 	List<OrderProduct> selectSearchDateList(HashMap<String, Integer> map);
+	
+	int selectPointByMemberNo(int memberNo);
 
 	//---------- 희진 주문내역 끝--------------------
 

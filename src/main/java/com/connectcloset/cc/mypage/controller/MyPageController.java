@@ -90,6 +90,8 @@ public class MyPageController {
 		int deli2 = myPageService.selectDeli2ByMemberNo(memberNo);
 		int deli3 = myPageService.selectDeli3ByMemberNo(memberNo);
 		
+		//포인트조회
+		int point = myPageService.selectPointByMemberNo(memberNo);
 		
 		logger.debug("member={}",m);
 		mav.addObject("member", m);
@@ -98,6 +100,7 @@ public class MyPageController {
 		mav.addObject("deli1", deli1);
 		mav.addObject("deli2", deli2);
 		mav.addObject("deli3", deli3);
+		mav.addObject("point", point);
 		mav.setViewName("/mypage/mypage-order");
 		return mav;
 	}
