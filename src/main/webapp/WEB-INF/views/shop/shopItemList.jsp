@@ -266,7 +266,7 @@ if(ck!=null){
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 <style>
-#sidebox { background-color:#F0F0F0; position:absolute; width:120px; height:550px; top:200px; right:10px; padding: 3px 10px; z-index: 0; }
+#sidebox { background-color:#F0F0F0; position:absolute; width:120px; height:650px; top:100px; right:10px; padding: 3px 10px; z-index: 0; }
 </style>
 <script>
 var currentPosition = parseInt($("#sidebox").css("top")); $(window).scroll(function() { var position = $(window).scrollTop(); $("#sidebox").stop().animate({"top":position+currentPosition+"px"},1000); });

@@ -424,7 +424,7 @@
             </div>
 
         
-        <div class="instagram-area">
+  <%--       <div class="instagram-area">
             <div class="instagram-wrap-3">
                 <div class="instragram-active-4 owl-carousel">
                     <div class="single-instragram zoom-hover">
@@ -445,8 +445,7 @@
                 </div>
             </div>
         </div>
-      
-        
+       --%>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

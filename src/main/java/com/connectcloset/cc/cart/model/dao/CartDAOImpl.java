@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.connectcloset.cc.cart.model.vo.Cart;
+import com.connectcloset.cc.cart.model.vo.Cart2;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -16,7 +16,7 @@ public class CartDAOImpl implements CartDAO {
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<Cart> cartList(int memberNo) {
+	public List<Cart2> cartList(int memberNo) {
 	 return sqlSession.selectList("cart.cartList",memberNo);
 	}
 
