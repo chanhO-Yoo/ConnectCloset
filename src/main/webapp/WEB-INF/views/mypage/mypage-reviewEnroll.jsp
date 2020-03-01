@@ -7,7 +7,10 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <style>
-
+#formTable{
+	width: 800px;
+	height: 400px;
+}
 
 </style>
 
@@ -30,64 +33,70 @@
                               
                                 <div class="col-lg-5">
                                     <div class="ratting-form-wrapper pl-50">
-                                        <h3>Add a Review</h3>
+                                        <h2>Add a Review</h2>
                                         <div class="ratting-form">
                                             <form action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" 
                                             	method="post" enctype="multipart/form-data"
                                             	name="reviewForm">
                                             	
-                                                <div class="star-box">
-                                                    <span>Your rating:</span>
-                                                  
-                                                    <label for="review-star" >별점</label>
-								                        <select name="reviewStar" id="reviewStar">
-								                            <option value="1">★</option>
-								                            <option value="2">★★</option>
-								                            <option value="3">★★★</option>
-								                            <option value="4">★★★★</option>
-								                            <option value="5" selected>★★★★★</option>
-								                        </select>
-								                        
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="rating-form-style mb-10">
-                                                            <input type="text" name="reviewTitle" placeholder="제목" >
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                     
-                                                         <div class="rating-form-style mb-10">
-                                                            <input  type="text" value="${selectOnditemReview.orderId}"  name="reviewWriter" >
-                                                            <input  type="hidden" value="${selectOnditemReview.itemNo}"  name="reviewItemNo" >
-                                                            <input  type="hidden" value="${selectOnditemReview.orderNo}"  name="orderNo">
-                                                           
-                                   
-                                                            
-                                                        </div>
-                                                    </div>
-                                                      <div class="input-group mb-3" style="padding:0px;">
-												            <div class="input-group-prepend" style="padding:0px;">
+                                            	<table id="formTable">
+                                             		<tr>
+                                             			<td>
+                                                   			<label for="review-star" id="starLabel">별점</label>
+                                                    	</td>
+                                                    	
+                                                    	<td>
+									                        <select name="reviewStar" id="reviewStar">
+									                            <option value="1">★</option>
+									                            <option value="2">★★</option>
+									                            <option value="3">★★★</option>
+									                            <option value="4">★★★★</option>
+									                            <option value="5" selected>★★★★★</option>
+									                        </select>
+								                        </td>
+                                                	</tr>
+                                                
+                                                <tr>
+                                                	<td> 
+                                                    	<input type="text" name="reviewTitle" placeholder="제목" >
+													</td>
+                                                    
+													<td>
+                                                        <input  type="text" value="${selectOnditemReview.orderId}"  name="reviewWriter" readonly="readonly">
+                                                        <input  type="hidden" value="${selectOnditemReview.itemNo}"  name="reviewItemNo" >
+                                                        <input  type="hidden" value="${selectOnditemReview.orderNo}"  name="orderNo">
+                                                 	</td>
+                                                 </tr>
+                                                 <tr>
+	                                                 <td>
 															    <span class="input-group-text">첨부파일</span>
-															  </div>
-															  
-															<div class="custom-file">
+												 	 </td>
+													 <td>
 														    	<input type="file" class="custom-file-input" name="upFile" id="upFile" >
 														    	<label class="custom-file-label" for="upFile">파일을 선택하세요</label>
-															</div>
-															<div>
+													 </td>
+												 </tr>
+												 <tr>
+												 	<td colspan="2">
 								                        	<div class="img_wrap">
 								                        		<img id="img" />
 								                        	</div>
-		                       								 </div>
-														</div>
-                                                    <div class="col-md-12">
-                                                        <div class="rating-form-style form-submit">
-                                                            <textarea name="reviewContent" placeholder="내용" ></textarea>
-                                                            <input type="button" value="Submit" onclick="review()">
-                                                        </div>
-                                                    </div>
-                                                </div>
+								                    </td>
+		                       					</tr>
+		                       					
+												<tr>
+													<td colspan="2">
+                                                           <textarea name="reviewContent" placeholder="내용" ></textarea>
+                                                    </td>
+												</tr>
+												
+                                            	<tr>
+                                            		<td colspan="2">
+                                                    	<input type="button" value="Submit" onclick="review()">
+													</td>
+                                            	</tr>
+                                           
+                                                </table>
                                             </form>
                                             
                                         </div>
