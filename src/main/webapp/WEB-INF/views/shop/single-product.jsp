@@ -151,6 +151,7 @@ function goLogin(){
 
 </script>
 
+
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
                 <div class="row">
@@ -441,6 +442,8 @@ function goLogin(){
                                             </div>
                                         </div>
                                     </div>
+                                     </c:forEach>
+                                     </c:if>
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="ratting-form-wrapper pl-50">
@@ -517,11 +520,12 @@ function goLogin(){
 <!--                                                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 													  Link with href
 													</a> -->
-													<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
-													  답변 버튼
+													<button class="btn btn-primary" style="float:right; margin-left:500px; margin-top:-55px; "
+													type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
+													  답변 확인
 													</button>
 													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
-													  <div class="well">
+													  <div class="well" style="border-style:none; border-color:black;">
 													   <c:forEach items="${itemQnaAnsList}" var="itemQnaAns" varStatus="vs">
 													   <c:if test="${itemQna.itemQnaNo == itemQnaAns.itemQnaNo}">
 														${itemQnaAns.itemQnaAnsContent}
@@ -609,8 +613,6 @@ function goLogin(){
 
                                         
                                     </div> 
-                                     </c:forEach>
-                                     </c:if>
 
                                 </div>
                              
