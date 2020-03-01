@@ -89,15 +89,10 @@
                                 <div class="shop-img hover-3">
                                 	
                                     <a href="single-product.html">
- 									
-                                        <c:if test="${item.imageList[0].itemImageReName == null }">
-		                                 <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
-	                                    </c:if>
-	                                    <c:if test="${item.imageList[0].itemImageReName != null }">
-		                                  <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
-	                                    </c:if>
-                                        
-                                    </a>
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${wish.ITEM_IMAGE_RE_NAME}" alt=""></a>
+	                                    
+	                                   
+                                  
  
  
  

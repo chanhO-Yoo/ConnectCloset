@@ -11,9 +11,19 @@
 	 
 	 	<select id="wishlist"  resultType="map">
 	 	
-	 	SELECT * FROM ITEM_WISHLIST IW LEFT JOIN 
+	 	        select I.item_no, I.ITEM_NAME,I.ITEM_COLORS,I.ITEM_PRICE,IW.WISH_NO, II.item_image_re_name 
+	from item_wishlist IW left join item I on IW.item_no = I.item_no
+    left join (SELECT item_image_re_name,item_no 
+                FROM 
+                    ( SELECT item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN 
+                    FROM  item_image ) TMP 
+                    WHERE TMP.RN = 1) II 
+    on I.item_no=II.item_no 
+    where IW.member_no = #{memberNo}
+    order by WISH_NO desc
+	 	<!-- SELECT * FROM ITEM_WISHLIST IW LEFT JOIN 
 	 	ITEM I ON IW.ITEM_NO = I.ITEM_NO 
-	 	WHERE MEMBER_NO = #{memberNo} 
+	 	WHERE MEMBER_NO = #{memberNo}  -->
 
 		</select>
 		
