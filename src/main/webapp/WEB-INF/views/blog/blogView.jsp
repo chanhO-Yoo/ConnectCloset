@@ -39,16 +39,10 @@
                                 <div class="blog-img hover-3 mt-40 mb-30">
                                     <img src="assets/img/blog/blog-details1.jpg" alt="">
                                 </div>
-                                <p>Etiam cursus ex non pellentesque laoreet. Donec et faucibus ipsum. Sed get blandit orciplacerat elit. Mauris at molestie qui ante eget dapibus. Suspendisse fringilla posuere sem eu suscipit. Suspendisse non enim in nisi convallis gravid vehicula oner turpis eget neque luctus efficitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit onec lacus arcu, hendrerit vitae tellus porta, suscipit faucibus. </p>
-                                <p>Vestibulum eros leo, consequat at tempor et, porta in risus. In vitae nisl tellus. Integer vulputate dolor null vestibulum augue rhoncus quis. Donec volutpat lorem eu metus elementum pellentesque. Suspendisse nec metus accumsan est sodal eget libero. Phasellus sed ullamcorper augue, non euismod ante. Etiam hendrerit libero ligula, vel elementum est lacinia in. Integer pretiu dignissim vstibulum tincidunt. Cras auctor ullamcorper libero sed tempus. Nullam luctus et erat at vulputate. Mauris vitae eros interdum, porttitor sapien. </p>
-                                <p>Phasellus molestie luctus urna eu porta. Fusce quis congue dui. Ut lacus nisl. Integer scelerisque ip psum suscipit eleifend. Maecenas ut elit posuere, scelerisque sem eu, sodales leo. Suspendisse potenti. Duis condimentum orci id nunc sodale semper justo imperdiet. </p>
-                                <div class="b-details-content-middle mt-40">
-                                    <h4>Phasellus accumsan et tempus neque quam eu felis.</h4>
-                                    <p>In pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut risus vestibul lacinia ultricies sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras consequat felis nonit facilisis pharetra. Nunc molestie quis dolor vitae sagittis. Sed tempor, est a tempor congue, leo erat pellentesque neque, ac efficitur et ante.</p>
-                                    <div class="b-middle-img-wrap">
-                                        <div class="b-middle-img mt-5">
-                                        
-                                         <div class="b-middle-img mt-5">
+                                <p> ${blog.blogContent } </p>
+                               
+                                
+                                     <div class="b-middle-img mt-5">
                                        
                                              <c:if test="${blog.attachmentList[0].renamedFileName == null }">
                                          		 <img src="${pageContext.request.contextPath }/resources/upload/${blog.attachmentList[0].renamedFileName}" alt="">
@@ -58,14 +52,10 @@
 	                                         </c:if> 
 	                               
                                         </div>
-                                           
-                                        </div>
-                                        <!-- <div class="b-middle-content">
-                                            <p>Etiam cursus ex non pellen tesque laoreet. Donec ucibus ipsum. Sed geta blandit orciplacerat elauris amolestie quis ante eget dapibus. Suspendisse fringilla posuere sem eu suscipit. Suspendisse non enim convallis gravida. In vehicula oner turpis eget neque luctus ipsum dolor sit amet, conctetur. </p>
-                                            <p>Adipiscing elit onec lacus arcu, hendrerit vitae tellus port suscipit tristique vel felis tincidunt faucibus. Vestibulum eros leo, consequat ate tempor et porta in risus. In vitae nisl tellus. Integer vulputate on augue rhoncus quis. </p>
-                                            <p>Donec volutpat lorem eu metus elementum a pellentesque. Suspendisse nec metus accumsan est sodales fermentum noeget libero. Phasellus sed ullam corper augue, non euismod ante. Etiam hendrerit libvel elementum est lacinia ina. Integer pretium urna dignissim vstibulum tincidunt auctor </p>
-                                        </div> -->
-                                    </div>
+                                <div class="b-details-content-middle mt-40">
+                                    <h4>Phasellus accumsan et tempus neque quam eu felis.</h4>
+                                    <p>In pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut risus vestibul lacinia ultricies sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras consequat felis nonit facilisis pharetra. Nunc molestie quis dolor vitae sagittis. Sed tempor, est a tempor congue, leo erat pellentesque neque, ac efficitur et ante.</p>
+                                   
                                     <p>hasellus accumsan, leo a vehicula ornare, lectus eros tristique aleo, eto tempus neque quam pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut rtheisus vestibulum, lacinia ultricies sem sagittis ante ipsum primis. </p>
                                     <div class="blog-details-list">
                                         <ul>
