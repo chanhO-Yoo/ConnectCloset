@@ -11,9 +11,9 @@
 	int totalPrice=0;
 %>
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
+        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background:#212529;">
             <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
+                <%-- <div class="breadcrumb-content breadcrumb-black2 text-center">
                     <h2>Cart page</h2>
                     <ul>
                         <li>
@@ -21,9 +21,11 @@
                         </li>
                         <li class="active" action="${pageContext.request.contextPath }/shop/cartList.do"  method="post">Shopping Cart</li>
                     </ul>
-                </div>
-            </div>
+                </div>--%>
+            </div> 
         </div>
+        
+        
         <!-- main-search start -->
         <div class="main-search-active">
             <div class="sidebar-search-icon">
