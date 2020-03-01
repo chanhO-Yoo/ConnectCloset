@@ -72,8 +72,8 @@
 															    <span class="input-group-text">첨부파일</span>
 												 	 </td>
 													 <td>
-														    	<input type="file" class="custom-file-input" name="upFile" id="upFile" >
-														    	<label class="custom-file-label" for="upFile">파일을 선택하세요</label>
+													 	<input type="file" class="custom-file-input" name="upFile" id="upFile" >
+														<label class="custom-file-label" for="upFile">파일을 선택하세요</label>
 													 </td>
 												 </tr>
 												 <tr>
