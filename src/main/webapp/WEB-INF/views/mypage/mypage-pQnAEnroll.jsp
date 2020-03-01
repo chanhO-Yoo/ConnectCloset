@@ -10,6 +10,12 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
+<style>
+div.row{
+margin-left:280px;
+}
+</style>
+
 <div class="mypage-pQnAForm-area pt-180 pb-180">
 	<div class="row">
 	
@@ -42,7 +48,7 @@
 	                </div>
 	                <div class="btnForm-wrapper text-center">
 	                    <button type="button" class="btn-radius" onclick="exit();">취소</button>
-	                    <button type="submit" class="btn-radius" onclick="return boardValidate();">수정</button>
+	                    <button type="submit" class="btn-radius" onclick="return confirm('정말 수정 하시겠습니까?')">수정</button>
 	                </div>
 	            </form>
 	        </section>
