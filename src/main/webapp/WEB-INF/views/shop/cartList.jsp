@@ -98,7 +98,7 @@
      									 <c:forEach items="${list}" var="cart" varStatus="vs">
      									 	  <tr>
      									 	 <td class="cart-img-name">
-		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/img/cart/cart-1.jpg" alt=""></a>
+		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/upload/item/${cart.ITEM_IMAGE_RE_NAME}" alt=""></a>
 		                                          <a class="cart-name" href="#"> ${cart.ITEM_NAME} </a> 
 		                                     </td>
 		                                         <td class="cart-price"><span class="amount">${cart.ITEM_COLORS }</span></td>
