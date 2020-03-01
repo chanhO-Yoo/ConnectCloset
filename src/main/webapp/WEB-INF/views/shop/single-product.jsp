@@ -496,7 +496,7 @@ function goLogin(){
                                             </div> --%>
                                             <div class="review-content">
                                                         <div class="review-name">
-                                                            <h4>${itemQna.itemQnaTitle}</h4>
+                                                            <h4>제목: ${itemQna.itemQnaTitle}</h4>
                                                         </div>
                                                 <div class="review-top-wrap">
                                                     <!-- <div class="review-left">
@@ -512,25 +512,26 @@ function goLogin(){
                                                         <a href="#">Reply</a>
                                                     </div> -->
 
-                                                <div class="review-bottom">
-                                                    <p>${itemQna.itemQnaContent}</p>
+                                                <div class="review-bottom" style="margin-top: 5px; margin-bottom:10px;">
+                                                    <p>내용: ${itemQna.itemQnaContent}</p>
                                                 </div>
                                             </div>
                                             
 <!--                                                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 													  Link with href
 													</a> -->
-													<button class="btn btn-primary" style="float:right; margin-left:500px; margin-top:-55px; "
+													<button class="btn btn-primary" style="float:right; margin-left:500px; margin-top:-75px; "
 													type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
 													  답변 확인
 													</button>
 													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
-													  <div class="well" style="border-style:none; border-color:black;">
+													  <div class="well"  style="border: 1px solid; margin-bottom: 30px;">
 													   <c:forEach items="${itemQnaAnsList}" var="itemQnaAns" varStatus="vs">
 													   <c:if test="${itemQna.itemQnaNo == itemQnaAns.itemQnaNo}">
-														${itemQnaAns.itemQnaAnsContent}
+														관리자 답변: ${itemQnaAns.itemQnaAnsContent}
 													   </c:if>
 													   </c:forEach>
+
 													  </div>
 													</div>
                                                 </div>
