@@ -163,6 +163,7 @@ function goLogin(){
 
 </script>
 
+
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
                 <div class="row">
@@ -394,6 +395,74 @@ function goLogin(){
                                             </div>
                                         </div>
 
+
+                                        <div class="single-review child-review">
+                                            <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>White Lewis</h4>
+                                                        </div>
+                                                        <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     </c:forEach>
+                                     </c:if>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="ratting-form-wrapper pl-50">
+                                        <h3>Add a Review</h3>
+                                        <div class="ratting-form">
+                                            <form action="#">
+                                                 <div class="star-box">
+                                                    <span>Your rating:</span>
+                                                    <div class="ratting-star">
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Name" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Email" type="email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <textarea name="Your Review" placeholder="Message"></textarea>
+                                                            <input type="submit" value="Submit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
                                     </div>
                                 </div>
                              
@@ -411,7 +480,7 @@ function goLogin(){
                                             </div> --%>
                                             <div class="review-content">
                                                         <div class="review-name">
-                                                            <h4>${itemQna.itemQnaTitle}</h4>
+                                                            <h4>제목: ${itemQna.itemQnaTitle}</h4>
                                                         </div>
                                                 <div class="review-top-wrap">
                                                     <!-- <div class="review-left">
@@ -427,24 +496,26 @@ function goLogin(){
                                                         <a href="#">Reply</a>
                                                     </div> -->
 
-                                                <div class="review-bottom">
-                                                    <p>${itemQna.itemQnaContent}</p>
+                                                <div class="review-bottom" style="margin-top: 5px; margin-bottom:10px;">
+                                                    <p>내용: ${itemQna.itemQnaContent}</p>
                                                 </div>
                                             </div>
                                             
 <!--                                                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 													  Link with href
 													</a> -->
-													<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
-													  답변 버튼
+													<button class="btn btn-primary" style="float:right; margin-left:500px; margin-top:-75px; "
+													type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
+													  답변 확인
 													</button>
 													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
-													  <div class="well">
+													  <div class="well"  style="border: 1px solid; margin-bottom: 30px;">
 													   <c:forEach items="${itemQnaAnsList}" var="itemQnaAns" varStatus="vs">
 													   <c:if test="${itemQna.itemQnaNo == itemQnaAns.itemQnaNo}">
-														${itemQnaAns.itemQnaAnsContent}
+														관리자 답변: ${itemQnaAns.itemQnaAnsContent}
 													   </c:if>
 													   </c:forEach>
+
 													  </div>
 													</div>
                                                 </div>
@@ -527,8 +598,6 @@ function goLogin(){
 
                                         
                                     </div> 
-                                     </c:forEach>
-                                     </c:if>
 
                                 </div>
                              

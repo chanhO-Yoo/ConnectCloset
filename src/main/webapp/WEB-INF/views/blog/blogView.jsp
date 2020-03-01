@@ -282,7 +282,7 @@ Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla nec, conv
                                     </div>
                                 </div> -->
                       <!--       </div> -->
-                         <!--    <div class="sidebar-widget mt-50">
+                             <div class="sidebar-widget mt-50">
                                 <h4 class="pro-sidebar-title">Categories </h4>
                                 <div class="sidebar-categori mt-25">
                                     <ul>

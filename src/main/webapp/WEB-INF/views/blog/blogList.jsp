@@ -8,6 +8,15 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
+<style>
+#buttoncss{
+border: 1px solid black;
+/* background-color: rgba(0,0,0,0); */
+background-color: black;
+color: white;
+}
+</style>
+
 <!-- breadcrumb area -->
        
         <div class="blog-area pt-80 pb-80 gray-bg-4 container-padding-res blog-sidebar-page">
@@ -327,8 +336,8 @@
                                         <i class="ti-search"></i>
                                     </button> -->
                                     <div>
-										<button>
-										<a href="${pageContext.request.contextPath }/blog/blogForm.do">글쓰기</a>
+										<button id="buttoncss">
+										<a href="${pageContext.request.contextPath }/blog/blogForm.do" style="color: white; text-decoration: none;">★  write ★</a>
 										</button>
                                     </div>
                                 </form>
