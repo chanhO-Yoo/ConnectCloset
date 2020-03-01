@@ -90,11 +90,11 @@
                         <div class="pro-sidebar-style pl-20 sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
                             <form class="pro-sidebar-search-form" action="${pageContext.request.contextPath }/admin/adminSearchItem.do" onsubmit="search(event)">
-                                <input type="text" id="searchKeyword" name="searchKeyword" placeholder="Search here...">
+                                <input type="text" id="searchKeyword" name="searchKeyword" placeholder="Search here">
                                 <button id="searchBtn">
                                     <i class="ti-search"></i>
                                 </button>
-                                </form>
+                            </form>
                             </div>
                             <div class="sidebar-widget">
                                 <h4 class="pro-sidebar-title">Categories </h4>

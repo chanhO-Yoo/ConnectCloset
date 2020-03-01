@@ -31,7 +31,6 @@
 		insert into item_image values(
 			seq_item_image_no.nextval,
 			#{itemImageOriginName},
-			#{itemImageReName},
 			#{itemNo}
 		)
 		

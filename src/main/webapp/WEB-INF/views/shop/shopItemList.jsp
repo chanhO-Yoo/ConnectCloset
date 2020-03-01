@@ -207,9 +207,9 @@ if(ck!=null){
                     <div class="col-xl-2 col-lg-2 col-md-2" id="item-side-bar">
                         <div class="shop-sidebar-style pl-10 port-mrg-res sidebar-mrg">
                             <div class="pro-sidebar-search mb-55">
-                                <form class="pro-sidebar-search-form" action="#">
-                                    <input type="text" placeholder="Search here">
-                                    <button>
+                                <form class="pro-sidebar-search-form" action="${pageContext.request.contextPath }/shop/shopSearchItem.do" onsubmit="search(event)">
+                                <input type="text" id="searchKeyword" name="searchKeyword" placeholder="Search here">
+                                    <button id="searchBtn">
                                         <i class="ti-search"></i>
                                     </button>
                                 </form>
@@ -280,6 +280,68 @@ if(ck!=null){
 var currentPosition = parseInt($("#sidebox").css("top")); $(window).scroll(function() { var position = $(window).scrollTop(); $("#sidebox").stop().animate({"top":position+currentPosition+"px"},1000); });
 </script>
 <script>
+//------------윤지 수정
+//상품 검색
+function search(event) {
+	 event.preventDefault();
+	
+	var searchKeyword = $("#searchKeyword").val();
+	var cPage = 1;
+	console.log("++"+searchKeyword);
+	
+	$.ajax({
+		url: "${pageContext.request.contextPath }/shop/shopSearchItem.do?searchKeyword="+searchKeyword+"&cPage"+cPage,
+		dataType: "json",
+		type: "GET",
+		success: data=>{
+			console.log(data);
+			
+ 			let html="";
+			
+			for(let i in data.list){
+    			let n = data.list[i];
+			html += "<div class='col-xl-4 col-lg-4 col-md-4 item-hidden grid-item'>"
+            	 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
+            	 + "<div class='blog-img hover-3'>"
+                 + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
+                 + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>"
+                 /* + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
+                 + "</a>"
+                 + "<div class='readmore-icon'>"
+                 + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
+                 + "<i class='ti-arrow-right'></i>"
+                 + "</a>"
+                 + "</div>"
+                 + "</div>"
+            	 + "<div class='blog-content-2' style='height: 250px'>"
+                 + "<h4><a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"+n.itemName+"</a></h4>"
+                 + "<h5>"+n.itemPrice+"</h5>"
+                 + "<p>"+n.itemInfo+"</p>"
+	             + "</div>"
+        		 + "</div>"
+     			 + "</div>";
+			
+			}
+			$("#itemList").html(html);
+			
+			var url = "shopSearchItem.do?searchKeyword="+searchKeyword;
+			
+			let pageBar= pageBarFunc(data.totalContents, data.cPage, data.numPerPage, url);
+			
+			console.log(pageBar);
+			$(".pagination").html(pageBar);
+			console.log("changed!!");
+		},
+		error: (x,s,e) => {
+			console.log("ajax요청실패",x,s,e);
+		}
+		
+	})
+	
+	return false;
+}
+//------------윤지 끝
+
 $(()=>{
 	var newItemNoList = "<%=newItemNoList%>";
 	console.log(newItemNoList);

@@ -62,6 +62,9 @@ public class ItemController {
 
 	@Autowired
 	VideoService videoService;
+	
+	@Autowired
+	AdminService adminService;
 	//==================하은 인덱스 이미지 시작 =====================
 	
 	//곧 주석처리
@@ -538,6 +541,27 @@ public class ItemController {
 			return mav;
 		}
 		
+		@RequestMapping("/shop/shopSearchItem.do")
+		@ResponseBody
+		public Map<String, Object> shopSearchItem(ModelAndView mav, String searchKeyword,  @RequestParam(defaultValue="1") int cPage) {
+		
+			Map<String, Object> map = new HashMap<>();
+			
+			final int numPerPage = 9;
+			
+			List<ItemAndImageVO> list = adminService.adminSearchItem(searchKeyword,cPage,numPerPage);
+			
+			int totalContents = adminService.selectSearchItemCount(searchKeyword);
+			
+			int brandYn = 0;
+			mav.addObject("brandYn",brandYn);
+			map.put("list",list);
+			map.put("numPerPage",numPerPage);
+			map.put("cPage",cPage);
+			map.put("totalContents", totalContents);
+			
+			return map;
+		}
 	}
 		//===================윤지 상품 리스트 끝=====================
 
