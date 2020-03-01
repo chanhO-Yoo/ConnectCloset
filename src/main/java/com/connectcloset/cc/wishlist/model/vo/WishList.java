@@ -10,17 +10,23 @@ public class WishList implements Serializable {
 	private int wishNo;
 	private int memberNo;
 	private int itemNo;
+	private String itemImageReName;
 	
 	public WishList() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public WishList(int wishNo, int memberNo, int itemNo) {
+	
+
+	
+
+	public WishList(int wishNo, int memberNo, int itemNo, String itemImageReName) {
 		super();
 		this.wishNo = wishNo;
 		this.memberNo = memberNo;
 		this.itemNo = itemNo;
+		this.itemImageReName = itemImageReName;
 	}
 
 	public int getWishNo() {
@@ -50,11 +56,24 @@ public class WishList implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public String getItemImageReName() {
+		return itemImageReName;
+	}
+
+	public void setItemImageReName(String itemImageReName) {
+		this.itemImageReName = itemImageReName;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "WishList [wishNo=" + wishNo + ", memberNo=" + memberNo + ", itemNo=" + itemNo + "]";
+		return "WishList [wishNo=" + wishNo + ", memberNo=" + memberNo + ", itemNo=" + itemNo + ", itemImageReName="
+				+ itemImageReName + "]";
 	}
+
+	
 	
 	
 	
