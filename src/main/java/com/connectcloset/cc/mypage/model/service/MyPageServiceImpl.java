@@ -119,7 +119,13 @@ public class MyPageServiceImpl implements MyPageService {
 	public int selectDeli3ByMemberNo(int memberNo) {
 		return mypageDAO.selectDeli3ByMemberNo(memberNo);
 	}
-
+	
+	//포인트
+	@Override
+	public int selectPointByMemberNo(int memberNo) {
+		return mypageDAO.selectPointByMemberNo(memberNo);
+	}
+	
 	//전체
 	@Override
 	public Member selectOrderByMemberNo(int memberNo) {
@@ -135,7 +141,7 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map) {
 		return mypageDAO.selectSearchAllList(map);
 	}
-
+	
 	
 	//-----------희진 주문내역 끝--------------------------------
 

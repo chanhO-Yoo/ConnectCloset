@@ -55,7 +55,7 @@
                                 <div class="b-details-content-middle mt-40">
                                     <h4>Phasellus accumsan et tempus neque quam eu felis.</h4>
                                     <p>In pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut risus vestibul lacinia ultricies sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras consequat felis nonit facilisis pharetra. Nunc molestie quis dolor vitae sagittis. Sed tempor, est a tempor congue, leo erat pellentesque neque, ac efficitur et ante.</p>
-                                   
+
                                     <p>hasellus accumsan, leo a vehicula ornare, lectus eros tristique aleo, eto tempus neque quam pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut rtheisus vestibulum, lacinia ultricies sem sagittis ante ipsum primis. </p>
                                     <div class="blog-details-list">
                                         <ul>
