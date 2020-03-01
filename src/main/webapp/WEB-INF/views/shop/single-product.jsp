@@ -100,7 +100,19 @@ $("#btn-goOrder").on('click', function(){
 	var orderColor= $("#colorSelect:checked").val();
 	var memberNo= ${memberLoggedIn.memberNo}
 
-	console.log(orderColor);
+
+	if(orderSize===undefined){
+		alert("사이즈를 선택해주세요.");
+		return;
+	}
+	
+	if(orderColor===undefined){
+		alert("색상을 선택해주세요.");
+		return;
+	}
+	
+	
+	
 		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
 		
 		/* $.ajax({
@@ -239,16 +251,7 @@ function goLogin(){
                         	</c:choose>
                         	
                             <h2>${item.itemName}</h2>
-                            <div class="pro-details-rating-wrap">
-                                <div class="pro-details-rating">
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star gray-color"></i>
-                                </div>
-                                <span>(1 customer review)</span>
-                            </div>
+                    
       
                             <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.itemPrice}" />원</h3>
                             <p>${item.itemInfo}</p>
@@ -256,22 +259,19 @@ function goLogin(){
                                 <div class="pro-details-color2-wrap">
                                     <span>Color</span>
                                     <div class="pro-details-color2-content">
-                                        <ul>
+                                        <ul class="  pr-30">
+								 <c:forTokens items="${item.itemColors}" delims="," var="item">
                                         
 										
 										   
-						 <c:forTokens items="${item.itemColors}" delims="," var="item">
-										 
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				
-			
-						<label class="btn ${item } " >
-							<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
-						</label>
+												 
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn ${item } " >
+									<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
+								</label>	
+							</div>
 
-					</div>
-						 </c:forTokens>
-
+								 </c:forTokens>
 
                                         </ul>
                                     </div>
@@ -279,9 +279,9 @@ function goLogin(){
                                 <div class="pro-details-size2">
                                     <span>Size</span>
                                     <div class="pro-details-size2-content">
-                                        <ul>
-                                        	
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
+                                        <ul >
+                                        	
                                          <div class="form-group">
 										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										    		<label class="btn " >
@@ -291,10 +291,10 @@ function goLogin(){
 										  	</div>
 					
 										</div>
-										</c:forTokens>
                                      
                                       
                                         </ul>
+										</c:forTokens>
                                     </div>
                                 </div>
                             </div>
@@ -309,32 +309,13 @@ function goLogin(){
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                	<button type="button" class=" btn-hover" id="btn-goOrder"><i class="ti-heart"></i></button>
+                                <a class=" btn-hover" id="btn-goOrder">
+                                	<i class="ti-heart"></i></button>
+                                </a>
                                     <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                            <div class="pro-details-info-wrap">
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">SKU</li>
-                                        <li>00010002</li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Categories</li>
-                                        <li><a href="#">Women,</a></li>
-                                        <li><a href="#">Dress</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Tags</li>
-                                        <li><a href="#">Clothing,</a></li>
-                                        <li><a href="#">Summer</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
                             <div class="pro-details-social">
                                 <ul>
                                     <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -414,6 +395,7 @@ function goLogin(){
                                             </div>
                                         </div>
 
+
                                         <div class="single-review child-review">
                                             <div class="review-img">
                                                 <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
@@ -480,8 +462,10 @@ function goLogin(){
                                                 </div>
                                             </form>
                                         </div>
+
                                     </div>
                                 </div>
+                             
                             </div>
                         </div>
 

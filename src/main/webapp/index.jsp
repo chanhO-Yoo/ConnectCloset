@@ -26,7 +26,7 @@
             		map.put("gucci.jpg", "GUCCI");
             		pageContext.setAttribute("map", map);
             	%>
-            	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs">
+            	<c:forEach items="${map }" var="brand" begin="0" end="7" step="1" varStatus="vs" >
                 <div class="single-slider slider-overly bg-img pt-50 height-100vh d-flex align-items-center" data-dot="${vs.count }" style="background-image: url(${pageContext.request.contextPath }/resources/img/slider/${brand.key });">
                     <div class="container">
                         <div class="row">
@@ -424,7 +424,7 @@
             </div>
 
         
-        <div class="instagram-area">
+  <%--       <div class="instagram-area">
             <div class="instagram-wrap-3">
                 <div class="instragram-active-4 owl-carousel">
                     <div class="single-instragram zoom-hover">
@@ -445,8 +445,7 @@
                 </div>
             </div>
         </div>
-      
-        
+       --%>
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -6,10 +6,16 @@
 
 	
 	<select id="cartList"  resultType="map"> <!--  parameterType="_int"  --> 
-	SELECT I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE,IC.CART_NO
-	FROM ITEM I
-	LEFT JOIN ITEM_CART IC ON I.ITEM_NO = IC.ITEM_NO 
-	WHERE MEMBER_NO = #{memberNo}
+	select I.ITEM_NAME,I.ITEM_COLORS,IC.ITEM_QUANTITY,I.ITEM_PRICE,IC.CART_NO, II.item_image_re_name 
+	from item_cart IC left join item I on IC.item_no = I.item_no
+    left join (SELECT item_image_re_name,item_no 
+                FROM 
+                    ( SELECT item_image_re_name,item_no, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN 
+                    FROM  item_image ) TMP 
+                    WHERE TMP.RN = 1) II 
+    on I.item_no=II.item_no 
+    where IC.member_no = #{memberNo}
+    order by cart_no desc
 
 	</select>
 
