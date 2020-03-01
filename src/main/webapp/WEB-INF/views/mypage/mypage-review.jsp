@@ -26,6 +26,7 @@
                       
                             <table class="col-lg-12">
                                 <tr>
+                                <!-- 작성가능한 이용 후기 -->
                                     <th>주문번호</th>
                                     <th>상품이름</th>
                                     <th>상품가격</th>
@@ -59,7 +60,7 @@
                           
                             <table class="col-lg-12">
                                 <tr>
-                                   
+                                   <!-- 작성한 이용 후기 -->
                                     <th>상품정보</th>
                                     <th>상품가격</th>
                                     <th>상품내용</th>
@@ -74,8 +75,10 @@
                                     <td>${re.reviewContent}</td>
                                      
                                      	 <td>
-                                     <form action="${pageContext.request.contextPath}/mypage/mypage-reviewDelete.do?reviewNo=${re.reviewNo}&memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" method="post">
-                                     	    <input type="submit" class="btn btn-success" value="삭제">
+                                     <form action="${pageContext.request.contextPath}/mypage/mypage-reviewDelete.do?reviewNo=${re.reviewNo}&memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}" 
+                                     	method="post"
+                                     	name="reviewDelete">
+                                     	    <input type="submit" class="btn btn-success" value="삭제" onclick="reviewDel()">
                                      
                                      </form>
                                      	 </td>
@@ -91,9 +94,28 @@
         </div>
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+
 <script>
-	$(document).ready(function(){
-		var header=$("header").attr('class','theme-bg');
-		console.log(header);
-	});
+
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
+
+//-----------------------윤지 수정
+function reviewDel(){
+	var reviewDelete = document.reviewDelete;
+	 var check = confirm("정말 삭제하시겠습니까?");
+	  
+	 /* if(check == true) else false */
+	 if(check == true) {
+		 reviewDelete.submit();
+		 alert("리뷰삭제 완료");
+	 }
+	 else {
+		 alert("리뷰삭제 취소");
+	 }
+};
+//------------------------------
+
 </script>
