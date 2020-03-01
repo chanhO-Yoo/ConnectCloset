@@ -85,7 +85,7 @@
 						<div class="ratting-form">
 							<form
 								action="${pageContext.request.contextPath }/mypage/mypage-reviewEnrollEnd.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}"
-								method="post" enctype="multipart/form-data"">
+								method="post" enctype="multipart/form-data">
 ​
 								<div class="star-box">
 								<span id="titleCss">Add a Review</span>
@@ -174,32 +174,24 @@
 				$(this).next(".custom-file-label").html("파일을 선택하세요");
 				return;
 			}
-​
 			var fileName = $(this).prop('files')[0].name;
 			/* var fileName = $(this).val();//크롬,firefox의 경우 실제 컴퓨터의 경로를 노출하지 않는다. */
 			$(this).next(".custom-file-label").html(fileName);
-​
 		});
-​
 	});
-​
 	var sel_file;
-​
 	$(document).ready(function() {
 		$("#upFile").on("change", handleImgFileSelect);
 	});
-​
 	function handleImgFileSelect(e) {
 		var files = e.target.files;
 		var filesArr = Array.prototype.slice.call(files);
-​
 		filesArr.forEach(function(f) {
 			if (!f.type.match("image.*")) {
 				alert("확장자는 이미지 확장자만 가능합니다.");
 				return;
 			}
 			sel_file = f;
-​
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				$("#img").attr("src", e.target.result);

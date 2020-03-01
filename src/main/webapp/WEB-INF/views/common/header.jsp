@@ -154,23 +154,6 @@
                                 
                                 <li><a href="${pageContext.request.contextPath }/etc/contact-us.do">Store</a>
                                 </li>
-                                
-                                <li><a href="#">Pages </a>
-                                    <ul class="submenu">
-                                        <li><a href="${pageContext.request.contextPath }/shop/cart-page.do">cart page</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/shop/checkout.do">checkout</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/member/login-register.do">login / register</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/enrollItem.do">enrollItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/editItem.do">editItem</a></li>
-                                        <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
-                                        <!-- 2020/02/09 추가 -->
-                                        <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
-                                        <!-- 2020/02/20 추가 -->
-                                        <li><a href="${pageContext.request.contextPath }/admin/adminItemQnaList.do">adminIQnaList</a></li>
-                                        <!-- 2020/02/09 추가 -->
-                                        <li><a href="${pageContext.request.contextPath }/admin/deliveryList.do">deliveryList</a></li>
-                                    </ul>
-                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -300,7 +283,7 @@
                             </ul>
                              <c:if test="${memberLoggedIn != null || sessionId != null  || userName != null}">
 						   <p>
-	                        <form action="logout" method="GET">
+	                        <form action="${pageContext.request.contextPath}/logout" method="GET">
 		                            <div class="submit-btn">
 		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
