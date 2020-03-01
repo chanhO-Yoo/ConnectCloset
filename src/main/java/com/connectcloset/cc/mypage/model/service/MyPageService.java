@@ -54,6 +54,8 @@ public interface MyPageService {
 
 	List<OrderProduct> selectSearchAllList(HashMap<String, Integer> map);
 	
+	int selectPointByMemberNo(int memberNo);
+	
 	//------------희진 주문내역 끝-------------------
 	
 	//-----------주영 1:1 문의 시작----------------------

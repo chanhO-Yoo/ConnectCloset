@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,6 +132,7 @@ $(()=>{
 	
 });
 
+
 </script>
 <style>
 #chat-container{
@@ -142,16 +144,34 @@ $(()=>{
 	height: 600px;
 	overflow-y: scroll;
 }
+#chattitle{
+	margin-top: 50px;
+	margin-left: 450px;
+}
 
 </style>
 </head>
 <body>
 	<div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Hello Chat</h1>
-    <p class="lead">Connect Closet's live chat space. Please use correct words</p>
+    <h1 class="display-4" id="chattitle">CC Chat</h1>
+    <!-- <p class="lead">Connect Closet's live chat space. Please use correct words</p> -->
     
     <section id="chat-container">
+    
+    <!-- dm관련 시작 -->
+   		<div id="dm-container" class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <label class="input-group-text" for="dm-client">접속자</label>
+	  </div>
+	  <select class="custom-select" id="dm-client">
+	    
+	  	</select>
+		</div>
+    
+    	<hr style="margin:30px 0;"/>
+    
+     <!-- 메세지 창 시작 -->
     	<div id="msg-container">
     		<ul class="list-group list-group-flush">
 			  
@@ -164,27 +184,21 @@ $(()=>{
 		  	</div>
 		</div>
 		
-		<hr style="margin:30px 0;"/>
-		<!-- dm관련 시작 -->
+
+
 		
-		<div id="dm-container" class="input-group mb-3">
-		  <div class="input-group-prepend">
-		    <label class="input-group-text" for="dm-client">DM</label>
-		  </div>
-		  <select class="custom-select" id="dm-client">
-		    
-		  </select>
-		</div>
+
 		
-		<div class="input-group mb-3">
+<!-- 		<div class="input-group mb-3">
 		  <input type="text" class="form-control" id="dm-msg" placeholder="DM내용을 입력하세요" aria-label="DM내용을 입력하세요" aria-describedby="btn-send">
 			 <div class="input-group-append">
 		    	<span class="input-group-text" id="btn-dm-send">send</span>
 		  	</div>
-		</div>
+		</div> -->
 		
     </section>
   </div>
 </div>
 </body>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </html>

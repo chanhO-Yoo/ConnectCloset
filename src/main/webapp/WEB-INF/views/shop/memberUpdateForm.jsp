@@ -11,9 +11,9 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-4.jpg);">
+        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background:#212529;">
             <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
+           <!--      <div class="breadcrumb-content breadcrumb-black2 text-center">
                     <h2>Shortcodes</h2>
                     <ul>
                         <li>
@@ -24,7 +24,7 @@
                         </li>
                         <li class="active"> Register </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
         

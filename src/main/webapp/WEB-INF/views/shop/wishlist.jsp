@@ -47,9 +47,9 @@
 }
       	</style>
      <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb-3.jpg);">
+        <div class="breadcrumb-area bg-img pt-230 pb-152" style="background:#212529;">
             <div class="container">
-                <div class="breadcrumb-content breadcrumb-black2 text-center">
+                <%-- <div class="breadcrumb-content breadcrumb-black2 text-center">
                     <h2>WISHLIST</h2>
                     <ul>
                         <li>
@@ -57,7 +57,7 @@
                         </li>
                         <li class="active" action="${pageContext.request.contextPath }/shop/wishlist.do" method="post">WISHLIST </li>
                     </ul>
-                </div>
+                </div> --%>
             </div>
         </div>
         <!-- main-search start -->
@@ -89,15 +89,10 @@
                                 <div class="shop-img hover-3">
                                 	
                                     <a href="single-product.html">
- 									
-                                        <c:if test="${item.imageList[0].itemImageReName == null }">
-		                                 <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="">
-	                                    </c:if>
-	                                    <c:if test="${item.imageList[0].itemImageReName != null }">
-		                                  <img src="${pageContext.request.contextPath }/resources/upload/item/${item.imageList[0].itemImageReName}" alt="">
-	                                    </c:if>
-                                        
-                                    </a>
+                                    <img src="${pageContext.request.contextPath }/resources/upload/item/${wish.ITEM_IMAGE_RE_NAME}" alt=""></a>
+	                                    
+	                                   
+                                  
  
  
  

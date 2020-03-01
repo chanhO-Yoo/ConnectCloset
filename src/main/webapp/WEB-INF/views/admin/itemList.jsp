@@ -37,9 +37,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 <!-- breadcrumb area -->
-        <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background-image: url(${pageContext.request.contextPath }/resources/img/banner/breadcrumb.jpg);">
+        <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background:#212529;">
             <div class="container">
-                <div class="breadcrumb-content text-center">
+               <!--  <div class="breadcrumb-content text-center">
                     <h2>ItemList</h2>
                     <ul>
                         <li>
@@ -47,7 +47,7 @@
                         </li>
                         <li class="active">Blog </li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
         

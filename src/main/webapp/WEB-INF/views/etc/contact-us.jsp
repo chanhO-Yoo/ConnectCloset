@@ -129,7 +129,7 @@
 							        <div class="option">
 							            <div>
 							                <form onsubmit="searchPlaces(); return false;">
-							                    키워드 : <input type="text" value="매장 검색" id="keyword" size="15"> 
+							                    키워드 : <input type="text" placeholder="매장 검색" id="keyword" size="15"> 
 							                    <button type="submit">검색하기</button> 
 							                </form>
 							            </div>
@@ -161,7 +161,7 @@ var ps = new kakao.maps.services.Places();
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 // 키워드로 장소를 검색합니다
-searchPlaces();
+//searchPlaces();
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {

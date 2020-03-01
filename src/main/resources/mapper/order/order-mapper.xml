@@ -8,7 +8,6 @@
 	<resultMap type="member" id="memberCollectionMap">
 		<id column="member_no" property="memberNo"/>
 		<result column="member_name" property="memberName"/>
-		<result column="member_point" property="memberPoint"/>
 		
 		<!-- 1:N관계의 테이블을 조인해서 리턴하는 경우 -->
 		<collection property="orderProductList" ofType="orderProduct">
@@ -30,15 +29,15 @@
 	</resultMap>
 	
 	<resultMap type="OrderProduct" id="orderProductMap">
-		
 	</resultMap>
 	
 	<resultMap type="OrderProduct2" id="orderProduct2Map">
-		
 	</resultMap>
 	
 	<resultMap type="ItemImage" id="itemImageMap">
-		
+	</resultMap>
+	
+	<resultMap type="point" id="pointMap">
 	</resultMap>
 	
 	<!-- 주문완료 -->
@@ -57,7 +56,11 @@
 	<select id="countDelivery003" resultType="_int">
 		select count(*) from order_product where member_no = #{memberNo} and delivery_no = 'deli-003'
 	</select>
-	<!-- 희진 끝 -->
+	
+	<!-- 포인트조회 -->
+	<select id="selectPointByMemberNo" resultType="_int">
+		select sum(point_amount) as total from point where member_no = #{memberNo}
+	</select>
 	
 	<!-- 기간별조회 -->
 	<select id="selectSearchDateList" resultMap="orderProduct2Map" >
@@ -83,6 +86,8 @@
 		WHERE O.MEMBER_NO = #{memberNo} 
 		ORDER BY ORDER_DATE DESC
 	</select>
+	
+	<!-- 희진 끝 -->
 	
 </mapper>
     
