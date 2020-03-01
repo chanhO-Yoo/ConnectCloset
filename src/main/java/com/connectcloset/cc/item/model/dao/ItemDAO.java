@@ -1,13 +1,19 @@
 package com.connectcloset.cc.item.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+
 
 
 public interface ItemDAO {
@@ -57,7 +63,7 @@ public interface ItemDAO {
 	
 	int searchAllItemCount(String searchKeyword);
 	
-	int addSearchKeyword(String searchKeyword);
+	int addSearchKeyword(Map<String, String> map);
 	
 	//------------ 찬호 끝---------------
 
@@ -74,6 +80,19 @@ public interface ItemDAO {
 //-------------주영 상세보기 끝 -------------------
 
  
+//-------------하라  상품 상세보기 - QnA 시작 -------------------
+	int insertQna(ItemQna itemQna);
+
+
+	List<ItemQna> itemQnaList(int itmeNo);
+
+
+	List<ItemQnaAns> itemQnaAnsList();
+
+
+	
+	
+//-------------하라  상품 상세보기 - QnA 끝 -------------------
 
 
 }

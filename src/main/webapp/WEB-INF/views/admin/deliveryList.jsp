@@ -6,7 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-
 <%
 	//페이비자 작업
 	int totalContents = (int)request.getAttribute("totalContents");
@@ -19,17 +18,21 @@
 
 <fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-// jQuery UI CSS파일 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-// jQuery 기본 js파일
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-// jQuery UI 라이브러리 js파일
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<!-- jQuery UI CSS파일 -->
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"
+	type="text/css" />
+<!-- jQuery 기본 js파일 -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- jQuery UI 라이브러리 js파일 -->
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <style>
 h4 {
 	font-size: 13px;
 }
+
 div.wrap>div {
 	font-size: 12px;
 	position: relative;
@@ -44,6 +47,7 @@ div.wrap>div {
 	padding-right: 5px;
 	width: 100px;
 }
+
 button {
 	clear: both;
 	display: block;
@@ -56,32 +60,38 @@ button {
 	padding-right: 20px;
 	border-radius: 4px;
 }
+
 #ui-datepicker-div {
 	top: -999px;
 	border: 0;
 	font-size: 14px;
 }
+
 .ui-datepicker-header {
 	font-size: 13px;
 }
+
 .ui-datepicker-calendar {
 	background-color: #fff;
 	border: 1px solid #ddd;
-	tr
-	{
-	font-size
-	:
-	11px;
+}
+
+tr {
+	font-size: 11px;
 }
 </style>
+
 <!-- <form id="dateShow"> -->
-<section id="board-container" class="container pt-150">
-	 <div class="checkout-area pt-95 pb-100" >
-		<span>총 </span><span style="color:tomato;">${totalContents }</span><span>개의 주문건이 있습니다.</span>
-	
-		
-		<table class="table" id="deliShow"
-			style="text-align: center; background-color: lightgray;">
+<!-- <section id="board-container" class="container pt-150"> -->
+<div class="container">
+	<div class="row">
+
+		<div class="spanCss">
+			<span class=nameCss>관리자님! 반갑습니다.</span></br> <span>총 </span><span
+				class="cntCss">${totalContents }</span><span>개의 주문건이 있습니다.</span>
+		</div>
+
+		<table class="table" id="deliShow">
 			<tr>
 				<th>주문완료</th>
 				<th>구매확정</th>
@@ -105,47 +115,26 @@ button {
 			</tr>
 
 		</table>
-		<div class="container">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2">
-                        <table class="table" id="orderDateShow" style="text-align: center; background-color: lightblue;">
-                            <colgroup>
-                                <col width="25%" />
-                                <col width="50%" />
-                                <col width="25%" />
-                            </colgroup>
-                            <tr>
-                                <td><strong>기간검색</strong></td>
-                                <td>
-                                    <button type="button" class="btn btn-light1" name="orderDate" id="oneMonth" value="30" onclick="search(this.value)">1개월</button>
-                                    <button type="button" class="btn btn-light3" name="orderDate" id="twoMonth" value="60" onclick="search(this.value)">3개월</button>
-                                    <button type="button" class="btn btn-light6" name="orderDate" id="sixMonth" value="90" onclick="search(this.value)">6개월</button>
-                                    <button type="button" class="btn btn-lightAll" name="orderDate" id="allMonth" value="365">전체</button>
-                                </td>
-                              <!-- <td>
-                                    <input type="button" class="btn btn-info" value="검색"></button>
-                              </td> --> 
-                            </tr>
-                        </table>
-                    </div>
-                </div>
 
-							<!-- 	<h4>기간 선택</h4>
-								<div class="wrap">
-									<div>시작일</div>
-									<div>
-										<input type="text" id="from">
-									</div>
-									<div>~ 종료일</div>
-									<div>
-										<input type="text" id="to">
-									</div>
-								</div>
-								<button class="btn">조회</button>
-								<br />
-								<br />
-								<br /> -->
-	<table id="tbl-board" class="table table-striped table-hover" style="text-align: center;">
+		<table class="table" id="orderDateShow">
+			<tr>
+				<!--         <td id="ordCss">기간검색</td> -->
+				<td><label id="ordCss">기간검색</label>
+					<button type="button" class="btn btn-light1" name="orderDate"
+						id="oneMonth" value="30" onclick="search(this.value)">1개월</button>
+					<button type="button" class="btn btn-light3" name="orderDate"
+						id="twoMonth" value="60" onclick="search(this.value)">3개월</button>
+					<button type="button" class="btn btn-light6" name="orderDate"
+						id="sixMonth" value="90" onclick="search(this.value)">6개월</button>
+					<button type="button" class="btn btn-lightAll" name="orderDate"
+						id="allMonth" value="365">전체</button></td>
+			</tr>
+		</table>
+
+	</div>
+
+
+	<table id="tbl-board" class="table table-striped table-hover">
 		<tr>
 			<th>주문번호</th>
 			<th>고객ID</th>
@@ -196,8 +185,8 @@ button {
 
 	<!-- pageBar 출력 부분 -->
 	${pageBar }
-	</div>
-	
+</div>
+
 <!--주문/배송처리 스크립트   -->
 <script>
 	$(".del").change(function(){
@@ -209,11 +198,11 @@ button {
 	});
 </script>
 
-	
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
- <!--구매일로  조회  -->
- <script>
+<!--구매일로  조회  -->
+<script>
 	$(document).ready(function(){
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
@@ -259,7 +248,103 @@ button {
 	
 </script>
 
- 
+
+
+<!--하은: 위에서 스타일이 적용되지 않아 불가피하게 나누어 작업  -->
+<style>
+.cntCss {
+	color: tomato;
+	font-weight: 700;
+}
+
+.nameCss {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.spanCss {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+#deliShow th {
+	font-size: 1rem;
+	font-weight: 400;
+	text-align: center;
+}
+
+#deliShow td {
+	font-size: 1rem;
+	font-weight: 100;
+	text-align: center;
+}
+
+#orderDateShow {
+	border-style: hidden;
+	text-align: center;
+	/* background-color: red;
+display:block;
+ */
+}
+
+/*주문상태 테이블  */
+#tbl-board {
+	text-align: center;
+}
+
+#tbl-board th {
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+#tbl-board td {
+	font-size: 0.7rem;
+	font-weight: 500;
+}
+
+/*날짜 조회 */
+#orderDateShow td {
+	text-align: right;
+}
+
+#ordCss {
+	font-size: 0.85rem;
+	font-weight: 600;
+	text-align: center;
+	/* position: relative; */
+	width: 75px;
+	height: 31px;
+	padding-top: 5px;
+	color: white;
+	border-radius: 4px;
+	background: gray;
+}
+
+.btn-light1 {
+	text-align: top;
+	font-size: 0.7rem;
+	font-weight: 600;
+	font-weight: 400;
+}
+
+.btn-light3 {
+	text-align: top;
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+
+.btn-light6 {
+	text-align: top;
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+
+.btn-lightAll {
+	text-align: top;
+	font-size: 0.7rem;
+	font-weight: 400;
+}
+</style>
 
 
 <!--날짜조회 페이지바 처리  -->

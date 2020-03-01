@@ -1,14 +1,24 @@
 package com.connectcloset.cc.item.controller;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -19,15 +29,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.connectcloset.cc.admin.model.service.AdminService;
+import com.connectcloset.cc.blog.model.exception.BlogException;
+import com.connectcloset.cc.blog.model.vo.Attachment;
+import com.connectcloset.cc.blog.model.vo.Blog;
 import com.connectcloset.cc.item.model.service.ItemService;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO2;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
+
 import com.connectcloset.cc.mypage.model.vo.Review;
 import com.connectcloset.cc.mypage.model.vo.ReviewList;
+import com.connectcloset.cc.video.service.VideoService;
+import com.connectcloset.cc.video.vo.Video;
+
 
 @Controller
 public class ItemController {
@@ -37,6 +59,9 @@ public class ItemController {
 	@Autowired
 	ItemService itemService;
 	
+
+	@Autowired
+	VideoService videoService;
 	//==================하은 인덱스 이미지 시작 =====================
 	
 	//곧 주석처리
@@ -48,6 +73,7 @@ public class ItemController {
 	mav.setViewName("cc/itemImageList");
 	return mav;
 	}
+
 	
 	
 	//index shopCategroies json
@@ -60,7 +86,7 @@ public class ItemController {
 	}
 	
 	//==================하은 인덱스 이미지 =====================
-	
+
 	//===================희진  새로나온 상품시작======================
 	
 	//타입별 상품 나열
@@ -100,12 +126,26 @@ public class ItemController {
 		List<ItemImage> itemImage
 		= itemService.selectitemImagetList(itmeNo);
 		
+
+		List<ItemQna> itemQnaList = itemService.itemQnaList(itmeNo);
+		logger.debug("@@@@@@itemQnaList={}", itemQnaList);
+
+		List<ItemQnaAns> itemQnaAnsList = itemService.ItemQnaAnsList();
+		logger.debug("iQtemnaAnsList={}",itemQnaAnsList);
+		
+		mav.addObject("itemQnaList",itemQnaList);
+		mav.addObject("itemQnaAnsList",itemQnaAnsList);
+
 		List<Review> reviewList
 		=itemService.selectReviewList(itmeNo);
+		
+		List<Video> videoList = videoService.selectVideoList();
+
 
 		mav.addObject("reviewList",reviewList);
 		mav.addObject("itemImage",itemImage);
 		mav.addObject("item",item);
+		mav.addObject("videoList",videoList);
 
 		logger.debug("@@@@@@reviewList={}", reviewList);
 		logger.debug("item@@@@@@={}", item);
@@ -116,6 +156,34 @@ public class ItemController {
 	
 	//===================주영 상세보기 끝======================
 	
+
+	//===================하라 상세보기 - Qna 시작 ======================
+	
+	
+	@RequestMapping("/qna/qnaFormEnd.do")
+		public ModelAndView qnaFormEnd(ModelAndView mav, ItemQna itemQna,HttpServletRequest request) {
+		
+			int result = itemService.insertQna(itemQna);
+		
+			int itemNo = Integer.parseInt(request.getParameter("itemNo"));
+			
+		
+			
+			mav.addObject("msg", result>0? "게시물등록성공" : "실패!!");
+			mav.addObject("loc", "/shop/single-product.do?itemNo="+itemNo);
+			mav.setViewName("common/msg");
+			
+	 
+			
+			
+			//예외를 스프링컨테이너에게 다시 던져서 예외페이지로 연결되도록 한다.
+			/*throw e;*/
+	
+		
+		return mav;
+	}		
+	//===================하라 상세보기 - Qna 끝 ======================
+
 	//===================찬호 최근상품 시작=====================
 	@RequestMapping("/recentItem.do")
 	@ResponseBody
@@ -136,13 +204,18 @@ public class ItemController {
 	}
 	
 	@RequestMapping("/item/searchAllItem.do")
-	public ModelAndView searchAllItem(ModelAndView mav, @RequestParam String searchKeyword, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
+	public ModelAndView searchAllItem(ModelAndView mav, @RequestParam(defaultValue="0") int memberNo, @RequestParam String searchKeyword, @RequestParam(defaultValue="1") int cPage, @RequestParam(defaultValue="a") String brandNo, @RequestParam(defaultValue="a") String itemTypeNo) {
 		logger.debug("searchKeyword={}",searchKeyword);
 		final int numPerPage = 9;
 		
 		List<ItemAndImageVO> list = itemService.searchAllItem(cPage, numPerPage,searchKeyword);
 		int totalContents = itemService.searchAllItemCount(searchKeyword);
-		int result = itemService.addSearchKeyword(searchKeyword);
+		
+		Map<String,String> map = new HashMap<>();
+		map.put("searchKeyword", searchKeyword);
+		map.put("memberNo", Integer.toString(memberNo));
+		
+		int result = itemService.addSearchKeyword(map);
 		logger.debug("result@searchKeyword={}",result);
 		
 		mav.addObject("list", list);
@@ -160,6 +233,7 @@ public class ItemController {
 	
 	
 	//===================찬호 최근상품 끝======================
+
 	
 	//===================윤지 상품 리스트 시작=====================
 	

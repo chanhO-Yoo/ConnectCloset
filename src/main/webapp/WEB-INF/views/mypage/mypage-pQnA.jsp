@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page import="com.connectcloset.cc.common.util.Utils"%>
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/common/header2.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
 
 <div class="checkout-area pt-95 pb-100" style="height: 750px;">
 <%
@@ -13,14 +13,13 @@
 	int totalContents = (int)request.getAttribute("totalContents");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String url = "adminPQna.do"; //간단한 상대주소로 접근
+	String url = "mypage-pQnA.do"; //간단한 상대주소로 접근
 	
 	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
 	
 	pageContext.setAttribute("pageBar", pageBar);
 %>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
 <style>
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
@@ -100,3 +99,9 @@ input#btn-add{float:right; margin: 0 0 15px;}
 	
 	
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+$(document).ready(function(){
+    var header=$("header").attr('class','theme-bg');
+    console.log(header);
+});
+</script>

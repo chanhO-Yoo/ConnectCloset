@@ -29,6 +29,7 @@
 	</resultMap>
 	
 	<resultMap type="OrderProduct" id="orderProductMap">
+
 	</resultMap>
 	
 	<resultMap type="OrderProduct2" id="orderProduct2Map">
@@ -38,6 +39,7 @@
 	</resultMap>
 	
 	<resultMap type="point" id="pointMap">
+
 	</resultMap>
 	
 	<!-- 주문완료 -->
@@ -61,6 +63,9 @@
 	<select id="selectPointByMemberNo" resultType="_int">
 		select sum(point_amount) as total from point where member_no = #{memberNo}
 	</select>
+
+	<!-- 희진 끝 -->
+
 	
 	<!-- 기간별조회 -->
 	<select id="selectSearchDateList" resultMap="orderProduct2Map" >
@@ -86,8 +91,6 @@
 		WHERE O.MEMBER_NO = #{memberNo} 
 		ORDER BY ORDER_DATE DESC
 	</select>
-	
-	<!-- 희진 끝 -->
 	
 </mapper>
     

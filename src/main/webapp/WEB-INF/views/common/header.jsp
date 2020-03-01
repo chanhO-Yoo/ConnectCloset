@@ -26,10 +26,21 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/responsive.css">
 		<script src="${pageContext.request.contextPath }/resources/js/vendor/jquery-1.12.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+ 
 		<!-- 실시간검색어 css 추가 -->
 		<style>
+.ui-autocomplete { 
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    background-color: #fff}
+		
 				        	#rank-content {
-							    margin: 20px;
+							    margin-top: 20px;
+							    margin-bottom: 20px;
+							    margin-left: 20px;
+							    margin-right: 20px;
 							    padding: 10px;
 							    background: #000;
 							}
@@ -45,7 +56,7 @@
 							
 							#rank-list {
 							    overflow: hidden;
-							    width: 160px;
+							    width: 600px;
 							    height: 20px;
 							    margin: 0;
 							}
@@ -98,8 +109,8 @@
                 <div class="header-wrap header-flex">
                     <div class="logo mt-45">
                         <a href="${pageContext.request.contextPath }/">
-                            <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo.png">
-                            <img class="logo-sticky-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logo-3.png">
+                            <img class="logo-normally-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/test.png">
+                            <img class="logo-sticky-none" alt="" src="${pageContext.request.contextPath }/resources/img/logo/logoblack.png">
                         </a>
                     </div>
                     <div class="main-menu">
@@ -154,6 +165,8 @@
                                         <li><a href="${pageContext.request.contextPath }/admin/itemList.do">itemList</a></li>
                                         <!-- 2020/02/09 추가 -->
                                         <li><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">adminPQnaList</a></li>
+                                        <!-- 2020/02/20 추가 -->
+                                        <li><a href="${pageContext.request.contextPath }/admin/adminItemQnaList.do">adminIQnaList</a></li>
                                         <!-- 2020/02/09 추가 -->
                                         <li><a href="${pageContext.request.contextPath }/admin/deliveryList.do">deliveryList</a></li>
                                     </ul>
@@ -369,14 +382,20 @@
                     
                         <div class="summary-list">
                             <ul>
-                            <c:if test="${memberLoggedIn != null }">
-                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} 님 환영합니다</li>
+                            <c:if test="${memberLoggedIn != null || sessionId != null  || userName != null}">
+                            	<li><i class="ti-location-pin"></i>${memberLoggedIn.memberName} ${nickname} ${userName } ${sessionId}  님 환영합니다</li>
                             
                             </c:if>
+                            
+                            
+              
                                 
-                                 <c:if test="${memberLoggedIn == null }">
+                                 <c:if test="${memberLoggedIn == null && sessionId == null  && userName == null}">
 	                               <li><i class="ti-location-pin"></i>로그인 후 이용해주세요</li>
 	                               <form action="${pageContext.request.contextPath }/member/login-register.do" method="GET">
+	                                            
+	                                            
+	                                            
 	                                               
 		                            <div class="submit-btn">
 		                              <button class="btn-hover" type="submit">Log in / register</button>
@@ -385,14 +404,15 @@
                    				 </c:if>
                                
                             </ul>
-                             <c:if test="${memberLoggedIn != null }">
+                             <c:if test="${memberLoggedIn != null || sessionId != null  || userName != null}">
 						   <p>
-	                        <form action="${pageContext.request.contextPath }/logout.do" method="GET">
+	                        <form action="logout" method="GET">
 	                                               
 		                            <div class="submit-btn">
 		                              <button class="btn-hover" type="submit">Logout</button>
 		                            </div>
 	                        </form>
+	                  
                           </p>
                     </c:if>
                         </div>
@@ -429,15 +449,19 @@
             </div>
             <div class="sidebar-search-input">
                 <form action="${pageContext.request.contextPath }/item/searchAllItem.do">
-                    <div class="form-search">
-                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search">
+                    <div class="form-search ui-widget">
+                    	<input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }"/>
+                        <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search" onclick="saveKeyword()">
                         <button>
                             <i class="ti-search"></i>
                         </button>
-                        
-                        
+                        <div id="saveSearchKeyword" style="background-color: white;">
+                        </div>
                         <!-- 실시간검색어 추가 -->
-                        <div id="rank-content">
+                        <div id="rank-content" class="mt-10">
+                        	<div>
+                        		<span style="color: white;">실시간 급상승 검색어(최근3시간)</span>
+                        	</div>
 				            <dl id="rank-list">
 				                <dt>실시간 검색어</dt>
 				                <dd>
@@ -456,9 +480,41 @@
 				                </dd>
 				            </dl>
 				        </div>
-				        <div id="test22"></div>
 				        <!-- 실시간검색어 추가 -->
 				        <script>
+				        $('#search').keydown(function(event) {
+				        	let html = "";
+				        	$("#saveSearchKeyword").html(html);
+				        });
+
+				        
+				        function saveKeyword() {
+				        	$.ajax({
+	                        	//새로 등록된 상품 json요청
+	                        	url: "${pageContext.request.contextPath}/saveKeyword.do?memberNo=${memberLoggedIn.memberNo}",
+	                        	type: "GET",
+	                        	dataType: "json",
+	                        	success: data => {
+	                        		let html = "";
+	                        		console.log(data);
+	                        		
+	                        		for(let i in data){
+	                        			let n = data[i];
+	                        			console.log("test : " + n);
+	                        		
+	                        		html += "<span><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n.searchKeyword+"'>"+n.searchKeyword+"</a></span><br>";
+	                                    
+	                                    
+	                        		}
+	                        		console.log(html);
+	                        		$("#saveSearchKeyword").html(html);
+	                        	},
+	                        	error: (x,s,e)=>{
+	                        		console.log(x,s,e);
+	                        	}
+	                        	});
+						};
+				        
                     $(()=>{
                     	$.ajax({
                         	//새로 등록된 상품 json요청
@@ -473,7 +529,7 @@
                         			let n = data[i];
                         			console.log(n);
                         		
-                        		html += "<li><a href='#' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
+                        		html += "<li><a href='${pageContext.request.contextPath }/item/searchAllItem.do?memberNo=${memberLoggedIn.memberNo}&searchKeyword="+n+"' id='rank'"+i+"'>"+ i +"위 "+n+"</a></li>";
                                     
                                     
                         		}
@@ -518,8 +574,20 @@
                     
                    
                     </script>
+  <script>
+  $("#search").autocomplete({
+      source : "${pageContext.request.contextPath}/searchAuto.do",
+      //조회를 위한 최소글자수
+      minLength: 2,
+      select: function( event, ui ) {
+      }
+  });
 
-                        
+  
+</script>
+
+
+
                         
                     </div>
                 </form>

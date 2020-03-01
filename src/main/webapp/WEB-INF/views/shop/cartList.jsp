@@ -98,8 +98,8 @@
      									 <c:forEach items="${list}" var="cart" varStatus="vs">
      									 	  <tr>
      									 	 <td class="cart-img-name">
-		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/img/cart/cart-1.jpg" alt=""></a>
-		                                          <a class="cart-name" href="#"> ${cart.ITEM_NAME} </a> 
+		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/upload/item/${cart.ITEM_IMAGE_RE_NAME}" alt=""></a>
+		                                          <a class="cart-name" href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${cart.ITEM_NO}"> ${cart.ITEM_NAME} </a> 
 		                                     </td>
 		                                         <td class="cart-price"><span class="amount">${cart.ITEM_COLORS }</span></td>
 		                                    
@@ -108,7 +108,7 @@
 		                                               <div class="pro-dec-cart">${cart.ITEM_QUANTITY }</div></td>
 		                                            <td class="cart-subtotal"><span>${cart.ITEM_PRICE }</span></td>
 		                                            	<td class="cart-remove">
-		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('야 정말 삭제 한다??');"><i class="ti-close"></i></a>
+		                                               		<a href='${pageContext.request.contextPath }/shop/cartDelete.do?cartNo=${cart.CART_NO}' onclick="return confirm('정말 삭제 하시겠습니까?');"><i class="ti-close"></i></a>
 		                                           		</td>
 		                                     		</tr>
 		                                     		<c:set var="totalPrice" value="${totalPrice + cart.ITEM_QUANTITY * cart.ITEM_PRICE}"/>
@@ -123,15 +123,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="cart-shiping-update-wrapper mt-25">
-                                        <div class="cart-clear">
+                                    <!-- <div class="cart-shiping-update-wrapper mt-25"> -->
+                                        <!-- <div class="cart-clear">
                                             <button class="btn-hover">update shopping cart</button>
-                                        </div>
+                                        </div> -->
                                         <div class="cart-shiping-update">
-                                            <a class="btn-hover" href="#">Continue Shopping</a>
+                                            <a class="btn-hover" href="${pageContext.request.contextPath }/shop/shopItemList.do">Continue Shopping</a>
                                         </div>
                                         
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </div>
                         </form>	  
@@ -144,7 +144,9 @@
                                	 	<li><span class="proceed-title proceed-bold">Total</span> <span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
                             	</ul>
                             <div class="proceed-btn">
-                                <a class="btn-hover" href="#">Proceed to Checkout</a>
+                            
+                                <a class="btn-hover" href="${pageContext.request.contextPath }/shop/checkout.do?itemNo=${cart.ITEM_NO }&orderCount=${cart.ITEM_QUANTITY }&orderSize=${cart.ITEM_SIZE }&orderColor=${cart.ITEM_COLORS}&memberNo=${cart.MEMBER_NO}">Proceed to Checkout</a>
+                         
                             </div>
                         </div>
                     </div>
