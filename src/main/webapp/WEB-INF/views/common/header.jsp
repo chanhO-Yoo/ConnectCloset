@@ -340,7 +340,7 @@
                 <button class="search-close"><span class="ti-close"></span></button>
             </div>
             <div class="sidebar-search-input">
-                <form action="${pageContext.request.contextPath }/item/searchAllItem.do">
+                <form action="${pageContext.request.contextPath }/item/searchAllItem.do" onsubmit="return keywordYn();">
                     <div class="form-search ui-widget">
                     	<input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }"/>
                         <input id="search" class="input-text" name="searchKeyword" placeholder="Search Entire Store" type="search" onclick="saveKeyword()">
@@ -374,6 +374,13 @@
 				        </div>
 				        <!-- 실시간검색어 추가 -->
 				        <script>
+				        function keywordYn(){
+				        	if($("#search").val() == 0){
+								alert("검색어를 입력해주세요.");
+								return false;
+							}
+				        }
+				        
 				        $('#search').keydown(function(event) {
 				        	let html = "";
 				        	$("#saveSearchKeyword").html(html);
