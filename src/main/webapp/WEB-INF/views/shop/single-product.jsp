@@ -100,20 +100,19 @@ $("#btn-goOrder").on('click', function(){
 	var orderColor= $("#colorSelect:checked").val();
 	var memberNo= ${memberLoggedIn.memberNo}
 
-
-	if(orderSize===undefined){
+ 	if(orderSize==undefined){
 		alert("사이즈를 선택해주세요.");
 		return;
 	}
 	
-	if(orderColor===undefined){
+	if(orderColor==undefined){
 		alert("색상을 선택해주세요.");
 		return;
 	}
 	
 	
 	
-		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
+	if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
 		
 		/* $.ajax({
 			url: "${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}",
@@ -306,13 +305,13 @@ function goLogin(){
 
                                 </div>
                                 <div class="pro-details-cart">
-                                    <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
+                                    <a id="btn-goOrder" class="default-btn btn-hover" href="javascript:void(0);">구매하기</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                <a class=" btn-hover" id="btn-goOrder">
-                                	<i class="ti-heart"></i></button>
-                                </a>
-                                    <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
+	                                <a class="btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}" >
+	                                	<i class="ti-shopping-cart"></i>
+	                                </a>
+                                    <a class="btn-hover" href="${pageContext.request.contextPath}/shop/wishlistInsert.do?itemNo=${item.itemNo}"><i class="ti-heart"></i></a>
                                 </div>
                             </div>
                         
