@@ -8,7 +8,18 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-
+<style>
+.shop-img2 {
+	height: 300px !important;
+	display: table-cell;
+	vertical-align: middle;
+}
+.blog-img2{
+	height: 350px !important;
+	display: table-cell;
+	vertical-align: middle;
+}
+</style>
 
         <!-- Slider Start -->
         <div class="slider-area">
@@ -145,7 +156,7 @@
                     		
                     		html += "<div class='col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12'>"
                     			 + "<div class='shop-wrap mb-35'>"
-                    			 + "<div class='shop-img'>"
+                    			 + "<div class='shop-img shop-img2'>"
                     			 + "<a href='${pageContext.request.contextPath }/shop/single-product.do?itemNo="+n.itemNo+"'>"
                             	 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"'>"
                                  + "</a>"
@@ -387,7 +398,7 @@
                     		
                     			html+="<div class='col-lg-4 col-md-6'>"
                     			+"<div class='blog-wrap-2 blog-shadow mb-40'>"
-                    			+"<div class='blog-img hover-3'>"
+                    			+"<div class='blog-img hover-3 blog-img2'>"
                     			+"<a href='${pageContext.request.contextPath}/blog/blogView.do?blogNo="+n.blogNo+"'>"
                     			+"<img class='orderImage' src='${pageContext.request.contextPath }/resources/upload/blog/"+n.renamedFileName+"'>"
                     			+"</a>"

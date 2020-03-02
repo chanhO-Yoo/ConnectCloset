@@ -364,12 +364,7 @@ function goLogin(){
                         		
                                     <div class="review-wrapper">
                                         <div class="single-review">
-                                            <div class="review-img">
-                                            <c:if test="${re.reviewImage !=null}">
-                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
-                                            </c:if>
                                             
-                                            </div>
                                             <div class="review-content">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
@@ -393,10 +388,16 @@ function goLogin(){
                                                     <p>${re.reviewContent}</p>
                                                 </div>
                                             </div>
+                                            <div class="review-img" style="position: absolute;right: 10px;">
+	                                            <c:if test="${re.reviewImage !=null}">
+	                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
+	                                            </c:if>
+                                            
+                                            </div>
                                         </div>
 
 
-                                        <div class="single-review child-review">
+                                        <%-- <div class="single-review child-review">
                                             <div class="review-img">
                                                 <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
                                             </div>
@@ -422,12 +423,12 @@ function goLogin(){
                                                     <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --%>
                                     </div>
                                      </c:forEach>
                                      </c:if>
                                 </div>
-                                <div class="col-lg-5">
+                                <!-- <div class="col-lg-5">
                                     <div class="ratting-form-wrapper pl-50">
                                         <h3>Add a Review</h3>
                                         <div class="ratting-form">
@@ -464,7 +465,7 @@ function goLogin(){
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> -->
                              
                             </div>
                         </div>
