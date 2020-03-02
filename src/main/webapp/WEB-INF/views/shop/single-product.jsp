@@ -98,8 +98,13 @@ $("#btn-goOrder").on('click', function(){
 	let orderCount = document.querySelector("#orderItemCount").value;
 	var orderSize = $("#SizeSelect:checked").val();
 	var orderColor= $("#colorSelect:checked").val();
-	var memberNo= ${memberLoggedIn.memberNo}
+	var memberNo= ${memberLoggedIn.memberNo!=null?memberLoggedIn.memberNo:0};
 
+ 	if(memberNo==0){
+ 		goLogin();
+		return;
+	}
+	
  	if(orderSize==undefined){
 		alert("사이즈를 선택해주세요.");
 		return;
