@@ -99,7 +99,7 @@
      									 	  <tr>
      									 	 <td class="cart-img-name">
 		                                          <a class="cart-img" href="#"><img src="${pageContext.request.contextPath }/resources/upload/item/${cart.ITEM_IMAGE_RE_NAME}" alt=""></a>
-		                                          <a class="cart-name" href="#"> ${cart.ITEM_NAME} </a> 
+		                                          <a class="cart-name" href="${pageContext.request.contextPath }/shop/single-product.do?itemNo=${cart.ITEM_NO}"> ${cart.ITEM_NAME} </a> 
 		                                     </td>
 		                                         <td class="cart-price"><span class="amount">${cart.ITEM_COLORS }</span></td>
 		                                    
@@ -144,7 +144,9 @@
                                	 	<li><span class="proceed-title proceed-bold">Total</span> <span><fmt:formatNumber value="${totalPrice }" groupingUsed="true" type="currency" /></span></li>
                             	</ul>
                             <div class="proceed-btn">
-                                <a class="btn-hover" href="${pageContext.request.contextPath }/shop/checkout.do?itemNo=${item }&orderCount=${orderItemCount }&orderSize=${orderItemSize }&orderColor=${orderItemColor}&memberNo=${memberNo}">Proceed to Checkout</a>
+                            
+                                <a class="btn-hover" href="${pageContext.request.contextPath }/shop/checkout.do?itemNo=${cart.ITEM_NO }&orderCount=${cart.ITEM_QUANTITY }&orderSize=${cart.ITEM_SIZE }&orderColor=${cart.ITEM_COLORS}&memberNo=${cart.MEMBER_NO}">Proceed to Checkout</a>
+                         
                             </div>
                         </div>
                     </div>
