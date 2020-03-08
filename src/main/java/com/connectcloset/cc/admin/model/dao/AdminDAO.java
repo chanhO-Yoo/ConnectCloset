@@ -6,6 +6,8 @@ import java.util.List;
 import com.connectcloset.cc.item.model.vo.Item;
 import com.connectcloset.cc.item.model.vo.ItemAndImageVO;
 import com.connectcloset.cc.item.model.vo.ItemImage;
+import com.connectcloset.cc.item.model.vo.ItemQna;
+import com.connectcloset.cc.item.model.vo.ItemQnaAns;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQna;
 import com.connectcloset.cc.personalQna.model.vo.PersonalQnaAns;
 import com.connectcloset.cc.order.model.vo.Delivery;
@@ -68,9 +70,21 @@ public interface AdminDAO {
 	int delivery(String deliveryNo);
 
 
-
-
 	//===================하은 끝===================
+	
+	//===================하라 시작===================
+	List<ItemQna> selectItemQnaList(int cPage, int numPerPage);
+
+	int selectItemQnaListCount();
+
+	ItemQna adminItemQna(int itemQnaNo);
+
+	List<ItemQnaAns> adminItemQnaAns(int itemQnaNo);
+
+	int adminItemQnaEnd(ItemQnaAns itemQnaAns);
+	
+	
+	//===================하라 끝===================
 
 
 }

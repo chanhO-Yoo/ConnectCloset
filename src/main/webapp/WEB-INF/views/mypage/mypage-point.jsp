@@ -1,9 +1,22 @@
+<%@page import="com.connectcloset.cc.common.util.Utils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%
+	//페이비자 작업
+	int totalContents = (int)request.getAttribute("totalContents");
+	int cPage = (int)request.getAttribute("cPage");
+	int numPerPage = (int)request.getAttribute("numPerPage");
+	
+	int memberNo=(int)request.getAttribute("memberNo");
+	String url = "mypage-point.do?memberNo="+memberNo; //간단한 상대주소로 접근
+	
+	String pageBar = Utils.getPageBar(totalContents, cPage, numPerPage, url);
+	
+	pageContext.setAttribute("pageBar", pageBar);
+%>
 
 
 
@@ -24,18 +37,7 @@
                                 <col width="50%" />
                                 <col width="25%" />
                             </colgroup>
-                            <tr>
-                                <td><strong>기간검색</strong></td>
-                                <td>
-                                    <button type="button" class="btn btn-light">1개월</button>
-                                    <button type="button" class="btn btn-light">3개월</button>
-                                    <button type="button" class="btn btn-light">6개월</button>
-                                    <button type="button" class="btn btn-light">전체</button>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-info">검색</button>
-                                </td>
-                            </tr>
+                      
                         </table>
                     </div>
                 </div>
@@ -52,7 +54,6 @@
                         color: red;
                     }
                 </style>
-                 <c:forEach var="p" items="${point}">
                 
                 <div>
                     <table class="col-lg-12">
@@ -63,16 +64,17 @@
                             
                             <th>금액</th>
                         </tr>
+                 <c:forEach var="p" items="${point}">
                         <tr class="point-save">
-                            <td>${p.pointChangeDate} </td>
+                            <td>${p.pointChangeDate }</td>
                             <c:choose>
 
-								<c:when test="${p.pointStatus eq 'y'}"> 
-								<td>적립</td>
+								<c:when test="${p.pointStatus eq 'U'}"> 
+								<td>사용</td>
 								</c:when>
 								
 								<c:otherwise> 
-								<td>사용</td>
+								<td>적립</td>
 								</c:otherwise>
 
                             </c:choose>
@@ -81,12 +83,14 @@
                             <td>${p.pointAmount}</td>
                         </tr>
                
+                </c:forEach>
                     </table>
                 </div>
-                </c:forEach>
                 
             </div>
         </div>
+   
+            	${pageBar}
 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

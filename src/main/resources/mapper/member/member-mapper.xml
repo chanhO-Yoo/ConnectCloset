@@ -59,6 +59,16 @@
  		select *from point where member_no =#{memberNo}
  </select>
  <resultMap type="Point" id="memberPoint"></resultMap>
+ 
+ <select id="selectoneTotalPoint" resultType="_int" >
+ 		select sum(point_amount) as total from point where member_no=#{memberNo}
+ 
+ </select>
+ 
+ 	<select id="selectListPointCount" resultType="_int">
+		select count(*) from point
+	</select>
+ 
  <!-- 주영 포인트 끝 -->
 </mapper>
     

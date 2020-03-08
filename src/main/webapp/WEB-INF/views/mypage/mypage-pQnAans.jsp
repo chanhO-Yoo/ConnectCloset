@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <section id="board-container" class="container pt-150">
 	
@@ -77,3 +77,9 @@
 </section> 
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+$(document).ready(function(){
+    var header=$("header").attr('class','theme-bg');
+    console.log(header);
+});
+</script>

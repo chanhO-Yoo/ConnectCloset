@@ -55,8 +55,8 @@
                                                      
                                                          <div class="rating-form-style mb-10">
                                                             <input  type="text" value="${selectOnditemReview.orderId}"  name="reviewWriter" >
-                                                            <input  type="hiden" value="${selectOnditemReview.itemNo}"  name="reviewItemNo" >
-                                                            <input  type="hiden" value="${selectOnditemReview.orderNo}"  name="orderNo">
+                                                            <input  type="hidden" value="${selectOnditemReview.itemNo}"  name="reviewItemNo" >
+                                                            <input  type="hidden" value="${selectOnditemReview.orderNo}"  name="orderNo">
                                                            
                                    
                                                             

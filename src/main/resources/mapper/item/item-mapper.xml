@@ -18,7 +18,6 @@
 		WHERE TMP.RN = 1) II 
 		on I.item_no=II.item_no
 		order by I.item_no desc, II.item_image_no asc) v) where rnum < 7		
-		
 		]]>
 	</select>
 	
@@ -37,24 +36,32 @@
 	
 	 <select id="selectImageList" resultMap="itemAndImageMap">
 	select * from item I left join 
-(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM 
-( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER 
-( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
+	(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no FROM 
+	( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() OVER 
+	( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP WHERE TMP.RN = 1) II on I.item_no=II.item_no order by I.item_no desc, II.item_image_no asc
 	</select>
 
 <select id="shopCategories" resultMap="itemAndImageMap">
 <![CDATA[
-
-select * from (select v.*, rownum rnum from (select * 
-		from item I left join 
-		(SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
-		FROM 
-        ( SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no, ROW_NUMBER() 
-		OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN FROM  item_image ) TMP 
-        
-		WHERE TMP.RN = 1) II 
-		on I.item_no=II.item_no
-		order by I.item_no desc, II.item_image_no asc) v) where rnum < 4
+select * 
+  from (
+      select item_type_no, item_image_re_name,item_no
+        from (
+          select I.*, II.item_image_no,II.item_image_origin_name,II.item_image_re_name , ROW_NUMBER() OVER ( PARTITION BY I.item_type_no ORDER BY II.item_image_no ) AS RN2
+            from item I 
+            left join 
+            (
+                SELECT item_image_no,item_image_origin_name,item_image_re_name,item_no 
+                  FROM 
+                    ( SELECT II.*, ROW_NUMBER() OVER ( PARTITION BY item_no ORDER BY item_image_no ) AS RN 
+                        FROM  item_image II
+                    ) TMP 
+                 WHERE TMP.RN = 1) II 
+              on I.item_no=II.item_no
+              where I.item_no in('326','89','339')
+           ) v
+         where v.RN2 = 1 and item_type_no in ('itype-001','itype-009','itype-004')
+    )
 ]]>
 
 </select>
@@ -77,7 +84,7 @@ select * from (select v.*, rownum rnum from (select *
 		<result column="item_limited_type" property="itemLimitedType" />
 		<result column="item_sale_type" property="itemSaleType" />
 		<collection property="imageList" ofType="itemImage">
-			<id column="item_image_no" property="itemImageNo"/>
+			<id column="item_image_no" property="itemImageNo"/>    
 			<result column="item_image_origin_name" property="itemImageOriginName"/>
 			<result column="item_image_re_name" property="itemImageReName"/>
 			<result column="item_no" property="itemNo"/>
@@ -269,8 +276,16 @@ select * from (select v.*, rownum rnum from (select *
 	</select>
 	
 	<insert id="addSearchKeyword">
-		insert into search_rank values (seq_search_no.nextval,#{searchKeyword},default)
+		insert into search_rank values (seq_search_no.nextval,#{searchKeyword},default,#{memberNo})
 	</insert>
+	
+	<select id="saveKeyword" resultMap="rank">
+		select * from (select ROW_NUMBER() OVER (ORDER BY search_date DESC) as recent, sr.* from search_rank sr where member_no=#{memberNo}) where recent between 1 and 10
+	</select>
+	
+	<select id="searchAuto" resultType="string">
+		select item_name from item where item_name like #{searchKeyword}
+	</select>
 	<!-- 찬호 끝 -->
 
 	<!--주영 상품 상세보기 시작 -->
@@ -321,6 +336,29 @@ select * from (select v.*, rownum rnum from (select *
 	
 	<!--주영 상품 상세보기 끝 -->
 	
+	<!-- 하라 상품 상세보기 - QnA 시작 -->
+	
+	<insert id="insertQna">
+	insert into item_qna(item_qna_no , member_no, item_no, item_qna_title, item_qna_content, item_qna_ans_yn, item_qna_date)
+	values (seq_item_qna_no.nextval, #{memberNo},#{itemNo} ,#{itemQnaTitle},#{itemQnaContent},'n',sysdate)
+		<selectKey keyProperty="itemNo" resultType="_int" order="AFTER">
+			select seq_item_qna_no.currval from dual
+		</selectKey>
+	</insert>
+	
+	<select id="itemQnaList" resultMap="itemQnaListMap">
+	select * from item_qna
+	where item_no = #{itemNo}
+	</select>
+	<resultMap type="ItemQna" id="itemQnaListMap"></resultMap>
+	
+		<select id="itemQnaAnsList" resultMap="itemQnaAnsListMap">
+	select * from item_qna_ans
 
+	</select>
+	<resultMap type="ItemQnaAns" id="itemQnaAnsListMap"></resultMap>
+	
+	
+	<!-- 하라 상품 상세보기 - QnA 끝 -->
 
 </mapper>

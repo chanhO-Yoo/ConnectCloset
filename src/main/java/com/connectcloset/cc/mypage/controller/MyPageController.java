@@ -139,17 +139,25 @@ public class MyPageController {
 	
 	//----------------주영  포인트 시작 -----------------
 	@RequestMapping("/mypage/mypage-point.do")
-	public ModelAndView pointView(ModelAndView mav , @RequestParam("memberNo") int memberNo) {
+	public ModelAndView pointView(ModelAndView mav , @RequestParam("memberNo") int memberNo 
+													, @RequestParam(defaultValue="1") int cPage) {
 		
-		logger.debug("memberNo@@@@@@={}", memberNo);
+		final int numPerPage = 9;
+		
+
 		
 		List<Point> point
-		= myPageService.selectListPoint(memberNo);
+		= myPageService.selectListPoint(memberNo, cPage,numPerPage);
 		
+		int totalContents = myPageService.selectListPointCount();
 
 		mav.addObject("point",point);
-
-		logger.debug("point@@@@@@={}", point);
+		mav.addObject("numPerPage", numPerPage);
+		mav.addObject("totalContents", totalContents);
+		mav.addObject("cPage", cPage);
+		mav.addObject("memberNo", memberNo);
+		
+		logger.debug("point={}", point);
 		mav.setViewName("/mypage/mypage-point");
 		
 		

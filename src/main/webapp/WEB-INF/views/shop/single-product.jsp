@@ -1,3 +1,6 @@
+<%@page import="com.connectcloset.cc.video.vo.Video"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="com.connectcloset.cc.item.model.vo.ItemAndImageVO2"%>
 <%@page import="com.connectcloset.cc.item.model.vo.Item"%>
@@ -10,7 +13,7 @@
 
 <%
 	ItemAndImageVO2 item = (ItemAndImageVO2)request.getAttribute("item");
-	
+
 	Cookie[] ck =request.getCookies();
 	String itemNoList = null;
 	String newItemNoList = "";
@@ -66,14 +69,19 @@
 	if(itemNoList == null){
 		itemNoList=Integer.toString(item.getItemNo());
 	}
-	System.out.println("*********itemNoList="+itemNoList);
+
 	
 	Cookie cookie = new Cookie("itemNoList",URLEncoder.encode((itemNoList),"utf-8"));
 	cookie.setMaxAge(60*60*24);
 	response.addCookie(cookie);
 	
 
-%>
+	/* 윤지 시작 */
+	
+	
+	/* 윤지 끝 */
+	%>
+	
 
 
 
@@ -90,8 +98,21 @@ $("#btn-goOrder").on('click', function(){
 	let orderCount = document.querySelector("#orderItemCount").value;
 	var orderSize = $("#SizeSelect:checked").val();
 	var orderColor= $("#colorSelect:checked").val();
+	var memberNo= ${memberLoggedIn.memberNo}
 
-	console.log(orderColor);
+
+	if(orderSize===undefined){
+		alert("사이즈를 선택해주세요.");
+		return;
+	}
+	
+	if(orderColor===undefined){
+		alert("색상을 선택해주세요.");
+		return;
+	}
+	
+	
+	
 		if(!confirm("현재 상품을 바로 구입 하시겠어요?")) return;
 		
 		/* $.ajax({
@@ -113,7 +134,7 @@ $("#btn-goOrder").on('click', function(){
 			} 
 		}); */
 	
-		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor;
+		location.href ="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&orderCount="+orderCount+"&orderSize="+orderSize+"&orderColor="+orderColor+"&memberNo="+memberNo;
 	}); 
 	
 function changeOrderNo(num){
@@ -141,6 +162,7 @@ function goLogin(){
 }
 
 </script>
+
 
         <div class="single-product-area pt-180 pb-180">
             <div class="container">
@@ -229,16 +251,7 @@ function goLogin(){
                         	</c:choose>
                         	
                             <h2>${item.itemName}</h2>
-                            <div class="pro-details-rating-wrap">
-                                <div class="pro-details-rating">
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star theme-color"></i>
-                                    <i class="ti-star gray-color"></i>
-                                </div>
-                                <span>(1 customer review)</span>
-                            </div>
+                    
       
                             <h3><fmt:formatNumber type="number" maxFractionDigits="3" value="${item.itemPrice}" />원</h3>
                             <p>${item.itemInfo}</p>
@@ -246,22 +259,19 @@ function goLogin(){
                                 <div class="pro-details-color2-wrap">
                                     <span>Color</span>
                                     <div class="pro-details-color2-content">
-                                        <ul>
+                                        <ul class="  pr-30">
+								 <c:forTokens items="${item.itemColors}" delims="," var="item">
                                         
 										
 										   
-						 <c:forTokens items="${item.itemColors}" delims="," var="item">
-										 
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				
-			
-						<label class="btn ${item } " >
-							<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
-						</label>
+												 
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+								<label class="btn ${item } " >
+									<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
+								</label>	
+							</div>
 
-					</div>
-						 </c:forTokens>
-
+								 </c:forTokens>
 
                                         </ul>
                                     </div>
@@ -269,9 +279,9 @@ function goLogin(){
                                 <div class="pro-details-size2">
                                     <span>Size</span>
                                     <div class="pro-details-size2-content">
-                                        <ul>
-                                        	
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
+                                        <ul >
+                                        	
                                          <div class="form-group">
 										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										    		<label class="btn " >
@@ -281,10 +291,10 @@ function goLogin(){
 										  	</div>
 					
 										</div>
-										</c:forTokens>
                                      
                                       
                                         </ul>
+										</c:forTokens>
                                     </div>
                                 </div>
                             </div>
@@ -299,32 +309,13 @@ function goLogin(){
                                     <a class="default-btn btn-hover" href="${pageContext.request.contextPath}/shop/cartInsert.do?itemNo=${item.itemNo}">Add To Cart</a>
                                 </div>
                                 <div class="pro-details-wishlist">
-                                	<button type="button" class=" btn-hover" id="btn-goOrder"><i class="ti-heart"></i></button>
+                                <a class=" btn-hover" id="btn-goOrder">
+                                	<i class="ti-heart"></i></button>
+                                </a>
                                     <a class=" btn-hover" href="${pageContext.request.contextPath}/shop/checkout.do?itemNo=${item.itemNo}&qtybutton?="><i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                            <div class="pro-details-info-wrap">
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">SKU</li>
-                                        <li>00010002</li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Categories</li>
-                                        <li><a href="#">Women,</a></li>
-                                        <li><a href="#">Dress</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pro-details-info-list">
-                                    <ul>
-                                        <li class="pro-details-info-title">Tags</li>
-                                        <li><a href="#">Clothing,</a></li>
-                                        <li><a href="#">Summer</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                        
                             <div class="pro-details-social">
                                 <ul>
                                     <li><a href="#"><i class="ti-facebook"></i></a></li>
@@ -344,7 +335,6 @@ function goLogin(){
                 <div class="description-review-wrapper">
                     <div class="description-review-topbar nav">
                         <a class="active" data-toggle="tab" href="#des-details1">Description</a>
-                        <a data-toggle="tab" href="#des-details2">Additional information</a>
                         <a data-toggle="tab" href="#des-details3">Reviews</a>
                         <a data-toggle="tab" href="#des-details4">QnA</a>
                     </div>
@@ -404,10 +394,211 @@ function goLogin(){
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                    </div> 
+
+
+                                        <div class="single-review child-review">
+                                            <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>White Lewis</h4>
+                                                        </div>
+                                                        <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                      </c:forEach>
                                      </c:if>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="ratting-form-wrapper pl-50">
+                                        <h3>Add a Review</h3>
+                                        <div class="ratting-form">
+                                            <form action="#">
+                                                 <div class="star-box">
+                                                    <span>Your rating:</span>
+                                                    <div class="ratting-star">
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Name" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Email" type="email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <textarea name="Your Review" placeholder="Message"></textarea>
+                                                            <input type="submit" value="Submit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+
+                        <div id="des-details4" class="tab-pane">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="review-wrapper">
+                                             <c:forEach items="${itemQnaList}" var="itemQna" varStatus="vs">
+                                        <div class="single-review">
+                                            <%-- <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div> --%>
+                                            <div class="review-content">
+                                                        <div class="review-name">
+                                                            <h4>제목: ${itemQna.itemQnaTitle}</h4>
+                                                        </div>
+                                                <div class="review-top-wrap">
+                                                    <!-- <div class="review-left">
+                                                        <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div>
+                                                    </div> -->
+                                                    <!-- <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div> -->
+
+                                                <div class="review-bottom" style="margin-top: 5px; margin-bottom:10px;">
+                                                    <p>내용: ${itemQna.itemQnaContent}</p>
+                                                </div>
+                                            </div>
+                                            
+<!--                                                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+													  Link with href
+													</a> -->
+													<button class="btn btn-primary" style="float:right; margin-left:500px; margin-top:-75px; "
+													type="button" data-toggle="collapse" data-target="#collapseExample${itemQna.itemQnaNo}" aria-expanded="false" aria-controls="collapseExample">
+													  답변 확인
+													</button>
+													<div class="collapse" id="collapseExample${itemQna.itemQnaNo}">
+													  <div class="well"  style="border: 1px solid; margin-bottom: 30px;">
+													   <c:forEach items="${itemQnaAnsList}" var="itemQnaAns" varStatus="vs">
+													   <c:if test="${itemQna.itemQnaNo == itemQnaAns.itemQnaNo}">
+														관리자 답변: ${itemQnaAns.itemQnaAnsContent}
+													   </c:if>
+													   </c:forEach>
+
+													  </div>
+													</div>
+                                                </div>
+                                            
+                                        </div>
+                                            </c:forEach>
+                                            
+                   <%--                      <div class="single-review child-review">
+                                            <div class="review-img">
+                                                <img alt="" src="${pageContext.request.contextPath }/resources/img/testimonial/client-7.png">
+                                            </div>
+                                            <div class="review-content">
+                                                <div class="review-top-wrap">
+                                                    <div class="review-left">
+                                                        <div class="review-name">
+                                                            <h4>White Lewis</h4>
+                                                        </div>
+<!--                                                         <div class="review-rating">
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star theme-color"></i>
+                                                            <i class="ti-star gray-color"></i>
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="review-left">
+                                                        <a href="#">Reply</a>
+                                                    </div>
+                                                </div>
+                                                <div class="review-bottom">
+                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula. </p>
+                                                </div>
+                                            </div>
+                                        </div> --%>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="ratting-form-wrapper pl-50">
+                                        <h3>Add a QnA</h3>
+                                        <div class="ratting-form">
+                                            <!-- <form action="#"> -->
+                                            <form name="QnaFrm" action="${pageContext.request.contextPath}/qna/qnaFormEnd.do" method="post" enctype="multipart/form-data" onsubmit="return validate();">
+                                            <br />
+<!--                                                 <div class="star-box">
+                                                    <span>Your rating:</span>
+                                                    <div class="ratting-star">
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                        <i class="ti-star"></i>
+                                                    </div>
+                                                </div> -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Name" type="text" value="${memberLoggedIn.memberName}">
+                                                            <input type="hidden" name="memberNo" value="${memberLoggedIn.memberNo }" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="rating-form-style mb-10">
+                                                            <input placeholder="Email" type="email" value="${memberLoggedIn.memberEmail}">
+                                                            <input type="hidden" name="itemNo" value="${item.itemNo }" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                    	<input placeholder="Title" type="title" name="itemQnaTitle" > 
+                                                    </div> 
+                                                    <div class="col-md-12">
+                                                        <div class="rating-form-style form-submit">
+                                                            <textarea name="itemQnaContent" placeholder="Content"></textarea>
+                                                            <input type="submit" value="Submit">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                        
+                                    </div> 
+
                                 </div>
                              
                             </div>
@@ -420,130 +611,14 @@ function goLogin(){
         <div class="related-product mb-75">
             <div class="container">
                 <div class="related-product-title text-center mb-25">
-                    <h4>Related products</h4>
+                    <h4>Recommended videos</h4>
                 </div>
-                <div class="related-product-active owl-carousel">
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-9.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-10.jpg" alt="">
-                            </a>
-                            <span class="new">New</span>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-1.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-2.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="shop-wrap">
-                        <div class="shop-img">
-                            <a href="#">
-                                <img src="${pageContext.request.contextPath }/resources/img/product/shop-3.jpg" alt="">
-                            </a>
-                            <div class="shop-hover">
-                                <div class="shop-card">
-                                    <a href="#" title="Add To Cart">Add To Cart <i class="ti-shopping-cart"></i></a>
-                                </div>
-                                <div class="shop-wishlist">
-                                    <a title="Wishlist" href="#"><i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="shop-content">
-                            <div class="shop-name">
-                                <h4><a href="#">Product Name</a></h4>
-                            </div>
-                            <div class="shop-price">
-                                <span class="old">$329</span>
-                                <span class="new">$150</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" >
+                <c:forEach items="${videoList}" var="video" end="1">
+                	<div class="col-lg-6">
+ 	 	              	<iframe width="560" height="315" src="${video.videoUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 	 	            </div>
+                </c:forEach>
                 </div>
             </div>
         </div>
@@ -554,4 +629,6 @@ function goLogin(){
 		var header=$("header").attr('class','theme-bg');
 		console.log(header);
 	});
+	
+
 </script>
