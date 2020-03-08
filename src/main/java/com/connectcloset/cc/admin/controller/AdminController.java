@@ -308,8 +308,6 @@ public class AdminController {
 		map.put("cPage",cPage);
 		map.put("totalContents", totalContents);
 		
-		logger.debug("여기까지는 왔냐???");
-		
 		return map;
 	}
 	

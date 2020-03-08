@@ -35,6 +35,11 @@
 <fmt:requestEncoding value="utf-8"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+<style>
+#shop-img {
+	height: 300px !important;
+}
+</style>
 
 <!-- breadcrumb area -->
         <div class="breadcrumb-area bg-img pt-230 pb-152 default-overlay-2" style="background:#212529;">
@@ -61,7 +66,7 @@
 			                <c:forEach items="${list }" var="item">
 	                            <div class="col-xl-4 col-lg-4 col-md-4 item-hidden grid-item">
 	                                <div class="blog-wrap-2 blog-shadow mb-40">
-	                                    <div class="blog-img hover-3">
+	                                    <div class="blog-img hover-3" id="shop-img">
 	                                        <a href="${pageContext.request.contextPath }/admin/editItem.do?itemNo=${item.itemNo}">
 	                                        	<c:if test="${item.imageList[0].itemImageReName == null }">
 		                                            <img src="${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg" alt="" width="220px">
@@ -154,10 +159,10 @@ function search(event) {
     			let n = data.list[i];
 			html += "<div class='col-xl-4 col-lg-4 col-md-4 item-hidden grid-item'>"
             	 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
-            	 + "<div class='blog-img hover-3'>"
+            	 + "<div class='blog-img hover-3' id='shop-img'>"
                  + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
-                 + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>"
-                 /* + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
+                 /* + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>" */
+                 + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>"
                  + "</a>"
                  + "<div class='readmore-icon'>"
                  + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
@@ -214,10 +219,10 @@ function changePage(cPage) {
    			let n = data.list[i];
 			html += "<div class='col-xl-4 col-lg-4 col-md-4 item-hidden grid-item'>"
            	 + "<div class='blog-wrap-2 blog-shadow mb-40'>"
-           	 + "<div class='blog-img hover-3'>"
+           	 + "<div class='blog-img hover-3' id='shop-img'>"
                 + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
-                + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>"
-                /* + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>" */
+                /* + "<img src='${pageContext.request.contextPath }/resources/img/blog/blog-7.jpg' width='220px'>" */
+                + "<img src='${pageContext.request.contextPath }/resources/upload/item/"+n.imageList[0].itemImageReName+"' width='220px'>"
                 + "</a>"
                 + "<div class='readmore-icon'>"
                 + "<a href='${pageContext.request.contextPath }/admin/editItem.do?itemNo="+n.itemNo+"'>"
