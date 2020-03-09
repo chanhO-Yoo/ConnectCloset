@@ -42,8 +42,7 @@ margin-left: 250px;
 	                </div>
 	            
 	                <div class="memberId-wrapper">
-	                    <label for="memberId">문의자아이디</label>
-	                    <input type="text" name="memberNo" id="memberNo" value="${memberLoggedIn.memberNo}" readonly>
+	                    <input type="hidden" name="memberNo" id="memberNo" value="${memberLoggedIn.memberNo}" readonly>
 	                </div>
 	                <div class="btnForm-wrapper text-center">
 	                    <button type="button" class="btn-radius" onclick="exit();">취소</button>

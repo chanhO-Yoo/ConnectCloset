@@ -368,8 +368,13 @@ function goLogin(){
                         		
                                     <div class="review-wrapper">
                                         <div class="single-review">
+                                            <div class="review-img">
+	                                            <c:if test="${re.reviewImage !=null}">
+	                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
+	                                            </c:if>
                                             
-                                            <div class="review-content">
+                                            </div>
+                                            <div class="review-content pt-70">
                                                 <div class="review-top-wrap">
                                                     <div class="review-left">
                                                         <div class="review-name">
@@ -391,12 +396,6 @@ function goLogin(){
                                                 <div class="review-bottom">
                                                     <p>${re.reviewContent}</p>
                                                 </div>
-                                            </div>
-                                            <div class="review-img" style="position: absolute;right: 10px;">
-	                                            <c:if test="${re.reviewImage !=null}">
-	                                                <img width="200px" height="200px" src="${pageContext.request.contextPath}/resources/upload/review/${re.reviewImage}">
-	                                            </c:if>
-                                            
                                             </div>
                                         </div>
 
