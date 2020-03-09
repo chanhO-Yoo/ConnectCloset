@@ -76,7 +76,7 @@ input#btn-add{float:right; margin: 0 0 15px;}
 		<c:forEach items="${list }" var="pQna">
 				<tr onclick="location.href='${pageContext.request.contextPath }/mypage/mypage-pQnAans.do?pQnaNo=${pQna.pQnaNo }'" align="center">
 					<td>${pQna.pQnaNo }</td>
-					<td>${pQna.memberNo }</td>
+					<td>${memberLoggedIn.memberEmail}</td>
 					             <c:choose>
 
 								<c:when test="${pQna.pQnaTypeNo  eq 'ptype-001'}"> 
