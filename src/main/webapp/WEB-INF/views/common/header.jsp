@@ -298,18 +298,15 @@
                        
                         <div class="sidebar-contact-list">
                             <ul>
-                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
-
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/wishlist.do">위시리스트</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/shop/cartList.do">장바구니</a></li>
 
-                           
+                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/member/memberUpdateForm.do">회원 정보 수정</a></li>
+
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-point.do?memberNo=${memberLoggedIn.memberNo}">포인트 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-review.do?memberNo=${memberLoggedIn.memberNo}&reviewWriter=${memberLoggedIn.memberEmail}">리뷰 확인</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-pQnA.do?memberNo=${memberLoggedIn.memberNo}">1:1문의</a></li>
 
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지3</a></li>
-                             <li><i class="ti-hand-point-right"></i><a href="">마이페이지4</a></li>
                              <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath}/mypage/mypage-order.do?memberNo=${memberLoggedIn.memberNo}" >주문내역 조회</a></li>
                             </ul>
                         </div>
@@ -321,12 +318,12 @@
                        
                         <div class="sidebar-contact-list">
                             <ul>
-	                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/itemList.do">상품목록</a></li>
 	                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/enrollItem.do">상품등록</a></li>
+	                             <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/itemList.do">상품목록</a></li>
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminPQnaList.do">1대1문의</a></li>
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminItemQnaList.do">상품문의</a></li>
                                  <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/deliveryList.do">배송현황</a></li>
-                                 <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminGraph.do">주문현황(그래프)</a></li>
+                                 <li><i class="ti-hand-point-right"></i><a href="${pageContext.request.contextPath }/admin/adminGraph.do">매출현황</a></li>
                             </ul>
                         </div>
                     </div>

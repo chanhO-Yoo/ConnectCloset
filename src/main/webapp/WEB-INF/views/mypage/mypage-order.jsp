@@ -269,3 +269,9 @@ a {
         </div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<script>
+$(document).ready(function(){
+	var header=$("header").attr('class','theme-bg');
+	console.log(header);
+});
+</script>
