@@ -10,6 +10,12 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
+<style>
+#pQnAForm{
+margin-left: 250px;
+}
+</style>
+
 <div class="mypage-pQnAForm-area pt-180 pb-180">
 	<div class="row">
 	
