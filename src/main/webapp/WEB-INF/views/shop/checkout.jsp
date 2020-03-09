@@ -12,7 +12,6 @@ Member member = (Member)session.getAttribute("memberLoggedIn");
 %>
 <fmt:requestEncoding value="utf-8" />
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
 <!-- 아임포트 제공 js & payment 스크립트  -->
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -435,9 +434,6 @@ function usePoint(){
 	
 	<%}%>
 
-	
-	itemNoArr[1] = 170;
-	
 	console.log(itemNoArr);
 	
 	$("#push_module").click(function () {
