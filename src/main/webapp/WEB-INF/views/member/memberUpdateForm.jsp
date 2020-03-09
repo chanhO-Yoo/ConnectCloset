@@ -38,7 +38,7 @@
                                 <div class="text-center login-register-tab-list nav">
                                   
                                    <a data-toggle="tab" href="#register">
-                                        <h4> register </h4>
+                                        <h4> 회원수정 </h4>
                                     </a>
                                 </div>
                                 <div class="tab-content login-regi-content">
@@ -101,7 +101,7 @@
 												</div>
 											
                    	                            <div class="submit-btn">
-                                                    <button class="btn-hover" type="submit">Register</button>
+                                                    <button class="btn-hover" type="submit">회원수정</button>
                                                 </div>
                                             </form>
                                         </div>
