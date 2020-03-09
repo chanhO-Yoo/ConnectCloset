@@ -7,22 +7,26 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
+
 <section id="board-container" class="container pt-150">
 	
 		<input type="hidden" name="pQnaNo" value="${pQna.pQnaNo }"/>
 		<table id="tbl-board" class="table">
 			<tr>
-				<td>문의번호</td>
-				<td>${pQna.pQnaNo }</td>
-				<td>문의유형</td>
+				<td><strong>문의번호</strong></td>
+				<td colspan="3">${pQna.pQnaNo }</td>
+				<td><strong>문의유형</strong></td>
 				<td>${pQna.pQnaTypeNo }</td>
-				<td>문의제목</td>
-				<td>${pQna.pQnaTitle }</td>
+				
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td colspan="2">${pQna.memberNo }</td>
-				<td>작성일</td>
+				<td><strong>문의제목</strong></td>
+				<td colspan="5">${pQna.pQnaTitle }</td>
+			</tr>
+			<tr>
+				<td><strong>작성자</strong></td>
+				<td colspan="3">${memberLoggedIn.memberEmail}</td>
+				<td><strong>작성일</strong></td>
 				<td colspan="2">${pQna.pQnaDate }</td>
 			</tr>
 			<tr>
