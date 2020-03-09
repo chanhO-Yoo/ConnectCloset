@@ -23,29 +23,46 @@
 <style>
 /*글쓰기버튼*/
 input#btn-add{float:right; margin: 0 0 15px;}
+
+.col-md-10 content-wrapper{
+	display: inline-block;
+	width: 290px;
+}
+
+#totalTop{
+	display: inline-block;
+	width: 800px;
+}
+
+#qnaEnroll{
+	display: inline-block;
+	width: 270px;
+	left: 10px;
+}
 </style>
 
   
 
 
 <section id="board-container" class="container pt-150">
- <div class="col-md-10 content-wrapper">
+
+	<p id="totalTop">총 ${totalContents }개의 문의가 있습니다.</p>
+	 <div class="col-md-10 content-wrapper" id="qnaEnroll">
             <h2 class="sr-only">1:1문의내역</h2>
             <!-- 문의글 등록하기 -->
             <section class="my-header">
                 <h3 class="sr-only">문의글 등록하기</h3>
                 <div class="text-center">
                  <div class="submit-btn">
-                    <a href="<%=request.getContextPath()%>/mypage/mypage-pQnAForm.do" >
-                 <button type="button" class="btn btn-success btn-hover" >1:1문의 등록하기</button>
+                    <a href="<%=request.getContextPath()%>/mypage/mypage-pQnAForm.do">
+                 <button type="button" class="btn btn-success btn-hover">1:1문의 등록하기</button>
                     </a>
 		          </div>
                 </div>
             </section>
-        </div>
-	<p>총 ${totalContents }개의 1:1문의가 있습니다.</p>
+  </div>
 	<table id="tbl-board" class="table table-striped table-hover">
-		<tr>
+		<tr align="center">
 			<th>문의번호</th>
 			<th>작성자</th>
 			<th>문의유형</th>
@@ -54,9 +71,10 @@ input#btn-add{float:right; margin: 0 0 15px;}
 			<th>답변여부</th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 		<c:forEach items="${list }" var="pQna">
-				<tr onclick="location.href='${pageContext.request.contextPath }/mypage/mypage-pQnAans.do?pQnaNo=${pQna.pQnaNo }'">
+				<tr onclick="location.href='${pageContext.request.contextPath }/mypage/mypage-pQnAans.do?pQnaNo=${pQna.pQnaNo }'" align="center">
 					<td>${pQna.pQnaNo }</td>
 					<td>${pQna.memberNo }</td>
 					             <c:choose>
