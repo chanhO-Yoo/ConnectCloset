@@ -292,7 +292,7 @@
                     </c:if>
                         </div>
                     </div>
-                    <c:if test="${(memberLoggedIn != null) && fn:contains(memberLoggedIn.adminYn, 'N')}">
+                    <c:if test="${(memberLoggedIn != null) && fn:contains(memberLoggedIn.adminYn, 'N') || sessionId != null  || userName != null }">
                     <div class="sidebar-contact">
                         <h5>마이페이지</h5>
                        
