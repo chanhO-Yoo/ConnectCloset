@@ -435,9 +435,6 @@ function usePoint(){
 	
 	<%}%>
 
-	
-	itemNoArr[1] = 170;
-	
 	console.log(itemNoArr);
 	
 	$("#push_module").click(function () {
