@@ -15,6 +15,9 @@ border: 1px solid black;
 background-color: black;
 color: white;
 }
+#blog-img {
+	height: 300px !important;
+}
 </style>
 
 <!-- breadcrumb area -->
@@ -27,7 +30,7 @@ color: white;
                     	<c:forEach items="${list}" var="blogCollectionMap" varStatus="vs">
                             <div class="col-xl-4 col-lg-6 col-md-6 item-hidden grid-item">
                                 <div class="blog-wrap-2 blog-shadow mb-40">
-                                    <div class="blog-img hover-3">	
+                                    <div class="blog-img hover-3 blog-img" id="blog-img">	
                                          <a href="${pageContext.request.contextPath}/blog/blogView.do?blogNo=${blogCollectionMap.blogNo}">
                             			  	 <c:if test="${blogCollectionMap.attachmentList[0].renamedFileName == null }">
                                          		 <img src="${pageContext.request.contextPath }/resources/upload/${blogCollectionMap.renamedFileName}" alt="">

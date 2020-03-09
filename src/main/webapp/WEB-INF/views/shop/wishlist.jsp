@@ -16,6 +16,9 @@
         
         <fmt:requestEncoding value="utf-8"/> 
       	<style>
+#wish-img {
+	height: 300px !important;
+}
       	
 .mix-icon-container {
     display: inline-block;
@@ -70,7 +73,7 @@
                           
                             <div class="shop-wrap mb-5">
    
-                                <div class="shop-img hover-3">
+                                <div class="shop-img hover-3" id="wish-img">
                                 	
                                     <a href="single-product.html">
                                     <img src="${pageContext.request.contextPath }/resources/upload/item/${wish.ITEM_IMAGE_RE_NAME}" alt=""></a>
