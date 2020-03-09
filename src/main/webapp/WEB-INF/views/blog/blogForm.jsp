@@ -37,7 +37,7 @@ margin-left: -150px;
 <div id="blog-container">
 	<form name="blogFrm" action="${pageContext.request.contextPath}/blog/blogFormEnd.do" method="post" enctype="multipart/form-data" onsubmit="return validate();">
 		<input type="text" class="form-control" style="width: 700px;" placeholder="제목" name="blogTitle" id="blogTitle" required>
-		<input type="text" class="form-control" style="width: 700px;" name="memberNo" value="${memberLoggedIn.memberNo}" readonly required>
+		<input type="hidden" class="form-control" style="width: 700px;" name="memberNo" value="${memberLoggedIn.memberNo}" readonly required>
 		<!-- input:file소스 : https://getbootstrap.com/docs/4.1/components/input-group/#custom-file-input -->
 		<div class="input-group mb-3" style="padding:0px;">
 		  <div class="input-group-prepend" style="padding:0px;">

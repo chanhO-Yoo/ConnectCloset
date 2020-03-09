@@ -122,7 +122,7 @@ public class BlogController {
 			
 			int result = blogService.insertBlog(blog,attachList);
 			
-			mav.addObject("msg", result>0? "게시물등록성공" : "실패!!");
+			mav.addObject("msg", result>0? "게시물 등록 성공" : "실패!!");
 			mav.addObject("loc", "/blog/blogList.do");
 			mav.setViewName("common/msg");
 			

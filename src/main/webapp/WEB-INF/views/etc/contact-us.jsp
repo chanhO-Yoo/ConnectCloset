@@ -306,59 +306,6 @@ function removeAllChildNods(el) {
 }
 </script>
                 
-                <div class="office-info-area pt-100">
-                    <div class="office-info-title mb-65">
-                        <h3>Our Offices</h3>
-                    </div>
-                    <div class="contact-info-wrap2">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="office-branch mb-30">
-                                    <h4>New York</h4>
-                                    <div class="single-contact-info2">
-                                        <ul>
-                                            <li><span><i class="ti-location-pin"></i></span> 158 W 27th St, New York, 10001</li>
-                                            <li><span><i class="ti-email"></i></span> <a href="#">vitalinfo@gmail.com</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="office-branch contact-info-minus mb-30">
-                                    <h4>London</h4>
-                                    <div class="single-contact-info2">
-                                        <ul>
-                                            <li><span><i class="ti-location-pin"></i></span> 158 W 27th St, New York, 10001</li>
-                                            <li><span><i class="ti-email"></i></span> <a href="#">vitalinfo@gmail.com</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="office-branch contact-info-minus mb-30">
-                                    <h4>Tokyo</h4>
-                                    <div class="single-contact-info2">
-                                        <ul>
-                                            <li><span><i class="ti-location-pin"></i></span> 158 W 27th St, New York, 10001</li>
-                                            <li><span><i class="ti-email"></i></span> <a href="#">vitalinfo@gmail.com</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <div class="office-branch contact-info-minus mb-30">
-                                    <h4>Paris</h4>
-                                    <div class="single-contact-info2">
-                                        <ul>
-                                            <li><span><i class="ti-location-pin"></i></span> 158 W 27th St, New York, 10001</li>
-                                            <li><span><i class="ti-email"></i></span> <a href="#">vitalinfo@gmail.com</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

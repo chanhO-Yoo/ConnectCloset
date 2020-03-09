@@ -52,41 +52,6 @@
 	                                         </c:if> 
 	                               
                                         </div>
-                                <div class="b-details-content-middle mt-40">
-                                    <h4>Phasellus accumsan et tempus neque quam eu felis.</h4>
-                                    <p>In pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut risus vestibul lacinia ultricies sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras consequat felis nonit facilisis pharetra. Nunc molestie quis dolor vitae sagittis. Sed tempor, est a tempor congue, leo erat pellentesque neque, ac efficitur et ante.</p>
-
-                                    <p>hasellus accumsan, leo a vehicula ornare, lectus eros tristique aleo, eto tempus neque quam pulvinar nulla quis rhoncus scelerisque. Phasellus facilisis scelerisque ultrices. Nulla dignissim ante ut rtheisus vestibulum, lacinia ultricies sem sagittis ante ipsum primis. </p>
-                                    <div class="blog-details-list">
-                                        <ul>
-                                            <li>Curabitur consequat est et auctor pretium. Fusce tincidunt ornare nunc, at maximus mauris. </li>
-                                            <li>Cras euismod sit amet nunc eget scelerisque. Cras id mollis justo, fringilla vestibulum mauris. </li>
-                                            <li>In malesuada metus sit amet lorem rhoncus, et facilisis ex consequa imus arcu ultricies quis. </li>
-                                        </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor, mi id condimentum ultrices, ante quam ultricies exat molestie neque eros a mauris. Nullam ut massa lorem. Praesent dapibus bibendum lacus, ultricies imperdiet eros rutrum ive odio. Vestibulum rhoncus tellus quis convallis imperdiet. Etiam blandit, tortor sit amet euismod ultricies, leo sapien fermentum ndrerit lacus mi a lacus. </p>
-                                    <p>Maecenas faucibus vitae urna eget auctor. Nullam tincidunt nulla ex, faucibus vestibulum leo bibeet. Fusce rhoncus suscipit ante sed tincidunt. Vivamus ultricies purus aliquam pretium sodales. Cras nec tristique ipsum, et eleme lacus arcu, hendrerit vitae tellus porta.</p>
-                                    <p>Asuscipit tristique libero. Sed tristique sit amet metus eget laoreet. Suspendisse vel od dolor venenatis sodales utligula. Etiam tempor urna vitae ornare mattis, erat velit pretium dolor, at tempus augue leo et massa. Sed quis dolorelis tincidunt faucibus. Cras id rutrum ex. Vestibulum blandit, ex quis viverra porta, tortor sem cursus ipsum, feugiat iaculis neque lorem at leo. Fusce luctus, augue asapien. </p>
-                                </div>
-                                <div class="details-category-social">
-                                    <div class="details-category">
-                                        <ul>
-                                            <li><a href="#">#blog</a></li>
-                                            <li><a href="#">#Photography</a></li>
-                                            <li><a href="#">#Culture</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- <div class="details-social">
-                                        <ul>
-                                            <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                            <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                            <li><a href="#"><i class="ti-pinterest"></i></a></li>
-                                            <li><a href="#"><i class="ti-tumblr-alt"></i></a></li>
-                                            <li><a href="#"><i class="ti-google"></i></a></li>
-                                        </ul>
-                                    </div> -->
-                                			</div>
-                                				
                                        	</div>
                                        
                                      </div>

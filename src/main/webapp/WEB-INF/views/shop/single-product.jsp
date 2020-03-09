@@ -287,7 +287,7 @@ function goLogin(){
                                          <c:forTokens items="${item.itemSize}" delims="," var="item">
                                         	
                                          <div class="form-group">
-										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
+										  	<div class="btn-group btn-group-toggle pt-1" data-toggle="buttons">
 										    		<label class="btn " >
 														<input type="checkbox" name="jb-radio" id="SizeSelect" value="${item}" >${item}
 													</label>
