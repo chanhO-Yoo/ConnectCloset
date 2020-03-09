@@ -268,7 +268,7 @@ function goLogin(){
                                         
 										
 										   
-												 
+												     
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
 								<label class="btn ${item } " >
 									<input type="radio" name="jb-radio" id="colorSelect" value="${item}" >
@@ -283,8 +283,8 @@ function goLogin(){
                                 <div class="pro-details-size2">
                                     <span>Size</span>
                                     <div class="pro-details-size2-content">
-                                         <c:forTokens items="${item.itemSize}" delims="," var="item">
                                         <ul >
+                                         <c:forTokens items="${item.itemSize}" delims="," var="item">
                                         	
                                          <div class="form-group">
 										  	<div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -297,8 +297,8 @@ function goLogin(){
 										</div>
                                      
                                       
-                                        </ul>
 										</c:forTokens>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

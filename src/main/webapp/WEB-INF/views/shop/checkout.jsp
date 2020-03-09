@@ -452,7 +452,7 @@ function usePoint(){
 		var memberId = "<%=member.getMemberEmail()%>";
 		//var orderNo = 
 		let userTotalPrice = document.querySelector("#userTotalPrice").innerText.replace(",", "")*1; //총 결제금액		
-		console.log(userTotalPrice)
+
 		var $radioChk = $("input[type=radio]:checked").val();
 		//결제수단 선택 유효성
 		if($radioChk===undefined){
@@ -479,6 +479,7 @@ function usePoint(){
 //결제창에서 보여질 이름
 	amount: userTotalPrice,
 	//amount: 1000,
+
 
 	buyer_email: '<%=member.getMemberEmail()%>',
 	buyer_name: '<%=member.getMemberName()%>',
