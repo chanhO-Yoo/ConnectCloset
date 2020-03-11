@@ -81,7 +81,7 @@ insert into  personal_qna values
 </insert>
 
 <select id="selectPQnaList" resultMap="personalQnaMap">
-		select * from personal_qna where member_no = #{memberNo}
+		select * from personal_qna where member_no = #{memberNo} order by p_qna_no desc
 	</select>
 	
 	<resultMap type="personalQna" id="personalQnaMap">

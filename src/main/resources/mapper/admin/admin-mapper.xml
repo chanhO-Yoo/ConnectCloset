@@ -192,7 +192,7 @@
     
     <!-- ===================하라 시작=================== -->
     <select id="selectItemQnaList" resultMap="itemQnaMap">
-		select iq.*,m.member_email from item_qna iq left join member m on iq.member_no = m.member_no
+		select iq.*,m.member_email from item_qna iq left join member m on iq.member_no = m.member_no order by iq.item_qna_no desc
 	</select>
 	
 		
