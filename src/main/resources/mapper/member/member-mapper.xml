@@ -17,7 +17,8 @@
 		#{memberBirthday},
 		default,
 		default,
-		default
+		default,
+		'N'
 		)
 		<selectKey keyProperty="memberNo" resultType="_int" order="AFTER">
 			select seq_member_no.currval from dual
